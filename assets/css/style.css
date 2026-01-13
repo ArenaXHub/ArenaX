@@ -203,3 +203,22 @@ h2 {
   font-size: 28px;
   cursor: pointer;
 }
+/* ---------- CERTIFICATE GRID ---------- */
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.certificate-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.certificate-info li {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
