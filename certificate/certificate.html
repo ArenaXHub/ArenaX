@@ -5,13 +5,22 @@
   <title>ArenaX Badminton Performance Certificate</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+/* ================= PRINT LOCK ================= */
 @page {
   size: A4 landscape;
-  margin: 40px;
+  margin: 0;
 }
 
+@media print {
+  body {
+    margin: 0;
+  }
+}
+
+/* ================= BASE ================= */
 body {
   margin: 0;
   background: #ffffff;
@@ -19,37 +28,30 @@ body {
   color: #111;
 }
 
-/* Landscape page */
-.page {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  padding: 36px 48px;
-  justify-content: center;
-}
-
-/* Portrait certificate */
-.certificate {
-  width: 820px;                 /* PORTRAIT WIDTH */
-  padding: 40px 50px;
+/* ================= FIXED A4 LANDSCAPE CANVAS ================= */
+.certificate-page {
+  width: 1123px;        /* A4 landscape @96dpi */
+  height: 794px;
+  padding: 48px 72px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 .header {
   text-align: center;
   margin-bottom: 24px;
 }
 
 .header img {
-  height: 165px;                /* FIXED LOGO SIZE */
-  margin-bottom: 11px;
+  height: 170px;        /* LOGO SCALE FIXED */
+  margin-bottom: 10px;
 }
 
 .org {
   font-size: 18px;
   font-weight: 600;
-  color: #444;                  /* GREY, NOT BLACK */
+  color: #444;
 }
 
 .tagline {
@@ -58,45 +60,46 @@ body {
   margin-top: 2px;
 }
 
-/* ===== TITLE ===== */
+/* ================= TITLE ================= */
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
   text-align: center;
-  margin: 30px 0 18px;
-  line-height: 1.2;
+  margin: 28px 0 18px;
+  line-height: 1.15;
 }
 
-/* ===== CONTENT ===== */
+/* ================= CONTENT ================= */
 .content {
   text-align: center;
 }
 
-.content > div:first-child {
+.content .intro {
   font-size: 15px;
   color: #333;
 }
 
 .name {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   margin: 16px 0 20px;
+  letter-spacing: 0.5px;
 }
 
 .description {
   font-size: 15.5px;
   line-height: 1.6;
-  max-width: 720px;
+  max-width: 860px;
   margin: 0 auto 26px;
 }
 
-/* ===== PERFORMANCE SUMMARY ===== */
+/* ================= PERFORMANCE SUMMARY ================= */
 .performance-box {
-  background: #f3f3f3;          /* PANEL COLOR RESTORED */
+  background: #f3f3f3;
   border-radius: 14px;
-  padding: 18px 26px;
-  max-width: 720px;
+  padding: 20px 30px;
+  max-width: 860px;
   margin: 0 auto 26px;
 }
 
@@ -104,6 +107,7 @@ h1 {
   margin: 0 0 14px;
   font-size: 14px;
   letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .performance-grid {
@@ -123,39 +127,34 @@ h1 {
   font-weight: 500;
 }
 
-/* ===== QUALIFICATION TEXT ===== */
+/* ================= QUALIFICATION ================= */
 .footer-note {
   font-size: 14px;
   line-height: 1.7;
   margin: 26px auto 30px;
+  max-width: 860px;
   text-align: center;
-  max-width: 720px;
 }
 
-/* ===== VALIDATION ===== */
+/* ================= FOOTER ================= */
 .validation {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .signature {
   margin-top: 36px;
 }
 </style>
-
-
 </head>
 
 <body>
 
-<div class="page">
-  <div class="certificate">
-
+<div class="certificate-page">
 
   <div class="header">
-    <!-- Replace src later with final logo -->
     <img src="../assets/images/logos/arenax_cert.png" alt="ArenaX Logo">
     <div class="org">ArenaX Sports Events</div>
     <div class="tagline">Skill Assessment • Ranking • Recognition</div>
@@ -164,7 +163,7 @@ h1 {
   <h1>ArenaX Badminton Performance Certificate</h1>
 
   <div class="content">
-    <div>This is to certify that</div>
+    <div class="intro">This is to certify that</div>
 
     <div class="name">[ PARTICIPANT NAME ]</div>
 
@@ -177,46 +176,32 @@ h1 {
 
     <div class="performance-box">
       <h3>PERFORMANCE SUMMARY</h3>
-
       <div class="performance-grid">
-        <div>Overall Rank</div>
-        <div>12 / 50</div>
-
-        <div>Skill Category</div>
-        <div>Intermediate</div>
-
-        <div>Performance Band</div>
-        <div>Top 25%</div>
+        <div>Overall Rank</div><div>12 / 50</div>
+        <div>Skill Category</div><div>Intermediate</div>
+        <div>Performance Band</div><div>Top 25%</div>
       </div>
     </div>
 
     <div class="footer-note">
-      <div style="margin-bottom:10px;">
-        This certificate qualifies the holder for:
-        <br>
-          • Priority entry in advanced ArenaX development programs
-          <br>
-          • Discounted registration in next-level ArenaX events
-          <br>
-          • Eligibility for ArenaX inter-university leagues and showcases
+      This certificate qualifies the holder for:
+      <br>• Priority entry in advanced ArenaX development programs
+      <br>• Discounted registration in next-level ArenaX events
+      <br>• Eligibility for ArenaX inter-university leagues and showcases
     </div>
-
 
     <div class="validation">
       <div class="signature">
         Program Coordinator<br>
         ArenaX Sports Events
       </div>
-
       <div>
         Certificate ID: AX-BP-2025-001<br>
         Date: DD / MM / YYYY
       </div>
     </div>
-
   </div>
-</div>
-</div>
+
 </div>
 
 </body>
