@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ArenaX Badminton Performance Certificate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ================= BRAND ================= */
+:root{
+  --gold:#d4af37;
+  --dark:#111;
+  --muted:#666;
+  --panel:#f5f5f5;
+}
+
+/* ================= RESET ================= */
+@page{ size:A4 landscape; margin:0; }
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  background:#fff;
+  font-family:'Poppins',sans-serif;
+  color:var(--dark);
+  overflow:hidden;
+}
+
+/* ================= CONTAINER ================= */
+.certificate{
+  width:100%;
+  height:100%;
+  padding:36px 64px;
+  box-sizing:border-box;
+  border:2px solid var(--dark);
+  outline:3px solid var(--gold);
+  outline-offset:-10px;
+  position:relative;
+}
+
+/* ================= WATERMARK ================= */
+.watermark{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0.05;
+  pointer-events:none;
+}
+.watermark img{
+  width:55%;
+}
+
+/* ================= HEADER ================= */
+.header{
+  text-align:center;
+  margin-bottom:18px;
+}
+.header img{
+  height:140px;
+}
+.org{
+  font-size:18px;
+  font-weight:600;
+  margin-top:6px;
+}
+.tagline{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ================= TITLE ================= */
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  text-align:center;
+  margin:24px 0 12px;
+}
+
+/* ================= BODY ================= */
+.center{text-align:center;}
+.subtitle{font-size:15px;}
+.name{
+  font-size:32px;
+  font-weight:700;
+  margin:14px 0 18px;
+}
+.description{
+  max-width:860px;
+  margin:0 auto 22px;
+  font-size:15.5px;
+  line-height:1.6;
+}
+
+/* ================= SCORECARD ================= */
+.scorecard{
+  width:480px;
+  margin:0 auto 22px;
+  background:var(--panel);
+  border-radius:14px;
+  padding:18px 26px;
+}
+.scorecard h3{
+  margin:0 0 12px;
+  font-size:14px;
+  letter-spacing:1px;
+  text-align:center;
+}
+.grid{
+  display:grid;
+  grid-template-columns:auto auto;
+  row-gap:10px;
+  column-gap:28px;
+  font-size:15px;
+}
+.label{color:#333;}
+.value{font-weight:600;}
+
+/* ================= FOOT ================= */
+.validation{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  margin-top:28px;
+}
+.signature{margin-top:22px;}
+</style>
+</head>
+
+<body>
+
+<div class="certificate">
+
+  <div class="watermark">
+    <img src="../assets/images/logos/arenax_cert.png" alt="">
+  </div>
+
+  <div class="header">
+    <img src="../assets/images/logos/arenax_cert.png" alt="ArenaX Logo">
+    <div class="org">ArenaX Sports Events</div>
+    <div class="tagline">Skill Assessment • Ranking • Recognition</div>
+  </div>
+
+  <h1>ArenaX Badminton Performance Certificate</h1>
+
+  <div class="center">
+    <div class="subtitle">This is to certify that</div>
+    <div class="name">[ PARTICIPANT NAME ]</div>
+
+    <div class="description">
+      has participated in the <strong>ArenaX Badminton Skill Challenge</strong>,
+      a structured badminton performance evaluation program conducted for
+      competitive players, where participants are officially assessed and ranked
+      based on on-court performance.
+    </div>
+  </div>
+
+  <div class="scorecard">
+    <h3>OFFICIAL SCORECARD</h3>
+    <div class="grid">
+      <div class="label">Overall Rank</div><div class="value">5 / 50</div>
+      <div class="label">Skill Category</div><div class="value">Intermediate</div>
+      <div class="label">Performance Band</div><div class="value">Top 25%</div>
+    </div>
+  </div>
+
+  <div class="validation">
+    <div class="signature">
+      Program Coordinator<br>
+      ArenaX Sports Events
+    </div>
+    <div>
+      Certificate ID: AX-BP-2025-001<br>
+      Date: DD / MM / YYYY
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
