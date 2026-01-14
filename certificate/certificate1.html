@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ArenaX Badminton Performance Certificate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== VARIABLES for BRANDING ===== */
+:root {
+  --brand-black: #111111;
+  --brand-red: #D32F2F;    /* Energetic Red */
+  --brand-blue: #0D47A1;   /* Trustworthy Blue */
+  --bg-color: #ffffff;
+}
+
+/* ===== PRINT CONTROL ===== */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  font-family: 'Poppins', sans-serif;
+  color: var(--brand-black);
+  -webkit-print-color-adjust: exact; /* Ensures colors print accurately */
+}
+
+/* ===== MAIN CONTAINER ===== */
+.certificate-container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box;
+  padding: 40px; /* Outer whitespace */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== BORDER & FRAME ===== */
+.certificate-frame {
+  width: 100%;
+  height: 100%;
+  border: 8px solid var(--brand-black);      /* Outer Black Border */
+  outline: 4px solid var(--brand-red);       /* Inner Red Border */
+  outline-offset: -14px;                     /* Spacing between borders */
+  position: relative;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ===== WATERMARK ===== */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  opacity: 0.04; /* Subtle watermark */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===== CONTENT LAYER (Sits above watermark) ===== */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the text block */
+}
+
+/* ===== HEADER ===== */
+.header img {
+  height: 100px; /* Logo size */
+  margin-bottom: 10px;
+}
+
+.org-name {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--brand-red);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  margin: 10px 0 5px 0;
+  color: var(--brand-black);
+  line-height: 1.1;
+}
+
+.cert-subtitle {
+  font-size: 14px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* ===== RECIPIENT SECTION ===== */
+.present-text {
+  font-size: 14px;
+  font-style: italic;
+  color: #555;
+}
+
+.name {
+  font-family: 'Great Vibes', cursive; /* Handwritten Style */
+  font-size: 64px;
+  color: var(--brand-blue);
+  margin: 5px 0 15px 0;
+  line-height: 1.2;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.05); /* Slight depth */
+}
+
+.description {
+  font-size: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* ===== SPORTY PERFORMANCE BOX ===== */
+.performance-box {
+  width: 500px;
+  margin: 25px auto 0;
+  background: #fff;
+  border: 2px solid var(--brand-black);
+  /* The "ArenaX" Offset Shadow Effect */
+  box-shadow: 6px 6px 0px var(--brand-red); 
+  padding: 15px 30px;
+  position: relative;
+}
+
+.box-title {
+  background: white;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 8px;
+  text-align: left;
+}
+
+.grid-row {
+  display: contents; /* Allows children to sit in the main grid */
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #777;
+  padding-right: 10px;
+  align-self: center;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand-black);
+  text-align: right;
+  align-self: center;
+}
+
+/* ===== FOOTER / VALIDATION ===== */
+.footer {
+  margin-top: auto; /* Pushes footer to bottom */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.signature-block {
+  text-align: left;
+}
+
+.sign-line {
+  width: 180px;
+  border-bottom: 2px solid var(--brand-black);
+  margin-bottom: 8px;
+}
+
+.sign-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sign-sub {
+  font-size: 12px;
+  color: #666;
+}
+
+.meta-block {
+  text-align: right;
+  font-size: 12px;
+  color: #444;
+  line-height: 1.6;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Placeholder for QR Code */
+.qr-box {
+  width: 50px;
+  height: 50px;
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #ccc;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="certificate-container">
+  <div class="certificate-frame">
+    
+    <img src="../assets/images/logos/arenax_cert.png" class="watermark" alt="Watermark">
+
+    <div class="content">
+      
+      <div class="header">
+        <img src="../assets/images/logos/arenax_cert.png" alt="ArenaX Logo">
+        <div class="org-name">ArenaX Sports & Events</div>
+        <h1>Certificate of Performance</h1>
+        <div class="cert-subtitle">Official Badminton Skill Assessment</div>
+      </div>
+
+      <div class="present-text">This certificate is proudly presented to</div>
+      <div class="name">[ PARTICIPANT NAME ]</div>
+      
+      <div class="description">
+        For outstanding participation and athletic effort in the <strong>ArenaX Badminton Skill Challenge</strong> held in Dehradun. The athlete has been officially assessed on technical proficiency and court performance.
+      </div>
+
+      <div class="performance-box">
+        <div class="box-title">Official Scorecard</div>
+        
+        <div class="grid">
+          <div class="grid-row">
+            <div class="label">Overall Rank</div>
+            <div class="value">16 / 50</div>
+          </div>
+          <div class="grid-row">
+            <div class="label">Skill Category</div>
+            <div class="value" style="color: var(--brand-blue);">Intermediate</div>
+          </div>
+          <div class="grid-row">
+            <div class="label">Performance Band</div>
+            <div class="value">Top 25%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="signature-block">
+        <div class="sign-line"></div> 
+        <div class="sign-title">Program Coordinator</div>
+        <div class="sign-sub">ArenaX Sports Events</div>
+      </div>
+
+      <div class="meta-block">
+        <div>
+          <strong>Certificate ID:</strong> AX-2025-001<br>
+          <strong>Date:</strong> DD / MM / YYYY<br>
+          <strong>Location:</strong> Dehradun, India
+        </div>
+        <div class="qr-box">QR CODE</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
