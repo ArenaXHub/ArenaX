@@ -535,3 +535,18 @@ h2 {
   justify-content: center;
   margin: 28px 0;
 }
+/* ===== Early Bird text visibility fix ===== */
+.early-bird-highlight,
+.early-bird-box {
+  color: #111 !important;
+}
+
+.early-bird-highlight h4,
+.early-bird-box h4 {
+  color: #111 !important;
+}
+
+.early-bird-highlight p,
+.early-bird-box p {
+  color: #111 !important;
+}
