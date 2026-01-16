@@ -12,30 +12,35 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<!-- ================= SCRIPT ================= -->
+
 <script>
-  const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-links a");
+  const sections = document.querySelectorAll("#event, #fees, #certificate, #register");
 
-  function activateNavLink() {
-    let scrollY = window.pageYOffset + 150;
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove("active"));
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute("id");
+          const activeLink = document.querySelector(
+            `.nav-links a[href="#${entry.target.id}"]`
+          );
 
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === "#" + sectionId) {
-            link.classList.add("active");
+          if (activeLink) {
+            activeLink.classList.add("active");
           }
-        });
-      }
-    });
-  }
+        }
+      });
+    },
+    {
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0
+    }
+  );
 
-  window.addEventListener("scroll", activateNavLink);
+  sections.forEach(section => observer.observe(section));
 </script>
 
   
@@ -55,9 +60,11 @@
     </ul>
   </div>
 </nav>
+  
+
 
 <!-- ================= HERO ================= -->
-<header class="hero">
+<header class="hero" id="event">
   <div class="hero-content">
     <h1>ArenaX Badminton Skill Challenge</h1>
     <p class="tagline">Play • Compete • Get Ranked • Get Certified</p>
@@ -109,7 +116,7 @@
   <h2>Registration Fees</h2>
 
   <div class="pricing">
-    <div class="price-card">
+    <div class="price-card highlight">
       <h3>Singles</h3>
       <p class="price">₹1000</p>
     </div>
@@ -176,6 +183,9 @@
       <img
         src="assets/image/ArenaX Sample Badminton Certificate.png"
         alt="ArenaX Badminton Performance Certificate Preview">
+        <a href="assets/ArenaX Badminton Performance Certificate.pdf"
+        target="_blank"
+        a>
       <a
         href="assets/ArenaX Badminton Performance Certificate.pdf"
         target="_blank"
@@ -187,7 +197,7 @@
 </section>
 
 <!-- ================= REGISTER ================= -->
-<section id="register" class="section center">
+<section id="register" class="section">
   <h2 class="register">Ready to Register?</h2>
   <p class="section-text">
     Limited slots available. Early Bird benefits apply as per eligibility.
@@ -196,7 +206,7 @@
 <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
   Register Now
 </a>
-
+<a></a>
 <p class="section-text">
   This registration form collects participant details.<br>
   Payment instructions will be shared after form submission.
@@ -207,7 +217,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
   <p>
-    Organized by <span class="brand-arenax">ArenaX Sports Events</span><br>
+    <span class="brand-arenax">ArenaX Sports Events</span><br>
     Skill Assessment • Ranking • Recognition
   </p>
 </footer>
