@@ -196,6 +196,16 @@ h2 {
   background: #fffdf4;
 }
 
+/* ================= DARK SECTION CARD OVERRIDE ================= */
+/* Ensure cards inside dark sections stay dark */
+.dark .price-card,
+.dark .price-card.highlight {
+  background: #151a33;     /* same as .card */
+  border-color: rgba(245, 197, 66, 0.4);
+  color: #ffffff;
+}
+
+
 /* ================= FOOTER ================= */
 .footer {
   border-top: 1px solid rgba(0,0,0,0.12);
