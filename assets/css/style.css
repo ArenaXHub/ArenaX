@@ -29,7 +29,6 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: #111;
-  background: #ffffff;
   line-height: 1.6;
 }
 
@@ -402,3 +401,6 @@ h2 {
   background: #f1f3f7;
 }
 
+.section {
+  background: transparent;
+}
