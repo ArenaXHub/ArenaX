@@ -24,6 +24,16 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
 }
+/* ================= INFO PANEL (WHAT IS ARENAX) ================= */
+.info-panel {
+  background: linear-gradient(180deg, #fbfcff, #f4f6fb);
+  border: 1.5px solid rgba(15, 20, 60, 0.12);
+  border-radius: 18px;
+  padding: 60px 40px;
+  max-width: 900px;
+  margin: auto;
+  box-shadow: 0 18px 40px rgba(15, 20, 60, 0.12);
+}
 
 /* ================= NAVBAR ================= */
 .navbar {
