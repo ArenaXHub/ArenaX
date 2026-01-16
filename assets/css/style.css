@@ -378,4 +378,18 @@ h2 {
   margin-top: 10px;
   opacity: 0.85;
 }
+.certificate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.right-align ul {
+  list-style-position: inside;
+  padding-right: 10px;
+}
 
