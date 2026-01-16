@@ -570,3 +570,52 @@ h2 {
   }
 }
 
+/* ================= MOBILE HERO FIX ================= */
+@media (max-width: 768px) {
+  .hero {
+    padding: 70px 16px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.25;
+    max-width: 320px;
+    margin: 0 auto 20px;
+  }
+
+  .hero-feature {
+    padding: 28px 22px;
+    margin-top: 28px;
+  }
+
+  .hero-feature .tagline {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .hero-feature .subtext {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 240px;
+  }
+}
+/* ================= MOBILE TEXT RHYTHM ================= */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .section-text {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .cards {
+    gap: 18px;
+  }
+}
