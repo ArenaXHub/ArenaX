@@ -267,4 +267,89 @@ h2 {
   margin-top: 24px;
   color: rgba(255,255,255,0.85);
 }
+/* ================= EVENTS PAGE – VISUAL PARITY WITH INDEX ================= */
+
+/* Ensure Categories section stays DARK */
+.section-royal {
+  background: linear-gradient(180deg, #0a1022, #0e1630);
+  color: #ffffff;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.35);
+}
+
+/* Categories as highlight cards (Game Modes / Age Groups) */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.category-box {
+  background: #151a33;
+  border: 1.5px solid rgba(245, 197, 66, 0.45);
+  border-radius: 16px;
+  padding: 34px 28px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 20px 46px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 56px rgba(0,0,0,0.5);
+}
+
+.category-box h3 {
+  color: #f5c542;
+  margin-bottom: 16px;
+}
+
+/* Category note */
+.category-note {
+  text-align: center;
+  margin-top: 26px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ================= EVENTS PAGE – AWARDS DARK FIX ================= */
+.section.dark {
+  background: linear-gradient(180deg, #0a1022, #0e1630);
+  color: #ffffff;
+}
+
+/* Ensure award cards look like highlight cards */
+.section.dark .price-card {
+  background: #151a33;
+  border: 1.5px solid rgba(245,197,66,0.4);
+  border-radius: 14px;
+  padding: 36px;
+  color: #ffffff;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.35);
+}
+
+/* ================= CERTIFICATE IMAGE FIX ================= */
+.certificate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.certificate-info {
+  text-align: left;
+}
+
+.certificate-grid .price-card {
+  max-width: 420px;
+  margin: auto;
+}
+
+/* Mobile stack */
+@media (max-width: 768px) {
+  .certificate-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
 
