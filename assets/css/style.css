@@ -1,25 +1,4 @@
-/* ===== NAVBAR FIX ===== */
-.navbar ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar li {
-  margin: 0;
-  padding: 0;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #f5f5f5;
-  font-weight: 500;
-}
-
-/* ---------- GLOBAL ---------- */
+/* ================= GLOBAL RESET ================= */
 * {
   box-sizing: border-box;
 }
@@ -41,7 +20,8 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
 }
-/* ---------- NAVBAR ---------- */
+
+/* ================= NAVBAR ================= */
 .navbar {
   position: sticky;
   top: 0;
@@ -62,21 +42,10 @@ h2 {
 .brand {
   font-family: 'Playfair Display', serif;
   font-size: 22px;
-  color: #f2c94c;
 }
-.brand-red {
-  color: #c4161c;
-  font-weight: 700;
-}
-.brand-arenax {
-  color: #c4161c;          /* certificate red */
-  font-weight: 800;
-  letter-spacing: 0.4px;
-}
-
 
 .brand-link {
-  color: #f5c542;          /* your gold */
+  color: #f5c542;
   font-weight: 700;
   text-decoration: none;
 }
@@ -105,11 +74,12 @@ h2 {
   color: #f2c94c;
 }
 
-
+/* ================= SECTIONS ================= */
 .section {
   padding: 70px 20px;
   max-width: 1100px;
   margin: auto;
+  background: transparent;
 }
 
 .section-text {
@@ -119,7 +89,11 @@ h2 {
   font-size: 16px;
 }
 
-/* ---------- HERO ---------- */
+.center {
+  text-align: center;
+}
+
+/* ================= HERO ================= */
 .hero {
   background: linear-gradient(180deg, #0b0f1a, #11162a);
   color: #fff;
@@ -144,38 +118,31 @@ h2 {
   opacity: 0.9;
 }
 
-/* ---------- BUTTONS ---------- */
-.btn-primary,
-.btn-secondary {
+/* ================= BUTTONS ================= */
+.btn-primary {
   display: inline-block;
   margin-top: 25px;
   padding: 14px 34px;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 6px;
-}
-
-.btn-primary {
   background: #f2c94c;
   color: #000;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
 }
 
-.btn-secondary {
-  border: 2px solid #f2c94c;
-  color: #000;
+/* ================= DARK SECTIONS ================= */
+.dark,
+.section-royal {
+  background: linear-gradient(180deg, #0a1022, #0e1630);
+  color: #fff;
 }
 
-/* ---------- DARK SECTIONS ---------- */
-.dark {
-  background: #0b0f1a;
-  color: #f5f5f5;
+.section-title-gold {
+  color: #f5c542;
+  text-align: center;
 }
 
-.dark h2 {
-  color: #f2c94c;
-}
-
-/* ---------- CARDS ---------- */
+/* ================= CARDS ================= */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -191,20 +158,7 @@ h2 {
   text-align: center;
 }
 
-/* ---------- CERTIFICATE ---------- */
-.certificate-preview {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.certificate-preview img {
-  max-width: 420px;
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-/* ---------- PRICING ---------- */
+/* ================= PRICING ================= */
 .pricing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -217,6 +171,7 @@ h2 {
   padding: 30px;
   text-align: center;
   border-radius: 10px;
+  background: #fff;
 }
 
 .price-card h3 {
@@ -234,83 +189,28 @@ h2 {
   background: #fffdf4;
 }
 
-/* ---------- CENTER ---------- */
-.center {
+/* ================= EARLY BIRD ================= */
+.early-bird-box {
+  background: #fff6dc;
+  border: 2px dashed #f5c542;
+  padding: 24px;
+  margin-top: 0;
+  margin-bottom: 60px;
+  border-radius: 14px;
   text-align: center;
 }
 
-
-
-/* ---------- MODAL ---------- */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+.early-bird-box h4 {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
 }
 
-.modal-overlay.show {
-  display: flex;
+.early-note {
+  margin-top: 10px;
+  opacity: 0.85;
 }
 
-.modal-content {
-  background: #fff;
-  width: 90%;
-  max-width: 1000px;
-  height: 80%;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-}
-
-.modal-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  cursor: pointer;
-}
-/* ---------- CERTIFICATE GRID ---------- */
-.certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-  align-items: center;
-}
-
-.certificate-info ul {
-  list-style: none;
-  padding: 0;
-}
-
-.certificate-info li {
-  margin-bottom: 14px;
-  font-size: 16px;
-}
-
-.section-royal {
-  background: linear-gradient(180deg, #0a1022, #0e1630);
-  color: #fff;
-}
-
-.section-title-gold {
-  color: #f5c542;
-  text-align: center;
-}
-
+/* ================= CATEGORIES ================= */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -336,60 +236,24 @@ h2 {
   margin-top: 18px;
   opacity: 0.85;
 }
-.early-bird-box {
-  background: #fff6dc;
-  border-left: 6px solid #f5c542;
-  padding: 20px;
-  margin-top: 30px;
-  border-radius: 10px;
-}
 
-.early-bird-box h4 {
-  margin-bottom: 10px;
-  color: #111;
-}
-/* ---------- Awards & Recognition ---------- */
-.award-card {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-.right-align {
-  text-align: right;
-}
-
-.right-align ul {
-  list-style-position: inside;
-}
-
-#register {
-  background: #fafbff;
-}
-.center-align {
-  text-align: center;
-}
-
-.early-bird-box {
-  background: #fff6dc;
-  border: 2px dashed #f5c542;
-  padding: 24px;
-  margin-top: 0;          /* starts immediately after fees */
-  margin-bottom: 60px;    /* creates breathing space before Date & Venue */
-  border-radius: 14px;
-}
-
-.early-bird-box h4 {
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
-
-.early-note {
-  margin-top: 10px;
-  opacity: 0.85;
-}
+/* ================= CERTIFICATE ================= */
 .certificate-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
   align-items: center;
+}
+
+.certificate-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.certificate-info li {
+  margin-bottom: 14px;
+  font-size: 16px;
 }
 
 .right-align {
@@ -401,15 +265,38 @@ h2 {
   padding-right: 10px;
 }
 
-/* ---------- FOOTER ---------- */
+.certificate-preview {
+  text-align: center;
+}
 
+.certificate-preview img {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ================= AWARDS ================= */
+.award-card {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* ================= REGISTER ================= */
+#register {
+  background: #f7f8fc;
+}
+
+/* ================= FOOTER ================= */
 .footer {
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.12);
   margin-top: 60px;
-  padding-top: 30px;
+  padding: 30px 20px;
   background: #f1f3f7;
+  text-align: center;
 }
 
-.section {
-  background: transparent;
-}
+.brand-arenax {
+  color: #c4161c;
+  font-weight: 800;
+  letter-spacing: 0.4
