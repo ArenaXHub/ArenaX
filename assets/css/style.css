@@ -134,6 +134,11 @@ h2 {
   opacity: 0.9;
 }
 
+.cta-wrapper {
+  margin: 25px 0;
+}
+
+
 /* ================= BUTTONS ================= */
 .btn-primary {
   display: inline-block;
