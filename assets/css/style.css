@@ -97,6 +97,11 @@ h2 {
   box-shadow: 0 12px 30px rgba(15, 20, 60, 0.08);
 }
 
+.section-title-gold {
+  color: #f5c542;
+  text-align: center;
+}
+
 
 .section-text {
   max-width: 750px;
