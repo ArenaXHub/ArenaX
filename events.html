@@ -182,24 +182,33 @@
 <!-- ================= SCROLL SPY SCRIPT ================= -->
 <script>
   const navLinks = document.querySelectorAll(".nav-links a");
-  const sections = document.querySelectorAll("#event, #fees, #certificate, #register");
+  const sections = [
+    document.getElementById("event"),
+    document.getElementById("fees"),
+    document.getElementById("certificate"),
+    document.getElementById("register")
+  ];
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.classList.remove("active"));
-        const activeLink = document.querySelector(
-          `.nav-links a[href="#${entry.target.id}"]`
-        );
-        if (activeLink) activeLink.classList.add("active");
+  function setActiveLink() {
+    let scrollPos = window.scrollY + 120; // navbar offset
+
+    let currentSection = sections[0]; // default = event
+
+    sections.forEach(section => {
+      if (section.offsetTop <= scrollPos) {
+        currentSection = section;
       }
     });
-  }, {
-    rootMargin: "-50% 0px -50% 0px"
-  });
 
-  sections.forEach(section => observer.observe(section));
+    navLinks.forEach(link => link.classList.remove("active"));
+
+    const activeLink = document.querySelector(
+      `.nav-links a[href="#${currentSection.id}"]`
+    );
+
+    if (activeLink) activeLink.classList.add("active");
+  }
+
+  window.addEventListener("scroll", setActiveLink);
+  window.addEventListener("load", setActiveLink);
 </script>
-
-</body>
-</html>
