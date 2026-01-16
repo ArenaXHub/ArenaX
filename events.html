@@ -12,6 +12,33 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<script>
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  function activateNavLink() {
+    let scrollY = window.pageYOffset + 150;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + sectionId) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener("scroll", activateNavLink);
+</script>
+
+  
 <body>
 
 <!-- ================= NAVIGATION ================= -->
@@ -20,10 +47,11 @@
     <div class="brand"> <a href="index.html" class="brand-link">ArenaX</a>
       </div>
     <ul class="nav-links">
-      <li><a href="#event"class="active">Event</a></li>
+      <li><a href="#event">Event</a></li>
       <li><a href="#fees">Fees</a></li>
       <li><a href="#certificate">Certificate</a></li>
       <li><a href="#register">Register</a></li>
+
     </ul>
   </div>
 </nav>
