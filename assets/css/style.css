@@ -69,6 +69,12 @@ h2 {
   color: #c4161c;
   font-weight: 700;
 }
+.brand-arenax {
+  color: #c4161c;          /* certificate red */
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
 
 
 .nav-links {
