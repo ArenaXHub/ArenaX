@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ArenaX Badminton Skill Challenge</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<!-- ================= NAVIGATION ================= -->
 <nav class="navbar">
   <div class="nav-container">
     <div class="brand">
@@ -29,10 +25,10 @@
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
 <header class="hero" id="event">
-  <div class="hero-content">
-    <h1>ArenaX Badminton Skill Challenge</h1>
+  <h1>ArenaX Badminton Skill Challenge</h1>
+
+  <div class="hero-feature">
     <p class="tagline">Play • Compete • Get Ranked • Get Certified</p>
     <p class="subtext">
       A structured badminton performance challenge where every player is
@@ -42,17 +38,17 @@
   </div>
 </header>
 
-<!-- ================= EVENT OVERVIEW ================= -->
-<section id="overview" class="section">
-  <h2>Event Overview</h2>
-  <p class="section-text">
-    The ArenaX Badminton Skill Challenge is designed for competitive and
-    developing players. Participants are evaluated on technical skill,
-    movement, and match performance and are ranked accordingly.
-  </p>
+<section class="section">
+  <div class="info-panel">
+    <h2>Event Overview</h2>
+    <p class="section-text">
+      The ArenaX Badminton Skill Challenge is designed for competitive and
+      developing players. Participants are evaluated on technical skill,
+      movement, and match performance and are ranked accordingly.
+    </p>
+  </div>
 </section>
 
-<!-- ================= CATEGORIES ================= -->
 <section class="section section-royal">
   <h2 class="section-title-gold">Categories & Eligibility</h2>
 
@@ -75,23 +71,22 @@
   </p>
 </section>
 
-<!-- ================= FEES ================= -->
-<section id="fees" class="section">
-  <h2>Registration Fees</h2>
+<section id="fees" class="section dark">
+  <h2 class="section-title-gold">Registration Fees</h2>
 
-  <div class="pricing">
-    <div class="price-card highlight">
+  <div class="cards">
+    <div class="price-card">
       <h3>Singles</h3>
       <p class="price">₹1000</p>
     </div>
 
-    <div class="price-card highlight">
+    <div class="price-card">
       <h3>Doubles</h3>
       <p class="price">₹1800</p>
     </div>
   </div>
 
-  <div class="early-bird-box center-align">
+  <div class="early-bird-box">
     <h4>🎯 Early Bird Offer (15% Discount)</h4>
     <p>First <strong>20 total registrations</strong></p>
     <p><strong>All Under-18 participants</strong></p>
@@ -101,37 +96,32 @@
   </div>
 </section>
 
-<!-- ================= DATE & VENUE ================= -->
-<section class="section section-royal">
-  <h2 class="section-title-gold">Date & Venue</h2>
-  <p class="section-text center">
-    <strong>Date:</strong> To Be Announced<br>
-    <strong>Venue:</strong> Dehradun, Uttarakhand<br>
-    <em>Precise location will be updated soon.</em>
-  </p>
-</section>
-
-<!-- ================= REWARDS ================= -->
 <section class="section">
-  <h2>Awards & Recognition</h2>
-  <div class="cards">
-    <div class="card award-card">🥇 Winner – Cash Reward</div>
-    <div class="card award-card">🥈 Runner-up – Cash Reward</div>
-    <div class="card award-card">🎁 Sports Kits / Shuttles</div>
+  <div class="info-panel">
+    <h2 class="section-title-gold">Date & Venue</h2>
+    <p class="section-text center">
+      <strong>Date:</strong> To Be Announced<br>
+      <strong>Venue:</strong> Dehradun, Uttarakhand<br>
+      <em>Precise location will be updated soon.</em>
+    </p>
   </div>
 </section>
 
-<!-- ================= CERTIFICATE ================= -->
+<section class="section dark">
+  <h2 class="section-title-gold">Awards & Recognition</h2>
+
+  <div class="cards">
+    <div class="price-card">🥇 Winner – Cash Reward</div>
+    <div class="price-card">🥈 Runner-up – Cash Reward</div>
+    <div class="price-card">🎁 Sports Kits / Shuttles</div>
+  </div>
+</section>
+
 <section id="certificate" class="section dark">
   <h2 class="section-title-gold">Performance Certificate & Ranking</h2>
 
-  <p class="section-text">
-    This is not a participation certificate. Every participant receives a
-    performance-ranked certificate based on actual on-court assessment.
-  </p>
-
   <div class="certificate-grid">
-    <div class="certificate-info right-align">
+    <div class="certificate-info">
       <ul>
         <li>✔ Individual performance ranking</li>
         <li>✔ Skill category classification</li>
@@ -140,12 +130,13 @@
       </ul>
     </div>
 
-    <div class="certificate-preview">
+    <div class="price-card">
       <img
         src="assets/image/ArenaX Sample Badminton Certificate.png"
-        alt="ArenaX Badminton Performance Certificate Preview">
+        alt="ArenaX Certificate Preview"
+        style="max-width:100%; border-radius:10px; margin-bottom:16px;">
       <a
-        href="assets/ArenaX Badminton Performance Certificate.pdf"
+        href="assets/ArenaX1 Badminton Performance Certificate.pdf"
         target="_blank"
         class="btn-primary">
         View Sample Certificate
@@ -154,36 +145,16 @@
   </div>
 </section>
 
-<!-- ================= REGISTER ================= -->
-<!--   <section id="register" class="section">
-  <h2 class="register">Ready to Register?</h2>
-  <p class="section-text">
-    Limited slots available. Early Bird benefits apply as per eligibility. <br>
-     <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
-    Register Now
-  </a>
-  </p>
- 
-
-  <p class="section-text">
-    This registration form collects participant details.<br>
-    Payment instructions will be shared after form submission.
-  </p>
-</section> -->
-  
-<!-- ================= REGISTER ================= -->
 <section id="register" class="section center">
-  <h2 class="register">Ready to Register?</h2>
+  <h2>Ready to Register?</h2>
 
   <p class="section-text">
     Limited slots available. Early Bird benefits apply as per eligibility.
   </p>
 
-  <div class="cta-wrapper">
-    <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
-      Register Now
-    </a>
-  </div>
+  <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
+    Register Now
+  </a>
 
   <p class="section-text">
     This registration form collects participant details.<br>
@@ -191,7 +162,6 @@
   </p>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <p>
     <span class="brand-arenax">ArenaX Sports Events</span><br>
@@ -199,36 +169,5 @@
   </p>
 </footer>
 
-<!-- ================= SCROLL SPY SCRIPT ================= -->
-<script>
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const sections = [
-    document.getElementById("event"),
-    document.getElementById("fees"),
-    document.getElementById("certificate"),
-    document.getElementById("register")
-  ];
-
-  function setActiveLink() {
-    let scrollPos = window.scrollY + 120; // navbar offset
-
-    let currentSection = sections[0]; // default = event
-
-    sections.forEach(section => {
-      if (section.offsetTop <= scrollPos) {
-        currentSection = section;
-      }
-    });
-
-    navLinks.forEach(link => link.classList.remove("active"));
-
-    const activeLink = document.querySelector(
-      `.nav-links a[href="#${currentSection.id}"]`
-    );
-
-    if (activeLink) activeLink.classList.add("active");
-  }
-
-  window.addEventListener("scroll", setActiveLink);
-  window.addEventListener("load", setActiveLink);
-</script>
+</body>
+</html>
