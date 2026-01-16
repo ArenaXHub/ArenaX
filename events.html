@@ -12,56 +12,22 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<!-- ================= SCRIPT ================= -->
-
-<script>
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const sections = document.querySelectorAll("#event, #fees, #certificate, #register");
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove("active"));
-
-          const activeLink = document.querySelector(
-            `.nav-links a[href="#${entry.target.id}"]`
-          );
-
-          if (activeLink) {
-            activeLink.classList.add("active");
-          }
-        }
-      });
-    },
-    {
-      rootMargin: "-50% 0px -50% 0px",
-      threshold: 0
-    }
-  );
-
-  sections.forEach(section => observer.observe(section));
-</script>
-
-  
 <body>
 
 <!-- ================= NAVIGATION ================= -->
 <nav class="navbar">
   <div class="nav-container">
-    <div class="brand"> <a href="index.html" class="brand-link">ArenaX</a>
-      </div>
+    <div class="brand">
+      <a href="index.html" class="brand-link">ArenaX</a>
+    </div>
     <ul class="nav-links">
       <li><a href="#event">Event</a></li>
       <li><a href="#fees">Fees</a></li>
       <li><a href="#certificate">Certificate</a></li>
       <li><a href="#register">Register</a></li>
-
     </ul>
   </div>
 </nav>
-  
-
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="event">
@@ -72,13 +38,12 @@
       A structured badminton performance challenge where every player is
       assessed and ranked based on on-court performance — not just wins.
     </p>
-
     <a href="#register" class="btn-primary">Register Now</a>
   </div>
 </header>
 
 <!-- ================= EVENT OVERVIEW ================= -->
-<section id="event" class="section">
+<section id="overview" class="section">
   <h2>Event Overview</h2>
   <p class="section-text">
     The ArenaX Badminton Skill Challenge is designed for competitive and
@@ -110,7 +75,6 @@
   </p>
 </section>
 
-
 <!-- ================= FEES ================= -->
 <section id="fees" class="section">
   <h2>Registration Fees</h2>
@@ -126,20 +90,18 @@
       <p class="price">₹1800</p>
     </div>
   </div>
-  
- <div class="early-bird-box center-align">
-  <h4>🎯 Early Bird Offer (15% Discount)</h4>
-  <p>First <strong>20 total registrations</strong></p>
-  <p><strong>All Under-18 participants</strong></p>
-  <p class="early-note">
-    <em>Discount applied during registration verification.</em>
-  </p>
-</div>
 
+  <div class="early-bird-box center-align">
+    <h4>🎯 Early Bird Offer (15% Discount)</h4>
+    <p>First <strong>20 total registrations</strong></p>
+    <p><strong>All Under-18 participants</strong></p>
+    <p class="early-note">
+      <em>Discount applied during registration verification.</em>
+    </p>
+  </div>
+</section>
 
-  
 <!-- ================= DATE & VENUE ================= -->
-
 <section class="section section-royal">
   <h2 class="section-title-gold">Date & Venue</h2>
   <p class="section-text center">
@@ -152,11 +114,10 @@
 <!-- ================= REWARDS ================= -->
 <section class="section">
   <h2>Awards & Recognition</h2>
-
   <div class="cards">
-    <div class="card">🥇 Winner – Cash Reward</div>
-    <div class="card">🥈 Runner-up – Cash Reward</div>
-    <div class="card">🎁 Sports Kits / Shuttles</div>
+    <div class="card award-card">🥇 Winner – Cash Reward</div>
+    <div class="card award-card">🥈 Runner-up – Cash Reward</div>
+    <div class="card award-card">🎁 Sports Kits / Shuttles</div>
   </div>
 </section>
 
@@ -170,22 +131,19 @@
   </p>
 
   <div class="certificate-grid">
-  <div class="certificate-info right-align">
-    <ul>
-      <li>✔ Individual performance ranking</li>
-      <li>✔ Skill category classification</li>
-      <li>✔ Performance band (Top %)</li>
-      <li>✔ Eligibility for advanced ArenaX programs</li>
-    </ul>
-  </div>
+    <div class="certificate-info right-align">
+      <ul>
+        <li>✔ Individual performance ranking</li>
+        <li>✔ Skill category classification</li>
+        <li>✔ Performance band (Top %)</li>
+        <li>✔ Eligibility for advanced ArenaX programs</li>
+      </ul>
+    </div>
 
     <div class="certificate-preview">
       <img
         src="assets/image/ArenaX Sample Badminton Certificate.png"
         alt="ArenaX Badminton Performance Certificate Preview">
-        <a href="assets/ArenaX Badminton Performance Certificate.pdf"
-        target="_blank"
-        a>
       <a
         href="assets/ArenaX Badminton Performance Certificate.pdf"
         target="_blank"
@@ -199,20 +157,19 @@
 <!-- ================= REGISTER ================= -->
 <section id="register" class="section">
   <h2 class="register">Ready to Register?</h2>
-  <p class="section-text">
+  <p class="section-text"> <br>
     Limited slots available. Early Bird benefits apply as per eligibility.
   </p>
 
-<a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
-  Register Now
-</a>
-<a></a>
-<p class="section-text">
-  This registration form collects participant details.<br>
-  Payment instructions will be shared after form submission.
-</p>
+  <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary">
+    Register Now
+  </a>
 
-
+  <p class="section-text">
+    This registration form collects participant details.<br>
+    Payment instructions will be shared after form submission.
+  </p>
+</section>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -222,7 +179,27 @@
   </p>
 </footer>
 
+<!-- ================= SCROLL SPY SCRIPT ================= -->
+<script>
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const sections = document.querySelectorAll("#event, #fees, #certificate, #register");
 
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove("active"));
+        const activeLink = document.querySelector(
+          `.nav-links a[href="#${entry.target.id}"]`
+        );
+        if (activeLink) activeLink.classList.add("active");
+      }
+    });
+  }, {
+    rootMargin: "-50% 0px -50% 0px"
+  });
+
+  sections.forEach(section => observer.observe(section));
+</script>
 
 </body>
 </html>
