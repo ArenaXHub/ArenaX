@@ -356,4 +356,26 @@ h2 {
 #register {
   background: #fafbff;
 }
+.center-align {
+  text-align: center;
+}
+
+.early-bird-box {
+  background: #fff6dc;
+  border: 2px dashed #f5c542;
+  padding: 24px;
+  margin-top: 0;          /* starts immediately after fees */
+  margin-bottom: 60px;    /* creates breathing space before Date & Venue */
+  border-radius: 14px;
+}
+
+.early-bird-box h4 {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.early-note {
+  margin-top: 10px;
+  opacity: 0.85;
+}
 
