@@ -4,12 +4,13 @@
 }
 
 body {
-  background: #f4f6fa; /* soft royal grey-blue */
+  background: #eef1f7;   /* slightly darker than sections */
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: #111;
   line-height: 1.6;
 }
+
 
 h1, h2 {
   font-family: 'Playfair Display', serif;
@@ -83,11 +84,13 @@ h2 {
 
 /* ================= SECTIONS ================= */
 .section {
+  background: #f9faff;   /* soft, warm light background */
+  border-radius: 16px;
   padding: 70px 20px;
   max-width: 1100px;
-  margin: auto;
-  background: transparent;
+  margin: 60px auto;
 }
+
 
 .section-text {
   max-width: 750px;
@@ -290,7 +293,7 @@ h2 {
 }
 
 /* ================= REGISTER ================= */
-#register {
+.register {
   background: #f7f8fc;
 }
 
