@@ -352,4 +352,68 @@ h2 {
     text-align: center;
   }
 }
+/* ================= EVENT OVERVIEW – SOFTER BACKGROUND ================= */
+#event + .section .info-panel,
+#overview .info-panel {
+  background: linear-gradient(180deg, #f3f5fa, #eceff6);
+  border-color: rgba(15, 20, 60, 0.15);
+}
+
+/* ================= EARLY BIRD HIGHLIGHT (OVERRIDE DARK) ================= */
+.section.dark .early-bird-box {
+  background: linear-gradient(180deg, #fff4cc, #ffe9a8);
+  border: 2px solid #f2c94c;
+  color: #111;
+  text-align: center;
+  max-width: 680px;
+  margin: 40px auto 0;
+  box-shadow: 0 18px 40px rgba(242, 201, 76, 0.35);
+}
+
+.section.dark .early-bird-box h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.section.dark .early-bird-box p {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* ================= CATEGORIES – MAKE THEM HERO ELEMENTS ================= */
+.category-box h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.category-box p {
+  font-size: 1.05rem;
+  margin: 10px 0;
+}
+
+/* ================= AWARDS – MARKETING EMPHASIS ================= */
+.section.dark .price-card {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ================= CERTIFICATE IMAGE CARD FIX ================= */
+.certificate-grid .price-card {
+  max-width: 420px;
+  margin: auto;
+  text-align: center;
+}
+
+/* ================= MOBILE POLISH ================= */
+@media (max-width: 768px) {
+  .category-box h3 {
+    font-size: 1.25rem;
+  }
+
+  .section.dark .early-bird-box {
+    padding: 22px 18px;
+  }
+}
 
