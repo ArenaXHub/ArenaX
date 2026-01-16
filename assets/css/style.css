@@ -201,4 +201,28 @@ h2 {
   border-top: 1px solid rgba(0,0,0,0.12);
   margin-top: 60px;
   padding: 30px 20px;
-  background: #f1f3f
+  background: #f1f3f7;
+  text-align: center;
+}
+
+.brand-arenax {
+  color: #c4161c;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 16px;
+    margin: 40px 14px;
+  }
+
+  .hero {
+    padding: 90px 16px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+}
