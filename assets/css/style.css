@@ -138,6 +138,37 @@ h2 {
   margin: 25px 0;
 }
 
+/* ================= MICRO INTERACTIONS ================= */
+
+/* Buttons */
+.btn-primary {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(242, 201, 76, 0.35);
+}
+
+/* Cards */
+.card,
+.price-card,
+.category-box {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.price-card:hover,
+.category-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(15, 20, 60, 0.12);
+}
+
+/* Nav links */
+.nav-links a {
+  transition: color 0.2s ease;
+}
+
 
 /* ================= BUTTONS ================= */
 .btn-primary {
@@ -321,3 +352,58 @@ h2 {
   color: #c4161c;
   font-weight: 800;
   letter-spacing: 0.4
+
+
+/* ================= MOBILE OPTIMIZATION ================= */
+@media (max-width: 768px) {
+
+  /* Section spacing */
+  .section {
+    padding: 50px 16px;
+    margin: 40px 14px;
+    border-radius: 14px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 90px 16px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .tagline {
+    font-size: 16px;
+  }
+
+  /* Text blocks */
+  .section-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Cards & grids */
+  .cards,
+  .pricing,
+  .category-grid,
+  .certificate-grid {
+    gap: 18px;
+  }
+
+  /* Certificate layout stacks */
+  .certificate-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .right-align {
+    text-align: center;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}
