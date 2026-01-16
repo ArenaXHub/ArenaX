@@ -417,3 +417,60 @@ h2 {
   }
 }
 
+/* ================= CERTIFICATE SECTION – CONTENT CARD ================= */
+.certificate-info {
+  background: linear-gradient(180deg, #161c3a, #11162a);
+  border: 1.5px solid rgba(245, 197, 66, 0.45);
+  border-radius: 18px;
+  padding: 32px 30px;
+  max-width: 520px;
+  box-shadow: 0 22px 48px rgba(0,0,0,0.45);
+}
+
+.certificate-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.certificate-info li {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+/* Center certificate layout */
+.certificate-grid {
+  align-items: center;
+  justify-items: center;
+}
+
+/* ================= REGISTER CTA FIX ================= */
+#register .btn-primary {
+  display: inline-block;
+  margin: 30px auto 0;
+}
+
+/* ================= SMOOTHER CARD EDGES (GLOBAL) ================= */
+.price-card,
+.card,
+.early-bird-box,
+.category-box,
+.hero-feature,
+.info-panel {
+  border-radius: 22px;
+}
+
+/* ================= FUTURE HOVER POP (SAFE, DISABLED BY DEFAULT) ================= */
+.price-card,
+.card,
+.certificate-info {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.price-card:hover,
+.card:hover,
+.certificate-info:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.5);
+}
