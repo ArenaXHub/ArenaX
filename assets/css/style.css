@@ -65,6 +65,11 @@ h2 {
   font-size: 22px;
   color: #f2c94c;
 }
+.brand-red {
+  color: #c4161c;
+  font-weight: 700;
+}
+
 
 .nav-links {
   list-style: none;
