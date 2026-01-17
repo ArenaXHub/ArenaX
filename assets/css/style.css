@@ -828,4 +828,9 @@ h2 {
 .footer-links a {
   color: #f5c542;
 }
+.footer {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  margin-top: 0;
+}
 
