@@ -724,4 +724,25 @@ h2 {
   opacity: 0.9;
   text-align: center;
 }
+/* ================= SPONSOR PAGE – TYPOGRAPHY NORMALIZATION ================= */
+
+/* Make descriptive text calm (not bold-looking) */
+.sponsor-page .price-card p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.92;
+}
+
+/* Keep headings visually distinct */
+.sponsor-page .price-card h3 {
+  font-weight: 600;
+}
+
+/* Subtle status card */
+.sponsor-page .subtle-card p {
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.9;
+}
 
