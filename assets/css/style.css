@@ -13,6 +13,8 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #111;
   line-height: 1.6;
+  padding-top: 70px; /* height of navbar */
+
 }
 
 h1, h2 {
@@ -27,7 +29,7 @@ h2 {
 
 /* ================= NAVBAR ================= */
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
   background: #0b0f1a;
