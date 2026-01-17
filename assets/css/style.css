@@ -795,4 +795,37 @@ h2 {
   border-radius: 16px;
 }
 
+/* ================= DARK THEME UNIFICATION (SAFE OVERRIDE) ================= */
+
+/* Hero, dark sections, and footer share same background */
+.hero,
+.section.dark,
+.footer {
+  background: radial-gradient(
+    circle at top,
+    #1a2550 0%,
+    #0b1024 60%,
+    #060914 100%
+  );
+  color: #ffffff;
+}
+
+/* Inner dark cards (used across site already) */
+.price-card {
+  background: linear-gradient(180deg, #1c2654, #111737);
+  color: #ffffff;
+  border: 1px solid rgba(245, 197, 66, 0.45);
+}
+
+/* Gold headings remain untouched */
+.section-title-gold,
+.hero h1,
+.footer .brand-arenax {
+  color: #f5c542;
+}
+
+/* Footer link color only (already expected behavior) */
+.footer-links a {
+  color: #f5c542;
+}
 
