@@ -221,6 +221,16 @@ h2 {
   font-size: 12px;
   opacity: 0.75;
 }
+.footer-links a {
+  font-size: 13px;
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
 
 
 /* ================= MOBILE ================= */
