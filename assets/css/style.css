@@ -95,6 +95,10 @@ h2 {
   margin: 60px auto;
   box-shadow: 0 12px 30px rgba(15, 20, 60, 0.08);
 }
+/* Light section background explicitly */
+.section.light {
+  background: #f9faff;
+}
 
 .section-title-gold {
   color: #f5c542;
