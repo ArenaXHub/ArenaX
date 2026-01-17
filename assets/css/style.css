@@ -710,3 +710,8 @@ h2 {
   margin-bottom: 8px;
 }
 
+.section.center .btn-primary {
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+}
