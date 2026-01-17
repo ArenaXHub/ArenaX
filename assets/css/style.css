@@ -619,3 +619,39 @@ h2 {
     gap: 18px;
   }
 }
+/* ================= FAQ PAGE ================= */
+.faq-section {
+  max-width: 900px;
+}
+
+.faq-card {
+  background: linear-gradient(180deg, #151a33, #0e1630);
+  border: 1.5px solid rgba(245, 197, 66, 0.35);
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin: 22px auto;
+  color: #ffffff;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.faq-card h3 {
+  color: #f2c94c;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.faq-card p {
+  opacity: 0.92;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Hover micro-animation (desktop only) */
+@media (hover: hover) {
+  .faq-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.55);
+  }
+}
+
