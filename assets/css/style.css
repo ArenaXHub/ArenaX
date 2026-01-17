@@ -775,4 +775,20 @@ h2 {
   transform: scale(1.1);
   opacity: 1;
 }
+/* ================= FULL-WIDTH SECTION SYSTEM ================= */
+
+/* Full-width background wrapper */
+.section-full {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Inner constrained content */
+.section-full > .section {
+  max-width: 1100px;
+  margin: 60px auto;
+  border-radius: 16px;
+}
+
 
