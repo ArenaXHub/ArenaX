@@ -209,6 +209,19 @@ h2 {
   font-weight: 800;
   letter-spacing: 0.4px;
 }
+.footer-credentials {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.footer-note {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
