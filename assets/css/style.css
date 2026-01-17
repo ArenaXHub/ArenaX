@@ -756,4 +756,23 @@ h2 {
 .contact-page a:hover {
   text-decoration: underline;
 }
+/* ================= WHATSAPP ICON ================= */
+
+.whatsapp-link {
+  margin-left: 10px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.whatsapp-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.9;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.whatsapp-link:hover .whatsapp-icon {
+  transform: scale(1.1);
+  opacity: 1;
+}
 
