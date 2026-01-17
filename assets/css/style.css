@@ -676,3 +676,27 @@ h2 {
     padding-top: 84px;
   }
 }
+
+/* ================= CERTIFICATE INFO – TEXT WEIGHT NORMALIZATION ================= */
+
+/* Ensure body text inside certificate cards is NOT bold */
+#certificate .price-card p,
+#certificate .price-card li {
+  font-weight: 400;
+  opacity: 0.92;
+}
+
+/* Keep headings clearly distinguished */
+#certificate .price-card h3 {
+  font-weight: 600;
+}
+
+/* Slightly soften bullet spacing */
+#certificate .price-card ul {
+  padding-left: 18px;
+}
+
+#certificate .price-card li {
+  margin-bottom: 8px;
+}
+
