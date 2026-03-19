@@ -834,3 +834,80 @@ h2 {
   margin-top: 0;
 }
 
+/* ============================================================
+   ARENAX BRAND REFRESH (BLUE/PURPLE THEME) 
+   ============================================================ */
+
+:root {
+  /* New Colors based on your Blue/Purple Logo */
+  --arenax-blue: #00d2ff;     /* The bright cyan/blue */
+  --arenax-purple: #9d50bb;   /* The deep purple gradient */
+  --arenax-glow: rgba(0, 210, 255, 0.4);
+}
+
+/* 1. Global Color Overrides (Changes Gold to Electric Blue) */
+.brand-link, 
+.section-title-gold, 
+.hero h1, 
+.footer .brand-arenax,
+.nav-links a:hover,
+.nav-links a.active,
+.contact-page a {
+  color: var(--arenax-blue) !important;
+  border-color: var(--arenax-blue) !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--arenax-blue), var(--arenax-purple)) !important;
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 8px 20px var(--arenax-glow);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 28px var(--arenax-glow);
+  transform: translateY(-3px);
+}
+
+/* 2. Logo Integration (Navbar) */
+.nav-logo-img {
+  height: 55px; /* Adjust based on preference */
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* 3. Hero Section Branding Fix */
+.hero-logo-container {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-logo-main {
+  max-width: 180px; /* Professional size for main logo */
+  filter: drop-shadow(0 0 15px var(--arenax-glow));
+}
+
+/* 4. Card & Border Refresh */
+.price-card, 
+.hero-feature, 
+.faq-card, 
+.certificate-info {
+  border: 1.5px solid rgba(0, 210, 255, 0.3) !important;
+  background: linear-gradient(180deg, #0f172a, #060914) !important;
+}
+
+.price-card h3 {
+  color: var(--arenax-blue) !important;
+}
+
+/* 5. Tagline Icon Refresh */
+.tagline i {
+  color: var(--arenax-blue);
+  margin-right: 8px;
+}
