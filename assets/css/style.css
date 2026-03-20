@@ -79,3 +79,48 @@ body {
     border: 2px solid white; color: white; padding: 15px 35px;
     border-radius: 5px; text-decoration: none; transition: 0.3s;
 }
+
+/* FIXED HERO VISIBILITY */
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* NEON GLOW BUTTONS */
+.btn-primary {
+    background: var(--brand-gradient);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 0 15px rgba(31, 185, 212, 0.5); /* Initial Glow */
+    transition: all 0.3s ease;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 5px rgba(31, 185, 212, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(138, 55, 204, 0.7); }
+    100% { box-shadow: 0 0 5px rgba(31, 185, 212, 0.4); }
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(138, 55, 204, 0.9);
+}
+
+/* NAVBAR BUTTONS */
+.nav-link {
+    color: var(--brand-gold) !important; /* Golden for Elegance */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
