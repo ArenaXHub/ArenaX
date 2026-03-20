@@ -41,7 +41,7 @@ body { background-color: var(--bg-deep); color: #fff; font-family: 'Poppins', sa
 }
 
 .btn-secondary {
-    border: 2px solid white; color: white; padding: 16px 36px;
+    border: 2px solid white; color: #f5c542;; padding: 16px 36px;
     border-radius: 50px; text-decoration: none; display: inline-block;
 }
 
