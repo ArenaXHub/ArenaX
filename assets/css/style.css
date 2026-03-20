@@ -1,126 +1,82 @@
 /* =============================================================
-   ARENAX UNIFIED PREMIUM CSS - THEME RECOVERY
+   ARENAX PROFESSIONAL CONVERSION CSS (MASTER)
    ============================================================= */
 :root {
     --bg-deep: #050505;
-    --surface: rgba(20, 20, 20, 0.7);
+    --surface: rgba(15, 15, 15, 0.85);
     --brand-gold: #f5c542;
     --brand-gradient: linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
     --text-bright: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.7);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-body {
-    background-color: var(--bg-deep);
-    color: var(--text-bright);
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-}
+body { background-color: var(--bg-deep); color: var(--text-bright); font-family: 'Poppins', sans-serif; }
 
-/* NAVBAR FIX */
+/* FIX: NAVBAR BLOCKING PAGE */
 #navbar {
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
-    background: rgba(5, 5, 5, 0.9);
+    top: 0; left: 0; width: 100%; height: 80px; /* Fixed Height */
+    z-index: 9999; /* Always on top */
+    background: rgba(5, 5, 5, 0.95);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(245, 197, 66, 0.2);
-    padding: 10px 5%;
     display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
 }
 
-/* NAVIGATION LINKS FIX */
-#navbar a {
-    color: var(--text-bright);
+/* NAVIGATION BUTTONS (GOLDEN & ELEGANT) */
+.nav-link {
+    color: var(--brand-gold) !important;
     text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    margin-left: 20px;
+    transition: var(--transition);
 }
 
-#navbar a:hover { color: var(--brand-gold); }
+.nav-link:hover { color: white !important; text-shadow: 0 0 10px var(--brand-gold); }
 
-/* HERO SYSTEM */
+/* FIX: HERO BANNER VISIBILITY */
 .hero {
-    height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Parallax effect for elegance */
-}
-
-/* GLASS SLAB SECTIONS */
-.glass-section {
-    padding: 100px 10%;
-    background: linear-gradient(to bottom, transparent, var(--bg-deep));
-}
-
-.glass-card {
-    background: var(--surface);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 50px;
-    margin-bottom: 30px;
-}
-
-/* BUTTONS */
-.btn-primary {
-    background: var(--brand-gradient);
-    color: white; padding: 15px 35px; border-radius: 5px;
-    text-decoration: none; font-weight: 600; text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
-}
-
-.btn-secondary {
-    border: 2px solid white; color: white; padding: 15px 35px;
-    border-radius: 5px; text-decoration: none; transition: 0.3s;
-}
-
-/* FIXED HERO VISIBILITY */
-.hero {
-    min-height: 100vh;
+    position: relative;
     width: 100%;
+    min-height: 100vh;
+    padding-top: 80px; /* Offset for Navbar */
+    display: flex; align-items: center; justify-content: center;
     background-size: cover !important;
-    background-position: center !important;
+    background-position: center center !important;
     background-repeat: no-repeat !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 1;
 }
 
 /* NEON GLOW BUTTONS */
 .btn-primary {
     background: var(--brand-gradient);
-    color: white;
-    padding: 18px 40px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    box-shadow: 0 0 15px rgba(31, 185, 212, 0.5); /* Initial Glow */
-    transition: all 0.3s ease;
-    animation: pulse-glow 2s infinite;
-}
-
-@keyframes pulse-glow {
-    0% { box-shadow: 0 0 5px rgba(31, 185, 212, 0.4); }
-    50% { box-shadow: 0 0 25px rgba(138, 55, 204, 0.7); }
-    100% { box-shadow: 0 0 5px rgba(31, 185, 212, 0.4); }
+    color: white; padding: 16px 36px; border-radius: 50px;
+    font-weight: 700; text-transform: uppercase; border: none;
+    box-shadow: 0 0 15px rgba(31, 185, 212, 0.5);
+    transition: var(--transition);
+    cursor: pointer; text-decoration: none;
 }
 
 .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(138, 55, 204, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(138, 55, 204, 0.8);
 }
 
-/* NAVBAR BUTTONS */
-.nav-link {
-    color: var(--brand-gold) !important; /* Golden for Elegance */
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.btn-secondary {
+    border: 2px solid white; color: white; padding: 16px 36px;
+    border-radius: 50px; text-decoration: none; transition: var(--transition);
+}
+
+/* GLASS SLABS */
+.glass-section { padding: 100px 8%; background: var(--bg-deep); }
+.glass-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px; padding: 40px;
 }
