@@ -120,6 +120,15 @@ body {
     max-width: 800px;
 }
 
+/* Variant hero tone for internal pages */
+.hero.about-hero::after {
+    background: radial-gradient(
+        circle at top,
+        rgba(245, 197, 66, 0.12),
+        transparent 70%
+    );
+}
+
 /* Subtle cinematic zoom */
 @keyframes zoomHero {
     0% { background-size: 100%; }
