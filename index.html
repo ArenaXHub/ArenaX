@@ -2,43 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArenaX | Skill • Ranking • Recognition</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
+<!-- NAVBAR -->
 <nav id="navbar">
-    <a href="" ><img src="assets/image/ArenaX_logo.png" alt="ArenaX" style="height: 50px;"></a>
+    <a href="/"><img src="assets/image/ArenaX_logo.png" alt="ArenaX" style="height: 50px;"></a>
     <div class="nav-links">
-        <a href="" class="nav-link">Home</a>
+        <a href="/" class="nav-link">Home</a>
         <a href="/about" class="nav-link">The Method</a>
         <a href="/events" class="nav-link">Events</a>
     </div>
 </nav>
 
-<header id="home" class="hero">
+<!-- HERO (BRANDING ONLY - NO WARRIOR) -->
+<header class="hero" style="background: none; height: 90vh;">
     <div class="hero-content">
-        <h1 style="font-family: 'Playfair Display'; font-size: 4.5rem; color: var(--brand-gold); margin-bottom: 10px;">
-            ARENAX
+
+        <!-- BRAND LOGO -->
+        <img src="assets/image/brand_logo.png" 
+             alt="ArenaX Branding"
+             style="width: 220px; margin-bottom: 20px;">
+
+        <h1 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--brand-gold); margin-bottom: 15px;">
+            ArenaX Performance Ecosystem
         </h1>
 
-        <p style="letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 35px;">
+        <p style="letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600;">
             Skill Assessment • Ranking • Recognition
         </p>
 
-        <a href="events" class="btn-primary">Explore Flagship Event</a>
+        <a href="/events" class="btn-primary">Explore Flagship Event</a>
+
     </div>
 </header>
 
-<section id="method" class="glass-section">
+<!-- ABOUT / METHOD (INTEGRATED) -->
+<section class="glass-section">
     <div class="glass-card" style="text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: #f5c542">The Performance Ecosystem</h2>
-        <p style="font-size: 1.2rem; line-height: 1.8; color: rgba(255,255,255,0.8);">
-            We replace participation certificates with <strong>performance-based certification</strong>. 
-            Every player is assessed on technique, movement, and match IQ to determine an official ranking.
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--brand-gold);">
+            The Performance Ecosystem
+        </h2>
+
+        <p style="font-size: 1.2rem; line-height: 1.8;">
+            ArenaX replaces participation-based recognition with structured, performance-driven evaluation. 
+            Every athlete is assessed on technical execution, movement efficiency, and match intelligence 
+            to generate a measurable, comparable ranking.
         </p>
     </div>
+</section>
+
+<!-- USP SECTION (CERTIFICATE = CORE HOOK) -->
+<section class="glass-section" style="background: rgba(245,197,66,0.03);">
+
+    <h2 style="text-align: center; margin-bottom: 50px;">
+        Performance Certification System
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+
+        <div class="glass-card">
+            <h3 style="color: var(--brand-gold);">Skill Category</h3>
+            <p>Players are classified based on structured technical evaluation, not guesswork.</p>
+        </div>
+
+        <div class="glass-card">
+            <h3 style="color: var(--brand-gold);">Performance Band</h3>
+            <p>Each player receives a band reflecting actual on-court performance and match impact.</p>
+        </div>
+
+        <div class="glass-card">
+            <h3 style="color: var(--brand-gold);">Verified Certification</h3>
+            <p>Every certificate includes a unique ID, enabling authenticity and verification.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FINAL CTA -->
+<section class="glass-section" style="text-align: center;">
+
+    <h2 style="margin-bottom: 20px;">
+        Step Into The Arena
+    </h2>
+
+    <p style="margin-bottom: 30px; opacity: 0.7;">
+        Compete. Get Ranked. Get Recognized.
+    </p>
+
+    <a href="/events" class="btn-primary" style="font-size: 1.2rem;">
+        Explore Flagship Event
+    </a>
+
 </section>
 
 </body>
