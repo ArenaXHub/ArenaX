@@ -206,6 +206,70 @@ body {
     transform: translateY(-5px);
     border-color: rgba(245, 197, 66, 0.3);
 }
+/* ================================
+   CTA - HIGH CONVERSION BUTTON
+================================ */
+
+.cta-glow {
+    position: relative;
+    overflow: hidden;
+
+    font-size: 1.1rem;
+    padding: 18px 45px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #1fb9d4, #8a37cc);
+    color: #fff;
+
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    display: inline-block;
+
+    box-shadow: 0 0 20px rgba(31, 185, 212, 0.6);
+
+    transition: all 0.3s ease;
+}
+
+/* Hover Lift */
+.cta-glow:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(31, 185, 212, 0.9);
+}
+
+/* Neon Pulse Animation */
+.cta-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.cta-glow:hover::before {
+    transform: translateX(100%);
+}
+
+/* Subtle breathing glow */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 15px rgba(31,185,212,0.5); }
+    100% { box-shadow: 0 0 30px rgba(31,185,212,0.9); }
+}
+
+.cta-glow {
+    animation: pulseGlow 2s infinite alternate;
+}
 
 /* ================================
    UTILITY / GLOBAL ENHANCEMENTS
