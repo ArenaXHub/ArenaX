@@ -212,3 +212,38 @@ p {
     line-height: 1.7;
     color: rgba(255,255,255,0.85);
 }
+/* ================================
+   PAGE-SPECIFIC NAVBAR CONTROL
+================================ */
+
+/* ===== HOME + ABOUT NAVBAR ===== */
+.home-page #navbar,
+.about-page #navbar {
+    background: rgba(5,5,5,0.95);
+    backdrop-filter: blur(15px);
+}
+
+.home-page .nav-link,
+.about-page .nav-link {
+    color: var(--brand-gold) !important;
+}
+
+/* ===== EVENT NAVBAR ===== */
+.event-page .nav-link {
+    color: #1fb9d4 !important; /* your blue tone */
+}
+
+/* ===== PREVENT OVERRIDES ===== */
+.home-page #navbar img {
+    content: none !important;
+}
+
+.about-page #navbar img {
+    content: none !important;
+}
+
+/* ensure links always visible */
+#navbar .nav-links {
+    display: flex !important;
+    gap: 25px;
+}
