@@ -4,6 +4,7 @@
 :root {
     --bg-deep: #050505;
     --brand-gold: #c9a24a;
+    --brand-gold-soft: rgba(201, 162, 74, 0.15);
     --brand-gradient: linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
 }
 
@@ -22,16 +23,13 @@ body {
 }
 
 /* ================================
-   NAVBAR (RESTORED SAFE)
+   NAVBAR
 ================================ */
 #navbar {
     position: fixed;
     top: 0;
     width: 100%;
     height: 80px;
-
-    background: rgba(5, 5, 5, 0.95);
-    backdrop-filter: blur(15px);
 
     display: flex;
     align-items: center;
@@ -40,12 +38,24 @@ body {
     padding: 0 5%;
     z-index: 9999;
 
-    border-bottom: 1px solid rgba(245, 197, 66, 0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Branding pages navbar */
+.home-page #navbar,
+.about-page #navbar {
+    background: rgba(5,5,5,0.95);
+    backdrop-filter: blur(15px);
+}
+
+/* Event page navbar */
+.event-page #navbar {
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
 }
 
 #navbar img {
     height: 45px;
-    width: auto;
 }
 
 .nav-links {
@@ -54,7 +64,6 @@ body {
 }
 
 .nav-link {
-    color: var(--brand-gold) !important;
     text-decoration: none;
     font-weight: 600;
     text-transform: uppercase;
@@ -62,27 +71,23 @@ body {
     letter-spacing: 1.5px;
 }
 
-.nav-link:hover {
-    color: #ffffff !important;
+/* Page-specific colors */
+.home-page .nav-link,
+.about-page .nav-link {
+    color: var(--brand-gold);
+}
+
+.event-page .nav-link {
+    color: #1fb9d4;
 }
 
 /* ================================
-   HERO (RESTORED ORIGINAL BEHAVIOR)
+   HERO (FIXED PROPERLY)
 ================================ */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(5,5,5,0.95)
-        ),
-        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
-
-    background-size: cover;
-    background-attachment: fixed;
 
     display: flex;
     align-items: center;
@@ -90,18 +95,27 @@ body {
     text-align: center;
 
     overflow: hidden;
+}
+
+/* ONLY event page gets warrior */
+.event-page .hero {
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(5,5,5,0.95)),
+        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
 
     animation: zoomHero 20s ease-in-out infinite alternate;
 }
 
-/* REMOVE background ONLY where needed */
-.hero.about-hero {
+/* REMOVE for branding pages */
+.home-page .hero,
+.about-page .hero {
     background: none !important;
-    height: 60vh;
 }
 
-/* overlay */
-.hero::after {
+/* glow overlay ONLY for event */
+.event-page .hero::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -167,8 +181,6 @@ body {
 
 /* CTA glow */
 .cta-glow {
-    position: relative;
-    overflow: hidden;
     animation: pulseGlow 2s infinite alternate;
 }
 
@@ -212,39 +224,3 @@ p {
     line-height: 1.7;
     color: rgba(255,255,255,0.85);
 }
-/* ================================
-   PAGE-SPECIFIC NAVBAR CONTROL
-================================ */
-
-/* ===== HOME + ABOUT NAVBAR ===== */
-.home-page #navbar,
-.about-page #navbar {
-    background: rgba(5,5,5,0.95);
-    backdrop-filter: blur(15px);
-}
-
-.home-page .nav-link,
-.about-page .nav-link {
-    color: var(--brand-gold) !important;
-}
-
-/* ===== EVENT NAVBAR ===== */
-.event-page .nav-link {
-    color: #1fb9d4 !important; /* your blue tone */
-}
-
-/* ===== PREVENT OVERRIDES ===== */
-.home-page #navbar img {
-    content: none !important;
-}
-
-.about-page #navbar img {
-    content: none !important;
-}
-
-/* ensure links always visible */
-#navbar .nav-links {
-    display: flex !important;
-    gap: 25px;
-}
-
