@@ -4,7 +4,6 @@
 :root {
     --bg-deep: #050505;
     --brand-gold: #c9a24a;
-    --brand-gold-soft: rgba(201, 162, 74, 0.15);
     --brand-gradient: linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
 }
 
@@ -23,7 +22,7 @@ body {
 }
 
 /* ================================
-   NAVBAR
+   NAVBAR (RESTORED SAFE)
 ================================ */
 #navbar {
     position: fixed;
@@ -41,7 +40,17 @@ body {
     padding: 0 5%;
     z-index: 9999;
 
-    border-bottom: 1px solid var(--brand-gold-soft);
+    border-bottom: 1px solid rgba(245, 197, 66, 0.2);
+}
+
+#navbar img {
+    height: 45px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
 }
 
 .nav-link {
@@ -51,23 +60,29 @@ body {
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 1.5px;
-    margin-left: 20px;
-
-    transition: all 0.3s ease;
 }
 
 .nav-link:hover {
     color: #ffffff !important;
-    opacity: 0.85;
 }
 
 /* ================================
-   HERO BASE
+   HERO (RESTORED ORIGINAL BEHAVIOR)
 ================================ */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(5,5,5,0.95)
+        ),
+        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
+
+    background-size: cover;
+    background-attachment: fixed;
 
     display: flex;
     align-items: center;
@@ -75,18 +90,17 @@ body {
     text-align: center;
 
     overflow: hidden;
-}
-
-.hero.event-hero {
-    background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(5,5,5,0.95)),
-        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
 
     animation: zoomHero 20s ease-in-out infinite alternate;
 }
 
+/* REMOVE background ONLY where needed */
+.hero.about-hero {
+    background: none !important;
+    height: 60vh;
+}
+
+/* overlay */
 .hero::after {
     content: "";
     position: absolute;
@@ -94,16 +108,11 @@ body {
 
     background: radial-gradient(
         circle at center,
-        rgba(201, 162, 74, 0.08),
+        rgba(245, 197, 66, 0.08),
         transparent 70%
     );
 
     z-index: 1;
-}
-
-.hero.about-hero {
-    background: none !important;
-    height: 60vh;
 }
 
 /* ================================
@@ -125,7 +134,7 @@ body {
     max-width: 800px;
 }
 
-/* Animation */
+/* animation */
 @keyframes zoomHero {
     0% { background-size: 100%; }
     100% { background-size: 110%; }
@@ -156,7 +165,7 @@ body {
     box-shadow: 0 10px 30px rgba(31, 185, 212, 0.8);
 }
 
-/* CTA Glow */
+/* CTA glow */
 .cta-glow {
     position: relative;
     overflow: hidden;
@@ -188,72 +197,6 @@ body {
     margin-top: 20px;
 
     box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-
-    transition: all 0.3s ease;
-}
-
-.glass-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--brand-gold);
-}
-
-/* ================================
-   FOOTER (GLOBAL)
-================================ */
-.footer {
-    margin-top: 80px;
-    padding: 60px 10%;
-    background: #040404;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    text-align: center;
-}
-
-.footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.footer-logo {
-    height: 50px;
-    margin-bottom: 15px;
-    opacity: 0.9;
-}
-
-.brand-arenax {
-    color: var(--brand-gold);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.footer-tagline {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-bottom: 25px;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--brand-gold);
-}
-
-.footer-credentials {
-    font-size: 0.8rem;
-    opacity: 0.5;
-    line-height: 1.6;
 }
 
 /* ================================
@@ -263,10 +206,6 @@ body::before {
     content: "";
     display: block;
     height: 80px;
-}
-
-h1, h2, h3 {
-    letter-spacing: 1px;
 }
 
 p {
