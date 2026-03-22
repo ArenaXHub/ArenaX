@@ -62,7 +62,7 @@ body {
 }
 
 /* ================================
-   HERO BASE (NO DEFAULT IMAGE)
+   HERO BASE
 ================================ */
 .hero {
     position: relative;
@@ -77,7 +77,6 @@ body {
     overflow: hidden;
 }
 
-/* ONLY event page should use this */
 .hero.event-hero {
     background:
         linear-gradient(rgba(0,0,0,0.55), rgba(5,5,5,0.95)),
@@ -88,7 +87,6 @@ body {
     animation: zoomHero 20s ease-in-out infinite alternate;
 }
 
-/* Glow overlay */
 .hero::after {
     content: "";
     position: absolute;
@@ -103,7 +101,6 @@ body {
     z-index: 1;
 }
 
-/* About page override */
 .hero.about-hero {
     background: none !important;
     height: 60vh;
@@ -201,15 +198,62 @@ body {
 }
 
 /* ================================
-   FOOTER
+   FOOTER (GLOBAL)
 ================================ */
-footer {
-    text-align: center;
-    padding: 40px 10%;
-    border-top: 1px solid rgba(255,255,255,0.08);
+.footer {
     margin-top: 80px;
-    color: rgba(255,255,255,0.6);
+    padding: 60px 10%;
+    background: #040404;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.brand-arenax {
+    color: var(--brand-gold);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.footer-tagline {
     font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--brand-gold);
+}
+
+.footer-credentials {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    line-height: 1.6;
 }
 
 /* ================================
@@ -228,77 +272,4 @@ h1, h2, h3 {
 p {
     line-height: 1.7;
     color: rgba(255,255,255,0.85);
-}
-
-/* ================================
-   FOOTER (PREMIUM)
-================================ */
-
-.footer {
-    margin-top: 80px;
-    padding: 60px 10%;
-
-    background: #040404;
-    border-top: 1px solid rgba(255,255,255,0.08);
-
-    text-align: center;
-}
-
-.footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Logo */
-.footer-logo {
-    height: 50px;
-    margin-bottom: 15px;
-    opacity: 0.9;
-}
-
-/* Brand */
-.footer-brand {
-    margin-bottom: 5px;
-}
-
-.brand-arenax {
-    color: var(--brand-gold);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-/* Tagline */
-.footer-tagline {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-bottom: 25px;
-}
-
-/* Links */
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-
-    margin-bottom: 25px;
-}
-
-.footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--brand-gold);
-}
-
-/* Credentials */
-.footer-credentials {
-    font-size: 0.8rem;
-    opacity: 0.5;
-    line-height: 1.6;
 }
