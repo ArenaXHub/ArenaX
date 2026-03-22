@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>ArenaX | Badminton Skill Challenge</title>
+    <p style="color:#ff4d4d; font-weight:bold;">
+        ⚠ Limited Slots – Early Bird Ending Soon
+</p>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="event-page">
@@ -23,7 +26,7 @@
         <h1 style="font-size: 3.5rem; color: #f5c542; font-family: 'Playfair Display';">Badminton Skill Challenge</h1>
         <p style="letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px;">Dehradun • 1st Performance Ranked Event </p>
         <div style="display: flex; gap: 20px; justify-content: center;">
-            <a href="https://forms.gle/yy6FWAuHSe1KSzyd9" class="btn-primary">Register Now</a>
+            <a href="https://forms.gle/yy6FWAuHSe1KSzyd9" class="floating-cta">Register Now</a>
             <a href="#overview" class="btn-secondary" style="color: #f5c542; text-decoration: none; padding: 16px 36px; border: 1px solid #f5c542; border-radius: 50px;">Know More</a>
     </div>
 </header>
@@ -42,7 +45,13 @@
 
 
 
-
+<div class="side-panel">
+    <h4>Quick Info</h4>
+    <p>🎯 Singles: ₹650</p>
+    <p>👥 Doubles: ₹1200</p>
+    <p>🏆 Cash + Kits</p>
+    <a href="https://forms.gle/yy6FWAuHSe1KSzyd9">Join Now</a>
+</div>
 
 
 
@@ -58,6 +67,9 @@
             <p>Singles: ₹650 | Doubles: ₹1200 </p>
             <p style="color: #1fb9d4; font-size: 0.9rem;">15% Early Bird (First 20) </p>
         </div>
+        <a href="https://forms.gle/yy6FWAuHSe1KSzyd9" class="btn-primary" style="margin-top:20px;">
+Secure Your Spot
+</a>
         <div class="glass-card">
             <h3 style="color:#f5c542;">Awards </h3>
             <p>Cash Rewards for Winners & Runners-up </p>
@@ -91,5 +103,34 @@
     <p style="margin-top: 20px; opacity: 0.5;">MSME: UDYAM-HR-19-0055131 </p>
 </section>
 
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    const logo = navbar.querySelector("img");
+
+    if (window.scrollY > 80) {
+        navbar.style.background = "rgba(0,0,0,0.95)";
+        navbar.style.height = "50px";
+        logo.src = "/assets/image/X_slogan.png";
+    } else {
+        navbar.style.background = "rgba(0,0,0,0.7)";
+        navbar.style.height = "60px";
+        logo.src = "/assets/image/X_bad_logo.png";
+    }
+});
+</script>
+<script>
+const cards = document.querySelectorAll('.glass-card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < window.innerHeight - 50) {
+            card.style.opacity = 1;
+            card.style.transform = "translateY(0)";
+        }
+    });
+});
+</script>
 </body>
 </html>
