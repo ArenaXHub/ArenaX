@@ -1,9 +1,10 @@
 /* ================================
-   ARENAX MASTER BRANDING SYSTEM
+   ARENAX MASTER BRAND SYSTEM
 ================================ */
 :root {
     --bg-deep: #050505;
     --brand-gold: #c9a24a;
+    --brand-gold-soft: rgba(201, 162, 74, 0.15);
     --brand-gradient: linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
 }
 
@@ -40,7 +41,7 @@ body {
     padding: 0 5%;
     z-index: 9999;
 
-    border-bottom: 1px solid rgba(245, 197, 66, 0.2);
+    border-bottom: 1px solid var(--brand-gold-soft);
 }
 
 .nav-link {
@@ -61,22 +62,12 @@ body {
 }
 
 /* ================================
-   HERO SECTION
+   HERO BASE (NO DEFAULT IMAGE)
 ================================ */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(5,5,5,0.95)
-        ),
-        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
-
-    background-size: cover;
-    background-attachment: fixed;
 
     display: flex;
     align-items: center;
@@ -84,11 +75,20 @@ body {
     text-align: center;
 
     overflow: hidden;
+}
+
+/* ONLY event page should use this */
+.hero.event-hero {
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(5,5,5,0.95)),
+        url('../image/hero-warrior-perfect-branding.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
 
     animation: zoomHero 20s ease-in-out infinite alternate;
 }
 
-/* Golden radial glow overlay */
+/* Glow overlay */
 .hero::after {
     content: "";
     position: absolute;
@@ -96,14 +96,22 @@ body {
 
     background: radial-gradient(
         circle at center,
-        rgba(245, 197, 66, 0.08),
+        rgba(201, 162, 74, 0.08),
         transparent 70%
     );
 
     z-index: 1;
 }
 
-/* Glass slab content */
+/* About page override */
+.hero.about-hero {
+    background: none !important;
+    height: 60vh;
+}
+
+/* ================================
+   HERO CONTENT
+================================ */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -119,21 +127,8 @@ body {
 
     max-width: 800px;
 }
-/* Remove background for About page */
-.hero.about-hero {
-    background: none !important;
-    height: 60vh;
-}
-/* Variant hero tone for internal pages */
-.hero.about-hero::after {
-    background: radial-gradient(
-        circle at top,
-        rgba(245, 197, 66, 0.12),
-        transparent 70%
-    );
-}
 
-/* Subtle cinematic zoom */
+/* Animation */
 @keyframes zoomHero {
     0% { background-size: 100%; }
     100% { background-size: 110%; }
@@ -164,35 +159,27 @@ body {
     box-shadow: 0 10px 30px rgba(31, 185, 212, 0.8);
 }
 
-.btn-secondary {
-    border: 2px solid var(--brand-gold);
-    color: var(--brand-gold);
-
-    padding: 16px 36px;
-    border-radius: 50px;
-
-    text-decoration: none;
-    display: inline-block;
-
-    transition: all 0.3s ease;
+/* CTA Glow */
+.cta-glow {
+    position: relative;
+    overflow: hidden;
+    animation: pulseGlow 2s infinite alternate;
 }
 
-.btn-secondary:hover {
-    background: var(--brand-gold);
-    color: #000;
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 15px rgba(31,185,212,0.5); }
+    100% { box-shadow: 0 0 30px rgba(31,185,212,0.9); }
 }
 
 /* ================================
-   GLASS UI SECTIONS
+   GLASS UI
 ================================ */
 .glass-section {
     padding: 100px 10%;
     max-width: 1200px;
     margin: 0 auto;
-    background: var(--bg-deep);
 }
 
-/* Glass cards */
 .glass-card {
     background: rgba(20, 20, 20, 0.6);
     backdrop-filter: blur(12px);
@@ -210,85 +197,30 @@ body {
 
 .glass-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(245, 197, 66, 0.3);
-}
-/* ================================
-   CTA - HIGH CONVERSION BUTTON
-================================ */
-
-.cta-glow {
-    position: relative;
-    overflow: hidden;
-
-    font-size: 1.1rem;
-    padding: 18px 45px;
-
-    border-radius: 50px;
-
-    background: linear-gradient(135deg, #1fb9d4, #8a37cc);
-    color: #fff;
-
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-
-    display: inline-block;
-
-    box-shadow: 0 0 20px rgba(31, 185, 212, 0.6);
-
-    transition: all 0.3s ease;
-}
-
-/* Hover Lift */
-.cta-glow:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(31, 185, 212, 0.9);
-}
-
-/* Neon Pulse Animation */
-.cta-glow::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.4),
-        transparent
-    );
-
-    transform: translateX(-100%);
-    transition: 0.6s;
-}
-
-.cta-glow:hover::before {
-    transform: translateX(100%);
-}
-
-/* Subtle breathing glow */
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 15px rgba(31,185,212,0.5); }
-    100% { box-shadow: 0 0 30px rgba(31,185,212,0.9); }
-}
-
-.cta-glow {
-    animation: pulseGlow 2s infinite alternate;
+    border-color: var(--brand-gold);
 }
 
 /* ================================
-   UTILITY / GLOBAL ENHANCEMENTS
+   FOOTER
 ================================ */
+footer {
+    text-align: center;
+    padding: 40px 10%;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 80px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
 
-/* Prevent content hiding under fixed navbar */
+/* ================================
+   UTILITIES
+================================ */
 body::before {
     content: "";
     display: block;
     height: 80px;
 }
 
-/* Smooth typography hierarchy */
 h1, h2, h3 {
     letter-spacing: 1px;
 }
