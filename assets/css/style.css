@@ -185,3 +185,53 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 .step.active { display: block; opacity: 1; transform: translateX(0); }
 .form-container input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; background: #1a1a22; color: white; }
 .form-container button { width: 100%; margin-top: 10px; padding: 12px; border-radius: 10px; border: none; background: var(--brand-gradient); color: white; font-weight: bold; cursor: pointer; }
+
+
+
+
+/* ================================
+   MOBILE-SPECIFIC REFINEMENTS
+================================ */
+@media screen and (max-width: 768px) {
+    
+    /* Fix: Prevent image from looking "Too Big" */
+    .event-page #hero-bg {
+        background-attachment: scroll; /* Mobile browsers struggle with 'fixed' */
+        background-size: 180% auto; /* Forces the image to fit the width better */
+        background-position: center top; /* Keeps the warrior's face/action in view */
+    }
+
+    /* Fix: Navbar spacing for small screens */
+    #navbar {
+        padding: 0 15px;
+        height: 60px;
+    }
+
+    .nav-logo img {
+        height: 40px; /* Smaller logo for mobile */
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-link-gold {
+        font-size: 0.75rem; /* Smaller text to prevent overlap */
+        padding: 5px 10px;
+    }
+
+    /* Fix: Hero content positioning */
+    .event-page .hero-content-small {
+        margin-top: 40px; /* Less top margin on mobile */
+    }
+
+    .event-page .glass-mini {
+        width: 95%; /* Use almost full width on phones */
+        padding: 20px;
+        backdrop-filter: blur(8px); /* Slightly less blur for mobile performance */
+    }
+
+    .event-page .glass-mini h1 {
+        font-size: 1.4rem !important; /* Shrink title so it doesn't wrap weirdly */
+    }
+}
