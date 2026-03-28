@@ -100,79 +100,65 @@
     <a href="#" class="floating-cta" onclick="openForm(); return false;">Register Now</a>
 </section>
 
-<script>
-let step = 0;
-let formData = {};
+<div id="formModal" class="form-modal hidden">
 
-function openForm() {
-  const modal = document.getElementById("formModal");
-  modal.classList.remove("hidden");
-  showStep(0);
-}
+  <div class="form-container">
 
-function showStep(n) {
-  const steps = document.querySelectorAll(".step");
-  steps.forEach(s => s.classList.remove("active"));
+    <div class="progress"><div id="progressBar"></div></div>
 
-  if (steps[n]) {
-    steps[n].classList.add("active");
-  }
+    <form id="stepForm">
 
-  document.getElementById("progressBar").style.width = ((n+1)*25)+"%";
-}
+      <!-- STEP 1 -->
+      <div class="step active">
+        <h3>Enter Your Name</h3>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
 
-function nextStep() {
-  formData.name = document.getElementById("name").value;
-  formData.phone = document.getElementById("phone").value;
+      <!-- STEP 2 -->
+      <div class="step">
+        <h3>Select Category</h3>
+        <button type="button" onclick="selectOption('Beginner')">Beginner</button>
+        <button type="button" onclick="selectOption('Intermediate')">Intermediate</button>
+        <button type="button" onclick="selectOption('Advanced')">Advanced</button>
+      </div>
 
-  if(!formData.name || !formData.phone){
-    alert("Please fill details");
-    return;
-  }
+      <!-- STEP 3 -->
+      <div class="step">
+        <h3>Event Type</h3>
+        <button type="button" onclick="selectEvent('Singles')">Singles</button>
+        <button type="button" onclick="selectEvent('Doubles')">Doubles</button>
+        <input id="partner" placeholder="Partner Name (if doubles)" class="hidden">
+      </div>
 
-  step++;
-  showStep(step);
-}
+      <!-- STEP 4 (FIXED — STYLE ADDED HERE) -->
+      <div class="step">
+        <h3>Player Profile</h3>
 
-function selectOption(val) {
-  formData.category = val;
-  step++;
-  showStep(step);
-}
+        <p style="margin-top:10px;">Experience</p>
+        <button type="button" onclick="selectExperience('Beginner')">Beginner</button>
+        <button type="button" onclick="selectExperience('Intermediate')">Intermediate</button>
+        <button type="button" onclick="selectExperience('Advanced')">Advanced</button>
 
-function selectEvent(val) {
-  formData.event = val;
+        <p style="margin-top:20px;">Playing Style</p>
+        <button type="button" onclick="selectStyle('Aggressive')">Aggressive</button>
+        <button type="button" onclick="selectStyle('Defensive')">Defensive</button>
+        <button type="button" onclick="selectStyle('Balanced')">Balanced</button>
+      </div>
 
-  if(val==="Doubles"){
-    document.getElementById("partner").classList.remove("hidden");
-  }
+      <!-- STEP 5 (SUMMARY) -->
+      <div class="step">
+        <h3>Confirm Details</h3>
+        <p id="summary"></p>
+        <button type="button" onclick="submitForm()">Finish</button>
+      </div>
 
-  step++;
-  showStep(step);
-}
+    </form>
 
-function selectExperience(val){
-  formData.experience = val;
-}
+  </div>
+</div>
 
-document.getElementById("stepForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  formData.partner = document.getElementById("partner").value;
-
-  fetch("YOUR_GOOGLE_SCRIPT_URL", {
-    method: "POST",
-    body: JSON.stringify(formData)
-  })
-  .then(()=> {
-    alert("Registered Successfully!");
-    location.reload();
-  })
-  .catch(()=>{
-    alert("Error submitting form");
-  });
-});
-</script>
 <script>
 window.addEventListener("scroll", function () {
     const navbar = document.getElementById("navbar");
@@ -212,7 +198,7 @@ window.addEventListener('scroll', () => {
 
     <form id="stepForm">
 
-      <!-- Step 1 -->
+      <!-- STEP 1 -->
       <div class="step active">
         <h3>Enter Your Name</h3>
         <input type="text" id="name" placeholder="Your Name" required>
@@ -220,7 +206,7 @@ window.addEventListener('scroll', () => {
         <button type="button" onclick="nextStep()">Next</button>
       </div>
 
-      <!-- Step 2 -->
+      <!-- STEP 2 -->
       <div class="step">
         <h3>Select Category</h3>
         <button type="button" onclick="selectOption('Beginner')">Beginner</button>
@@ -228,7 +214,7 @@ window.addEventListener('scroll', () => {
         <button type="button" onclick="selectOption('Advanced')">Advanced</button>
       </div>
 
-      <!-- Step 3 -->
+      <!-- STEP 3 -->
       <div class="step">
         <h3>Event Type</h3>
         <button type="button" onclick="selectEvent('Singles')">Singles</button>
@@ -236,19 +222,32 @@ window.addEventListener('scroll', () => {
         <input id="partner" placeholder="Partner Name (if doubles)" class="hidden">
       </div>
 
-      <!-- Step 4 -->
+      <!-- STEP 4 (FIXED — STYLE ADDED HERE) -->
       <div class="step">
-        <h3>Profile</h3>
+        <h3>Player Profile</h3>
+
+        <p style="margin-top:10px;">Experience</p>
         <button type="button" onclick="selectExperience('Beginner')">Beginner</button>
         <button type="button" onclick="selectExperience('Intermediate')">Intermediate</button>
         <button type="button" onclick="selectExperience('Advanced')">Advanced</button>
 
-        <button type="submit">Finish</button>
+        <p style="margin-top:20px;">Playing Style</p>
+        <button type="button" onclick="selectStyle('Aggressive')">Aggressive</button>
+        <button type="button" onclick="selectStyle('Defensive')">Defensive</button>
+        <button type="button" onclick="selectStyle('Balanced')">Balanced</button>
+      </div>
+
+      <!-- STEP 5 (SUMMARY) -->
+      <div class="step">
+        <h3>Confirm Details</h3>
+        <p id="summary"></p>
+        <button type="button" onclick="submitForm()">Finish</button>
       </div>
 
     </form>
 
   </div>
 </div>
+
 </body>
 </html>

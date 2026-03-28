@@ -429,8 +429,50 @@ p {
 
 .hidden { display: none; }
 
-.step { display: none; }
-.step.active { display: block; }
+/* ===== FORM UX UPGRADE (SAFE) ===== */
+
+.form-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sticky Progress Bar */
+.progress {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Animated bar */
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#1fb9d4,#8a37cc);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px rgba(31,185,212,0.6);
+}
+
+/* Step animation */
+.step {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.3s ease;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Button tap feedback */
+.form-container button:active {
+  transform: scale(0.96);
+}
 
 .form-container input {
   width: 100%;
@@ -453,18 +495,6 @@ p {
   font-weight: bold;
 }
 
-.progress {
-  height: 5px;
-  background: #222;
-  margin-bottom: 15px;
-  border-radius: 10px;
-}
-
-#progressBar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg,#1fb9d4,#8a37cc);
-}
 /* ===== FIX EVENT PAGE ONLY ===== */
 
 .event-page .hero {
