@@ -126,16 +126,17 @@ window.addEventListener('scroll', function() {
     let navbar = document.getElementById('navbar');
     let bg = document.getElementById('hero-bg');
 
-    // Smooth Zoom Effect (Desktop & Mobile)
+    // 1. Zoom Effect on Scroll
     if(bg) bg.style.transform = `scale(${1 + scrollValue * 0.0005})`;
 
-    // Nav Background Transition
-    if (scrollValue > 50) {
-        navbar.style.background = "rgba(5, 5, 5, 0.95)";
-        navbar.style.borderBottom = "1px solid rgba(245, 197, 66, 0.2)";
+    // 2. Sticky Button Logic:
+    // Only add a background to the Nav when we leave the Hero section
+    if (scrollValue > window.innerHeight * 0.8) {
+        navbar.style.background = "rgba(5, 5, 5, 0.95)"; 
+        navbar.style.backdropFilter = "blur(10px)";
     } else {
         navbar.style.background = "transparent";
-        navbar.style.borderBottom = "none";
+        navbar.style.backdropFilter = "none";
     }
 });
 
