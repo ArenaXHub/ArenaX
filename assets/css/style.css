@@ -517,3 +517,11 @@ p {
 .form-modal {
     display: flex;
 }
+/* FORCE STEP VISIBILITY CONTROL */
+.form-container .step {
+  display: none !important;
+}
+
+.form-container .step.active {
+  display: block !important;
+}
