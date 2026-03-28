@@ -2,240 +2,132 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ArenaX Badminton Performance Certificate</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>ArenaX Performance Certificate | {{PARTICIPANT_NAME}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-@page {
-  size: A4 landscape;
-  margin: 0;
-}
+  :root {
+    --brand-gold: #c9a24a; /* Matches ArenaX Master Brand */
+    --brand-black: #050505;
+    --accent-red: #d32f2f;
+  }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  color: #111;
-  -webkit-print-color-adjust: exact;
-}
+  @page { size: A4 landscape; margin: 0; }
+  body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; -webkit-print-color-adjust: exact; }
 
-/* ===== FRAME ===== */
-.certificate {
-  width: 100%;
-  height: 100%;
-  padding: 28px;
-  box-sizing: border-box;
-}
+  .certificate {
+    width: 297mm; height: 210mm;
+    padding: 20mm;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+    border: 10px solid var(--brand-black);
+  }
 
-.frame {
-  width: 100%;
-  height: 100%;
-  border: 6px solid #111;
-  outline: 3px solid #d32f2f;
-  outline-offset: -14px;
-  padding: 34px 60px;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-}
+  /* Elegant Inner Border */
+  .inner-frame {
+    height: 100%; width: 100%;
+    border: 2px solid var(--brand-gold);
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+  }
 
-/* ===== WATERMARK ===== */
-.watermark {
-  position: absolute;
-  inset: 0;
-  background: url("../assets/images/logos/arenax_cert.png") no-repeat center;
-  background-size: 55%;
-  opacity: 0.04;
-  z-index: 0;
-}
+  /* WATERMARK: Using X_logo logic */
+  .watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; opacity: 0.03;
+    z-index: 0;
+  }
 
-/* ===== CONTENT ===== */
-.content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
+  .header img { height: 90px; margin-bottom: 10px; }
+  
+  .org-title {
+    font-size: 18px; font-weight: 700; color: var(--brand-black);
+    letter-spacing: 3px; text-transform: uppercase;
+  }
 
-/* ===== HEADER ===== */
-.header img {
-  height: 110px;
-  margin-bottom: 6px;
-}
+  .tagline { font-size: 12px; color: #666; margin-bottom: 25px; }
 
-.org {
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 2px;
-  color: #d32f2f;
-}
+  h1 { font-family: 'Playfair Display', serif; font-size: 42px; margin: 10px 0; color: var(--brand-black); }
 
-.tagline {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 18px;
-}
+  .certify-text { font-size: 16px; margin-top: 20px; }
+  
+  .participant-name {
+    font-size: 38px; font-weight: 700; color: var(--brand-black);
+    border-bottom: 2px solid var(--brand-gold);
+    display: inline-block; padding: 0 50px; margin: 15px 0;
+  }
 
-/* ===== TITLE ===== */
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  margin: 10px 0 12px;
-}
+  .event-desc { max-width: 800px; margin: 20px auto; font-size: 15px; line-height: 1.6; }
 
-/* ===== BODY ===== */
-.subtitle {
-  font-size: 14px;
-}
+  /* PERFORMANCE SCORECARD (USP) */
+  .performance-box {
+    width: 500px; margin: 30px auto;
+    background: #fafafa; border: 1px solid #ddd;
+    padding: 20px 40px; position: relative;
+    box-shadow: 5px 5px 0px var(--brand-gold);
+  }
 
-.name {
-  font-size: 32px;
-  font-weight: 700;
-  margin: 14px 0 16px;
-}
+  .box-label { 
+    position: absolute; top: -12px; left: 20px; 
+    background: #fff; padding: 0 10px; font-size: 12px; font-weight: 700; color: var(--brand-gold);
+  }
 
-.description {
-  max-width: 780px;
-  margin: 0 auto 20px;
-  font-size: 15px;
-  line-height: 1.55;
-}
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
+  .val { font-weight: 700; text-align: right; }
 
-/* ======================================================
-   OFFICIAL SCORECARD — COPIED STYLE FROM REFERENCE
-   ====================================================== */
-
-.performance-box {
-  width: 500px;
-  margin: 18px auto;
-  background: #fff;
-  border: 2px solid #111;
-  box-shadow: 6px 6px 0 #d32f2f;
-  padding: 18px 30px;
-  position: relative;
-}
-
-.box-title {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  padding: 0 12px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #b71c1c;
-  text-transform: uppercase;
-}
-
-
-
-/* compact grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 8px;
-}
-
-.label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #777;
-  text-align: left;
-}
-
-.value {
-  font-size: 16px;
-  font-weight: 700;
-  text-align: right;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 18px;
-  font-size: 12px;
-}
-
-.coordinator .line {
-  width: 160px;
-  border-bottom: 2px solid #111;
-  margin-bottom: 6px;
-}
-
-.meta {
-  text-align: right;
-  line-height: 1.6;
-}
-
-.meta strong {
-  font-weight: 600;
-}
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
+  .sig-box { width: 200px; border-top: 1px solid #111; padding-top: 10px; font-size: 13px; }
+  .meta-data { text-align: right; font-size: 12px; color: #444; }
 </style>
 </head>
-
 <body>
 
 <div class="certificate">
-  <div class="frame">
+  <div class="inner-frame">
+    <img src="assets/image/X_logo.jpg" class="watermark" alt="Watermark">
 
-    <div class="watermark"></div>
+    <div class="header">
+      <img src="assets/image/X_logo.jpg" alt="ArenaX Logo">
+      <div class="org-title">ArenaX Sports Events</div>
+      <div class="tagline">Skill Assessment • Ranking • Recognition</div>
+    </div>
 
-    <div class="content">
+    <h1>Performance Certificate</h1>
 
-      <div class="header">
-        <img src="../assets/images/logos/arenax_cert.png" alt="ArenaX Logo">
-        <div class="org">ARENAX SPORTS EVENTS</div>
-        <div class="tagline">Skill Assessment • Ranking • Recognition</div>
+    <p class="certify-text">This is to officially certify that</p>
+    <div class="participant-name">{{NAME}}</div>
+
+    <p class="event-desc">
+      has successfully completed the <strong>{{EVENT_NAME}}</strong> evaluation. 
+      This certificate is awarded based on verified on-court performance, match application, 
+      and technical skill assessment.
+    </p>
+
+    <div class="performance-box">
+      <div class="box-label">OFFICIAL PERFORMANCE DATA</div>
+      <div class="score-grid">
+        <span>Overall Rank:</span> <span class="val">{{RANK}} / {{TOTAL_POOL}}</span>
+        <span>Skill Category:</span> <span class="val">{{CATEGORY}}</span>
+        <span>Performance Band:</span> <span class="val">{{BAND}}</span>
       </div>
+    </div>
 
-      <h1>ArenaX Badminton Performance Certificate</h1>
-
-      <div class="subtitle">This is to certify that</div>
-      <div class="name">[ PARTICIPANT NAME ]</div>
-
-      <div class="description">
-        has participated in the <strong>ArenaX Badminton Skill Challenge</strong>,
-        a structured badminton performance evaluation program conducted for
-        competitive players, where participants are officially assessed and ranked
-        based on on-court performance.
-        <em>
-    ArenaX certificates are performance-ranked and issued only after
-    verified on-court evaluation. Each certificate carries a unique
-    Certificate ID for authenticity verification.
-  </em>
+    <div class="footer">
+      <div class="sig-box">
+        <strong>Program Director</strong><br>
+        ArenaX Sports Events
       </div>
-
-      <!-- OFFICIAL SCORECARD -->
-      <div class="performance-box">
-        <div class="box-title">Official Scorecard</div>
-        <div class="grid">
-          <div class="label">Overall Rank</div><div class="value">7 / 50</div>
-          <div class="label">Skill Category</div><div class="value" style="color:#0d47a1;">Intermediate</div>
-          <div class="label">Performance Band</div><div class="value">Top 25%</div>
-        </div>
+      
+      <div class="meta-data">
+        <strong>Certificate ID:</strong> {{CERT_ID}}<br>
+        <strong>Date:</strong> {{DATE}}<br>
+        <strong>Verification:</strong> arenax.in/verify
       </div>
-
-      <div class="footer">
-        <div class="coordinator">
-          <div class="line"></div>
-          <strong>Program Coordinator</strong><br>
-          ArenaX Sports Events
-        </div>
-
-        <div class="meta">
-          <strong>Certificate ID:</strong> AX-BSC-2026-XXX<br>
-          <strong>Date:</strong> DD / MM / YYYY<br>
-          <strong>Location:</strong> Dehradun, India
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
