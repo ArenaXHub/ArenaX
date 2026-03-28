@@ -2,194 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArenaX | Badminton Skill Challenge</title>
-    <p style="color:#ff4d4d; font-weight:bold;">
-        ⚠ Limited Slots – Early Bird Ending Soon
-</p>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="event-page">
 
 <nav id="navbar">
-    <a href="/">
-        <img src="/assets/image/X_bad_logo.png" alt="X_bad" style="height: 70px;">
-    </a>
-    <div class="nav-links">
-        <a href="/" class="nav-link">Home</a>
-        <a href="#overview" class="nav-link">Details</a>
-        <a href="#" class="btn-primary" onclick="openForm()">Register Now</a>    </div>
+    <div class="nav-container">
+        <a href="index.html" class="nav-link-gold">Home</a>
+        <a href="#" class="nav-link-gold nav-btn-glow" onclick="openForm(); return false;">Join Now</a>
+    </div>
 </nav>
 
-<header class="hero">
-    <div class="hero-content">
-        <h1 style="font-size: 3.5rem; color: #f5c542; font-family: 'Playfair Display';">Badminton Skill Challenge</h1>
-        <p style="letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px;">Dehradun • 1st Performance Ranked Event </p>
-        <div style="display: flex; gap: 20px; justify-content: center;">
-            <a href="#" class="btn-primary" onclick="openForm(); return false;">Register Now</a>
-            <a href="#overview" class="btn-secondary" style="color: #f5c542; text-decoration: none; padding: 16px 36px; border: 1px solid #f5c542; border-radius: 50px;">Know More</a>
-    </div>
-</header>
-
-<section id="overview" class="glass-section">
-    <div class="glass-card" style="text-align: center; margin-bottom: 50px;">
-        <h2 style="color:#f5c542">Event Overview</h2>
-        <i class="fa-solid fa-chart-line" style="font-size: 2.5rem; color: var(--brand-gold); margin-bottom: 20px;"></i>
-            <h3>Structured</h3>
-        <i class="fa-solid fa-ranking-star" style="font-size: 2.5rem; color: var(--brand-gold); margin-bottom: 20px;"></i>
-            <h3>Ranked</h3>
-         <i class="fa-solid fa-certificate" style="font-size: 2.5rem; color: var(--brand-gold); margin-bottom: 20px;"></i>
-            <h3>Certified</h3>
-        <p>Official performance-based certification for every serious participant.</p>
-    </div>
-
-
-
-
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <div class="glass-card">
-            <h3 style="color:#f5c542;">Eligibility </h3>
-            <p>Singles & Doubles </p>
-            <p>Under-18 & Open (18+) </p>
-        </div>
-        <div class="glass-card">
-            <h3 style="color:#f5c542;"> Fees </h3>
-            <p>Singles: ₹650 | Doubles: ₹1200 </p>
-            <p style="color: #1fb9d4; font-size: 0.9rem;">15% Early Bird (First 20) </p>
-        </div>
-        <a href="#" class="floating-cta" onclick="openForm(); return false;">Register Now</a>
-</a>
-        <div class="glass-card">
-            <h3 style="color:#f5c542;">Awards </h3>
-            <p>Cash Rewards for Winners & Runners-up </p>
-            <p>Sports Kits & Kits for participants </p>
-        </div>
-    </div>
-
-    <div id="certificate" class="glass-card" style="margin-top: 40px; border: 1px solid #f5c542;">
-        <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
-            <div style="flex: 1;">
-                <h2>Performance Certification </h2>
-                <p>Verified ranking based on technical execution and match application.</p>
-                <ul style="margin: 20px 0; list-style: none; opacity: 0.8;">
-                    <li>✔ Skill Category </li>
-                    <li>✔ Performance Band </li>
-                    <li>✔ Unique Certificate ID </li>
-                </ul>
-                <div style="display: flex; gap: 15px;">
-                    <a href="certificate-validation" class="btn-primary">Verify Certificate</a>
-                    <a href="assets/ArenaX Sample Badminton Certificate.pdf" class="btn-secondary">Sample PDF</a>
-                </div>
+<div class="hero-wrapper">
+    <div id="hero-bg"></div> <header class="hero-content-small">
+        <div class="glass-mini">
+            <h1 style="font-size: 1.8rem; margin-bottom: 5px;">Badminton Skill Challenge</h1>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 20px; color: #fff;">
+                Dehradun • 1st Performance Ranked Event
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="#" class="btn-primary nav-btn-glow" onclick="openForm(); return false;" style="font-size: 0.8rem; padding: 10px 20px;">Register Now</a>
+                <a href="#overview" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 20px;">Know More</a>
             </div>
-            <img src="assets/image/ArenaX Sample Badminton Certificate.png" alt="Preview" style="width: 350px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        </div>
+    </header>
+</div>
+
+<div class="glass-section" id="overview">
+    
+    <div class="glass-card">
+        <h2 class="section-title-gold"><i class="fa-solid fa-ticket"></i> Registration Fees</h2>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center;">
+            <div>
+                <h3 style="font-size: 1.5rem;">₹650</h3>
+                <p>Singles Entry</p>
+            </div>
+            <div style="border-left: 1px solid rgba(245,197,66,0.3); padding-left: 20px;">
+                <h3 style="font-size: 1.5rem;">₹1200</h3>
+                <p>Doubles Team</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px; color: #1fb9d4; font-weight: bold; font-size: 0.9rem;">
+            🎯 15% Early Bird Discount for first 20 registrations!
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <h2 class="section-title-gold"><i class="fa-solid fa-trophy"></i> Awards & Rewards</h2>
+        <ul style="list-style: none; padding: 0; line-height: 2;">
+            <li><i class="fa-solid fa-medal" style="color: #f5c542;"></i> Cash Rewards for Winners & Runners-up</li>
+            <li><i class="fa-solid fa-box-open" style="color: #f5c542;"></i> Professional Sports Kits for Top Performers</li>
+            <li><i class="fa-solid fa-ranking-star" style="color: #f5c542;"></i> Official ArenaX Player Ranking</li>
+        </ul>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <h2 class="section-title-gold" style="text-align: left;"><i class="fa-solid fa-certificate"></i> Performance Certificate</h2>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Every participant receives an authenticated performance breakdown—not just a participation slip.</p>
+                <a href="certificate-validation.html" class="btn-secondary" style="font-size: 0.8rem;">Verify Sample</a>
+            </div>
+            <div style="flex: 1; min-width: 250px; text-align: center;">
+                <img src="assets/image/ArenaX Sample Badminton Certificate.png" alt="ArenaX Certificate" style="width: 100%; max-width: 300px; border-radius: 10px; border: 1px solid rgba(245,197,66,0.3);">
+            </div>
         </div>
     </div>
-</section>
-
-<section class="glass-section" style="text-align: center; background: rgba(245, 197, 66, 0.05);">
-    <h2>Ready to Step Into The Arena?</h2>
-    <a href="#" class="floating-cta" onclick="openForm(); return false;">Register Now</a>
-</section>
+</div>
 
 <div id="formModal" class="form-modal hidden">
-
   <div class="form-container">
-
     <div class="progress"><div id="progressBar"></div></div>
-
     <form id="stepForm">
-
-      <!-- STEP 1 -->
       <div class="step active">
-        <h3>Enter Your Name</h3>
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="tel" id="phone" placeholder="Phone Number" required>
-        <button type="button" onclick="nextStep()">Next</button>
+        <h3 style="color: #f5c542;">Identify Yourself</h3>
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+        <button type="button" onclick="nextStep()">Next Step</button>
       </div>
-
-      <!-- STEP 2 -->
       <div class="step">
-        <h3>Select Category</h3>
+        <h3 style="color: #f5c542;">Current Level</h3>
         <button type="button" onclick="selectOption('Beginner')">Beginner</button>
         <button type="button" onclick="selectOption('Intermediate')">Intermediate</button>
         <button type="button" onclick="selectOption('Advanced')">Advanced</button>
       </div>
-
-      <!-- STEP 3 -->
       <div class="step">
-        <h3>Event Type</h3>
+        <h3 style="color: #f5c542;">Event Selection</h3>
         <button type="button" onclick="selectEvent('Singles')">Singles</button>
         <button type="button" onclick="selectEvent('Doubles')">Doubles</button>
-        <input id="partner" placeholder="Partner Name (if doubles)" class="hidden">
+        <input id="partner" placeholder="Partner Name (Optional)" class="hidden">
       </div>
-
-      <!-- STEP 4 (FIXED — STYLE ADDED HERE) -->
       <div class="step">
-        <h3>Player Profile</h3>
-
-        <p style="margin-top:10px;">Experience</p>
-        <button type="button" onclick="selectExperience('Beginner')">Beginner</button>
-        <button type="button" onclick="selectExperience('Intermediate')">Intermediate</button>
-        <button type="button" onclick="selectExperience('Advanced')">Advanced</button>
-
-        <p style="margin-top:20px;">Playing Style</p>
-        <button type="button" onclick="selectStyle('Aggressive')">Aggressive</button>
-        <button type="button" onclick="selectStyle('Defensive')">Defensive</button>
-        <button type="button" onclick="selectStyle('Balanced')">Balanced</button>
+        <h3 style="color: #f5c542;">Playing Style</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+            <button type="button" onclick="selectStyle('Aggressive')">Aggressive</button>
+            <button type="button" onclick="selectStyle('Defensive')">Defensive</button>
+        </div>
+        <button type="button" onclick="selectStyle('Balanced')" style="margin-top: 10px;">Balanced Controller</button>
       </div>
-
-      <!-- STEP 5 (SUMMARY) -->
       <div class="step">
-        <h3>Confirm Details</h3>
-        <p id="summary"></p>
-        <button type="button" onclick="submitForm(event)">Finish</button>
+        <h3 style="color: #f5c542;">Ready to Rank?</h3>
+        <p id="summary" style="font-size: 0.8rem; margin: 15px 0;"></p>
+        <button type="button" onclick="submitForm(event)">Confirm & Register</button>
       </div>
-
     </form>
-
   </div>
 </div>
 
 <script>
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    const logo = navbar.querySelector("img");
+// --- Smooth Zoom & Nav Scroll Script ---
+window.addEventListener('scroll', function() {
+    let scrollValue = window.scrollY;
+    let navbar = document.getElementById('navbar');
+    let bg = document.getElementById('hero-bg');
 
-    if (window.scrollY > 80) {
-        navbar.style.background = "rgba(0,0,0,0.95)";
-        navbar.style.height = "50px";
-        logo.src = "/assets/image/X_slogan.png";
+    // Smooth Zoom Effect (Desktop & Mobile)
+    if(bg) bg.style.transform = `scale(${1 + scrollValue * 0.0005})`;
+
+    // Nav Background Transition
+    if (scrollValue > 50) {
+        navbar.style.background = "rgba(5, 5, 5, 0.95)";
+        navbar.style.borderBottom = "1px solid rgba(245, 197, 66, 0.2)";
     } else {
-        navbar.style.background = "rgba(0,0,0,0.7)";
-        navbar.style.height = "60px";
-        logo.src = "/assets/image/X_bad_logo.png";
+        navbar.style.background = "transparent";
+        navbar.style.borderBottom = "none";
     }
 });
-</script>
-<script>
-const cards = document.querySelectorAll('.glass-card');
 
-window.addEventListener('scroll', () => {
-    cards.forEach(card => {
-        const top = card.getBoundingClientRect().top;
-        if (top < window.innerHeight - 50) {
-            card.style.opacity = 1;
-            card.style.transform = "translateY(0)";
-        }
-    });
-});
-
-</script>
-
-<script>
+// --- Form Logic ---
 let step = 0;
 let formData = {};
-let formOpen = false;
 
 function openForm() {
-  if(formOpen) return;
-  formOpen = true;
-
   document.getElementById("formModal").classList.remove("hidden");
   step = 0;
   showStep(step);
@@ -197,22 +145,17 @@ function openForm() {
 
 function showStep(n) {
   const steps = document.querySelectorAll(".step");
-
   steps.forEach((s, i) => {
     s.classList.remove("active");
     if(i === n) s.classList.add("active");
   });
-
   document.getElementById("progressBar").style.width = ((n+1)*20)+"%";
-
+  
   if(n === 4){
     document.getElementById("summary").innerHTML = `
-      <b>Name:</b> ${formData.name}<br>
-      <b>Phone:</b> ${formData.phone}<br>
-      <b>Category:</b> ${formData.category}<br>
+      <b>Player:</b> ${formData.name}<br>
       <b>Event:</b> ${formData.event}<br>
-      <b>Experience:</b> ${formData.experience || 'NA'}<br>
-      <b>Style:</b> ${formData.style || 'NA'}
+      <b>Style:</b> ${formData.style}
     `;
   }
 }
@@ -220,86 +163,39 @@ function showStep(n) {
 function nextStep() {
   formData.name = document.getElementById("name").value;
   formData.phone = document.getElementById("phone").value;
-
-  if(!formData.name || !formData.phone){
-    alert("Enter details");
-    return;
-  }
-
+  if(!formData.name || !formData.phone) { alert("Please enter details"); return; }
   step++;
   showStep(step);
 }
 
-function selectOption(val){
-  formData.category = val;
-  step++;
-  showStep(step);
+function selectOption(val){ formData.category = val; step++; showStep(step); }
+
+function selectEvent(val){ 
+    formData.event = val; 
+    if(val==="Doubles") document.getElementById("partner").classList.remove("hidden");
+    step++; 
+    showStep(step); 
 }
 
-function selectEvent(val){
-  formData.event = val;
-
-  if(val==="Doubles"){
-    document.getElementById("partner").classList.remove("hidden");
-  }
-
-  step++;
-  showStep(step);
-}
-
-function selectExperience(val){
-  formData.experience = val;
-}
-
-function selectStyle(val){
-  formData.style = val;
-  step++;
-  showStep(step);
-}
-
-function generatePlayerID(){
-  return "AX" + Date.now();
-}
+function selectStyle(val){ formData.style = val; step++; showStep(step); }
 
 function submitForm(event){
-
   const btn = event.target;
-  btn.innerText = "Submitting...";
+  btn.innerText = "Processing...";
   btn.disabled = true;
-
   formData.partner = document.getElementById("partner").value || "";
-  formData.timestamp = new Date().toISOString();
-  formData.paymentStatus = "Pending";
-
+  
   fetch("https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec", {
     method: "POST",
     body: JSON.stringify(formData)
   })
   .then(res => res.json())
   .then(res => {
-
-    if(res.status === "duplicate"){
-      alert("⚠ Already registered with this number");
-      btn.disabled = false;
-      btn.innerText = "Finish";
-      return;
-    }
-
-    document.getElementById("summary").innerHTML = `
-      ✅ Registered Successfully<br><br>
-      Your ArenaX ID:<br>
-      <b style="color:#1fb9d4">${res.playerID}</b>
-    `;
-
-    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("summary").innerHTML = `<h3 style='color:#1fb9d4'>Registration Success!</h3>Your ArenaX ID: <b>${res.playerID}</b>`;
+    btn.innerText = "Done";
   })
-  .catch(()=>{
-    alert("Error submitting form");
-    btn.disabled = false;
-    btn.innerText = "Finish";
-  });
+  .catch(() => { alert("Error connecting to ArenaX database."); btn.disabled = false; btn.innerText = "Try Again"; });
 }
-
 </script>
 
 </body>
