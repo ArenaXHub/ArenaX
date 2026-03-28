@@ -121,24 +121,38 @@
 
 <script>
 // --- Smooth Zoom & Nav Scroll Script ---
+let ticking = false;
+
 window.addEventListener('scroll', function() {
-    let scrollValue = window.scrollY;
-    let navbar = document.getElementById('navbar');
-    let bg = document.getElementById('hero-bg');
+    if (!ticking) {
+        window.requestAnimationFrame(function() {
+            let scrollValue = window.scrollY;
+            let navbar = document.getElementById('navbar');
+            let bg = document.getElementById('hero-bg');
 
-    // 1. Zoom Effect on Scroll
-    if(bg) bg.style.transform = `scale(${1 + scrollValue * 0.0005})`;
+            // 1. MOBILE-SENSITIVE ZOOM
+            if(bg) {
+                // Gentler zoom for mobile to stop the image from looking "too big"
+                let zoomFactor = window.innerWidth < 768 ? 0.0002 : 0.0005;
+                bg.style.transform = `scale(${1 + scrollValue * zoomFactor})`;
+            }
 
-    // 2. Sticky Button Logic:
-    // Only add a background to the Nav when we leave the Hero section
-    if (scrollValue > window.innerHeight * 0.8) {
-        navbar.style.background = "rgba(5, 5, 5, 0.95)"; 
-        navbar.style.backdropFilter = "blur(10px)";
-    } else {
-        navbar.style.background = "transparent";
-        navbar.style.backdropFilter = "none";
+            // 2. DYNAMIC NAVBAR TRANSPARENCY
+            if (scrollValue > 50) {
+                navbar.style.background = "rgba(5, 5, 5, 0.85)"; 
+                navbar.style.backdropFilter = "blur(10px)";
+                navbar.style.height = "60px";
+            } else {
+                navbar.style.background = "transparent";
+                navbar.style.backdropFilter = "none";
+                navbar.style.height = "80px";
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
-});
+});    let scrollValue = window.scrollY;
+    
 
 // --- Form Logic ---
 let step = 0;
