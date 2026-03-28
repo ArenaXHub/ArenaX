@@ -17,8 +17,7 @@
     <div class="nav-links">
         <a href="/" class="nav-link">Home</a>
         <a href="#overview" class="nav-link">Details</a>
-        <a href="https://forms.gle/yy6FWAuHSe1KSzyd9" class="nav-link" style="border: 1px solid #f5c542; padding: 5px 15px; border-radius: 5px;">Register</a>
-    </div>
+        <a href="#" class="btn-primary" onclick="openForm()">Register Now</a>    </div>
 </nav>
 
 <header class="hero">
@@ -131,6 +130,54 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
 </script>
+
+<div id="formModal" class="form-modal hidden">
+
+  <div class="form-container">
+
+    <div class="progress"><div id="progressBar"></div></div>
+
+    <form id="stepForm">
+
+      <!-- Step 1 -->
+      <div class="step active">
+        <h3>Enter Your Name</h3>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <h3>Select Category</h3>
+        <button type="button" onclick="selectOption('Beginner')">Beginner</button>
+        <button type="button" onclick="selectOption('Intermediate')">Intermediate</button>
+        <button type="button" onclick="selectOption('Advanced')">Advanced</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <h3>Event Type</h3>
+        <button type="button" onclick="selectEvent('Singles')">Singles</button>
+        <button type="button" onclick="selectEvent('Doubles')">Doubles</button>
+        <input id="partner" placeholder="Partner Name (if doubles)" class="hidden">
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <h3>Profile</h3>
+        <button type="button" onclick="selectExperience('Beginner')">Beginner</button>
+        <button type="button" onclick="selectExperience('Intermediate')">Intermediate</button>
+        <button type="button" onclick="selectExperience('Advanced')">Advanced</button>
+
+        <button type="submit">Finish</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
 </body>
 </html>
