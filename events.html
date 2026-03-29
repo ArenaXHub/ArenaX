@@ -81,13 +81,15 @@
 </div>
 
 <div id="formModal" class="form-modal hidden">
-  <div class="form-container">
+  <div class="form-container" style="position: relative;">
+    <span onclick="closeForm()" style="position: absolute; top: 15px; right: 20px; color: #666; cursor: pointer; font-size: 1.2rem;">&times;</span>
+    
     <div class="progress"><div id="progressBar"></div></div>
     <form id="stepForm">
       <div class="step active">
         <h3 style="color: #f5c542;">Identify Yourself</h3>
         <input type="text" id="name" placeholder="Full Name" required>
-        <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+        <input type="tel" id="phone" placeholder"10-Digit WhatsApp Number (No +91)" maxlength="10" required>
         <button type="button" onclick="nextStep()">Next Step</button>
       </div>
       <div class="step">
@@ -158,6 +160,10 @@ window.addEventListener('scroll', function() {
 let step = 0;
 let formData = {};
 
+function closeForm() {
+  document.getElementById("formModal").classList.add("hidden");
+}
+
 function openForm() {
   document.getElementById("formModal").classList.remove("hidden");
   step = 0;
@@ -184,7 +190,14 @@ function showStep(n) {
 function nextStep() {
   formData.name = document.getElementById("name").value;
   formData.phone = document.getElementById("phone").value;
-  if(!formData.name || !formData.phone) { alert("Please enter details"); return; }
+  // Basic 10-digit validation
+  const phoneRegex = /^[0-9]{10}$/;
+  
+  if(!formData.name) { alert("Please enter your name"); return; }
+  if(!phoneRegex.test(formData.phone)) { 
+    alert("Please enter a valid 10-digit phone number without +91 or spaces"); 
+    return; 
+  }
   step++;
   showStep(step);
 }
@@ -212,11 +225,39 @@ function submitForm(event){
   })
   .then(res => res.json())
   .then(res => {
-    document.getElementById("summary").innerHTML = `<h3 style='color:#1fb9d4'>Registration Success!</h3>Your ArenaX ID: <b>${res.playerID}</b>`;
+    // 1. Check for Duplicate Status from your Google Script
+    if(res.status === "duplicate") {
+        document.getElementById("summary").innerHTML = `
+            <h3 style='color:#ff4d4d'>Already Registered</h3>
+            <p style='font-size:0.8rem'>This number is already in our ranking system.</p>`;
+        btn.innerText = "Close";
+        btn.disabled = false;
+        btn.onclick = closeForm;
+        return;
+    }
+
+    // 2. Safely handle the ID (Check if it exists)
+    const displayID = res.playerID || res.id || "Pending Verification";
+    
+    document.getElementById("summary").innerHTML = `
+        <h3 style='color:#1fb9d4'>Registration Success!</h3>
+        <p style='margin-bottom:10px;'>Your profile is being indexed.</p>
+        Your ArenaX ID: <b style='color:#f5c542'>${displayID}</b>`;
+    
     btn.innerText = "Done";
+    btn.disabled = false;
+    btn.onclick = closeForm;
   })
-  .catch(() => { alert("Error connecting to ArenaX database."); btn.disabled = false; btn.innerText = "Try Again"; });
+  .catch((err) => { 
+    console.error(err);
+    alert("Error connecting to ArenaX database. Please try again."); 
+    btn.disabled = false; 
+    btn.innerText = "Try Again"; 
+  });
 }
+
+
+    
 </script>
 
 </body>
