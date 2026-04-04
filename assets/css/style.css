@@ -213,9 +213,10 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 }
 /* LEFT LOGO (make subtle) */
 .event-navbar .nav-left img {
-    height: 42px;   /* reduced from ~40 */
+    height: 50px;   /* reduced from ~40 */
     opacity: 0.95;  /* slight fade */
     filter: drop-shadow(0 0 4px rgba(0,0,0,0.6)); /* improves contrast on bg */
+    backdrop-filter: brightness(1.2);
 }
 
 /* CENTER */
