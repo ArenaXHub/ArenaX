@@ -211,6 +211,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 .event-navbar .nav-left {
     justify-self: start;
 }
+/* LEFT LOGO (make subtle) */
+.event-navbar .nav-left img {
+    height: 32px;   /* reduced from ~40 */
+    opacity: 0.85;  /* slight fade */
+}
 
 /* CENTER */
 .event-navbar .nav-center {
@@ -218,7 +223,8 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 }
 
 .event-navbar .nav-center img {
-    height: 55px;
+    height: 65px;
+    transform: translateY(4px); /* slight drop like Sky365 */
 }
 
 /* RIGHT */
