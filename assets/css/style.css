@@ -113,8 +113,8 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 /* Small Glass Hero Window */
 .event-page .glass-mini {
     background: rgba(255, 255, 255, 0.05); /* Transparent enough to see warrior */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(13px);
+    
+    -webkit-backdrop-filter: blur(12px);
     padding: 25px;
     border-radius: 20px;
     border: 1px solid rgba(245, 197, 66, 0.2);
