@@ -27,6 +27,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
     z-index: 10000;
     transition: all 0.4s ease;
     background: transparent;
+    grid-template-columns: 1fr auto 1fr;
 }
 
 .nav-links { 
@@ -57,6 +58,13 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 
 /* Container for Logo */
 .nav-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+/* Container for Logo */
+.nav-center img {
     height: 50px;
     width: auto;
     display: block;
