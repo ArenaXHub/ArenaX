@@ -213,7 +213,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--brand-gold); }
 }
 /* LEFT LOGO (make subtle) */
 .event-navbar .nav-left img {
-    height: 32px;   /* reduced from ~40 */
+    height: 35px;   /* reduced from ~40 */
     opacity: 0.85;  /* slight fade */
 }
 
