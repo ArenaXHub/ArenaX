@@ -368,14 +368,17 @@
 
 
         /* =============================================
-           STATS TICKER
+           STATS BAR — glass strip
         ============================================= */
         #stats-bar {
-            background: linear-gradient(90deg,
-                rgba(11,18,22,1), rgba(12,11,20,1));  /* solid-ish dark teal/purple */
-            border-top: 1px solid rgba(31,185,212,0.12);
-            border-bottom: 1px solid rgba(138,55,204,0.12);
+            background: rgba(6, 10, 20, 0.72);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-top: 1px solid rgba(31,185,212,0.15);
+            border-bottom: 1px solid rgba(138,55,204,0.15);
             padding: 22px 6%;
+            position: relative;
+            z-index: 1;
         }
         .stats-row {
             display: grid;
@@ -402,12 +405,14 @@
 
         /* =============================================
            SECTION SCAFFOLDING
-           All sections need explicit background so they
-           cover the fixed warrior image as you scroll.
+           Sections are now transparent. Content lives
+           inside .glass-panel / .glass-col cards that
+           blur + tint the warrior behind them.
+           Gaps between panels reveal the warrior.
         ============================================= */
         .wrap {
-            padding: 90px 6%;
-            background: var(--bg);        /* ← covers fixed hero bg */
+            padding: 44px 6%;
+            background: transparent;
             position: relative;
             z-index: 1;
         }
@@ -418,6 +423,51 @@
         #stats-bar, footer, #faq-wrap {
             position: relative;
             z-index: 1;
+        }
+
+        /* ── Master glass panel ── */
+        .glass-panel {
+            background: rgba(6, 8, 18, 0.72);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.09), transparent);
+            pointer-events: none;
+        }
+        /* Individual column glass card */
+        .glass-col {
+            background: rgba(6, 8, 18, 0.70);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 36px;
+        }
+
+        /* Dividers = warrior "windows" between panels */
+        .divider {
+            width: 100%;
+            height: 38px;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        .divider::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 12%; right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,162,74,0.12), transparent);
         }
         .section-label {
             font-size: 0.68rem;
@@ -439,13 +489,6 @@
             line-height: 1.85;
             max-width: 600px;
         }
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
-            margin: 0;
-        }
-
         /* Reveal */
         .reveal {
             opacity: 0;
@@ -500,11 +543,13 @@
             margin-top: 50px;
         }
         .value-card {
-            background: rgba(255,255,255,0.025);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            background: rgba(6, 8, 18, 0.68);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
             padding: 36px 28px;
-            transition: transform 0.4s, border-color 0.4s;
+            transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
             position: relative;
             overflow: hidden;
         }
@@ -517,7 +562,7 @@
             opacity: 0;
             transition: opacity 0.4s;
         }
-        .value-card:hover { transform: translateY(-7px); border-color: rgba(31,185,212,0.25); }
+        .value-card:hover { transform: translateY(-7px); border-color: rgba(31,185,212,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(31,185,212,0.1); }
         .value-card:hover::after { opacity: 1; }
         .value-icon { font-size: 2.1rem; margin-bottom: 18px; }
         .value-card h3 {
@@ -725,7 +770,7 @@
         /* =============================================
            AUDIENCE CARDS
         ============================================= */
-        #audience { background: #080810; }
+        #audience { background: transparent; }
         .audience-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -733,18 +778,21 @@
             margin-top: 42px;
         }
         .aud-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 10px;
+            background: rgba(6, 8, 18, 0.68);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
             padding: 26px;
             display: flex;
             gap: 18px;
             align-items: flex-start;
-            transition: border-color 0.3s, background 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
         .aud-card:hover {
             border-color: var(--border-gold);
-            background: rgba(201,162,74,0.03);
+            box-shadow: 0 0 20px rgba(201,162,74,0.1);
+            transform: translateY(-3px);
         }
         .aud-icon { font-size: 1.9rem; flex-shrink: 0; }
         .aud-card h4 { font-weight: 600; color: var(--gold-lt); font-size: 0.95rem; margin-bottom: 6px; }
@@ -756,9 +804,7 @@
         ============================================= */
         #sponsors {
             text-align: center;
-            background: #060608;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            background: transparent;
         }
         .sponsor-chips {
             display: flex;
@@ -783,7 +829,7 @@
         /* =============================================
            FAQ
         ============================================= */
-        #faq-wrap { max-width: 780px; margin: 0 auto; padding: 90px 6%; background: var(--bg); }
+        #faq-wrap { max-width: 800px; margin: 0 auto; padding: 44px 6%; background: transparent; }
         .faq-item { border-bottom: 1px solid var(--border); }
         .faq-q {
             padding: 20px 0;
@@ -815,10 +861,10 @@
         ============================================= */
         #final-cta {
             text-align: center;
-            padding: 110px 6%;
+            padding: 80px 6%;
             position: relative;
             overflow: hidden;
-            background: #030305;         /* solid — covers fixed warrior */
+            background: transparent;
         }
         #final-cta::before {
             content: '';
@@ -842,9 +888,13 @@
            FOOTER
         ============================================= */
         footer {
-            background: #000;
-            border-top: 1px solid var(--border);
+            background: rgba(3, 3, 8, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-gold);
             padding: 55px 6% 28px;
+            position: relative;
+            z-index: 1;
         }
         .footer-grid {
             display: grid;
@@ -1186,7 +1236,7 @@
 <div class="wrap">
     <div class="ps-grid reveal">
 
-        <div>
+        <div class="glass-col">
             <p class="section-label">The Problem</p>
             <h2 class="section-title">You play every week.<br>But are you improving?</h2>
             <p class="section-body">
@@ -1202,7 +1252,7 @@
             </ul>
         </div>
 
-        <div>
+        <div class="glass-col">
             <p class="section-label" style="color:var(--cyan)">The ArenaX Fix</p>
             <h2 class="section-title">Your game,<br>officially measured.</h2>
             <p class="section-body">
@@ -1228,8 +1278,9 @@
      VALUE PROPS
 ============================================= -->
 <section id="value" class="wrap">
+<div class="glass-panel">
 
-    <div style="text-align:center; max-width:580px; margin:0 auto;">
+    <div style="text-align:center; max-width:580px; margin:0 auto 40px;">
         <p class="section-label">What You Get</p>
         <h2 class="section-title">More than a tournament.<br>A complete assessment.</h2>
     </div>
@@ -1252,6 +1303,7 @@
         </div>
     </div>
 
+</div>
 </section>
 
 <div class="divider"></div>
@@ -1261,6 +1313,7 @@
      HOW IT WORKS
 ============================================= -->
 <section id="how" class="wrap">
+<div class="glass-panel" style="text-align:center;">
 
     <p class="section-label">The Process</p>
     <h2 class="section-title">How ArenaX Works</h2>
@@ -1283,6 +1336,7 @@
         </div>
     </div>
 
+</div>
 </section>
 
 <div class="divider"></div>
@@ -1292,6 +1346,7 @@
      CERTIFICATE SECTION
 ============================================= -->
 <div class="wrap">
+<div class="glass-panel">
     <div class="cert-grid reveal">
 
         <div class="cert-frame">
@@ -1320,6 +1375,7 @@
         </div>
 
     </div>
+</div>
 </div>
 
 <div class="divider"></div>
@@ -1420,9 +1476,10 @@
      SPONSOR SECTION
 ============================================= -->
 <section id="sponsors" class="wrap">
+<div class="glass-panel" style="text-align:center;">
 
     <p class="section-label">Partner With ArenaX</p>
-    <h2 class="section-title" style="text-align:center;">Sponsor the Arena</h2>
+    <h2 class="section-title">Sponsor the Arena</h2>
     <p class="section-body" style="margin: 12px auto; text-align:center; max-width:520px;">
         We're building India's most credible skill-ranked sports platform.
         Join us as a Title Sponsor, Equipment Partner, or Associate Brand.
@@ -1436,10 +1493,11 @@
         <div class="s-chip">🏢 Local &amp; Regional Businesses</div>
     </div>
 
-    <div style="text-align:center; margin-top:10px;">
+    <div style="margin-top:10px;">
         <a href="sponsorship.html" class="btn-ghost">Explore Sponsorship Opportunities →</a>
     </div>
 
+</div>
 </section>
 
 <div class="divider"></div>
@@ -1449,8 +1507,9 @@
      FAQ
 ============================================= -->
 <div id="faq-wrap">
+<div class="glass-panel">
 
-    <div style="text-align:center; margin-bottom:42px;">
+    <div style="text-align:center; margin-bottom:38px;">
         <p class="section-label">Got Questions?</p>
         <h2 class="section-title">Frequently Asked</h2>
     </div>
@@ -1531,7 +1590,8 @@
         <a href="registration-faq.html" class="btn-ghost">View All FAQs →</a>
     </div>
 
-</div>
+</div><!-- /glass-panel -->
+</div><!-- /faq-wrap -->
 
 <div class="divider"></div>
 
@@ -1540,12 +1600,14 @@
      FINAL CTA
 ============================================= -->
 <section id="final-cta">
+<div class="wrap">
+<div class="glass-panel" style="text-align:center; max-width:700px; margin:0 auto;">
     <p class="section-label">Limited Slots</p>
-    <h2 class="section-title">
+    <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.2rem);">
         Ready to Find Your<br>
         <span class="gold-text">True Rank?</span>
     </h2>
-    <p class="section-body" style="margin: 16px auto 36px; text-align:center;">
+    <p class="section-body" style="margin: 16px auto 32px; text-align:center;">
         20 slots per category. No on-spot entries.<br>
         Secure your place in the first ArenaX Badminton Skill Challenge.
     </p>
@@ -1556,6 +1618,8 @@
     <p class="mfootnote" style="margin-top:16px;">
         Free to register. Payment link sent via WhatsApp within 24 hours.
     </p>
+</div>
+</div>
 </section>
 
 
