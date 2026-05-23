@@ -203,54 +203,63 @@
             gap: 16px;
         }
         .hero-glass {
-            background: rgba(8, 8, 14, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(201, 162, 74, 0.30);
-            border-radius: 24px;
-            padding: 28px 40px 26px;
-            max-width: 520px;
-            width: 100%;
+            background: rgba(6, 6, 12, 0.60);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(201, 162, 74, 0.28);
+            border-radius: 20px;
+            padding: 24px 32px 22px;
+            max-width: 400px;          /* ← narrower — warriors' faces now fully visible */
+            width: 90%;
             box-shadow:
-                0 0 0 1px rgba(201,162,74,0.08) inset,
-                0 12px 40px rgba(0,0,0,0.4);
+                0 0 0 1px rgba(201,162,74,0.07) inset,
+                0 8px 32px rgba(0,0,0,0.5),
+                0 0 60px rgba(0,0,0,0.3);
             opacity: 0;
             animation: fadeUp 0.9s ease 0.3s forwards;
+            margin-top: 10vh;          /* ← pushed slightly lower, away from navbar */
         }
         .hero-eyebrow {
-            font-size: 0.68rem;
+            font-size: 0.63rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--cyan);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         /* Event title inside glass */
         .hero-event-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.25rem, 2.5vw, 1.6rem);   /* ← smaller — fits in narrow card */
             font-weight: 700;
+            line-height: 1.2;
             color: var(--gold-lt);
-            margin-bottom: 4px;
+            margin-bottom: 10px;
         }
         /* "• Dehradun • May 2026 •" dot row */
         .hero-dotrow {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 2.5px;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.38);
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
+        }
+        /* Gold divider line between title and pill row */
+        .hero-divider {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 12px;
         }
         /* "🌟 Skill Assessment  🌟 Ranking  🌟 Recognition" */
         .hero-pillrow {
             display: flex;
             justify-content: center;
-            gap: 18px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-bottom: 8px;
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.75);
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.7);
         }
-        .hero-pillrow span { display: flex; align-items: center; gap: 5px; }
+        .hero-pillrow span { display: flex; align-items: center; gap: 4px; }
         /* CTA area below glass */
         .hero-cta-area {
             display: flex;
@@ -260,9 +269,28 @@
             opacity: 0;
             animation: fadeUp 0.9s ease 0.7s forwards;
         }
+        /* Urgency badge */
+        .hero-urgency {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.7rem;
+            color: var(--red);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+        .urgency-dot {
+            width: 7px; height: 7px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: urgencyPulse 1.8s ease-in-out infinite;
+            flex-shrink: 0;
+        }
         /* Social-proof line */
         .hero-proof {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             color: var(--cyan);
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -271,15 +299,15 @@
         }
         .hero-proof-sub {
             margin-top: 4px;
-            font-size: 0.67rem;
-            color: rgba(255,255,255,0.3);
+            font-size: 0.64rem;
+            color: rgba(255,255,255,0.28);
             opacity: 0;
             animation: fadeIn 1s ease 1.3s forwards;
         }
         @media (max-width: 600px) {
-            .hero-glass { padding: 22px 20px 18px; max-width: 94%; border-radius: 18px; }
-            .hero-event-title { font-size: 1.35rem; }
-            .hero-pillrow { gap: 10px; font-size: 0.75rem; }
+            .hero-glass { padding: 20px 18px 16px; max-width: 88%; border-radius: 16px; margin-top: 6vh; }
+            .hero-event-title { font-size: 1.2rem; }
+            .hero-pillrow { gap: 8px; font-size: 0.7rem; }
         }
         .scroll-down {
             position: absolute;
@@ -306,15 +334,7 @@
             transform: rotate(45deg);
             animation: chevronBounce 2.2s ease-in-out infinite;
         }
-        /* Mobile glass card */
-        @media (max-width: 600px) {
-            .hero-glass {
-                padding: 24px 22px 20px;
-                max-width: 94%;
-                border-radius: 14px;
-            }
-            .hero-title { font-size: clamp(1.4rem, 5.5vw, 1.8rem); }
-        }
+        /* Mobile glass card handled above */
 
 
         /* =============================================
@@ -1138,6 +1158,14 @@
             0%, 100% { transform: rotate(45deg) translate(0, 0); }
             50%       { transform: rotate(45deg) translate(4px, 4px); }
         }
+        @keyframes urgencyPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%       { transform: scale(1.4); opacity: 0.6; }
+        }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position:  200% center; }
+        }
 
 
         /* =============================================
@@ -1210,11 +1238,12 @@
     <div id="hero-bg"></div>
 
     <div class="hero-content">
-        <!-- Compact glass card — matches image 1 "ArenaX Event #1" style -->
+        <!-- Compact glass card — warriors fully visible on both sides -->
         <div class="hero-glass">
             <p class="hero-eyebrow">ArenaX Badminton Event #1 🏸</p>
             <h1 class="hero-event-title">Step Into The Arena.<br>Get Ranked. Be Recognized.</h1>
             <p class="hero-dotrow">&bull;&nbsp; Dehradun &nbsp;&bull;&nbsp; May 2026 &nbsp;&bull;</p>
+            <div class="hero-divider"></div>
             <div class="hero-pillrow">
                 <span>🌟 Skill Assessment</span>
                 <span>🌟 Ranking</span>
@@ -1222,12 +1251,18 @@
             </div>
         </div>
 
-        <!-- CTAs outside the glass card -->
+        <!-- Urgency signal -->
+        <div class="hero-urgency">
+            <span class="urgency-dot"></span>
+            Only 20 slots per category — filling fast
+        </div>
+
+        <!-- CTAs -->
         <div class="hero-cta-area">
             <a href="#" class="btn-primary" onclick="openReg(); return false;">
                 Claim Your ArenaX Rank
             </a>
-            <a href="#value" class="btn-ghost" style="font-size:0.8rem; padding:10px 24px;">
+            <a href="#value" class="btn-ghost" style="font-size:0.78rem; padding:9px 22px;">
                 Know More
             </a>
         </div>
@@ -1249,7 +1284,7 @@
 <div id="stats-bar">
     <div class="stats-row">
         <div>
-            <span class="stat-val">20</span>
+            <span class="stat-val" style="color:var(--red);">20</span>
             <span class="stat-lbl">Slots Per Category</span>
         </div>
         <div>
@@ -1389,9 +1424,9 @@
     <div class="cert-grid reveal">
 
         <div class="cert-frame">
-            <img src="assets/image/ArenaX_Certificate_FINAL.pdf"
+            <img src="assets/image/ArenaX_Certificate_v3.pdf"
                  alt="ArenaX Performance Certificate Sample"
-                 onerror="this.src='assets/image/ArenaX Sample Badminton Certificate.png'"> 
+                 onerror="this.src='assets/image/ArenaX_Sample_Badminton_Certificate.png'; this.onerror=null;">
         </div>
 
         <div class="glass-col">
@@ -1452,7 +1487,10 @@
             </div>
         </div>
 
-        <p class="slots-warn">⚠ Only 20 players per category — slots filling fast</p>
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:22px;">
+            <span class="urgency-dot" style="background:var(--red);"></span>
+            <p class="slots-warn" style="margin:0;">Only 20 players per category — slots filling fast</p>
+        </div>
 
         <a href="#" class="btn-primary" onclick="openReg(); return false;">
             Claim Your ArenaX Rank →
@@ -1701,9 +1739,9 @@
     <div class="footer-bottom">
         <p class="footer-copy">© 2026 ArenaX Sports Events. All rights reserved.</p>
         <div class="social-row">
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://instagram.com/arenax.in" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@arenax" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
     </div>
 </footer>
