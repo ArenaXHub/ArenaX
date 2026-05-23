@@ -1,75 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ArenaX | Registration FAQs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArenaX | Registration FAQs — Everything You Need to Know</title>
+    <meta name="description" content="All your questions about ArenaX registration, payment, event format, certificates, and refund policy answered.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root{--bg:#050505;--gold:#c9a24a;--gold-lt:#f5c542;--cyan:#1fb9d4;--purple:#8a37cc;--red:#ff4d4d;--grad:linear-gradient(135deg,#1fb9d4 0%,#8a37cc 100%);--grad-gold:linear-gradient(135deg,#b8862e 0%,#f5c542 50%,#b8862e 100%);--border:rgba(255,255,255,0.07);--border-gold:rgba(201,162,74,0.20);}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{background:var(--bg);color:#fff;font-family:'Poppins',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        img{display:block;max-width:100%;}
+        a{text-decoration:none;}
 
-  <link rel="stylesheet" href="assets/css/style.css">
+        #hero-bg{position:fixed;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,0.20) 0%,rgba(5,5,5,0.70) 60%,rgba(5,5,5,0.97) 100%),url('assets/image/hero-warrior-perfect-branding.png') no-repeat center center/cover;z-index:-1;}
+
+        /* NAV */
+        #navbar{position:fixed;top:0;left:0;width:100%;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;z-index:10000;transition:background 0.4s,height 0.4s;border-bottom:1px solid transparent;}
+        #navbar.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);height:60px;border-bottom-color:var(--border-gold);}
+        .nav-logo img{height:36px;opacity:0.92;}
+        .nav-cta{border:1.5px solid var(--gold);color:var(--gold);padding:8px 20px;border-radius:3px;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:1.2px;transition:all 0.3s;cursor:pointer;background:transparent;font-family:'Poppins',sans-serif;}
+        .nav-cta:hover{background:var(--gold);color:#000;box-shadow:0 0 18px rgba(201,162,74,0.6);}
+        .btn-primary{background:var(--grad);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.88rem;text-transform:uppercase;letter-spacing:1px;border:none;cursor:pointer;display:inline-block;transition:transform 0.3s,box-shadow 0.3s;font-family:'Poppins',sans-serif;}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 20px rgba(31,185,212,0.65);}
+        .btn-ghost{background:transparent;color:var(--gold-lt);padding:12px 26px;border-radius:50px;font-weight:600;font-size:0.86rem;border:1.5px solid rgba(245,197,66,0.4);cursor:pointer;display:inline-block;transition:all 0.3s;font-family:'Poppins',sans-serif;}
+        .btn-ghost:hover{border-color:var(--gold-lt);box-shadow:0 0 16px rgba(201,162,74,0.5);}
+
+        /* HERO */
+        #hero{position:relative;height:50vh;min-height:380px;display:flex;align-items:center;justify-content:center;text-align:center;}
+        #hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+        .hero-content{position:relative;z-index:2;padding:0 20px;margin-top:8vh;max-width:620px;}
+        .hero-eyebrow{font-size:0.63rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;opacity:0;animation:fadeUp 0.7s ease 0.2s forwards;}
+        .hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,3rem);line-height:1.15;margin-bottom:14px;opacity:0;animation:fadeUp 0.9s ease 0.4s forwards;}
+        .gold-text{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.48);opacity:0;animation:fadeUp 0.9s ease 0.6s forwards;}
+
+        /* LAYOUT */
+        .page-wrap{max-width:860px;margin:0 auto;padding:52px 6%;position:relative;z-index:1;}
+        .section-label{font-size:0.63rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;text-shadow:0 1px 8px rgba(0,0,0,0.9);}
+        .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--gold-lt);line-height:1.2;margin-bottom:20px;text-shadow:0 2px 14px rgba(0,0,0,0.8);}
+        .divider{width:100%;height:32px;background:transparent;position:relative;z-index:1;}
+        .divider::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border-gold),transparent);}
+        .glass-panel{background:rgba(6,8,18,0.50);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:18px;padding:36px;position:relative;overflow:hidden;}
+        .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal.in{opacity:1;transform:translateY(0);}
+
+        /* CATEGORY TABS */
+        .cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+        .cat-tab{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:40px;padding:8px 18px;font-size:0.78rem;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.25s;white-space:nowrap;}
+        .cat-tab:hover,.cat-tab.active{border-color:var(--gold);color:var(--gold);background:rgba(201,162,74,0.06);}
+
+        /* FAQ ITEMS */
+        .faq-group{margin-bottom:40px;}
+        .faq-group-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(31,185,212,0.12);}
+        .faq-item{border-bottom:1px solid var(--border);}
+        .faq-q{padding:18px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.9rem;font-weight:500;transition:color 0.3s;gap:16px;line-height:1.5;}
+        .faq-q:hover{color:var(--gold-lt);}
+        .faq-q i{flex-shrink:0;font-size:0.74rem;color:var(--gold);transition:transform 0.35s;}
+        .faq-a{font-size:0.85rem;color:rgba(255,255,255,0.48);line-height:1.9;max-height:0;overflow:hidden;transition:max-height 0.45s ease,padding 0.3s;}
+        .faq-item.open .faq-a{max-height:300px;padding-bottom:18px;}
+        .faq-item.open .faq-q i{transform:rotate(180deg);}
+        .faq-item.open .faq-q{color:var(--gold-lt);}
+        .faq-a a{color:var(--cyan);border-bottom:1px solid rgba(31,185,212,0.3);}
+        .faq-a strong{color:rgba(255,255,255,0.75);}
+
+        /* PAYMENT STEPS */
+        .payment-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;}
+        .pstep{text-align:center;padding:20px 14px;}
+        .pstep-num{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;margin:0 auto 12px;}
+        .pstep h4{font-size:0.85rem;color:var(--gold-lt);margin-bottom:5px;}
+        .pstep p{font-size:0.75rem;color:rgba(255,255,255,0.42);line-height:1.6;}
+
+        /* PRICE TABLE */
+        .price-table{width:100%;border-collapse:collapse;margin:16px 0;}
+        .price-table th{font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);}
+        .price-table td{padding:14px 16px;font-size:0.85rem;color:rgba(255,255,255,0.6);border-bottom:1px solid var(--border);}
+        .price-table td strong{color:var(--gold-lt);}
+        .price-table tr:last-child td{border-bottom:none;}
+
+        /* CONTACT BANNER */
+        .contact-banner{background:rgba(31,185,212,0.06);border:1px solid rgba(31,185,212,0.18);border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:40px;}
+        .contact-banner p{font-size:0.88rem;color:rgba(255,255,255,0.6);}
+        .contact-banner strong{color:var(--gold-lt);}
+
+        /* FOOTER */
+        footer{background:rgba(3,3,8,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border-gold);padding:50px 6% 26px;position:relative;z-index:1;}
+        .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:28px;}
+        .footer-links{display:flex;gap:24px;flex-wrap:wrap;}
+        .footer-links a{color:rgba(255,255,255,0.36);font-size:0.8rem;transition:color 0.3s;}
+        .footer-links a:hover{color:var(--gold-lt);}
+        .footer-copy{font-size:0.71rem;color:rgba(255,255,255,0.2);}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+        /* MODAL (same as index.html) */
+        .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:16px;}
+        .modal-bg.on{opacity:1;pointer-events:all;}
+        .modal-box{background:#0c0c0e;border:1px solid var(--border-gold);border-radius:14px;padding:32px;width:100%;max-width:430px;position:relative;transform:translateY(18px);transition:transform 0.35s;}
+        .modal-bg.on .modal-box{transform:translateY(0);}
+        .modal-x{position:absolute;top:13px;right:15px;background:none;border:none;color:rgba(255,255,255,0.32);font-size:1.2rem;cursor:pointer;font-family:inherit;}
+        .mprog-wrap{height:3px;background:rgba(255,255,255,0.05);border-radius:2px;margin-bottom:26px;}
+        .mprog{height:100%;background:var(--grad);border-radius:2px;transition:width 0.4s;}
+        .mstep{display:none;}.mstep.on{display:block;}
+        .mstep h3{font-family:'Playfair Display',serif;color:var(--gold-lt);font-size:1.2rem;margin-bottom:4px;}
+        .mhint{font-size:0.72rem;color:rgba(255,255,255,0.28);margin-bottom:20px;}
+        .mfield{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:7px;padding:12px 14px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s;margin-bottom:10px;display:block;}
+        .mfield:focus{border-color:rgba(31,185,212,0.35);}
+        .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+        .choices.full{grid-template-columns:1fr;}
+        .choice{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:12px;color:rgba(255,255,255,0.52);font-size:0.82rem;cursor:pointer;transition:all 0.25s;font-family:'Poppins',sans-serif;text-align:center;line-height:1.5;}
+        .choice:hover,.choice.sel{border-color:var(--cyan);color:var(--cyan);background:rgba(31,185,212,0.06);}
+        .mbtn{width:100%;background:var(--grad);color:#fff;border:none;border-radius:7px;padding:13px;font-weight:700;font-size:0.88rem;cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;margin-top:8px;}
+        .mbtn:hover{box-shadow:0 0 18px rgba(31,185,212,0.6);}
+        .mbtn:disabled{opacity:0.6;cursor:default;}
+        .msummary{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:7px;padding:14px;font-size:0.8rem;line-height:2;margin-bottom:12px;color:rgba(255,255,255,0.62);}
+        .msummary b{color:var(--gold-lt);}
+        .mfootnote{font-size:0.7rem;color:rgba(255,255,255,0.26);text-align:center;line-height:1.6;margin-top:8px;}
+
+        @media(max-width:700px){.payment-steps{grid-template-columns:1fr 1fr;}.contact-banner{flex-direction:column;}.page-wrap{padding:40px 5%;}}
+        @media(max-width:420px){.payment-steps{grid-template-columns:1fr;}.cat-tabs{gap:6px;}}
+    </style>
 </head>
-
 <body>
+<div id="hero-bg"></div>
 
-<div id="navbar"></div>
+<nav id="navbar">
+    <div class="nav-logo"><a href="index.html"><img src="assets/image/arenax_navbar.png" alt="ArenaX" onerror="this.style.display='none'"></a></div>
+    <div style="display:flex;align-items:center;gap:22px;">
+        <a href="events.html" style="color:rgba(255,255,255,0.5);font-size:0.8rem;transition:color 0.3s;" onmouseover="this.style.color='#f5c542'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Events</a>
+        <button class="nav-cta" onclick="openReg()">Register Now</button>
+    </div>
+</nav>
 
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Before You Register</p>
+        <h1 class="hero-title">Your Questions,<br><span class="gold-text">Answered.</span></h1>
+        <p class="hero-sub">Everything about registration, payment, the event format, certificates, and what to expect.</p>
+    </div>
+</section>
 
-<section class="section faq-section">
-  <h2 class="section-title-gold">Questions Before You Register</h2>
+<div class="page-wrap">
 
-  <div class="faq-card">
-    <h3>How many matches will I play?</h3>
-    <p>
-      Every participant plays multiple matches. The format ensures
-      adequate performance assessment and not single-match elimination.
-    </p>
-  </div>
+    <!-- QUICK ANSWER TABS -->
+    <div class="glass-panel reveal" style="margin-bottom:36px;">
+        <p style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;">Jump to a topic</p>
+        <div class="cat-tabs">
+            <span class="cat-tab active" onclick="scrollTo('#registration')">Registration</span>
+            <span class="cat-tab" onclick="scrollTo('#payment')">Payment & Fees</span>
+            <span class="cat-tab" onclick="scrollTo('#format')">Event Format</span>
+            <span class="cat-tab" onclick="scrollTo('#certificate')">Certificate</span>
+            <span class="cat-tab" onclick="scrollTo('#refund')">Refund Policy</span>
+            <span class="cat-tab" onclick="scrollTo('#event-day')">Event Day</span>
+        </div>
+    </div>
 
-  <div class="faq-card">
-    <h3>Is this knockout or league format?</h3>
-    <p>
-      This is not a simple knockout. ArenaX uses a structured assessment
-      format combining match play and skill evaluation.
-    </p>
-  </div>
-  
-  <div class="faq-card">
-  <h3>Is Mixed Doubles available?</h3>
-  <p>
-    Based on registrations and suitability, ArenaX may introduce additional
-    pairing formats.
-  </p>
+    <!-- REGISTRATION -->
+    <div id="registration" class="faq-group reveal">
+        <h2 class="section-title">Registration</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">How do I register for ArenaX? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Click <strong>"Register Now"</strong> or <strong>"Claim Your ArenaX Rank"</strong> on any page. Fill in the 5-step form — name, WhatsApp number, skill level, event type (Singles or Doubles), and playing style. That's it. <strong>Registration itself is free</strong> — it holds your slot tentatively. A payment link is sent to your WhatsApp within 24 hours.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">How many slots are available? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a"><strong>20 players per category</strong> — Beginner, Intermediate, and Advanced. Doubles pairs count as 2 players. Once a category fills, it closes. No on-spot entries are allowed. Register early to avoid missing out.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Can I register for both Singles and Doubles? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Subject to slot availability, players may register for both formats. Each registration is treated and priced separately. Contact us via WhatsApp if you'd like to register for both.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Which skill category should I register under? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a"><strong>Beginner:</strong> Still learning basics, inconsistent rallies. <strong>Intermediate:</strong> Playing regularly, comfortable in matches, not yet competing at district level. <strong>Advanced:</strong> Regular tournament participant, consistent technique, strategic awareness. If unsure, register as Intermediate — ArenaX assessors observe your actual level and note it in your report.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">I already registered — how do I know my slot is confirmed? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Your slot is <strong>tentatively held</strong> upon registration. It is <strong>confirmed only after payment</strong>. You'll receive a WhatsApp message with your ArenaX Player ID after payment is received. If you don't receive a payment link within 24 hours of registering, message us on WhatsApp.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Is there an age limit? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">ArenaX Event #1 is open to players <strong>12 years and above</strong>. Players under 18 require parental consent confirmation at check-in. There is no upper age limit.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PAYMENT -->
+    <div id="payment" class="faq-group reveal">
+        <h2 class="section-title">Payment & Fees</h2>
+
+        <!-- Payment flow steps -->
+        <div class="glass-panel" style="margin-bottom:24px;">
+            <p class="section-label" style="margin-bottom:16px;">How payment works</p>
+            <div class="payment-steps">
+                <div class="pstep">
+                    <div class="pstep-num">1</div>
+                    <h4>Register Free</h4>
+                    <p>Fill the form — no payment needed to register</p>
+                </div>
+                <div class="pstep">
+                    <div class="pstep-num">2</div>
+                    <h4>Receive Link</h4>
+                    <p>Payment link sent to your WhatsApp within 24 hours</p>
+                </div>
+                <div class="pstep">
+                    <div class="pstep-num">3</div>
+                    <h4>Pay Online</h4>
+                    <p>UPI / QR / Net banking — takes 2 minutes</p>
+                </div>
+                <div class="pstep">
+                    <div class="pstep-num">4</div>
+                    <h4>Slot Confirmed</h4>
+                    <p>Player ID sent. You're in the arena.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom:24px;">
+            <p class="section-label" style="margin-bottom:12px;">Pricing</p>
+            <table class="price-table">
+                <thead><tr><th>Format</th><th>Entry Fee</th><th>Per Person</th></tr></thead>
+                <tbody>
+                    <tr><td>Singles</td><td><strong>₹499</strong></td><td>₹499</td></tr>
+                    <tr><td>Doubles (per pair)</td><td><strong>₹999</strong></td><td>₹499.50</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What payment methods are accepted? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">UPI (Google Pay, PhonePe, Paytm, BHIM), QR code scan, and Net Banking. All payments processed through a secure payment gateway. No cash payments accepted.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">How long do I have to pay after registering? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Your slot is held for <strong>48 hours</strong> after you receive the payment link. If payment isn't received within that window, the slot is released to the next player on the waitlist. WhatsApp us if you need an extension.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">I didn't receive the payment link on WhatsApp. What do I do? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">First, check that your WhatsApp is active on the number you registered with (without +91 prefix). If you haven't received the link within 24 hours of registering, message us directly on <a href="https://wa.me/91XXXXXXXXXX">WhatsApp</a> with your registered name and we'll sort it immediately.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FORMAT -->
+    <div id="format" class="faq-group reveal">
+        <h2 class="section-title">Event Format</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Is this a regular knockout tournament? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">No. ArenaX is a <strong>performance assessment program</strong>, not a knockout tournament. Every player plays multiple structured matches. Ranking is based on overall assessed performance — not just who won or lost. Everyone receives a result regardless of their match record.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">How many matches will I play? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Every participant plays <strong>at least 3 matches</strong>, subject to final participant numbers. The format ensures enough match data for a meaningful performance assessment. Exact match count is confirmed on event day after the draw.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What are assessors looking for? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">ArenaX assessors track: <strong>technique consistency</strong> (serve, smash, drop, net play), <strong>court movement</strong>, <strong>tactical decision-making</strong>, <strong>temperament under pressure</strong>, and <strong>court awareness</strong>. Win/loss matters but it's not the only factor in your ranking.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Is Mixed Doubles available? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Event #1 includes Men's Singles, Women's Singles, Men's Doubles, and Women's Doubles categories. Mixed Doubles may be introduced based on registrations — we'll confirm via WhatsApp before the event.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Are shuttlecocks provided? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Yes. ArenaX provides shuttlecocks for all matches. Players bring their own rackets and court shoes. Wear comfortable sports attire. There's no mandatory kit requirement.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CERTIFICATE -->
+    <div id="certificate" class="faq-group reveal">
+        <h2 class="section-title">Certificate & Performance Report</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Does everyone get a certificate? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a"><strong>Yes — every registered participant</strong> who attends the event receives an official ArenaX Performance Certificate. This is not a participation certificate — it contains your actual assessed rank, skill category, performance band, and playing archetype.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What's in my performance report? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Your report includes: <strong>Overall Rank</strong> (e.g. 4/20), <strong>Skill Category</strong> (Beginner/Intermediate/Advanced — verified by assessors), <strong>Performance Band</strong> (Top 25%, Top 50%, etc.), and your <strong>Playing Archetype</strong> (e.g. Aggressive Attacker, Defensive Counter, Balanced Controller). A complete breakdown of your game.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">When will I receive my certificate? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Certificates and performance reports are sent digitally to your registered <strong>WhatsApp within 48 hours</strong> of the event. You can also download and share them from the link provided.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Can I verify someone else's ArenaX certificate? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Yes. Visit <a href="certificate-validation.html">certificate-validation.html</a> and enter the Certificate ID. The system will display the participant name, rank, skill category, and performance band — allowing anyone to verify authenticity.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Can I use my certificate on LinkedIn or a college application? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Absolutely — that's part of what makes ArenaX certificates valuable. The certificate is a verifiable document with a unique Certificate ID. Add it to your LinkedIn profile, include it in college sports CVs, or attach it to sports scholarship applications.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- REFUND -->
+    <div id="refund" class="faq-group reveal">
+        <h2 class="section-title">Refund & Cancellation Policy</h2>
+
+        <div class="glass-panel" style="margin-bottom:22px;">
+            <table class="price-table">
+                <thead><tr><th>Cancellation Timing</th><th>Refund</th></tr></thead>
+                <tbody>
+                    <tr><td>More than 7 days before event</td><td><strong>100% refund</strong></td></tr>
+                    <tr><td>5–7 days before event</td><td><strong>50% refund</strong></td></tr>
+                    <tr><td>Less than 5 days before event</td><td><strong>No refund</strong></td></tr>
+                    <tr><td>No-show on event day</td><td><strong>No refund</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">How do I cancel my registration? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Message us on <a href="https://wa.me/91XXXXXXXXXX">WhatsApp</a> with your registered name and ArenaX Player ID. Cancellations must be requested in writing (WhatsApp message). Verbal requests are not processed. Refunds are processed within 5–7 business days.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Can I transfer my slot to another player? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Slot transfers are allowed up to <strong>5 days before the event</strong>, subject to approval. The replacement player must complete their own registration form. Contact us via WhatsApp to initiate a transfer. Transfers after this deadline are not possible.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What if ArenaX cancels or postpones the event? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">In the unlikely event of a cancellation or postponement by ArenaX (due to force majeure or any operational reason), <strong>full refunds</strong> are processed to all registered players within 7 business days. For postponements, registered players are given priority re-registration at no extra cost.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- EVENT DAY -->
+    <div id="event-day" class="faq-group reveal">
+        <h2 class="section-title">Event Day</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What should I bring on event day? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Bring your <strong>badminton racket</strong>, <strong>court shoes</strong> (non-marking soles), and your <strong>ArenaX Player ID</strong> (sent via WhatsApp). Wear comfortable sports attire. Shuttlecocks are provided. Bring water and any personal sports nutrition you need.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">What time should I arrive? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Reporting starts at <strong>7:30 AM</strong>. Arrive at least 15–20 minutes before the briefing at 8:30 AM. Late arrivals may miss the draw and forfeit their slot. Exact venue details and final timings are shared via WhatsApp 48 hours before the event.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">Can spectators / parents accompany players? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Yes. Spectators are welcome at the venue. There is no separate spectator fee. We ask that spectators do not interfere with assessment rounds or distract players during matches.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="tog(this)">I have a medical condition — can I still participate? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-a">Players with medical conditions should inform us via WhatsApp before the event. ArenaX is not responsible for injuries sustained during play. Players participate at their own discretion and confirm they are medically fit to play competitive badminton.</div>
+        </div>
+    </div>
+
+    <!-- CONTACT BANNER -->
+    <div class="contact-banner reveal">
+        <div>
+            <p><strong>Still have a question?</strong> We're on WhatsApp.</p>
+            <p style="font-size:0.78rem;margin-top:4px;">Message us and we'll respond within a few hours.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn-primary">
+                <i class="fa-brands fa-whatsapp"></i>&nbsp; WhatsApp Us
+            </a>
+            <a href="mailto:contact@arenax.in" class="btn-ghost">Email Us</a>
+        </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;padding-bottom:20px;">
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin-bottom:16px;">Ready to register?</p>
+        <button class="btn-primary" onclick="openReg()">Claim Your ArenaX Rank →</button>
+    </div>
+
 </div>
 
+<!-- FOOTER -->
+<footer>
+    <div class="footer-row">
+        <img src="assets/image/arenax_navbar.png" alt="ArenaX" style="height:30px;" onerror="this.style.display='none'">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="sponsorship.html">Sponsorship</a>
+            <a href="certificate-validation.html">Verify Certificate</a>
+        </div>
+    </div>
+    <p class="footer-copy">© 2026 ArenaX Sports Events. All rights reserved.</p>
+</footer>
 
-  <div class="faq-card">
-    <h3>How long does the event take?</h3>
-    <p>
-      The event is typically conducted within one day. Reporting time
-      and schedules are shared in advance.
-    </p>
-  </div>
+<!-- MODAL -->
+<div class="modal-bg" id="regModal">
+    <div class="modal-box">
+        <button class="modal-x" onclick="closeReg()">&times;</button>
+        <div class="mprog-wrap"><div class="mprog" id="mProg" style="width:20%"></div></div>
+        <div class="mstep on" id="ms1">
+            <h3>Join the Arena</h3><p class="mhint">Step 1 of 5 · Your details</p>
+            <input type="text" id="mName" class="mfield" placeholder="Full Name *">
+            <input type="tel"  id="mPhone" class="mfield" placeholder="WhatsApp Number — 10 digits, no +91 *" maxlength="10">
+            <input type="email" id="mEmail" class="mfield" placeholder="Email (optional)">
+            <button class="mbtn" onclick="mGo1()">Continue →</button>
+        </div>
+        <div class="mstep" id="ms2">
+            <h3>Your Level</h3><p class="mhint">Step 2 of 5</p>
+            <div class="choices"><button class="choice" onclick="mLevel('Beginner',this)">🌱 Beginner<br><small>Learning basics</small></button><button class="choice" onclick="mLevel('Intermediate',this)">⚡ Intermediate<br><small>Playing regularly</small></button></div>
+            <div class="choices full"><button class="choice" onclick="mLevel('Advanced',this)">🏆 Advanced — Competitive player</button></div>
+        </div>
+        <div class="mstep" id="ms3">
+            <h3>Event Type</h3><p class="mhint">Step 3 of 5</p>
+            <div class="choices"><button class="choice" onclick="mEvent('Singles',this)">🏸 Singles<br><small>₹499</small></button><button class="choice" onclick="mEvent('Doubles',this)">👥 Doubles<br><small>₹999/pair</small></button></div>
+            <input type="text" id="mPartner" class="mfield" placeholder="Partner Name" style="display:none;margin-top:8px;">
+            <button class="mbtn" id="mEventNext" style="display:none;" onclick="mGo3()">Continue →</button>
+        </div>
+        <div class="mstep" id="ms4">
+            <h3>Playing Style</h3><p class="mhint">Step 4 of 5</p>
+            <div class="choices"><button class="choice" onclick="mStyle('Aggressive',this)">🔥 Aggressive</button><button class="choice" onclick="mStyle('Defensive',this)">🛡 Defensive</button></div>
+            <div class="choices full"><button class="choice" onclick="mStyle('Balanced',this)">⚖ Balanced Controller</button></div>
+        </div>
+        <div class="mstep" id="ms5">
+            <h3>Ready to Rank?</h3><p class="mhint">Step 5 of 5</p>
+            <div class="msummary" id="mSum"></div>
+            <p class="mfootnote" style="margin-bottom:10px;">Payment link sent via WhatsApp within 24 hours.</p>
+            <button class="mbtn" id="mSubmit" onclick="mSubmitFn(this)">Confirm & Secure My Slot 🏸</button>
+        </div>
+    </div>
+</div>
 
-  <div class="faq-card">
-    <h3>Is this for beginners?</h3>
-    <p>
-      ArenaX is designed for developing and competitive players.
-      The focus is skill recognition, not just winning.
-    </p>
-  </div>
+<script>
+    const nb=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',window.scrollY>50));
+    const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    function tog(el){el.parentElement.classList.toggle('open');}
+    function scrollTo(id){document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+    document.querySelectorAll('.cat-tab').forEach(t=>t.addEventListener('click',function(){document.querySelectorAll('.cat-tab').forEach(x=>x.classList.remove('active'));this.classList.add('active');}));
 
-  <div class="faq-card">
-    <h3>Will everyone get a certificate?</h3>
-    <p>
-      Yes. Every participant receives a performance-based certificate,
-      not a participation certificate.
-    </p>
-  </div>
-
-</section>
-<div id="footer"></div>
-
-<script src="assets/js/include.js"></script>
-
-
+    const D={};
+    function openReg(){Object.keys(D).forEach(k=>delete D[k]);document.querySelectorAll('.mstep').forEach(s=>s.classList.remove('on'));document.getElementById('ms1').classList.add('on');document.getElementById('mProg').style.width='20%';document.querySelectorAll('.choice').forEach(b=>b.classList.remove('sel'));document.getElementById('mPartner').style.display='none';document.getElementById('mEventNext').style.display='none';document.getElementById('regModal').classList.add('on');document.body.style.overflow='hidden';}
+    function closeReg(){document.getElementById('regModal').classList.remove('on');document.body.style.overflow='';}
+    document.getElementById('regModal').addEventListener('click',function(e){if(e.target===this)closeReg();});
+    function goTo(n){document.querySelectorAll('.mstep').forEach(s=>s.classList.remove('on'));document.getElementById('ms'+n).classList.add('on');document.getElementById('mProg').style.width=(n*20)+'%';}
+    function mGo1(){const n=document.getElementById('mName').value.trim(),p=document.getElementById('mPhone').value.trim();D.name=n;D.phone=p;D.email=document.getElementById('mEmail').value.trim();if(!n){alert('Enter your name');return;}if(!/^[0-9]{10}$/.test(p)){alert('Enter valid 10-digit WhatsApp number');return;}goTo(2);}
+    function mLevel(v,b){D.level=v;document.querySelectorAll('#ms2 .choice').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');setTimeout(()=>goTo(3),280);}
+    function mEvent(v,b){D.event=v;document.querySelectorAll('#ms3 .choice').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');if(v==='Doubles'){document.getElementById('mPartner').style.display='block';document.getElementById('mEventNext').style.display='block';}else{document.getElementById('mPartner').style.display='none';document.getElementById('mEventNext').style.display='none';setTimeout(()=>goTo(4),280);}}
+    function mGo3(){D.partner=document.getElementById('mPartner').value.trim();goTo(4);}
+    function mStyle(v,b){D.style=v;document.querySelectorAll('#ms4 .choice').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');document.getElementById('mSum').innerHTML=`<b>Name:</b> ${D.name}<br><b>WhatsApp:</b> ${D.phone}<br><b>Level:</b> ${D.level}<br><b>Event:</b> ${D.event}${D.partner?' (Partner: '+D.partner+')':''}<br><b>Style:</b> ${v}`;setTimeout(()=>goTo(5),280);}
+    function mSubmitFn(btn){btn.textContent='Securing…';btn.disabled=true;D.source='FAQ Page';D.timestamp=new Date().toISOString();fetch('https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec',{method:'POST',body:JSON.stringify(D)}).then(r=>r.json()).then(res=>{const id=res.playerID||res.id||'AX-BAD-2026-PENDING';document.getElementById('mSum').innerHTML=res.status==='duplicate'?`<b style="color:var(--red)">Already Registered</b><br>This number is in our system.`:`<b style="color:var(--cyan)">🎉 Slot Secured!</b><br>ArenaX ID: <b style="color:var(--gold-lt)">${id}</b>`;btn.textContent='✓ Done';btn.disabled=false;btn.onclick=closeReg;}).catch(()=>{document.getElementById('mSum').innerHTML=`<b style="color:var(--cyan)">Registration Received!</b><br>We'll reach out on WhatsApp: ${D.phone}`;btn.textContent='✓ Done';btn.disabled=false;btn.onclick=closeReg;});}
+</script>
 </body>
 </html>
