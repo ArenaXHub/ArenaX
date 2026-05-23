@@ -1,64 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Certificate Verification | ArenaX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArenaX | Verify Performance Certificate</title>
+    <meta name="description" content="Verify the authenticity of any ArenaX Performance Certificate using the Certificate ID.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root{--bg:#050505;--gold:#c9a24a;--gold-lt:#f5c542;--gold-dk:#8a6820;--cyan:#1fb9d4;--purple:#8a37cc;--red:#ff4d4d;--grad:linear-gradient(135deg,#1fb9d4 0%,#8a37cc 100%);--grad-gold:linear-gradient(135deg,#b8862e 0%,#f5c542 50%,#b8862e 100%);--border:rgba(255,255,255,0.07);--border-gold:rgba(201,162,74,0.20);--green:#22c55e;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{background:var(--bg);color:#fff;font-family:'Poppins',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
+        img{display:block;max-width:100%;}
+        a{text-decoration:none;}
+
+        #hero-bg{position:fixed;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,0.25) 0%,rgba(5,5,5,0.75) 60%,rgba(5,5,5,0.98) 100%),url('assets/image/hero-warrior-perfect-branding.png') no-repeat center center/cover;z-index:-1;}
+
+        /* NAV */
+        #navbar{position:fixed;top:0;left:0;width:100%;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;z-index:10000;transition:background 0.4s,height 0.4s;border-bottom:1px solid transparent;}
+        #navbar.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);height:60px;border-bottom-color:var(--border-gold);}
+        .nav-logo img{height:34px;opacity:0.92;}
+        .nav-links{display:flex;align-items:center;gap:22px;}
+        .nav-link{color:rgba(255,255,255,0.48);font-size:0.8rem;transition:color 0.3s;}
+        .nav-link:hover{color:var(--gold-lt);}
+        .nav-cta{border:1.5px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:3px;font-weight:700;font-size:0.76rem;text-transform:uppercase;letter-spacing:1.2px;transition:all 0.3s;background:transparent;font-family:'Poppins',sans-serif;}
+        .nav-cta:hover{background:var(--gold);color:#000;}
+
+        /* PAGE LAYOUT */
+        .page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:110px 6% 60px;}
+
+        /* HEADER */
+        .page-header{text-align:center;margin-bottom:44px;max-width:560px;}
+        .header-eyebrow{font-size:0.63rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;opacity:0;animation:fadeUp 0.7s ease 0.2s forwards;}
+        .header-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin-bottom:12px;opacity:0;animation:fadeUp 0.9s ease 0.4s forwards;}
+        .header-title span{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .header-sub{font-size:0.88rem;color:rgba(255,255,255,0.42);opacity:0;animation:fadeUp 0.9s ease 0.6s forwards;}
+
+        /* LOOKUP CARD */
+        .lookup-card{background:rgba(6,8,18,0.65);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--border-gold);border-radius:20px;padding:40px;width:100%;max-width:560px;position:relative;overflow:hidden;opacity:0;animation:fadeUp 0.9s ease 0.7s forwards;}
+        .lookup-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,74,0.3),transparent);}
+
+        .input-group{position:relative;margin-bottom:14px;}
+        .cert-input{width:100%;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:15px 50px 15px 18px;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;outline:none;transition:border-color 0.3s,box-shadow 0.3s;letter-spacing:1.5px;text-transform:uppercase;}
+        .cert-input::placeholder{letter-spacing:0.5px;text-transform:none;color:rgba(255,255,255,0.25);font-size:0.85rem;}
+        .cert-input:focus{border-color:rgba(201,162,74,0.4);box-shadow:0 0 0 3px rgba(201,162,74,0.06);}
+        .input-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.22);font-size:0.9rem;}
+
+        .lookup-btn{width:100%;background:var(--grad);color:#fff;border:none;border-radius:50px;padding:15px;font-weight:700;font-size:0.92rem;cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;}
+        .lookup-btn:hover{box-shadow:0 0 22px rgba(31,185,212,0.6),0 0 40px rgba(138,55,204,0.3);}
+        .lookup-btn:disabled{opacity:0.6;cursor:default;}
+
+        .hint{font-size:0.72rem;color:rgba(255,255,255,0.24);text-align:center;margin-top:10px;}
+        .hint a{color:var(--cyan);border-bottom:1px solid rgba(31,185,212,0.25);}
+
+        /* SPINNER */
+        .spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;}
+
+        /* RESULT STATES */
+        #result{width:100%;max-width:560px;margin-top:22px;}
+
+        /* ── VALID CERTIFICATE ── */
+        .cert-valid{background:rgba(6,8,18,0.65);backdrop-filter:blur(22px);border:1px solid rgba(34,197,94,0.25);border-radius:20px;overflow:hidden;animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+        .cert-valid-header{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(31,185,212,0.08));border-bottom:1px solid rgba(34,197,94,0.15);padding:20px 28px;display:flex;align-items:center;gap:14px;}
+        .verified-badge{width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.12);border:1.5px solid rgba(34,197,94,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .verified-badge i{color:var(--green);font-size:1.1rem;}
+        .cert-valid-header h3{font-family:'Playfair Display',serif;color:var(--green);font-size:1.1rem;margin-bottom:2px;}
+        .cert-valid-header p{font-size:0.74rem;color:rgba(255,255,255,0.35);}
+        .cert-body{padding:28px;}
+        .cert-name{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;margin-bottom:6px;}
+        .cert-event{font-size:0.76rem;color:rgba(255,255,255,0.38);letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;}
+        .score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+        .score-tile{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+        .score-tile .val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold-lt);display:block;margin-bottom:3px;}
+        .score-tile .val.blue{color:var(--cyan);}
+        .score-tile .lbl{font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+        .cert-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:18px;border-top:1px solid var(--border);}
+        .meta-row{display:flex;gap:6px;font-size:0.78rem;}
+        .meta-row span:first-child{color:rgba(255,255,255,0.32);}
+        .meta-row span:last-child{color:rgba(255,255,255,0.65);}
+        .cert-actions{padding:0 28px 24px;display:flex;gap:10px;flex-wrap:wrap;}
+        .share-btn{background:rgba(31,185,212,0.08);border:1px solid rgba(31,185,212,0.2);color:var(--cyan);padding:9px 18px;border-radius:50px;font-size:0.78rem;cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:6px;}
+        .share-btn:hover{background:rgba(31,185,212,0.14);border-color:rgba(31,185,212,0.4);}
+
+        /* ── NOT FOUND ── */
+        .cert-notfound{background:rgba(6,8,18,0.65);backdrop-filter:blur(22px);border:1px solid rgba(255,77,77,0.18);border-radius:20px;padding:32px;text-align:center;animation:fadeUp 0.4s ease forwards;}
+        .cert-notfound .icon{font-size:2.2rem;margin-bottom:14px;color:rgba(255,77,77,0.6);}
+        .cert-notfound h3{font-family:'Playfair Display',serif;color:rgba(255,255,255,0.7);font-size:1.2rem;margin-bottom:8px;}
+        .cert-notfound p{font-size:0.82rem;color:rgba(255,255,255,0.38);line-height:1.7;}
+
+        /* HOW TO FIND ID */
+        .help-card{background:rgba(6,8,18,0.50);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:14px;padding:24px 28px;width:100%;max-width:560px;margin-top:22px;opacity:0;animation:fadeUp 0.9s ease 0.9s forwards;}
+        .help-card h4{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:12px;}
+        .help-steps{list-style:none;display:flex;flex-direction:column;gap:8px;}
+        .help-steps li{display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:rgba(255,255,255,0.42);}
+        .help-steps li i{color:var(--cyan);font-size:0.75rem;flex-shrink:0;margin-top:3px;}
+
+        /* RECENT LOOKUPS (session only) */
+        .recent-wrap{width:100%;max-width:560px;margin-top:18px;}
+        .recent-title{font-size:0.62rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:8px;}
+        .recent-chips{display:flex;gap:7px;flex-wrap:wrap;}
+        .recent-chip{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:30px;padding:5px 14px;font-size:0.75rem;color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
+        .recent-chip:hover{border-color:var(--gold);color:var(--gold);}
+
+        /* FOOTER */
+        footer{background:rgba(3,3,8,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border-gold);padding:32px 6% 20px;position:relative;z-index:1;width:100%;}
+        .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+        .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+        .footer-links a{color:rgba(255,255,255,0.32);font-size:0.78rem;transition:color 0.3s;}
+        .footer-links a:hover{color:var(--gold-lt);}
+        .footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.18);}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes popIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        @media(max-width:600px){.score-grid{grid-template-columns:1fr 1fr;}.cert-meta{grid-template-columns:1fr;}.page{padding:96px 5% 50px;}}
+    </style>
 </head>
-
 <body>
+<div id="hero-bg"></div>
 
-<!-- NAVBAR -->
-<div id="navbar"></div>
-
-<!-- HERO (matches ArenaX language) -->
-<header class="hero">
-  <h1>Certificate Verification</h1>
-
-  <div class="hero-feature">
-    <p class="tagline">Verified • Performance-Ranked • Authentic</p>
-    <p class="subtext">
-      ArenaX Performance Certificates are issued only after structured
-      on-court evaluation during official ArenaX programs.
-    </p>
-  </div>
-</header>
-
-<!-- VERIFICATION CONTENT -->
-<section class="section dark">
-  <h2 class="section-title-gold">Verify Certificate Authenticity</h2>
-
-  <div class="cards">
-    <div class="price-card">
-      <p>
-        Each ArenaX certificate includes a <strong>unique Certificate ID</strong>
-        that enables verification of authenticity and performance details.
-      </p>
-
-      <h3 style="color:#f5c542; margin-top:24px;">How to Verify</h3>
-      <ul style="text-align:left; line-height:1.8;">
-        <li>Locate the Certificate ID printed on the certificate</li>
-        <li>Email the ID to <strong>verify@arenax.in</strong></li>
-        <li>Or contact ArenaX via official phone / WhatsApp</li>
-      </ul>
-
-      <p style="margin-top:18px; opacity:0.9;">
-        Upon verification, ArenaX confirms:
-        <br>• Event name
-        <br>• Participant rank
-        <br>• Skill category
-        <br>• Performance band
-        <br>• Date of issue
-      </p>
+<nav id="navbar">
+    <div class="nav-logo"><a href="index.html"><img src="assets/image/arenax_navbar.png" alt="ArenaX" onerror="this.style.display='none'"></a></div>
+    <div class="nav-links">
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="registration-faq.html" class="nav-link">FAQs</a>
+        <a href="index.html" class="nav-cta">Register</a>
     </div>
-  </div>
-</section>
+</nav>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="page-header">
+        <p class="header-eyebrow"><i class="fa-solid fa-shield-halved"></i> &nbsp; Certificate Authentication</p>
+        <h1 class="header-title">Verify an<br><span>ArenaX Certificate</span></h1>
+        <p class="header-sub">Enter the Certificate ID found at the bottom-right of any ArenaX Performance Certificate to instantly verify its authenticity.</p>
+    </div>
+
+    <!-- LOOKUP CARD -->
+    <div class="lookup-card">
+        <p style="font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;">Certificate ID</p>
+
+        <div class="input-group">
+            <input type="text" class="cert-input" id="certInput"
+                   placeholder="e.g. AX-2026-001"
+                   maxlength="20"
+                   oninput="this.value=this.value.toUpperCase()"
+                   onkeydown="if(event.key==='Enter')lookupCert()">
+            <i class="fa-solid fa-hashtag input-icon"></i>
+        </div>
+
+        <button class="lookup-btn" id="lookupBtn" onclick="lookupCert()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Verify Certificate
+        </button>
+
+        <p class="hint">The Certificate ID is printed at the bottom-right of every ArenaX certificate.<br>
+            Not an ArenaX participant yet? <a href="events.html">Register here →</a></p>
+    </div>
+
+    <!-- RECENT LOOKUPS (session storage) -->
+    <div class="recent-wrap" id="recentWrap" style="display:none;">
+        <p class="recent-title">Recent lookups</p>
+        <div class="recent-chips" id="recentChips"></div>
+    </div>
+
+    <!-- RESULT AREA -->
+    <div id="result"></div>
+
+    <!-- HOW TO FIND ID -->
+    <div class="help-card">
+        <h4>Where to find the Certificate ID</h4>
+        <ul class="help-steps">
+            <li><i class="fa-solid fa-certificate"></i> The Certificate ID is printed at the <strong style="color:rgba(255,255,255,0.65);">bottom-right</strong> of every ArenaX Performance Certificate.</li>
+            <li><i class="fa-brands fa-whatsapp"></i> It's also included in the WhatsApp message you receive with your certificate delivery.</li>
+            <li><i class="fa-solid fa-font"></i> Format: <strong style="color:rgba(255,255,255,0.65);">AX-YYYY-NNN</strong> — e.g. <span style="color:var(--gold-lt);">AX-2026-001</span></li>
+            <li><i class="fa-solid fa-circle-info"></i> Certificate IDs are case-insensitive. You can enter in any case — the system handles it.</li>
+        </ul>
+    </div>
+
+</div>
 
 <!-- FOOTER -->
-<div id="footer"></div>
+<footer>
+    <div class="footer-row">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="sponsorship.html">Sponsorship</a>
+            <a href="registration-faq.html">FAQs</a>
+        </div>
+        <p class="footer-copy">© 2026 ArenaX Sports Events</p>
+    </div>
+</footer>
 
-<script src="assets/js/include.js"></script>
+<script>
+    /* ── Navbar ── */
+    window.addEventListener('scroll', () =>
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40));
+
+    /* ── Session history ── */
+    let history = JSON.parse(sessionStorage.getItem('ax_lookups') || '[]');
+    renderRecent();
+
+    function saveToHistory(id) {
+        history = [id, ...history.filter(x => x !== id)].slice(0, 5);
+        sessionStorage.setItem('ax_lookups', JSON.stringify(history));
+        renderRecent();
+    }
+    function renderRecent() {
+        const wrap = document.getElementById('recentWrap');
+        const chips = document.getElementById('recentChips');
+        if (!history.length) { wrap.style.display = 'none'; return; }
+        wrap.style.display = 'block';
+        chips.innerHTML = history.map(id =>
+            `<span class="recent-chip" onclick="quickLookup('${id}')">${id}</span>`
+        ).join('');
+    }
+    function quickLookup(id) {
+        document.getElementById('certInput').value = id;
+        lookupCert();
+    }
+
+    /* ── Main lookup ── */
+    async function lookupCert() {
+        const raw = document.getElementById('certInput').value.trim().toUpperCase();
+        if (!raw) { shake(); return; }
+
+        const btn = document.getElementById('lookupBtn');
+        const resultEl = document.getElementById('result');
+
+        // Loading state
+        btn.innerHTML = `<div class="spinner"></div>&nbsp; Verifying…`;
+        btn.disabled = true;
+        resultEl.innerHTML = '';
+
+        try {
+            // ── Google Apps Script lookup ──
+            // Your GAS must handle GET requests with ?action=verify&id=AX-2026-001
+            // and return JSON: { found: true/false, data: {...} }
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec';
+
+            const res  = await fetch(`${GAS_URL}?action=verify&id=${encodeURIComponent(raw)}`);
+            const data = await res.json();
+
+            saveToHistory(raw);
+
+            if (data.found && data.player) {
+                showValid(raw, data.player);
+            } else {
+                showNotFound(raw);
+            }
+
+        } catch (err) {
+            // Network error — graceful fallback
+            console.error(err);
+            resultEl.innerHTML = `
+                <div class="cert-notfound">
+                    <div class="icon"><i class="fa-solid fa-wifi" style="color:rgba(255,200,0,0.5)"></i></div>
+                    <h3>Connection Error</h3>
+                    <p>Could not reach the ArenaX database. Please check your connection and try again.<br>
+                    If this persists, <a href="https://wa.me/91XXXXXXXXXX" style="color:var(--cyan)">contact us on WhatsApp</a>.</p>
+                </div>`;
+        } finally {
+            btn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> Verify Certificate`;
+            btn.disabled = false;
+        }
+    }
+
+    /* ── Valid certificate display ── */
+    function showValid(id, p) {
+        const bandColor = p.perf_band && p.perf_band.includes('5') ? 'color:var(--gold-lt)' : '';
+        document.getElementById('result').innerHTML = `
+        <div class="cert-valid">
+            <div class="cert-valid-header">
+                <div class="verified-badge"><i class="fa-solid fa-check"></i></div>
+                <div>
+                    <h3>✓ Certificate Verified</h3>
+                    <p>This is an authentic ArenaX Performance Certificate</p>
+                </div>
+            </div>
+            <div class="cert-body">
+                <p style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:8px;">Certificate holder</p>
+                <h2 class="cert-name">${p.name || '—'}</h2>
+                <p class="cert-event">ArenaX Badminton Skill Challenge &nbsp;·&nbsp; ${p.event || 'Event #1'}</p>
+
+                <div class="score-grid">
+                    <div class="score-tile">
+                        <span class="val">${p.rank || '—'}</span>
+                        <span class="lbl">Overall Rank</span>
+                    </div>
+                    <div class="score-tile">
+                        <span class="val blue">${p.category || '—'}</span>
+                        <span class="lbl">Skill Category</span>
+                    </div>
+                    <div class="score-tile">
+                        <span class="val" style="${bandColor}">${p.perf_band || '—'}</span>
+                        <span class="lbl">Performance Band</span>
+                    </div>
+                </div>
+
+                <div class="cert-meta">
+                    <div class="meta-row"><span>Certificate ID:</span><span>${id}</span></div>
+                    <div class="meta-row"><span>Date:</span><span>${p.date || '—'}</span></div>
+                    <div class="meta-row"><span>Location:</span><span>${p.location || 'Dehradun, India'}</span></div>
+                    <div class="meta-row"><span>Event:</span><span>${p.event_type || 'Singles'}</span></div>
+                </div>
+            </div>
+            <div class="cert-actions">
+                <button class="share-btn" onclick="shareResult('${id}','${p.name}')">
+                    <i class="fa-solid fa-share-nodes"></i> Share Verification
+                </button>
+                <button class="share-btn" onclick="copyLink('${id}')">
+                    <i class="fa-solid fa-link"></i> Copy Link
+                </button>
+            </div>
+        </div>`;
+    }
+
+    /* ── Not found display ── */
+    function showNotFound(id) {
+        document.getElementById('result').innerHTML = `
+        <div class="cert-notfound">
+            <div class="icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            <h3>Certificate Not Found</h3>
+            <p>No ArenaX certificate found for ID <strong style="color:rgba(255,255,255,0.6)">${id}</strong>.<br>
+            Please check the ID and try again. Certificate IDs follow the format <strong style="color:rgba(255,255,255,0.6)">AX-YYYY-NNN</strong>.<br><br>
+            If you believe this is an error, <a href="https://wa.me/91XXXXXXXXXX" style="color:var(--cyan);border-bottom:1px solid rgba(31,185,212,0.3)">contact us on WhatsApp</a>.</p>
+        </div>`;
+    }
+
+    /* ── Share / copy ── */
+    function shareResult(id, name) {
+        const url = `${location.origin}${location.pathname}?id=${id}`;
+        const text = `✅ ArenaX Certificate Verified\n${name} — Certificate ID: ${id}\nVerify at: ${url}`;
+        if (navigator.share) {
+            navigator.share({ title: 'ArenaX Certificate Verified', text, url })
+                .catch(() => copyToClipboard(text));
+        } else {
+            copyToClipboard(text);
+        }
+    }
+    function copyLink(id) {
+        const url = `${location.origin}${location.pathname}?id=${id}`;
+        copyToClipboard(url);
+    }
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => showToast('Copied to clipboard!'))
+            .catch(() => showToast('Copy failed — please copy manually'));
+    }
+
+    /* ── Toast ── */
+    function showToast(msg) {
+        const t = document.createElement('div');
+        t.textContent = msg;
+        t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(31,185,212,0.9);color:#fff;padding:10px 22px;border-radius:50px;font-size:0.82rem;font-family:Poppins,sans-serif;z-index:99999;pointer-events:none;animation:fadeUp 0.3s ease;';
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 2800);
+    }
+
+    /* ── Input shake ── */
+    function shake() {
+        const inp = document.getElementById('certInput');
+        inp.style.borderColor = 'var(--red)';
+        inp.style.animation = 'none';
+        setTimeout(() => { inp.style.borderColor = ''; }, 800);
+        inp.focus();
+    }
+
+    /* ── Auto-lookup from URL param ── */
+    const params = new URLSearchParams(location.search);
+    const idParam = params.get('id');
+    if (idParam) {
+        document.getElementById('certInput').value = idParam.toUpperCase();
+        setTimeout(lookupCert, 600);
+    }
+</script>
+
+<!-- ─────────────────────────────────────────────────────────────────
+     GOOGLE APPS SCRIPT — Add this GET handler to your GAS
+
+     Replace your existing doPost function and add doGet:
+
+     function doGet(e) {
+       if (e.parameter.action === 'verify') {
+         var id = (e.parameter.id || '').toUpperCase().trim();
+         var ss = SpreadsheetApp.getActiveSpreadsheet();
+         var sheet = ss.getSheetByName('Certificates');  // create this sheet
+         var data  = sheet.getDataRange().getValues();
+         var headers = data[0];
+
+         for (var i = 1; i < data.length; i++) {
+           var row = {};
+           headers.forEach(function(h, j) { row[h.toLowerCase().replace(/ /g,'_')] = data[i][j]; });
+           if ((row.cert_id || '').toUpperCase() === id) {
+             return ContentService
+               .createTextOutput(JSON.stringify({ found: true, player: row }))
+               .setMimeType(ContentService.MimeType.JSON);
+           }
+         }
+         return ContentService
+           .createTextOutput(JSON.stringify({ found: false }))
+           .setMimeType(ContentService.MimeType.JSON);
+       }
+       return ContentService.createTextOutput('ArenaX API').setMimeType(ContentService.MimeType.TEXT);
+     }
+
+     Certificates sheet columns:
+     cert_id | name | rank | category | perf_band | date | location | event | event_type
+
+     Also add CORS header in your doGet by wrapping in:
+     .setHeader('Access-Control-Allow-Origin', '*')
+─────────────────────────────────────────────────────────────────── -->
 
 </body>
 </html>
