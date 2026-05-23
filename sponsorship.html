@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor ArenaX | Brand Visibility Through Skill-Based Sports</title>
+    <meta name="description" content="Partner with ArenaX Sports Events — India's first skill-ranked badminton assessment. Title Sponsor, Equipment Partner, and Associate packages available.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:#050505; --gold:#c9a24a; --gold-lt:#f5c542; --gold-dk:#8a6820;
+            --cyan:#1fb9d4; --purple:#8a37cc; --red:#ff4d4d;
+            --grad:linear-gradient(135deg,#1fb9d4 0%,#8a37cc 100%);
+            --grad-gold:linear-gradient(135deg,#b8862e 0%,#f5c542 50%,#b8862e 100%);
+            --border:rgba(255,255,255,0.07); --border-gold:rgba(201,162,74,0.20);
+            --glass:rgba(6,8,18,0.50);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{background:var(--bg);color:#fff;font-family:'Poppins',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        img{display:block;max-width:100%;}
+        a{text-decoration:none;}
+
+        #hero-bg{
+            position:fixed;inset:0;
+            background:linear-gradient(to bottom,rgba(5,5,5,0.15) 0%,rgba(5,5,5,0.55) 55%,rgba(5,5,5,0.96) 100%),
+                url('assets/image/hero-warrior-perfect-branding.png') no-repeat center center/cover;
+            z-index:-1;will-change:transform;
+        }
+
+        /* NAV */
+        #navbar{
+            position:fixed;top:0;left:0;width:100%;height:72px;
+            display:flex;align-items:center;justify-content:space-between;
+            padding:0 6%;z-index:10000;transition:background 0.4s,height 0.4s;
+            border-bottom:1px solid transparent;
+        }
+        #navbar.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);height:60px;border-bottom-color:var(--border-gold);}
+        .nav-logo img{height:36px;opacity:0.92;}
+        .nav-right{display:flex;align-items:center;gap:24px;}
+        .nav-link{color:rgba(255,255,255,0.52);font-size:0.8rem;transition:color 0.3s;}
+        .nav-link:hover{color:var(--gold-lt);}
+        .nav-cta{border:1.5px solid var(--gold);color:var(--gold);padding:8px 20px;border-radius:3px;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:1.2px;transition:all 0.3s;cursor:pointer;font-family:'Poppins',sans-serif;background:transparent;}
+        .nav-cta:hover{background:var(--gold);color:#000;box-shadow:0 0 18px rgba(201,162,74,0.6);}
+
+        /* BUTTONS */
+        .btn-primary{background:var(--grad);color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.88rem;text-transform:uppercase;letter-spacing:1px;border:none;cursor:pointer;display:inline-block;transition:transform 0.3s,box-shadow 0.3s;font-family:'Poppins',sans-serif;}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 20px rgba(31,185,212,0.65),0 0 40px rgba(138,55,204,0.3);}
+        .btn-ghost{background:transparent;color:var(--gold-lt);padding:13px 28px;border-radius:50px;font-weight:600;font-size:0.86rem;border:1.5px solid rgba(245,197,66,0.4);cursor:pointer;display:inline-block;transition:all 0.3s;font-family:'Poppins',sans-serif;}
+        .btn-ghost:hover{border-color:var(--gold-lt);box-shadow:0 0 16px rgba(201,162,74,0.5);transform:translateY(-2px);}
+
+        /* LAYOUT */
+        .wrap{padding:60px 6%;background:transparent;position:relative;z-index:1;}
+        .section-label{font-size:0.64rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;text-shadow:0 1px 8px rgba(0,0,0,0.9);}
+        .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.8vw,2.7rem);color:var(--gold-lt);line-height:1.18;margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,0.85);}
+        .section-body{color:rgba(255,255,255,0.52);font-size:0.9rem;line-height:1.85;text-shadow:0 1px 6px rgba(0,0,0,0.7);}
+        .divider{width:100%;height:36px;background:transparent;position:relative;z-index:1;}
+        .divider::after{content:'';position:absolute;bottom:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border-gold),transparent);}
+        .glass-panel{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:20px;padding:44px;position:relative;overflow:hidden;}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal.in{opacity:1;transform:translateY(0);}
+        .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+
+        /* HERO */
+        #hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:center;justify-content:center;}
+        #hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:700px;margin-top:8vh;}
+        .hero-eyebrow{font-size:0.64rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;opacity:0;animation:fadeUp 0.7s ease 0.2s forwards;}
+        .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.1;margin-bottom:18px;opacity:0;animation:fadeUp 0.9s ease 0.4s forwards;}
+        .hero-sub{font-size:clamp(0.86rem,1.8vw,1rem);color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:30px;opacity:0;animation:fadeUp 0.9s ease 0.6s forwards;}
+        .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.9s ease 0.8s forwards;}
+        .gold-text{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+        /* TRUST BAR */
+        #trust-bar{background:rgba(6,10,20,0.80);backdrop-filter:blur(22px);border-top:1px solid rgba(31,185,212,0.10);border-bottom:1px solid rgba(138,55,204,0.10);padding:20px 6%;position:relative;z-index:1;}
+        .trust-row{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;max-width:800px;margin:0 auto;}
+        .trust-item{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:rgba(255,255,255,0.45);}
+        .trust-item i{color:var(--gold);font-size:1rem;}
+
+        /* WHY SPONSOR */
+        .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+        .why-card{background:rgba(6,8,18,0.50);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:14px;padding:28px 22px;transition:border-color 0.3s,transform 0.3s;}
+        .why-card:hover{border-color:var(--border-gold);transform:translateY(-5px);}
+        .why-card .icon{font-size:2rem;margin-bottom:14px;}
+        .why-card h3{font-family:'Playfair Display',serif;color:var(--gold-lt);font-size:1.05rem;margin-bottom:8px;}
+        .why-card p{font-size:0.82rem;color:rgba(255,255,255,0.46);line-height:1.7;}
+
+        /* TIERS */
+        .tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;align-items:start;}
+        .tier-card{background:rgba(6,8,18,0.52);backdrop-filter:blur(16px);border:1px solid var(--border-gold);border-radius:18px;padding:36px 28px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+        .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+        .tier-card.gold::before{background:var(--grad-gold);}
+        .tier-card.cyan::before{background:var(--grad);}
+        .tier-card.silver::before{background:linear-gradient(135deg,#888 0%,#ccc 50%,#888 100%);}
+        .tier-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.5);}
+        .tier-card.featured{border-color:rgba(31,185,212,0.4);box-shadow:0 0 0 1px rgba(31,185,212,0.10);}
+        .tier-badge{position:absolute;top:16px;right:16px;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;font-weight:700;}
+        .tier-badge.recommended{background:var(--grad);color:#fff;}
+        .tier-icon{font-size:2.6rem;margin-bottom:16px;}
+        .tier-name{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold-lt);margin-bottom:6px;}
+        .tier-tagline{font-size:0.76rem;color:rgba(255,255,255,0.38);letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;}
+        .tier-price{font-family:'Playfair Display',serif;font-size:0.9rem;color:rgba(255,255,255,0.38);margin-bottom:20px;font-style:italic;}
+        .tier-features{list-style:none;margin-bottom:28px;}
+        .tier-features li{font-size:0.82rem;color:rgba(255,255,255,0.55);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;}
+        .tier-features li i{color:var(--cyan);font-size:0.74rem;flex-shrink:0;margin-top:3px;}
+        .tier-features li.locked{opacity:0.3;}
+        .tier-features li.locked i{color:rgba(255,255,255,0.2);}
+
+        /* AUDIENCE FIT */
+        .audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px;}
+        .aud-card{background:rgba(6,8,18,0.48);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:border-color 0.3s,transform 0.3s;}
+        .aud-card:hover{border-color:var(--border-gold);transform:translateY(-3px);}
+        .aud-card .icon{font-size:1.8rem;flex-shrink:0;}
+        .aud-card h4{font-weight:600;color:var(--gold-lt);font-size:0.92rem;margin-bottom:5px;}
+        .aud-card p{font-size:0.8rem;color:rgba(255,255,255,0.44);line-height:1.65;}
+
+        /* CONTACT FORM */
+        .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:52px;align-items:start;}
+        .contact-form{background:rgba(6,8,18,0.52);backdrop-filter:blur(18px);border:1px solid var(--border-gold);border-radius:18px;padding:38px 32px;}
+        .form-group{margin-bottom:16px;}
+        .form-label{font-size:0.72rem;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;display:block;}
+        .form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s;display:block;}
+        .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(31,185,212,0.4);}
+        .form-select{cursor:pointer;appearance:none;}
+        .form-select option{background:#0c0c14;color:#fff;}
+        .form-textarea{resize:vertical;min-height:100px;}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+        .form-submit{width:100%;background:var(--grad);color:#fff;border:none;border-radius:50px;padding:14px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;margin-top:8px;}
+        .form-submit:hover{box-shadow:0 0 20px rgba(31,185,212,0.6);}
+        .form-note{font-size:0.7rem;color:rgba(255,255,255,0.26);text-align:center;margin-top:10px;}
+        /* Success state */
+        .form-success{display:none;text-align:center;padding:20px;}
+        .form-success h3{font-family:'Playfair Display',serif;color:var(--cyan);font-size:1.3rem;margin-bottom:8px;}
+        .form-success p{font-size:0.84rem;color:rgba(255,255,255,0.48);}
+
+        /* FOOTER */
+        footer{background:rgba(3,3,8,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border-gold);padding:50px 6% 26px;position:relative;z-index:1;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:38px;}
+        .footer-brand{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.85;margin-top:12px;}
+        .footer-col h4{color:var(--gold);font-size:0.67rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+        .footer-col a{color:rgba(255,255,255,0.36);font-size:0.8rem;display:block;margin-bottom:9px;transition:color 0.3s;}
+        .footer-col a:hover{color:var(--gold-lt);}
+        .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+        .footer-copy{font-size:0.71rem;color:rgba(255,255,255,0.2);}
+        .social-row{display:flex;gap:10px;}
+        .social-row a{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.32);font-size:0.8rem;transition:all 0.3s;}
+        .social-row a:hover{border-color:var(--gold);color:var(--gold);}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+        @media(max-width:960px){.tiers-grid,.contact-grid,.footer-grid{grid-template-columns:1fr;}.why-grid,.audience-grid{grid-template-columns:1fr;}}
+        @media(max-width:700px){.wrap{padding:44px 5%;}.glass-panel{padding:28px 18px;}.form-row{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div id="hero-bg"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-logo"><a href="index.html"><img src="assets/image/arenax_navbar.png" alt="ArenaX" onerror="this.style.display='none'"></a></div>
+    <div class="nav-right">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="#contact" class="nav-cta">Partner With Us</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Partnership Opportunities</p>
+        <h1 class="hero-title">
+            Sponsor the Arena.<br>
+            <span class="gold-text">Own the Conversation.</span>
+        </h1>
+        <p class="hero-sub">
+            Associate your brand with India's first skill-ranked badminton assessment —
+            merit-based sports, competitive athletes, and verifiable performance.
+        </p>
+        <div class="hero-ctas">
+            <a href="#tiers" class="btn-primary">View Sponsorship Tiers →</a>
+            <a href="#contact" class="btn-ghost">Get in Touch</a>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust-bar">
+    <div class="trust-row">
+        <div class="trust-item"><i class="fa-solid fa-users"></i> Competitive Athletes</div>
+        <div class="trust-item"><i class="fa-solid fa-location-dot"></i> Dehradun, Uttarakhand</div>
+        <div class="trust-item"><i class="fa-solid fa-certificate"></i> Verified Performance Data</div>
+        <div class="trust-item"><i class="fa-solid fa-calendar"></i> May 2026 — Event #1</div>
+        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Brand-Safe Association</div>
+    </div>
+</div>
+
+<!-- WHY SPONSOR -->
+<section class="wrap">
+    <div style="text-align:center;max-width:580px;margin:0 auto;">
+        <p class="section-label">Why ArenaX</p>
+        <h2 class="section-title">The Right Stage for Your Brand</h2>
+    </div>
+    <div class="why-grid">
+        <div class="why-card reveal d1">
+            <div class="icon">🎯</div>
+            <h3>Targeted, High-Intent Audience</h3>
+            <p>ArenaX attracts competitive badminton players aged 16–35 — motivated, fitness-conscious, and actively investing in their sport. Not a casual crowd.</p>
+        </div>
+        <div class="why-card reveal d2">
+            <div class="icon">🏅</div>
+            <h3>Merit-Based Association</h3>
+            <p>Unlike casual participation events, ArenaX is structured around skill assessment and ranking — a credibility signal your brand inherits by association.</p>
+        </div>
+        <div class="why-card reveal d3">
+            <div class="icon">📜</div>
+            <h3>Long-Tail Certificate Visibility</h3>
+            <p>Every participant shares their ArenaX certificate — on LinkedIn, Instagram, and CVs. Sponsor branding travels with every certificate, long after the event.</p>
+        </div>
+        <div class="why-card reveal d1">
+            <div class="icon">📊</div>
+            <h3>Verified Event Data</h3>
+            <p>Performance reports and rankings create documented, credible outcomes — not just a one-day tournament. Sponsors get association with measurable results.</p>
+        </div>
+        <div class="why-card reveal d2">
+            <div class="icon">🌱</div>
+            <h3>Ground-Level, Early-Mover</h3>
+            <p>ArenaX is at Event #1. Brands that partner now help shape the platform — and earn the "founding sponsor" narrative as we scale across India.</p>
+        </div>
+        <div class="why-card reveal d3">
+            <div class="icon">🤝</div>
+            <h3>Structured, Transparent Formats</h3>
+            <p>No vague "branding opportunities." Sponsorship deliverables are clear and agreed in advance — certificate placement, on-ground presence, digital assets.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO SHOULD SPONSOR -->
+<section class="wrap">
+    <div style="max-width:560px;">
+        <p class="section-label">Ideal Partners</p>
+        <h2 class="section-title">Who Should Sponsor ArenaX</h2>
+    </div>
+    <div class="audience-grid reveal">
+        <div class="aud-card d1">
+            <div class="icon">🏸</div>
+            <div>
+                <h4>Sports & Fitness Brands</h4>
+                <p>Racket brands, sportswear, footwear, nutrition brands — direct reach to active, competitive players who are buying-intent high for sports equipment.</p>
+            </div>
+        </div>
+        <div class="aud-card d2">
+            <div class="icon">⚡</div>
+            <div>
+                <h4>Energy & Lifestyle Brands</h4>
+                <p>Energy drinks, health foods, fitness supplements. ArenaX players are exactly the performance-oriented demographic these brands target.</p>
+            </div>
+        </div>
+        <div class="aud-card d1">
+            <div class="icon">🎓</div>
+            <div>
+                <h4>Universities & Colleges</h4>
+                <p>Reach motivated students building sports profiles. A university sponsoring ArenaX signals they value athletic achievement — powerful for enrollment marketing.</p>
+            </div>
+        </div>
+        <div class="aud-card d2">
+            <div class="icon">🏫</div>
+            <div>
+                <h4>Schools & Sports Academies</h4>
+                <p>Academies running badminton coaching programs benefit from being associated with structured, credible assessment — aligns with their core proposition.</p>
+            </div>
+        </div>
+        <div class="aud-card d1">
+            <div class="icon">🏢</div>
+            <div>
+                <h4>Local & Regional Businesses</h4>
+                <p>Gyms, health clubs, sports retailers, F&B brands in Dehradun/Uttarakhand. Hyperlocal visibility among an engaged, premium-attending audience.</p>
+            </div>
+        </div>
+        <div class="aud-card d2">
+            <div class="icon">📱</div>
+            <div>
+                <h4>EdTech & Career Platforms</h4>
+                <p>Students building sports CVs on ArenaX are also career-building — platforms around skills, credentials, and professional development are a natural fit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SPONSORSHIP TIERS -->
+<section id="tiers" class="wrap">
+    <div style="text-align:center;max-width:580px;margin:0 auto;">
+        <p class="section-label">Packages</p>
+        <h2 class="section-title">Sponsorship Tiers</h2>
+        <p class="section-body" style="text-align:center;margin:8px auto 0;">
+            All packages are customisable. Specific deliverables are finalised in discussion.
+            Pricing is available on request.
+        </p>
+    </div>
+
+    <div class="tiers-grid">
+
+        <!-- ASSOCIATE -->
+        <div class="tier-card silver reveal d1">
+            <div class="tier-icon">🤝</div>
+            <h3 class="tier-name">Associate</h3>
+            <p class="tier-tagline">Secondary Visibility</p>
+            <p class="tier-price">Investment on request</p>
+            <ul class="tier-features">
+                <li><i class="fa-solid fa-check"></i> Logo on all participant certificates</li>
+                <li><i class="fa-solid fa-check"></i> Brand mention in pre-event communications</li>
+                <li><i class="fa-solid fa-check"></i> Logo on event digital assets (posts, stories)</li>
+                <li><i class="fa-solid fa-check"></i> On-ground banner placement at venue</li>
+                <li class="locked"><i class="fa-solid fa-xmark"></i> Title / naming rights</li>
+                <li class="locked"><i class="fa-solid fa-xmark"></i> Exclusive category rights</li>
+                <li class="locked"><i class="fa-solid fa-xmark"></i> Product distribution at event</li>
+            </ul>
+            <a href="#contact" class="btn-ghost" style="width:100%;text-align:center;display:block;">Enquire Now</a>
+        </div>
+
+        <!-- EQUIPMENT / IN-KIND -->
+        <div class="tier-card cyan featured reveal d2">
+            <span class="tier-badge recommended">Recommended</span>
+            <div class="tier-icon">🎒</div>
+            <h3 class="tier-name">Equipment Partner</h3>
+            <p class="tier-tagline">In-Kind or Hybrid</p>
+            <p class="tier-price">Product value + cash, negotiated</p>
+            <ul class="tier-features">
+                <li><i class="fa-solid fa-check"></i> Everything in Associate tier</li>
+                <li><i class="fa-solid fa-check"></i> Logo on physical sports kits / prizes</li>
+                <li><i class="fa-solid fa-check"></i> Product distribution to all participants</li>
+                <li><i class="fa-solid fa-check"></i> Branded prize presentation moment</li>
+                <li><i class="fa-solid fa-check"></i> Product feature in post-event coverage</li>
+                <li><i class="fa-solid fa-check"></i> "Official Equipment Partner" credit on certificates</li>
+                <li class="locked"><i class="fa-solid fa-xmark"></i> Naming rights</li>
+            </ul>
+            <a href="#contact" class="btn-primary" style="width:100%;text-align:center;display:block;">Enquire Now</a>
+        </div>
+
+        <!-- TITLE SPONSOR -->
+        <div class="tier-card gold reveal d3">
+            <div class="tier-icon">👑</div>
+            <h3 class="tier-name">Title Sponsor</h3>
+            <p class="tier-tagline">Primary Association</p>
+            <p class="tier-price">Premium investment — contact us</p>
+            <ul class="tier-features">
+                <li><i class="fa-solid fa-check"></i> Everything in Equipment Partner tier</li>
+                <li><i class="fa-solid fa-check"></i> Event naming rights — "X Presents ArenaX…"</li>
+                <li><i class="fa-solid fa-check"></i> Exclusive primary logo on all certificates</li>
+                <li><i class="fa-solid fa-check"></i> Co-branded event communications</li>
+                <li><i class="fa-solid fa-check"></i> Dedicated social media feature content</li>
+                <li><i class="fa-solid fa-check"></i> Exclusive category — no competing brands</li>
+                <li><i class="fa-solid fa-check"></i> First right of refusal for all future events</li>
+            </ul>
+            <a href="#contact" class="btn-primary" style="background:var(--grad-gold);width:100%;text-align:center;display:block;color:#000;">Enquire Now</a>
+        </div>
+
+    </div>
+
+    <p style="text-align:center;font-size:0.74rem;color:rgba(255,255,255,0.28);margin-top:22px;">
+        All tiers include a formal proposal with exact deliverables before any commitment.
+        Custom packages available for multi-event partnerships.
+    </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT FORM -->
+<section id="contact" class="wrap">
+    <div class="contact-grid">
+
+        <div class="reveal">
+            <p class="section-label">Get In Touch</p>
+            <h2 class="section-title">Discuss a Partnership</h2>
+            <p class="section-body" style="margin-bottom:28px;">
+                We keep sponsor relationships small and meaningful — very few brands
+                per event, structured deliverables, and honest conversations.
+                No hard sales. Just a discussion to see if it's a fit.
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:18px;">
+                <div style="display:flex;align-items:center;gap:14px;">
+                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(31,185,212,0.1);border:1px solid rgba(31,185,212,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-envelope" style="color:var(--cyan);font-size:0.85rem;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">Email</p>
+                        <a href="mailto:sponsorship@arenax.in" style="color:var(--gold-lt);font-size:0.88rem;">sponsorship@arenax.in</a>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;">
+                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(31,185,212,0.1);border:1px solid rgba(31,185,212,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-brands fa-whatsapp" style="color:var(--cyan);font-size:0.85rem;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">WhatsApp</p>
+                        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" style="color:var(--gold-lt);font-size:0.88rem;">+91-XXXXXXXXXX</a>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;">
+                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(31,185,212,0.1);border:1px solid rgba(31,185,212,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-location-dot" style="color:var(--cyan);font-size:0.85rem;"></i>
+                    </div>
+                    <div>
+                        <p style="font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">Location</p>
+                        <p style="color:rgba(255,255,255,0.55);font-size:0.88rem;">Dehradun, Uttarakhand, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form reveal d2">
+            <div id="formArea">
+                <h3 style="font-family:'Playfair Display',serif;color:var(--gold-lt);font-size:1.2rem;margin-bottom:4px;">Sponsorship Enquiry</h3>
+                <p style="font-size:0.74rem;color:rgba(255,255,255,0.32);margin-bottom:22px;">We respond within 24 hours.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" class="form-input" id="sName" placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Organisation *</label>
+                        <input type="text" class="form-input" id="sOrg" placeholder="Company / Institution">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-input" id="sEmail" placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">WhatsApp / Phone</label>
+                    <input type="tel" class="form-input" id="sPhone" placeholder="+91 XXXXX XXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interested In</label>
+                    <select class="form-select" id="sTier">
+                        <option value="">Select a tier</option>
+                        <option>Title Sponsor</option>
+                        <option>Equipment / In-Kind Partner</option>
+                        <option>Associate Sponsor</option>
+                        <option>Custom / Multi-Event</option>
+                        <option>Not sure yet — just exploring</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tell Us About Your Brand</label>
+                    <textarea class="form-textarea" id="sMsg" placeholder="What does your brand do? What are you hoping to achieve through this sponsorship?"></textarea>
+                </div>
+
+                <button class="form-submit" onclick="submitSponsor(this)">Send Enquiry →</button>
+                <p class="form-note">No commitment required. We'll reach out to schedule a conversation.</p>
+            </div>
+            <div class="form-success" id="formSuccess">
+                <h3>✓ Enquiry Received</h3>
+                <p>Thank you for reaching out. We'll be in touch within 24 hours to discuss how ArenaX can work for your brand.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <img src="assets/image/arenax_navbar.png" alt="ArenaX" style="height:32px;" onerror="this.style.display='none'">
+            <p class="footer-brand">ArenaX Sports Events — India's first verified, skill-ranked sports assessment platform.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="registration-faq.html">FAQs</a>
+            <a href="certificate-validation.html">Verify Certificate</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:sponsorship@arenax.in">sponsorship@arenax.in</a>
+            <a href="https://arenax.in">arenax.in</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2026 ArenaX Sports Events. All rights reserved.</p>
+        <div class="social-row">
+            <a href="https://instagram.com/arenax.in" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@arenax" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const nb = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nb.classList.toggle('scrolled', window.scrollY > 50));
+
+    const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), {threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    function submitSponsor(btn) {
+        const name  = document.getElementById('sName').value.trim();
+        const org   = document.getElementById('sOrg').value.trim();
+        const email = document.getElementById('sEmail').value.trim();
+        if (!name || !org || !email) { alert('Please fill in Name, Organisation and Email.'); return; }
+        btn.textContent = 'Sending…'; btn.disabled = true;
+
+        const payload = {
+            type: 'sponsorship',
+            name, org, email,
+            phone: document.getElementById('sPhone').value.trim(),
+            tier:  document.getElementById('sTier').value,
+            message: document.getElementById('sMsg').value.trim(),
+            timestamp: new Date().toISOString()
+        };
+
+        fetch('https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec', {
+            method:'POST', body: JSON.stringify(payload)
+        })
+        .then(() => {
+            document.getElementById('formArea').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        })
+        .catch(() => {
+            document.getElementById('formArea').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        });
+    }
+</script>
+</body>
+</html>
