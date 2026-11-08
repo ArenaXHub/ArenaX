@@ -1,2014 +1,852 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArenaX Sports Events | Skill Assessment · Ranking · Recognition</title>
-    <meta name="description" content="ArenaX — India's first skill-ranked badminton assessment. Compete, get evaluated, earn your official ArenaX rank. Event #1 in Dehradun, May 2026.">
-    <meta property="og:title" content="ArenaX Sports Events — Step Into The Arena">
-    <meta property="og:description" content="Not just a tournament. A complete performance evaluation. Get your official ArenaX rank.">
-    <meta property="og:image" content="assets/image/hero-warrior-perfect-branding.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Adhyay · AI courses built from your syllabus</title>
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Adhyay · AI courses built from your syllabus">
+<meta property="og:description" content="Ready-to-teach AI lessons from your own syllabus, and a clear picture of every student. For universities, colleges and schools.">
+<meta property="og:url" content="https://arenax.in/">
+<link rel="canonical" href="https://arenax.in/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%231D1D1F'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='serif' font-size='22' fill='%23D4B98C'%3E%E0%A4%85%3C/text%3E%3C/svg%3E">
+<meta name="description" content="AI courses built from your own syllabus. Your teachers teach; you see who has understood, who is unsure and who is confidently wrong.">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+/* Layout: a product-store page. One idea per section, one visual per idea, big type, lots of air.
+   White / soft grey / black bands; one champagne accent; four muted data colours that glow on dark. */
+:root{
+  --bg:#FFFFFF; --alt:#F5F5F7; --surface:#FFFFFF; --ink:#1D1D1F; --ink-2:#424245; --muted:#6E6E73; --rule:#D2D2D7;
+  --black:#000000; --on-black:#F5F5F7; --on-black-muted:#A1A1A6; --black-card:#1C1C1E; --black-rule:#2C2C2E;
+  --gold:#B8955F; --gold-soft:#F4EFE7;
+  --mas:#4C8C6A; --uns:#C79A45; --wro:#C2604F; --not:#8E8E93;
+  --mas-g:#6FCF97; --uns-g:#F2C46D; --wro-g:#FF7A66; --not-g:#A1A1A6;
+  --display:"Geist","SF Pro Display","Helvetica Neue",Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+  --deva:"Tiro Devanagari Hindi","Nirmala UI",Mangal,serif;
+  --ease:cubic-bezier(.22,.8,.2,1);
+  --lift:0 24px 48px -28px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --alt:#101011; --surface:#1C1C1E; --ink:#F5F5F7; --ink-2:#D2D2D7; --muted:#A1A1A6; --rule:#38383A;
+  --black:#161617; --black-card:#232325; --black-rule:#38383A;
+  --gold:#D4B98C; --gold-soft:#2A2620;
+  --mas:#6FB08C; --uns:#D9AE5C; --wro:#DA7A69; --not:#8E8E93; --lift:0 24px 48px -28px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --alt:#101011; --surface:#1C1C1E; --ink:#F5F5F7; --ink-2:#D2D2D7; --muted:#A1A1A6; --rule:#38383A;
+  --black:#161617; --black-card:#232325; --black-rule:#38383A;
+  --gold:#D4B98C; --gold-soft:#2A2620;
+  --mas:#6FB08C; --uns:#D9AE5C; --wro:#DA7A69; --not:#8E8E93; --lift:0 24px 48px -28px rgba(0,0,0,.8); color-scheme:dark}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+.in{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.035em;line-height:1.04}
+h1{font-size:clamp(2.9rem,7.4vw,6rem);font-weight:650}
+h2{font-size:clamp(2.2rem,5.2vw,4rem);font-weight:650}
+h3{font-size:clamp(1.25rem,2.1vw,1.55rem);font-weight:600;letter-spacing:-.02em;line-height:1.18}
+p{margin:0}
+a{color:inherit}
+.sub{font-size:clamp(1.12rem,1.8vw,1.4rem);color:var(--muted);max-width:32em;line-height:1.4;margin-top:18px;text-wrap:balance}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
+.kick{font-size:1rem;font-weight:600;color:var(--gold);margin-bottom:14px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+section{padding-block:clamp(80px,12vw,150px)}
+.alt{background:var(--alt)}
+.dark{background:var(--black);color:var(--on-black)}
+.dark .sub{color:var(--on-black-muted)}
 
-    <style>
-        /* =============================================
-           DESIGN TOKENS & RESET
-        ============================================= */
-        :root {
-            --bg:         #050505;
-            --bg-card:    #0d0d0f;
-            --gold:       #c9a24a;
-            --gold-lt:    #f5c542;
-            --gold-glow:  0 0 25px rgba(201,162,74,0.55);
-            --cyan:       #1fb9d4;
-            --purple:     #8a37cc;
-            --grad:       linear-gradient(135deg, #1fb9d4 0%, #8a37cc 100%);
-            --grad-gold:  linear-gradient(135deg, #b8862e 0%, #f5c542 45%, #b8862e 100%);
-            --red:        #ff4d4d;
-            --border:     rgba(255,255,255,0.07);
-            --border-gold:rgba(201,162,74,0.18);
-        }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--bg);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        img { display: block; max-width: 100%; }
-        a { text-decoration: none; }
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:500 1.02rem var(--display);padding:.85em 1.45em;border-radius:999px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s,color .2s}
+.btn:hover{transform:scale(1.045);box-shadow:var(--lift)}
+.btn:active{transform:scale(.98)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.line{border-color:currentColor;background:transparent;color:inherit}
+.dark .btn.solid{background:var(--on-black);color:var(--black)}
 
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid color-mix(in srgb,var(--rule) 60%,transparent)}
+.nav{display:flex;align-items:center;gap:28px;height:56px}
+.mark{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;letter-spacing:-.01em}
+.mark i{font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-family:var(--deva);font-size:1.05rem;line-height:1;padding-top:2px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0 0 0 auto;padding:0;font-size:.9rem}
+.nav ul a{text-decoration:none;color:var(--ink-2);transition:color .2s}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:.5em 1.05em;font-size:.88rem}
+@media (max-width:760px){.nav ul{display:none}.nav .btn{margin-left:auto}}
 
-        /* =============================================
-           NAVBAR
-        ============================================= */
-        #navbar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-            z-index: 10000;
-            transition: background 0.4s, height 0.4s, border-color 0.4s;
-            border-bottom: 1px solid transparent;
-        }
-        #navbar.scrolled {
-            background: rgba(5,5,5,0.94);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            height: 62px;
-            border-bottom-color: var(--border-gold);
-        }
-        .nav-logo { display: flex; align-items: center; }
-        .nav-logo img { height: 40px; }
-        .nav-logo .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 2px;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-        .nav-link {
-            color: rgba(255,255,255,0.65);
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 0.6px;
-            transition: color 0.25s;
-        }
-        .nav-link:hover { color: var(--gold-lt); }
-        .nav-cta {
-            background: transparent;
-            border: 1.5px solid var(--gold);
-            color: var(--gold);
-            padding: 9px 22px;
-            border-radius: 3px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .hamburger span {
-            display: block;
-            width: 24px; height: 2px;
-            background: var(--gold);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
+/* hero */
+.hero{padding-block:clamp(56px,9vw,110px) 0;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,72px);align-items:center}
+.hero .grid > *{min-width:0}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.proof{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:44px;padding-bottom:clamp(56px,9vw,110px);color:var(--on-black-muted);font-size:.95rem}
+.proof b{color:var(--on-black);font-weight:600}
+@media (max-width:880px){.hero .grid{grid-template-columns:1fr}.phone{margin:0 auto}}
+.phone{width:min(330px,100%);aspect-ratio:9/18.5;border-radius:46px;background:#0A0A0A;padding:12px;position:relative;margin:34px 0 clamp(48px,7vw,80px);
+  box-shadow:0 0 0 1.5px #2C2C2E,0 50px 90px -40px rgba(0,0,0,.9);opacity:0;transform:translateY(40px);
+  animation:phoneIn 1.2s .3s var(--ease) forwards;transition:box-shadow .5s var(--ease)}
+@keyframes phoneIn{to{transform:none;opacity:1}}
+.phone:hover{box-shadow:0 0 0 1.5px var(--gold),0 0 60px -6px color-mix(in srgb,var(--gold) 55%,transparent),0 50px 90px -40px rgba(0,0,0,.9)}
+.phone .hint{position:absolute;left:50%;top:-34px;transform:translateX(-50%);font-size:.82rem;color:var(--gold);white-space:nowrap;opacity:.9}
+.screen{height:100%;border-radius:36px;background:#FFFFFF;color:#1D1D1F;padding:44px 16px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden;position:relative}
+.screen::before{content:"";position:absolute;top:10px;left:50%;width:90px;height:24px;border-radius:14px;background:#0A0A0A;transform:translateX(-50%)}
+.qhead{display:flex;justify-content:space-between;font-size:.72rem;color:#6E6E73}
+.qtext{font-weight:600;font-size:.98rem;line-height:1.35;letter-spacing:-.01em}
+.qopt{display:block;width:100%;text-align:left;font:inherit;font-size:.86rem;padding:10px 12px;border-radius:14px;border:1px solid #D2D2D7;background:#FFF;color:#1D1D1F;cursor:pointer;transition:transform .2s var(--ease),border-color .2s,background .2s,box-shadow .2s}
+.qopt:hover{transform:scale(1.03);border-color:#B8955F;box-shadow:0 0 0 3px rgba(184,149,95,.18)}
+.qopt[aria-pressed="true"]{border-color:#1D1D1F;background:#F5F5F7;font-weight:600}
+.qlabel{font-size:.78rem;color:#6E6E73;margin-top:2px}
+.conf{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.conf button{font:inherit;font-size:.74rem;padding:9px 4px;border-radius:12px;border:1px solid #D2D2D7;background:#FFF;color:#1D1D1F;cursor:pointer;transition:transform .2s var(--ease),background .2s,border-color .2s,box-shadow .2s}
+.conf button:hover{transform:scale(1.06);border-color:#B8955F;box-shadow:0 0 0 3px rgba(184,149,95,.18)}
+.conf button[aria-pressed="true"]{background:#1D1D1F;color:#FFF;border-color:#1D1D1F}
+.qgo{margin-top:auto;flex:none;font:600 .92rem var(--display);padding:12px;border-radius:14px;border:0;background:#1D1D1F;color:#FFF;cursor:pointer;transition:opacity .2s,transform .2s var(--ease)}
+.qgo:disabled{opacity:.3;cursor:default}
+.qgo:not(:disabled):hover{transform:scale(1.03)}
+.qres{display:flex;flex-direction:column;gap:10px;height:100%;justify-content:center;padding-top:40px;text-align:center;animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.orb{width:64px;height:64px;border-radius:50%;margin:0 auto;animation:orb 2s ease-in-out infinite}
+@keyframes orb{50%{transform:scale(1.08)}}
+.kind{font-size:1.7rem;font-weight:650;letter-spacing:-.03em}
+.kindline{font-size:.88rem;color:#424245;line-height:1.4}
+.copy{font-size:.6rem;color:#8E8E93;text-align:center;margin-top:6px;flex:none}
+.again{background:none;border:0;font:500 .85rem var(--display);color:#8A6A35;cursor:pointer;margin-top:6px}
 
+/* USP tiles */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,24px);margin-top:clamp(40px,6vw,64px)}
+.tile{background:var(--surface);border-radius:28px;padding:clamp(28px,3.4vw,40px);display:flex;flex-direction:column;gap:14px;transition:transform .45s var(--ease),box-shadow .45s var(--ease);min-width:0}
+.tile:hover{transform:translateY(-8px) scale(1.01);box-shadow:var(--lift)}
+.tile .cap{font-size:.9rem;color:var(--muted);font-weight:500}
+.tile h3{font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:-.035em;line-height:1.1}
+.tile h3 b{color:var(--gold);font-weight:650}
+.tile p{color:var(--muted)}
+@media (max-width:860px){.trio{grid-template-columns:1fr}}
 
-        /* =============================================
-           MOBILE MENU
-        ============================================= */
-        .mobile-menu {
-            position: fixed;
-            inset: 0;
-            background: rgba(3,3,3,0.98);
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.15rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .mobile-menu a:hover { color: var(--gold-lt); }
-        .mobile-menu-close {
-            position: absolute;
-            top: 22px; right: 22px;
-            background: none; border: none;
-            color: rgba(255,255,255,0.5);
-            font-size: 1.6rem;
-            cursor: pointer;
-        }
+/* editions */
+.editions{margin-top:clamp(56px,8vw,96px)}
+.ed-head{text-align:center}
+.ed-head h3{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.035em}
+.ed-head p{color:var(--muted);margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+.chip{font:500 .92rem var(--display);padding:.6em 1.1em;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;transition:transform .25s var(--ease),background .2s,color .2s,border-color .2s}
+.chip:hover{transform:scale(1.06);border-color:var(--ink);color:var(--ink)}
+.chip[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lesson{margin:26px auto 0;max-width:820px;background:var(--surface);border-radius:28px;overflow:hidden;box-shadow:var(--lift)}
+.l-top{display:flex;justify-content:space-between;gap:12px;padding:16px 26px;border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--muted);position:relative}
+.l-top b{color:var(--ink);font-weight:600}
+.bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--gold)}
+.bar.run{animation:fill 4.5s linear forwards}
+@keyframes fill{to{width:100%}}
+.l-body{padding:clamp(24px,3.4vw,38px);display:grid;gap:20px}
+.l-body h4{margin:0;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:650;letter-spacing:-.035em;line-height:1.12;transition:opacity .3s,transform .3s var(--ease)}
+.slots{display:grid;gap:0;margin:0}
+.slots div{display:grid;grid-template-columns:8.5em 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--rule);transition:opacity .3s}
+.slots dt{color:var(--gold);font-weight:600;font-size:.95rem}
+.slots dd{margin:0;color:var(--ink-2)}
+@media (max-width:520px){.slots div{grid-template-columns:1fr;gap:4px}}
+.lesson.swap h4,.lesson.swap .slots div{opacity:0}
+.same{font-size:.86rem;color:var(--muted);padding-top:14px;border-top:1px dashed var(--rule)}
 
+/* quadrant */
+.qwrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,48px);align-items:center;margin-top:clamp(40px,6vw,64px)}
+.qwrap > *{min-width:0}
+@media (max-width:880px){.qwrap{grid-template-columns:1fr}}
+.quad{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:1.45;max-width:100%;border-radius:24px;overflow:hidden;border:1px solid var(--black-rule);background:var(--black-card)}
+.qc{position:relative;padding:16px 18px;border:1px solid var(--black-rule);cursor:pointer;transition:background .4s,opacity .4s}
+.qc .lb{font-weight:600;font-size:.95rem}
+.qc .ds{font-size:.8rem;color:var(--on-black-muted)}
+.qc .ct{position:absolute;bottom:12px;font-size:clamp(2rem,4.4vw,3.2rem);font-weight:650;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.qc.r{text-align:right}.qc.r .ct{right:18px}.qc.l .ct{left:18px}
+.qc.wro{color:var(--wro-g);background:radial-gradient(circle at 30% 40%,color-mix(in srgb,var(--wro-g) 16%,transparent),transparent 70%)}
+.qc.mas{color:var(--mas-g);background:radial-gradient(circle at 70% 40%,color-mix(in srgb,var(--mas-g) 14%,transparent),transparent 70%)}
+.qc.not{color:var(--not-g)}
+.qc.uns{color:var(--uns-g);background:radial-gradient(circle at 70% 60%,color-mix(in srgb,var(--uns-g) 12%,transparent),transparent 70%)}
+.qc.wro .ct{text-shadow:0 0 24px color-mix(in srgb,var(--wro-g) 70%,transparent);animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{text-shadow:0 0 42px var(--wro-g)}}
+.qd{position:absolute;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);transition:opacity .4s,transform .4s var(--ease);pointer-events:none}
+.qd.mas{background:var(--mas-g);box-shadow:0 0 10px var(--mas-g)}
+.qd.uns{background:var(--uns-g);box-shadow:0 0 10px var(--uns-g)}
+.qd.wro{background:var(--wro-g);box-shadow:0 0 14px var(--wro-g);animation:pulse 2.4s ease-in-out infinite}
+.qd.not{background:var(--not-g);box-shadow:0 0 6px var(--not-g)}
+@keyframes pulse{50%{box-shadow:0 0 22px 3px var(--wro-g)}}
+.quad.focus .qc:not(.on){opacity:.35}
+.quad.focus .qd:not(.on){opacity:.15}
+.quad .qd.on{transform:translate(-50%,-50%) scale(1.35)}
+.axis{display:flex;justify-content:space-between;font-size:.8rem;color:var(--on-black-muted);margin-top:10px}
+.qside h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+.qside p{color:var(--on-black-muted);margin-top:12px}
+.qside .act{margin-top:20px;padding:16px 18px;border-radius:16px;background:var(--black-card);border:1px solid var(--black-rule)}
+.qside .act b{display:block;font-size:.82rem;color:var(--gold);font-weight:600;margin-bottom:4px}
+.qside .act span{color:var(--on-black)}
 
-        /* =============================================
-           HERO  — fixed warrior background approach
-           The bg is position:fixed so it stays in place
-           while page content scrolls over it.
-           Every section below needs background:var(--bg)
-           to properly "cover" the warrior as you scroll.
-        ============================================= */
-        #hero {
-            position: relative;
-            height: 100vh;
-            min-height: 620px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* NO overflow:hidden — lets fixed bg show */
-        }
-        #hero-bg {
-            position: fixed;          /* ← stays put while page scrolls */
-            top: 0; left: 0;
-            width: 100%; height: 100vh;
-            z-index: -1;
-            background:
-                linear-gradient(to bottom,
-                    rgba(5,5,5,0.08) 0%,
-                    rgba(5,5,5,0.38) 50%,
-                    rgba(5,5,5,0.72) 100%),
-                url('assets/image/hero-warrior-perfect-branding.png') no-repeat center center;
-            background-size: cover;
-            will-change: transform;
-            transform-origin: center center;
-        }
-        /* Gold shimmer line where hero meets next section */
-        #hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            z-index: 2;
-        }
+/* report frame */
+.frame{margin-top:clamp(40px,6vw,64px);background:var(--surface);border-radius:32px;box-shadow:var(--lift);overflow:hidden}
+.f-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;padding:18px clamp(20px,3vw,32px);border-bottom:1px solid var(--rule)}
+.f-top b{font-weight:600}
+.f-top span{font-size:.88rem;color:var(--muted)}
+.ins{display:grid;grid-template-columns:repeat(3,1fr)}
+.card{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:18px;min-width:0;transition:background .3s}
+.card + .card{border-left:1px solid var(--rule)}
+.card:hover{background:var(--alt)}
+.card .what{font-size:.82rem;color:var(--muted);font-weight:500}
+.card h3{font-size:1.35rem}
+.card p{color:var(--muted);font-size:.97rem}
+.do{margin-top:auto;display:inline-flex;align-self:flex-start;gap:8px;align-items:center;font-size:.86rem;font-weight:600;padding:.55em 1em;border-radius:999px;background:var(--gold-soft);color:var(--ink);transition:transform .25s var(--ease)}
+.card:hover .do{transform:scale(1.05)}
+.viz{height:84px;display:flex;align-items:flex-end}
+.v-big{font-size:3.2rem;font-weight:650;letter-spacing:-.05em;line-height:1;color:var(--wro);font-variant-numeric:tabular-nums}
+.v-big small{font-size:1.1rem;color:var(--muted);letter-spacing:0;font-weight:500}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;width:100%;align-self:center}
+.dots span{aspect-ratio:1;border-radius:50%;background:var(--rule)}
+.dots span.on{background:var(--uns);box-shadow:0 0 8px color-mix(in srgb,var(--uns) 70%,transparent)}
+.pair{display:grid;gap:10px;width:100%;align-self:center}
+.pair div{display:grid;grid-template-columns:5.5em 1fr 2.6em;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.pair b{display:block;height:12px;border-radius:6px;background:var(--rule);overflow:hidden}
+.pair b i{display:block;height:100%;border-radius:6px;background:var(--mas)}
+@media (max-width:860px){.ins{grid-template-columns:1fr}.card + .card{border-left:0;border-top:1px solid var(--rule)}}
 
-        /* ── Hero glass card — compact event-card style ── */
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-        .hero-glass {
-            background: rgba(6, 6, 12, 0.60);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(201, 162, 74, 0.28);
-            border-radius: 20px;
-            padding: 24px 32px 22px;
-            max-width: 400px;          /* ← narrower — warriors' faces now fully visible */
-            width: 90%;
-            box-shadow:
-                0 0 0 1px rgba(201,162,74,0.07) inset,
-                0 8px 32px rgba(0,0,0,0.5),
-                0 0 60px rgba(0,0,0,0.3);
-            opacity: 0;
-            animation: fadeUp 0.9s ease 0.3s forwards;
-            margin-top: 10vh;          /* ← pushed slightly lower, away from navbar */
-        }
-        .hero-eyebrow {
-            font-size: 0.63rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 8px;
-        }
-        /* Event title inside glass */
-        .hero-event-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.25rem, 2.5vw, 1.6rem);   /* ← smaller — fits in narrow card */
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--gold-lt);
-            margin-bottom: 10px;
-        }
-        /* "• Dehradun • May 2026 •" dot row */
-        .hero-dotrow {
-            font-size: 0.65rem;
-            letter-spacing: 2.5px;
-            color: rgba(255,255,255,0.38);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        /* Gold divider line between title and pill row */
-        .hero-divider {
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 0 auto 12px;
-        }
-        /* "🌟 Skill Assessment  🌟 Ranking  🌟 Recognition" */
-        .hero-pillrow {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            font-size: 0.76rem;
-            color: rgba(255,255,255,0.7);
-        }
-        .hero-pillrow span { display: flex; align-items: center; gap: 4px; }
-        /* CTA area below glass */
-        .hero-cta-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            animation: fadeUp 0.9s ease 0.7s forwards;
-        }
-        /* Urgency badge */
-        .hero-urgency {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 0.7rem;
-            color: var(--red);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            opacity: 0;
-            animation: fadeIn 1s ease 1s forwards;
-        }
-        .urgency-dot {
-            width: 7px; height: 7px;
-            background: var(--red);
-            border-radius: 50%;
-            animation: urgencyPulse 1.8s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-        /* Social-proof line */
-        .hero-proof {
-            font-size: 0.68rem;
-            color: var(--cyan);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.1s forwards;
-        }
-        .hero-proof-sub {
-            margin-top: 4px;
-            font-size: 0.64rem;
-            color: rgba(255,255,255,0.28);
-            opacity: 0;
-            animation: fadeIn 1s ease 1.3s forwards;
-        }
-        @media (max-width: 600px) {
-            .hero-glass { padding: 20px 18px 16px; max-width: 88%; border-radius: 16px; margin-top: 6vh; }
-            .hero-event-title { font-size: 1.2rem; }
-            .hero-pillrow { gap: 8px; font-size: 0.7rem; }
-        }
-        .scroll-down {
-            position: absolute;
-            bottom: 28px; left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 7px;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-            z-index: 2;
-        }
-        .scroll-down span {
-            font-size: 0.6rem;
-            letter-spacing: 2.5px;
-            color: rgba(255,255,255,0.28);
-            text-transform: uppercase;
-        }
-        .scroll-chevron {
-            width: 16px; height: 16px;
-            border-right: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            transform: rotate(45deg);
-            animation: chevronBounce 2.2s ease-in-out infinite;
-        }
-        /* Mobile glass card handled above */
+/* passport */
+.pp-sec .grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,72px);align-items:center}
+.pp-sec .grid2 > *{min-width:0}
+@media (max-width:860px){.pp-sec .grid2{grid-template-columns:1fr}}
+.booklet{position:relative;width:min(380px,100%);margin:0 auto;aspect-ratio:3/4;border-radius:18px 26px 26px 18px;background:linear-gradient(160deg,#2B2B2E,#121214);color:#F5F5F7;padding:30px 28px;cursor:pointer;
+  box-shadow:inset 10px 0 0 rgba(255,255,255,.04),inset 12px 0 18px -10px rgba(0,0,0,.6),0 40px 70px -36px rgba(0,0,0,.65);transition:transform .5s var(--ease),box-shadow .5s var(--ease);display:flex;flex-direction:column;border:0;font:inherit;text-align:left}
+.booklet:hover{transform:rotate(-2deg) translateY(-8px) scale(1.02);box-shadow:inset 10px 0 0 rgba(255,255,255,.04),0 0 0 1.5px #D4B98C,0 0 50px -10px rgba(212,185,140,.55),0 50px 80px -36px rgba(0,0,0,.7)}
+.booklet .crest{font-family:var(--deva);font-size:2.2rem;color:#D4B98C;line-height:1}
+.booklet .t1{font-size:.75rem;letter-spacing:.14em;color:#D4B98C;margin-top:10px;font-weight:600}
+.booklet .t2{font-size:1.55rem;font-weight:650;letter-spacing:-.03em;margin-top:4px}
+.booklet .who{margin-top:auto;display:grid;gap:4px}
+.booklet .who b{font-size:1.15rem;font-weight:600}
+.booklet .who span{font-size:.82rem;color:#A1A1A6}
+.booklet .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.booklet .mini div{background:rgba(255,255,255,.06);border-radius:12px;padding:10px;font-size:.7rem;color:#A1A1A6}
+.booklet .mini strong{display:block;font-size:1.15rem;color:#F5F5F7;font-weight:650;font-variant-numeric:tabular-nums}
+.stamp{position:absolute;right:18px;top:22px;width:92px;height:92px;border-radius:50%;border:2.5px double #C2604F;color:#E07A68;display:grid;place-items:center;text-align:center;font-size:.58rem;font-weight:700;letter-spacing:.06em;line-height:1.3;transform:rotate(-14deg);opacity:.92}
+.stamp.s2{left:auto;top:auto;bottom:150px;right:22px;width:78px;height:78px;border-color:#D4B98C;color:#D4B98C;transform:rotate(9deg)}
+.pmid{display:block;margin-top:22px}
+.plab{display:block;font-size:.68rem;letter-spacing:.1em;color:#A1A1A6;font-weight:600;margin-bottom:8px;text-transform:uppercase}
+.psq{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;max-width:210px}
+.psq i{aspect-ratio:1;border-radius:6px;opacity:.9}
+.psq i:nth-child(8){box-shadow:0 0 12px #FF7A66}
+.punits{display:flex;gap:6px}
+.punits i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:600;border:1px solid #3A3A3C;color:#A1A1A6}
+.punits i.d{background:#D4B98C;color:#121214;border-color:#D4B98C}
+.punits i.w{border-color:#FF7A66;color:#FF7A66}
+.open-hint{display:block;text-align:center;margin-top:18px;color:var(--muted);font-size:.9rem}
+.pp-points{display:grid;gap:18px;margin-top:28px}
+.pp-points div{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.pp-points i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--gold-soft);color:var(--gold);font-weight:700;font-size:.9rem}
+.pp-points b{font-weight:600}
+.pp-points p{color:var(--muted);font-size:.97rem;margin-top:2px}
 
+/* passport dialog */
+dialog{border:0;padding:0;border-radius:28px;width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--ink);box-shadow:0 40px 100px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(6px)}
+dialog[open]{animation:pop .45s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.d-id{background:linear-gradient(160deg,#2B2B2E,#121214);color:#F5F5F7;padding:26px clamp(20px,4vw,34px);position:relative;display:flex;gap:16px;align-items:center}
+.d-id .crest{width:54px;height:54px;border-radius:50%;background:#D4B98C;color:#121214;display:grid;place-items:center;font-family:var(--deva);font-size:1.7rem;flex:none}
+.d-id h3{font-size:1.5rem}
+.d-id p{font-size:.85rem;color:#A1A1A6}
+.d-id .stamp{top:14px;right:64px;width:76px;height:76px;font-size:.5rem}
+.x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#F5F5F7;font-size:1.2rem;cursor:pointer;transition:transform .2s var(--ease)}
+.x:hover{transform:scale(1.1)}
+.tabs{display:flex;gap:6px;padding:16px clamp(20px,4vw,34px) 0}
+.tab{font:500 .92rem var(--display);padding:.55em 1.1em;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;transition:transform .2s var(--ease)}
+.tab:hover{transform:scale(1.05)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.d-body{padding:20px clamp(20px,4vw,34px) 28px;overflow:auto}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sum div{background:var(--alt);border-radius:16px;padding:14px;font-size:.8rem;color:var(--muted)}
+.sum strong{display:block;font-size:1.6rem;color:var(--ink);font-weight:650;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:.92rem;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--rule)}
+.tbl th{font-size:.78rem;color:var(--muted);font-weight:500}
+.tbl td:last-child,.tbl th:last-child{text-align:right}
+.verify{margin-top:14px;font-size:.8rem;color:var(--muted);font-family:var(--mono)}
+.topics{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.topics span{font-size:.82rem;padding:.4em .8em;border-radius:999px;color:#1D1D1F}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--muted);margin-top:12px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.cal{margin-top:20px;padding:16px;border-radius:16px;background:var(--alt);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.cal strong{font-size:2rem;font-weight:650;letter-spacing:-.04em}
+.cal p{font-size:.9rem;color:var(--muted)}
+.next{margin-top:18px;display:grid;gap:8px}
+.next div{padding:12px 14px;border-radius:14px;border:1px solid var(--rule);font-size:.92rem}
+.next b{font-weight:600}
+.d-note{font-size:.8rem;color:var(--muted);margin-top:18px}
+@media (max-width:520px){.sum{grid-template-columns:1fr 1fr}.d-id .stamp{display:none}}
 
-        /* =============================================
-           BUTTONS (GLOBAL)
-        ============================================= */
-        .btn-primary {
-            background: var(--grad);
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 50px;            /* pill shape — more premium */
-            font-weight: 700;
-            font-size: 0.88rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 0 18px rgba(31,185,212,0.7),
-                0 0 40px rgba(138,55,204,0.45),
-                0 14px 30px rgba(31,185,212,0.35);
-            filter: brightness(1.1);
-        }
-        .btn-ghost {
-            background: transparent;
-            color: var(--gold-lt);
-            padding: 13px 30px;
-            border-radius: 50px;            /* pill shape */
-            font-weight: 600;
-            font-size: 0.88rem;
-            border: 1.5px solid rgba(245,197,66,0.5);
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
-        }
-        .btn-ghost:hover {
-            border-color: var(--gold-lt);
-            background: rgba(201,162,74,0.09);
-            color: var(--gold-lt);
-            box-shadow:
-                0 0 16px rgba(201,162,74,0.55),
-                0 0 32px rgba(201,162,74,0.25),
-                0 6px 20px rgba(0,0,0,0.4);
-            transform: translateY(-2px);
-        }
-        /* Nav CTA also gets enhanced glow */
-        .nav-cta:hover {
-            background: var(--gold);
-            color: #000 !important;
-            box-shadow:
-                0 0 16px rgba(201,162,74,0.7),
-                0 0 35px rgba(201,162,74,0.35);
-        }
+/* paperwork */
+.paper{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,72px);align-items:center}
+.paper > *{min-width:0}
+@media (max-width:860px){.paper{grid-template-columns:1fr}}
+.doc{background:var(--surface);border-radius:22px;padding:24px;box-shadow:var(--lift);display:grid;gap:18px;transition:transform .45s var(--ease)}
+.doc:hover{transform:rotate(-1deg) scale(1.02)}
+.doc .k4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.doc .k4 div{font-size:.78rem;color:var(--muted)}
+.doc .k4 strong{display:block;font-size:1.3rem;color:var(--ink);font-weight:600;letter-spacing:-.02em}
+.fw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fw span{font-size:.88rem;padding:.45em .95em;border-radius:999px;background:var(--surface);border:1px solid var(--rule);color:var(--ink-2);transition:transform .2s var(--ease),border-color .2s}
+.fw span:hover{transform:scale(1.07);border-color:var(--gold)}
 
+/* pilot */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px);margin-top:clamp(40px,6vw,64px);list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;min-width:0;border-top:1px solid var(--rule);padding-top:22px;transition:transform .35s var(--ease)}
+.steps li:hover{transform:translateY(-6px)}
+.steps li::before{content:counter(s);display:block;font-size:3.4rem;font-weight:650;letter-spacing:-.05em;line-height:1;color:var(--gold);margin-bottom:16px}
+.steps p{color:var(--muted);margin-top:8px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
 
-        /* =============================================
-           STATS BAR — glass strip
-        ============================================= */
-        #stats-bar {
-            background: rgba(6, 10, 20, 0.72);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            border-top: 1px solid rgba(31,185,212,0.15);
-            border-bottom: 1px solid rgba(138,55,204,0.15);
-            padding: 22px 6%;
-            position: relative;
-            z-index: 1;
-        }
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            max-width: 860px;
-            margin: 0 auto;
-            text-align: center;
-            gap: 10px;
-        }
-        .stat-val {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
-            color: var(--gold-lt);
-            display: block;
-            font-weight: 700;
-        }
-        .stat-lbl {
-            font-size: 0.68rem;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.42);
-        }
+/* call */
+.call{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,72px);align-items:center}
+.call > *{min-width:0}
+@media (max-width:860px){.call{grid-template-columns:1fr}}
+form{display:grid;gap:12px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.f2{grid-template-columns:1fr}}
+.field{display:grid;gap:6px}
+.field label{font-size:.82rem;color:var(--on-black-muted)}
+.field input,.field select{font:inherit;font-size:1rem;padding:.8em .95em;border-radius:14px;border:1px solid #3A3A3C;background:var(--black-card);color:var(--on-black);transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 22%,transparent)}
+form .btn{margin-top:6px;justify-self:start}
+.note{font-size:.9rem;color:var(--on-black-muted)}
+.ok{color:var(--mas-g)}
 
+footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--rule)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px}
+.flag{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;font-size:.72rem;font-weight:600;padding:.45em .85em;border-radius:999px;background:var(--ink);color:var(--bg)}
 
-        /* =============================================
-           SECTION SCAFFOLDING
-           Sections are now transparent. Content lives
-           inside .glass-panel / .glass-col cards that
-           blur + tint the warrior behind them.
-           Gaps between panels reveal the warrior.
-        ============================================= */
-        .wrap {
-            padding: 44px 6%;
-            background: transparent;
-            position: relative;
-            z-index: 1;
-        }
-        section {
-            position: relative;
-            z-index: 1;
-        }
-        #stats-bar, footer, #faq-wrap {
-            position: relative;
-            z-index: 1;
-        }
+.rv{transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.pre{opacity:0;transform:translateY(40px)}
+.rv-k > *{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv-k.pre > *{opacity:0;transform:translateY(30px)}
+.rv-k > *:nth-child(2){transition-delay:.08s}.rv-k > *:nth-child(3){transition-delay:.16s}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}.phone{opacity:1;transform:none}.rv.pre,.rv-k.pre > *{opacity:1;transform:none}}
 
-        /* ── Master glass panel ── */
-        .glass-panel {
-            background: rgba(6, 8, 18, 0.48);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 10%; right: 10%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            pointer-events: none;
-        }
-        /* Individual column glass card */
-        .glass-col {
-            background: rgba(6, 8, 18, 0.46);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 36px;
-        }
+/* Adhyay Live */
+.live-sec{overflow:hidden;background:var(--live)}
+:root{--live:#ECECEE}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--live:#0E0E10}}
+:root[data-theme="dark"]{--live:#0E0E10}
+.sb{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;transition:opacity .35s,transform .35s var(--ease)}
+.slide.swap .sb{opacity:0;transform:translateY(8px)}
+.sb .big{font-size:clamp(1.4rem,3.2vw,2.5rem);font-weight:650;letter-spacing:-.035em;line-height:1.08}
+.sb .small{font-size:clamp(.8rem,1.4vw,1rem);color:#6E6E73}
+.sb .qq{font-size:clamp(1rem,2.1vw,1.55rem);font-weight:650;letter-spacing:-.025em;line-height:1.2}
+.mx{display:grid;grid-template-columns:auto 1fr 1fr;gap:5px;font-size:clamp(.62rem,1.15vw,.82rem);max-width:440px}
+.mx .h{color:#6E6E73;display:grid;place-items:center;padding:2px}
+.mx .h.rowh{place-items:center end;padding-right:6px}
+.mx .c{border-radius:8px;padding:clamp(6px,1.2vw,12px) 8px;text-align:center;font-weight:600;transition:box-shadow .5s,transform .5s var(--ease)}
+.mx .tp,.mx .tn{background:#E3EFE7;color:#2F6B4E}
+.mx .fp,.mx .fn{background:#F6E1DC;color:#9A3F30}
+.mx .c small{display:block;font-weight:400;color:#6E6E73;font-size:.85em}
+.mx.hot .fp{box-shadow:0 0 0 2px #C2604F,0 0 24px rgba(194,96,79,.55);transform:scale(1.06)}
+.mx.hot .c:not(.fp){opacity:.45}
 
-        /* Dividers = warrior "windows" between panels */
-        .divider {
-            width: 100%;
-            height: 38px;
-            background: transparent;
-            position: relative;
-            z-index: 1;
-        }
-        .divider::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 12%; right: 12%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201,162,74,0.12), transparent);
-        }
-        .section-label {
-            font-size: 0.68rem;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 12px;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.9);
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.9rem, 4vw, 2.9rem);
-            color: var(--gold-lt);
-            line-height: 1.18;
-            margin-bottom: 14px;
-            text-shadow: 0 2px 16px rgba(0,0,0,0.85);
-        }
-        .section-body {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.92rem;
-            line-height: 1.85;
-            max-width: 600px;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.7);
-        }
-        /* Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.75s ease, transform 0.75s ease;
-        }
-        .reveal.in { opacity: 1; transform: translateY(0); }
-        .reveal-d1 { transition-delay: 0.1s; }
-        .reveal-d2 { transition-delay: 0.2s; }
-        .reveal-d3 { transition-delay: 0.3s; }
+.stage{position:relative;margin-top:clamp(40px,6vw,64px);display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,4vw,48px);align-items:center}
+.stage > *{min-width:0}
+@media (max-width:860px){.stage{grid-template-columns:1fr}}
+.proj{background:#0A0A0A;border-radius:22px;padding:12px;box-shadow:var(--lift);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.proj:hover{transform:scale(1.015);box-shadow:0 0 0 1.5px var(--gold),0 0 50px -10px color-mix(in srgb,var(--gold) 50%,transparent)}
+.slide{aspect-ratio:16/9;border-radius:12px;background:#FFFFFF;color:#1D1D1F;padding:clamp(18px,3vw,34px);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.slide .sn{font-size:.78rem;color:#6E6E73;display:flex;justify-content:space-between}
+.slide .st{font-size:clamp(1.3rem,3vw,2.3rem);font-weight:650;letter-spacing:-.035em;line-height:1.1;transition:opacity .35s,transform .35s var(--ease)}
+.slide.swap .st,.mph.swap .mt{opacity:0;transform:translateY(8px)}
+.poll{display:grid;gap:6px}
+.poll div{display:grid;grid-template-columns:7.5em 1fr 2.5em;gap:8px;align-items:center;font-size:.78rem;color:#424245;font-variant-numeric:tabular-nums}
+.poll b{height:10px;border-radius:5px;background:#E8E8ED;overflow:hidden;display:block}
+.poll i{display:block;height:100%;width:0;border-radius:5px;background:#1D1D1F;transition:width 1.4s var(--ease)}
+.poll div:nth-child(2) i{background:#B8955F}
+.phones{display:flex;justify-content:center;gap:14px}
+.mph{width:31%;max-width:118px;aspect-ratio:9/18.5;border-radius:22px;background:#0A0A0A;padding:6px;box-shadow:var(--lift);transition:transform .4s var(--ease)}
+.mph:nth-child(2){transform:translateY(-18px)}
+.mph:hover{transform:translateY(-24px) scale(1.04)}
+.mph .ms{height:100%;border-radius:17px;background:#FFF;color:#1D1D1F;padding:16px 8px 8px;display:flex;flex-direction:column;gap:6px;font-size:.58rem}
+.mph .mn{color:#6E6E73}
+.mph .mt{font-weight:650;font-size:.72rem;line-height:1.2;letter-spacing:-.02em;transition:opacity .35s,transform .35s var(--ease)}
+.mph .mb{margin-top:auto;display:grid;gap:4px}
+.mph .mb span{border:1px solid #D2D2D7;border-radius:8px;padding:4px 5px;transition:background .3s,color .3s}
+.mph .mb span.on{background:#1D1D1F;color:#FFF;border-color:#1D1D1F}
+.sync{position:absolute;left:58%;top:50%;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 var(--gold);animation:ping 3s var(--ease) infinite;pointer-events:none}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 70%,transparent)}70%{box-shadow:0 0 0 26px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (max-width:860px){.sync{display:none}}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,32px);margin-top:clamp(36px,5vw,56px);text-align:center}
+.three div{min-width:0}
+.three b{display:block;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:650;letter-spacing:-.04em;color:var(--gold)}
+.three span{color:var(--muted)}
+@media (max-width:640px){.three{grid-template-columns:1fr}}
 
+/* comparison */
+.cmp{margin-top:clamp(40px,6vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,20px);max-width:880px;margin-left:auto;margin-right:auto}
+.cmp > div{border-radius:28px;padding:clamp(22px,3vw,34px);min-width:0}
+.cmp .them{background:transparent;border:1px solid var(--rule)}
+.cmp .us{background:var(--surface);box-shadow:var(--lift);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.cmp .us:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 0 0 1.5px var(--gold),var(--lift)}
+.cmp h3{font-size:1.15rem;margin-bottom:14px}
+.cmp .us h3{color:var(--gold)}
+.cmp ul{list-style:none;margin:0;padding:0;display:grid}
+.cmp li{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--rule);align-items:baseline;transition:background .2s}
+.cmp li span{font-size:.8rem;color:var(--muted)}
+.cmp .them li b{font-weight:400;color:var(--muted)}
+.cmp .us li b{font-weight:600}
+.cmp .us li b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:1px}
+@media (max-width:640px){.cmp{grid-template-columns:1fr}}
 
-        /* =============================================
-           PROBLEM / SOLUTION
-        ============================================= */
-        .ps-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-        .check-list {
-            list-style: none;
-            margin-top: 24px;
-        }
-        .check-list li {
-            padding: 13px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: flex-start;
-            gap: 13px;
-            font-size: 0.92rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.5;
-        }
-        .check-list li .icon {
-            flex-shrink: 0;
-            margin-top: 2px;
-            font-size: 0.9rem;
-        }
-        .check-list.bad  li .icon { color: var(--red); }
-        .check-list.good li .icon { color: var(--cyan); }
-
-
-        /* =============================================
-           VALUE CARDS
-        ============================================= */
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 50px;
-        }
-        .value-card {
-            background: rgba(6, 8, 18, 0.50);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px;
-            padding: 36px 28px;
-            transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .value-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--grad);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .value-card:hover { transform: translateY(-7px); border-color: rgba(31,185,212,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(31,185,212,0.1); }
-        .value-card:hover::after { opacity: 1; }
-        .value-icon { font-size: 2.1rem; margin-bottom: 18px; }
-        .value-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            color: var(--gold-lt);
-            margin-bottom: 10px;
-        }
-        .value-card p {
-            font-size: 0.86rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.75;
-        }
-
-
-        /* =============================================
-           HOW IT WORKS
-        ============================================= */
-        #how { text-align: center; }
-        .step-card-glass {
-            background: rgba(6, 8, 18, 0.50);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 14px;
-            padding: 22px 20px;
-            margin-top: 8px;
-        }
-        .step-card-glass h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold-lt);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .step-card-glass p {
-            font-size: 0.84rem;
-            color: rgba(255,255,255,0.55);
-            line-height: 1.7;
-        }
-        .steps-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 55px;
-            position: relative;
-        }
-        .steps-row::before {
-            content: '';
-            position: absolute;
-            top: 36px; left: calc(50%/3 + 0px); right: calc(50%/3 + 0px);
-            height: 1px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple));
-            opacity: 0.4;
-        }
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 24px;
-        }
-        .step-num {
-            width: 72px; height: 72px;
-            border-radius: 50%;
-            background: var(--grad);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 22px;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 0 0 6px rgba(5,5,5,1);
-        }
-        .step h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold-lt);
-            font-size: 1.15rem;
-            margin-bottom: 10px;
-        }
-        .step p {
-            font-size: 0.84rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.75;
-        }
-
-
-        /* =============================================
-           CERTIFICATE SECTION
-        ============================================= */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .cert-frame {
-            position: relative;
-        }
-        .cert-frame img {
-            border-radius: 8px;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 0 1px var(--border-gold);
-        }
-        .cert-frame::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, rgba(201,162,74,0.3), transparent 50%, rgba(31,185,212,0.15));
-            z-index: -1;
-        }
-        .feat-list {
-            list-style: none;
-            margin-top: 22px;
-        }
-        .feat-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.65);
-        }
-        .feat-list li i { color: var(--cyan); width: 16px; font-size: 0.85rem; }
-        .cert-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
-
-
-        /* =============================================
-           EVENT CARD
-        ============================================= */
-        #event-preview { text-align: center; }
-        .event-card {
-            max-width: 680px;
-            margin: 42px auto 0;
-            background: rgba(6, 8, 18, 0.50);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border-gold);
-            border-radius: 14px;
-            padding: 42px;
-            position: relative;
-            overflow: hidden;
-        }
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--grad-gold);
-        }
-        .event-card::after {
-            content: '';
-            position: absolute;
-            bottom: -80px; right: -80px;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(201,162,74,0.07), transparent 70%);
-        }
-        .event-badge {
-            display: inline-block;
-            background: rgba(31,185,212,0.08);
-            border: 1px solid rgba(31,185,212,0.25);
-            color: var(--cyan);
-            font-size: 0.67rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 2px;
-            margin-bottom: 22px;
-        }
-        .event-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.85rem;
-            color: var(--gold-lt);
-            margin-bottom: 18px;
-        }
-        .event-meta {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-            margin-bottom: 26px;
-        }
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.55);
-        }
-        .meta-item i { color: var(--gold); }
-        .pricing {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 22px;
-        }
-        .price-tile {
-            background: rgba(201,162,74,0.05);
-            border: 1px solid var(--border-gold);
-            border-radius: 8px;
-            padding: 16px 30px;
-            text-align: center;
-        }
-        .price-amt {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.1rem;
-            color: var(--gold-lt);
-            display: block;
-        }
-        .price-lbl {
-            font-size: 0.72rem;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.38);
-        }
-        .slots-warn {
-            color: var(--red);
-            font-size: 0.82rem;
-            font-weight: 600;
-            margin-bottom: 22px;
-        }
-
-
-        /* =============================================
-           AUDIENCE CARDS
-        ============================================= */
-        #audience { background: transparent; }
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin-top: 42px;
-        }
-        .aud-card {
-            background: rgba(6, 8, 18, 0.50);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 26px;
-            display: flex;
-            gap: 18px;
-            align-items: flex-start;
-            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-        }
-        .aud-card:hover {
-            border-color: var(--border-gold);
-            box-shadow: 0 0 20px rgba(201,162,74,0.1);
-            transform: translateY(-3px);
-        }
-        .aud-icon { font-size: 1.9rem; flex-shrink: 0; }
-        .aud-card h4 { font-weight: 600; color: var(--gold-lt); font-size: 0.95rem; margin-bottom: 6px; }
-        .aud-card p { font-size: 0.82rem; color: rgba(255,255,255,0.48); line-height: 1.65; }
-
-
-        /* =============================================
-           SPONSOR SECTION
-        ============================================= */
-        #sponsors {
-            text-align: center;
-            background: transparent;
-        }
-        .sponsor-chips {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 28px 0;
-        }
-        .s-chip {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            padding: 9px 20px;
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
-            transition: all 0.3s;
-            cursor: default;
-        }
-        .s-chip:hover { border-color: var(--gold); color: var(--gold); }
-
-
-        /* =============================================
-           FAQ
-        ============================================= */
-        #faq-wrap { max-width: 800px; margin: 0 auto; padding: 44px 6%; background: transparent; }
-        .faq-item { border-bottom: 1px solid var(--border); }
-        .faq-q {
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-size: 0.93rem;
-            font-weight: 500;
-            transition: color 0.3s;
-            gap: 16px;
-        }
-        .faq-q:hover { color: var(--gold-lt); }
-        .faq-q i { flex-shrink: 0; font-size: 0.78rem; color: var(--gold); transition: transform 0.35s; }
-        .faq-a {
-            font-size: 0.87rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.85;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.45s ease, padding 0.3s;
-        }
-        .faq-item.open .faq-a { max-height: 220px; padding-bottom: 18px; }
-        .faq-item.open .faq-q i { transform: rotate(180deg); }
-
-
-        /* =============================================
-           FINAL CTA
-        ============================================= */
-        #final-cta {
-            text-align: center;
-            padding: 80px 6%;
-            position: relative;
-            overflow: hidden;
-            background: transparent;
-        }
-        #final-cta::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(138,55,204,0.1) 0%, transparent 65%);
-            pointer-events: none;
-        }
-        #final-cta .section-title { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
-        .gold-text {
-            background: var(--grad-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-
-        /* =============================================
-           FOOTER
-        ============================================= */
-        footer {
-            background: rgba(3, 3, 8, 0.96);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border-gold);
-            padding: 55px 6% 28px;
-            position: relative;
-            z-index: 1;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 44px;
-            margin-bottom: 44px;
-        }
-        .footer-brand-text {
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.35);
-            line-height: 1.85;
-            margin-top: 14px;
-        }
-        .footer-col h4 {
-            color: var(--gold);
-            font-size: 0.72rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; }
-        .footer-col a {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.83rem;
-            transition: color 0.3s;
-        }
-        .footer-col a:hover { color: var(--gold-lt); }
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.22); }
-        .social-row { display: flex; gap: 12px; }
-        .social-row a {
-            width: 34px; height: 34px;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.38);
-            font-size: 0.82rem;
-            transition: all 0.3s;
-        }
-        .social-row a:hover { border-color: var(--gold); color: var(--gold); }
-
-
-        /* =============================================
-           REGISTRATION MODAL
-        ============================================= */
-        .modal-bg {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.93);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            padding: 16px;
-        }
-        .modal-bg.on { opacity: 1; pointer-events: all; }
-        .modal-box {
-            background: #0c0c0e;
-            border: 1px solid var(--border-gold);
-            border-radius: 14px;
-            padding: 34px;
-            width: 100%;
-            max-width: 430px;
-            position: relative;
-            transform: translateY(18px);
-            transition: transform 0.35s ease;
-        }
-        .modal-bg.on .modal-box { transform: translateY(0); }
-        .modal-x {
-            position: absolute;
-            top: 14px; right: 16px;
-            background: none; border: none;
-            color: rgba(255,255,255,0.35);
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: color 0.2s;
-            font-family: inherit;
-        }
-        .modal-x:hover { color: #fff; }
-        .mprog-wrap {
-            height: 3px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 2px;
-            margin-bottom: 28px;
-        }
-        .mprog {
-            height: 100%;
-            background: var(--grad);
-            border-radius: 2px;
-            transition: width 0.4s ease;
-        }
-        .mstep { display: none; }
-        .mstep.on { display: block; }
-        .mstep h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold-lt);
-            font-size: 1.25rem;
-            margin-bottom: 5px;
-        }
-        .mstep .mhint {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.3);
-            margin-bottom: 22px;
-        }
-        .mfield {
-            width: 100%;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 7px;
-            padding: 13px 15px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.87rem;
-            outline: none;
-            transition: border-color 0.3s;
-            margin-bottom: 11px;
-            display: block;
-        }
-        .mfield:focus { border-color: rgba(31,185,212,0.35); }
-        .choices {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 9px;
-            margin-bottom: 10px;
-        }
-        .choices.full { grid-template-columns: 1fr; }
-        .choice {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 7px;
-            padding: 13px;
-            color: rgba(255,255,255,0.55);
-            font-size: 0.84rem;
-            cursor: pointer;
-            transition: all 0.25s;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            line-height: 1.5;
-        }
-        .choice:hover, .choice.sel {
-            border-color: var(--cyan);
-            color: var(--cyan);
-            background: rgba(31,185,212,0.06);
-        }
-        .mbtn {
-            width: 100%;
-            background: var(--grad);
-            color: #fff;
-            border: none;
-            border-radius: 7px;
-            padding: 14px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 8px;
-        }
-        .mbtn:hover { transform: translateY(-2px); box-shadow: 0 0 18px rgba(31,185,212,0.6), 0 8px 25px rgba(138,55,204,0.35); }
-        .mbtn:disabled { opacity: 0.6; cursor: default; transform: none; }
-        .msummary {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            padding: 16px;
-            font-size: 0.82rem;
-            line-height: 2.1;
-            margin-bottom: 14px;
-            color: rgba(255,255,255,0.65);
-        }
-        .msummary b { color: var(--gold-lt); }
-        .mfootnote {
-            font-size: 0.73rem;
-            color: rgba(255,255,255,0.28);
-            text-align: center;
-            line-height: 1.6;
-            margin-top: 10px;
-        }
-
-
-        /* =============================================
-           KEYFRAMES
-        ============================================= */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
-        @keyframes chevronBounce {
-            0%, 100% { transform: rotate(45deg) translate(0, 0); }
-            50%       { transform: rotate(45deg) translate(4px, 4px); }
-        }
-        @keyframes urgencyPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50%       { transform: scale(1.4); opacity: 0.6; }
-        }
-        @keyframes shimmer {
-            0%   { background-position: -200% center; }
-            100% { background-position:  200% center; }
-        }
-
-
-        /* =============================================
-           RESPONSIVE
-        ============================================= */
-        @media (max-width: 960px) {
-            .value-grid, .steps-row { grid-template-columns: 1fr; }
-            .steps-row::before { display: none; }
-            .ps-grid, .cert-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 700px) {
-            .audience-grid { grid-template-columns: 1fr; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); }
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .wrap { padding: 60px 5%; }
-            #faq-wrap { padding: 60px 5%; }
-        }
-        @media (max-width: 400px) {
-            .hero-title { font-size: 2.2rem; }
-            .pricing { flex-direction: column; align-items: center; }
-        }
-    </style>
+.qslide{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(10px,2vw,22px);align-items:center;height:100%}
+.qslide > *{min-width:0}
+.qart .scene{width:100%;height:auto;display:block;border-radius:12px}
+.qside2{display:grid;gap:10px}
+.qside2 .poll div{grid-template-columns:7em 1fr 2.4em;font-size:clamp(.62rem,1.1vw,.78rem)}
+.mini-art{display:block;margin-bottom:4px}
+.mini-art .scene{width:100%;height:auto;display:block;border-radius:8px}
+.scene{animation:none}
+.slide .scene text{font-family:var(--display)}
+</style>
 </head>
 <body>
 
-<!-- =============================================
-     NAVBAR
-============================================= -->
-<nav id="navbar">
-    <div class="nav-logo">
-        <a href="index.html">
-            <img src="assets/image/arenax_navbar.png" alt="ArenaX"
-                 onerror="this.style.display='none'; this.nextSibling.style.display='block'">
-            <span class="logo-text" style="display:none;">ARENAX</span>
-        </a>
+<header>
+  <div class="in nav">
+    <a class="mark" href="#top"><i>अ</i>AI Adhyay</a>
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#reports">Reports</a></li>
+      <li><a href="#passport">Passport</a></li>
+      <li><a href="#pilot">Pilot</a></li>
+    </ul>
+    <a class="btn solid" href="#call">Book a call</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero dark">
+    <div class="in grid">
+      <div>
+        <h1>AI courses, built from <em>your</em> syllabus.</h1>
+        <p class="sub">Ready-to-teach lessons for your teachers. A clear picture of every student.</p>
+        <div class="ctas">
+          <a class="btn solid" href="#call">Book a call</a>
+          <a class="btn line" href="#how">See how it works</a>
+        </div>
+        <div class="proof"><span><b>Universities</b>, colleges and schools</span><span>Alignment document for <b>NEP · AICTE · NMC · CBSE</b></span><span><b>Any phone</b>, no app</span></div>
+      </div>
+      <div class="phone" aria-label="Try one question the way a student does">
+        <span class="hint">Try it, the way a student does</span>
+        <div class="screen" id="screen"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="in center">
+      <h2>Your course. Your teachers. Your students' world.</h2>
+      <p class="sub">We build to what your Board of Studies already approved.</p>
+    </div>
+    <div class="in trio rv-k">
+      <div class="tile"><span class="cap">Your syllabus</span><h3><b>Built on</b> what your board approved.</h3><p>Same units, credits and exam pattern. We map to your outcomes, line by line.</p></div>
+      <div class="tile"><span class="cap">Your teachers</span><h3><b>One</b> teacher's guide for every lesson.</h3><p>Your faculty teach, mentor and grade. We do the preparation.</p></div>
+      <div class="tile"><span class="cap">Your students</span><h3><b>One</b> syllabus, an edition per department.</h3><p>Every example comes from the student's own field.</p></div>
     </div>
 
-    <div class="nav-links">
-        <a href="#value"   class="nav-link">What is ArenaX</a>
-        <a href="#how"     class="nav-link">How It Works</a>
-        <a href="events.html"       class="nav-link">Events</a>
-        <a href="sponsorship.html"  class="nav-link">Sponsors</a>
-        <a href="#" class="nav-cta" onclick="openReg(); return false;">Register Now</a>
+    <div class="in editions rv">
+      <div class="ed-head"><h3>Same lesson. An edition for each department.</h3><p>The outcome stays fixed. The example, the lab and the class question change.</p></div>
+      <div class="chips" role="tablist" aria-label="Department">
+        <button class="chip" role="tab" aria-selected="true" data-d="0">Engineering</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="1">Medicine</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="2">Nursing</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="3">Pharmacy</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="4">Management</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="5">Hotel management</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="6">Agriculture</button>
+        <button class="chip" role="tab" aria-selected="false" data-d="7">School · Class 9</button>
+      </div>
+      <article class="lesson" id="lesson" aria-live="polite">
+        <div class="l-top"><span><b>Lesson 3</b> · Classification</span><span id="edName">Engineering edition</span><span class="bar" id="edBar"></span></div>
+        <div class="l-body">
+          <h4 id="edT"></h4>
+          <dl class="slots">
+            <div><dt>Example</dt><dd id="edEx"></dd></div>
+            <div><dt>Lab</dt><dd id="edLab"></dd></div>
+            <div><dt>Ask the class</dt><dd id="edAsk"></dd></div>
+          </dl>
+          <p class="same">Same in every edition: CO2, apply a classifier to labelled data and read its mistakes (Bloom level: Apply).</p>
+        </div>
+      </article>
     </div>
+  </section>
 
-    <div class="hamburger" onclick="document.getElementById('mMenu').classList.add('open')"
-         aria-label="Open menu">
-        <span></span><span></span><span></span>
+
+  <section id="live" class="live-sec">
+    <div class="in center">
+      <h2>Adhyay Live.</h2>
+      <p class="sub">The teacher's slide, on every phone in the room.</p>
     </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mMenu">
-    <button class="mobile-menu-close" onclick="document.getElementById('mMenu').classList.remove('open')">&times;</button>
-    <a href="#value"  onclick="document.getElementById('mMenu').classList.remove('open')">What is ArenaX</a>
-    <a href="#how"    onclick="document.getElementById('mMenu').classList.remove('open')">How It Works</a>
-    <a href="events.html">Events</a>
-    <a href="sponsorship.html">Sponsorship</a>
-    <a href="#" onclick="openReg(); document.getElementById('mMenu').classList.remove('open'); return false;" 
-       class="nav-cta">Register Now</a>
-</div>
-
-
-<!-- =============================================
-     HERO
-============================================= -->
-<section id="hero">
-    <div id="hero-bg"></div>
-
-    <div class="hero-content">
-        <!-- Compact glass card — warriors fully visible on both sides -->
-        <div class="hero-glass">
-            <p class="hero-eyebrow">ArenaX Badminton Event #1 🏸</p>
-            <h1 class="hero-event-title">Step Into The Arena.<br>Get Ranked. Be Recognized.</h1>
-            <p class="hero-dotrow">&bull;&nbsp; Dehradun &nbsp;&bull;&nbsp; May 2026 &nbsp;&bull;</p>
-            <div class="hero-divider"></div>
-            <div class="hero-pillrow">
-                <span>🌟 Skill Assessment</span>
-                <span>🌟 Ranking</span>
-                <span>🌟 Recognition</span>
-            </div>
-        </div>
-
-        <!-- Urgency signal -->
-        <div class="hero-urgency">
-            <span class="urgency-dot"></span>
-            Only 20 slots per category — filling fast
-        </div>
-
-        <!-- CTAs -->
-        <div class="hero-cta-area">
-            <a href="#" class="btn-primary" onclick="openReg(); return false;">
-                Claim Your ArenaX Rank
-            </a>
-            <a href="#value" class="btn-ghost" style="font-size:0.78rem; padding:9px 22px;">
-                Know More
-            </a>
-        </div>
-
-        <p class="hero-proof">🏆 Step into the arena. Compete. Get Ranked.</p>
-        <p class="hero-proof-sub">Benchmarked against players of similar level, age &amp; category.</p>
+    <div class="in stage rv">
+      <div class="proj"><div class="slide" id="slide"><div class="sn"><span>Lesson 5 · When a model is wrong</span><span id="sNo">1 / 4</span></div><div class="sb" id="sB"></div></div></div>
+      <span class="sync" aria-hidden="true"></span>
+      <div class="phones" aria-hidden="true">
+        <div class="mph"><div class="ms"><span class="mn">Slide <span class="pn">1</span></span><span class="mt"></span><span class="mb"></span></div></div>
+        <div class="mph"><div class="ms"><span class="mn">Slide <span class="pn">1</span></span><span class="mt"></span><span class="mb"></span></div></div>
+        <div class="mph"><div class="ms"><span class="mn">Slide <span class="pn">1</span></span><span class="mt"></span><span class="mb"></span></div></div>
+      </div>
     </div>
-
-    <div class="scroll-down">
-        <span>Scroll</span>
-        <div class="scroll-chevron"></div>
+    <div class="in three rv-k">
+      <div><b>In sync</b><span>Follows the teacher, slide by slide</span></div>
+      <div><b>Live questions</b><span>Answered on phones, results on the teacher's screen</span></div>
+      <div><b>Whole class</b><span>Every phone in the room, no app to install</span></div>
     </div>
-</section>
-
-
-<!-- =============================================
-     STATS BAR
-============================================= -->
-<div id="stats-bar">
-    <div class="stats-row">
-        <div>
-            <span class="stat-val" style="color:var(--red);">20</span>
-            <span class="stat-lbl">Slots Per Category</span>
-        </div>
-        <div>
-            <span class="stat-val">₹499</span>
-            <span class="stat-lbl">Singles Entry</span>
-        </div>
-        <div>
-            <span class="stat-val">100%</span>
-            <span class="stat-lbl">Get a Certificate</span>
-        </div>
-        <div>
-            <span class="stat-val">1 Day</span>
-            <span class="stat-lbl">Full Event</span>
-        </div>
+  </section>
+  <section id="reports" class="dark">
+    <div class="in center">
+      <h2>A mark shows who passed. This shows who needs you.</h2>
+      <p class="sub">Every answer carries a quick “how sure are you?”. Right or wrong, sure or unsure: four kinds of student.</p>
     </div>
-</div>
-
-
-<!-- =============================================
-     PROBLEM / SOLUTION
-============================================= -->
-<div class="wrap">
-    <div class="ps-grid reveal">
-
-        <div class="glass-col">
-            <p class="section-label">The Problem</p>
-            <h2 class="section-title">You play every week.<br>But are you improving?</h2>
-            <p class="section-body">
-                Most badminton players never know their real skill level.
-                Tournaments only tell you win or loss — not what you're
-                good at, or why you keep losing to certain players.
-            </p>
-            <ul class="check-list bad">
-                <li><span class="icon">✗</span> No idea where you rank among peers at your level</li>
-                <li><span class="icon">✗</span> No structured feedback on your game</li>
-                <li><span class="icon">✗</span> Winning doesn't always mean you're getting better</li>
-                <li><span class="icon">✗</span> No verifiable record of your performance</li>
-            </ul>
+    <div class="in qwrap rv">
+      <div>
+        <div class="quad" id="quad" aria-label="A sample class of 40 after Unit 3">
+          <div class="qc l wro" data-k="wro"><div class="lb">Confidently wrong</div><div class="ds">wrong and sure</div><div class="ct" data-n="7">7</div></div>
+          <div class="qc r mas" data-k="mas"><div class="lb">Mastered</div><div class="ds">right and sure</div><div class="ct" data-n="18">18</div></div>
+          <div class="qc l not" data-k="not"><div class="lb">Not yet learnt</div><div class="ds">wrong and unsure</div><div class="ct" data-n="7">7</div></div>
+          <div class="qc r uns" data-k="uns"><div class="lb">Unsure</div><div class="ds">right and unsure</div><div class="ct" data-n="8">8</div></div>
         </div>
-
-        <div class="glass-col">
-            <p class="section-label" style="color:var(--cyan)">The ArenaX Fix</p>
-            <h2 class="section-title">Your game,<br>officially measured.</h2>
-            <p class="section-body">
-                ArenaX is a performance-ranked assessment program that gives
-                every player a real, verified picture of their game — strengths,
-                weaknesses, archetype, and official rank.
-            </p>
-            <ul class="check-list good">
-                <li><span class="icon">✓</span> Official ArenaX rank with real performance data</li>
-                <li><span class="icon">✓</span> Detailed strengths &amp; weaknesses breakdown</li>
-                <li><span class="icon">✓</span> Your playing archetype — identified and named</li>
-                <li><span class="icon">✓</span> Verified certificate you can share anywhere</li>
-            </ul>
-        </div>
-
+        <div class="axis"><span>← Wrong</span><span>Sample class of 40 · after Unit 3</span><span>Right →</span></div>
+      </div>
+      <div class="qside" id="qside">
+        <h3 id="qsT">7 students are sure, and wrong.</h3>
+        <p id="qsP">A mark puts them with everyone who failed. They are different: they will not ask for help, because they think they know.</p>
+        <div class="act"><b>What the teacher does</b><span id="qsA">Talk to these 7 first. One conversation now saves a wrong habit later.</span></div>
+      </div>
     </div>
-</div>
+  </section>
 
-<div class="divider"></div>
-
-
-<!-- =============================================
-     VALUE PROPS — individual cards float on transparent bg
-============================================= -->
-<section id="value" class="wrap">
-
-    <div style="text-align:center; max-width:580px; margin:0 auto 36px;">
-        <p class="section-label">What You Get</p>
-        <h2 class="section-title" style="text-shadow: 0 2px 20px rgba(0,0,0,0.8);">More than a tournament.<br>A complete assessment.</h2>
+  <section class="alt">
+    <div class="in center">
+      <h2>Clear analysis. Quick action.</h2>
+      <p class="sub">After every quiz the teacher gets three decisions, not a spreadsheet.</p>
     </div>
-
-    <div class="value-grid">
-        <div class="value-card reveal reveal-d1">
-            <div class="value-icon">🏆</div>
-            <h3>Official Ranking</h3>
-            <p>Your performance compared against players of the same level, age, and category — not a random pool. Know exactly where you stand.</p>
+    <div class="in rv">
+      <div class="frame">
+        <div class="f-top"><b>Unit 3 report · AI for Health Sciences</b><span>B.Sc. Nursing · Sem 2 · 2 sections · 80 students · sample</span></div>
+        <div class="ins">
+          <div class="card">
+            <p class="what">Topic to re-teach</p>
+            <div class="viz"><div class="v-big">16<small> of 40</small></div></div>
+            <div><h3>Patient privacy</h3><p>16 students in Section A answered wrong, and were sure.</p></div>
+            <span class="do">Re-teach Lesson 9 this week</span>
+          </div>
+          <div class="card">
+            <p class="what">Students who need the same help</p>
+            <div class="viz"><div class="dots" id="dots" aria-hidden="true"></div></div>
+            <div><h3>7 students, same 3 gaps</h3><p>Bias, privacy and when not to use AI. The same seven, every time.</p></div>
+            <span class="do">One extra session for the group</span>
+          </div>
+          <div class="card">
+            <p class="what">Section comparison</p>
+            <div class="viz"><div class="pair"><div>Section A<b><i style="width:58%"></i></b>58%</div><div>Section B<b><i style="width:76%"></i></b>76%</div></div></div>
+            <div><h3>Section B is a unit ahead</h3><p>Mastered topics, Unit 3. B's teacher used the case cards.</p></div>
+            <span class="do">Share B's case cards with A</span>
+          </div>
         </div>
-        <div class="value-card reveal reveal-d2">
-            <div class="value-icon">📊</div>
-            <h3>Performance Report</h3>
-            <p>A detailed scorecard with your playing archetype, top strengths, key weaknesses, and measurable performance metrics across multiple matches.</p>
-        </div>
-        <div class="value-card reveal reveal-d3">
-            <div class="value-icon">📜</div>
-            <h3>Verified Certificate</h3>
-            <p>An official ArenaX Performance Certificate with a unique verifiable ID. Shareable on LinkedIn, Instagram, CVs, and college applications.</p>
-        </div>
+      </div>
     </div>
+  </section>
 
-</section>
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     HOW IT WORKS — individual step cards, no wrapper
-============================================= -->
-<section id="how" class="wrap" style="text-align:center;">
-
-    <p class="section-label" style="text-shadow:0 2px 10px rgba(0,0,0,0.9);">The Process</p>
-    <h2 class="section-title" style="text-shadow:0 2px 20px rgba(0,0,0,0.8); margin-bottom:40px;">How ArenaX Works</h2>
-
-    <div class="steps-row reveal">
-        <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-card-glass">
-                <h3>Register</h3>
-                <p>Secure your slot in under 2 minutes. Choose Singles or Doubles. Only 20 players per category — no on-spot entries.</p>
-            </div>
+  <section id="passport" class="pp-sec">
+    <div class="in grid2">
+      <div class="rv">
+        <h2>A passport for every student.</h2>
+        <p class="sub">Not a mark sheet. A record of what the student knows, signed by the teacher.</p>
+        <div class="pp-points">
+          <div><i>1</i><div><b>Scorecard</b><p>Every quiz of the term, the running total and where the student stands in the class.</p></div></div>
+          <div><i>2</i><div><b>Feedback</b><p>Topic by topic: mastered, unsure, confidently wrong, not yet learnt. And what to do next.</p></div></div>
+          <div><i>3</i><div><b>Stamped by the teacher</b><p>The course teacher checks and signs it. Never used to rank.</p></div></div>
         </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-card-glass">
-                <h3>Compete</h3>
-                <p>Play multiple structured matches. Assessors track your technique, decision-making, consistency, and court craft — not just scores.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-card-glass">
-                <h3>Get Ranked</h3>
-                <p>Receive your official ArenaX rank, full performance report, and shareable certificate within 48 hours of the event.</p>
-            </div>
-        </div>
+      </div>
+      <div class="rv">
+        <button class="booklet" id="openPP" type="button" aria-haspopup="dialog" aria-label="Open the sample student passport">
+          <span class="crest">अ</span>
+          <span class="t1">LEARNING PASSPORT</span>
+          <span class="t2">AI for Health Sciences</span>
+          <span class="stamp">CHECKED<br>COURSE<br>TEACHER<br>14 APR</span>
+          <span class="stamp s2">UNIT 3<br>CLEARED</span>
+          <span class="pmid">
+            <span class="plab">12 topics</span>
+            <span class="psq"><i style="background:#6FCF97"></i><i style="background:#6FCF97"></i><i style="background:#6FCF97"></i><i style="background:#F2C46D"></i><i style="background:#6FCF97"></i><i style="background:#F2C46D"></i><i style="background:#A1A1A6"></i><i style="background:#FF7A66"></i><i style="background:#F2C46D"></i><i style="background:#A1A1A6"></i><i style="background:#6FCF97"></i><i style="background:#F2C46D"></i></span>
+            <span class="plab" style="margin-top:14px">Units</span>
+            <span class="punits"><i class="d">1</i><i class="d">2</i><i class="d">3</i><i class="w">4</i><i>5</i></span>
+          </span>
+          <span class="who"><b>Riya Sharma</b><span>B.Sc. Nursing · Sem 2 · Section A · sample</span></span>
+          <span class="mini"><span><strong>78%</strong>Score</span><span><strong>72nd</strong>Percentile</span><span><strong>81%</strong>Self-aware</span></span>
+        </button>
+        <span class="open-hint">Tap the passport to open it</span>
+      </div>
     </div>
+  </section>
 
-</section>
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     CERTIFICATE SECTION
-============================================= -->
-<div class="wrap">
-    <div class="cert-grid reveal">
-
-        <div class="cert-frame">
-            <img src="assets/image/ArenaX_Certificate_v3.pdf"
-                 alt="ArenaX Performance Certificate Sample"
-                 onerror="this.src='assets/image/ArenaX_Sample_Badminton_Certificate.png'; this.onerror=null;">
-        </div>
-
-        <div class="glass-col">
-            <p class="section-label">Your Certificate</p>
-            <h2 class="section-title">A performance record<br>worth having.</h2>
-            <p class="section-body">
-                Every ArenaX participant gets an official Performance Certificate —
-                not a participation token. It contains real assessed data about your game.
-            </p>
-            <ul class="feat-list">
-                <li><i class="fa-solid fa-check"></i> Overall rank among all participants</li>
-                <li><i class="fa-solid fa-check"></i> Skill category — Beginner / Intermediate / Advanced</li>
-                <li><i class="fa-solid fa-check"></i> Performance band — Top 25%, Top 50%, etc.</li>
-                <li><i class="fa-solid fa-check"></i> Unique Certificate ID for online verification</li>
-                <li><i class="fa-solid fa-check"></i> Shareable on LinkedIn, Instagram, CVs</li>
-            </ul>
-            <div class="cert-actions">
-                <a href="#" class="btn-primary" onclick="openReg(); return false;">Register Now</a>
-                <a href="certificate-validation.html" class="btn-ghost">Verify a Certificate</a>
-            </div>
-        </div>
-
+  <section class="alt">
+    <div class="in paper">
+      <div class="rv">
+        <h2>Ready for your committee.</h2>
+        <p class="sub">Credits, outcomes and framework mapping, delivered with the course.</p>
+        <div class="fw"><span>NEP / UGC</span><span>AICTE</span><span>NMC</span><span>NBA</span><span>CBSE</span></div>
+      </div>
+      <div class="doc rv">
+        <div class="k4"><div>Category<strong>VAC</strong></div><div>Credits<strong>2</strong></div><div>L-T-P<strong>2-0-0</strong></div><div>Hours<strong>30</strong></div></div>
+        <div style="font-size:.9rem;color:var(--muted)">CO1–CO5 with Bloom levels · CO–PO matrix on your own programme outcomes · marks split from your ordinance</div>
+      </div>
     </div>
-</div>
+  </section>
 
-<div class="divider"></div>
-
-
-<!-- =============================================
-     EVENT PREVIEW — title and content all inside glass card
-============================================= -->
-<section id="event-preview" class="wrap">
-
-    <div class="event-card reveal">
-        <!-- Title now INSIDE the glass card -->
-        <p class="section-label" style="text-align:center; margin-bottom:8px;">Upcoming Event</p>
-        <h2 class="section-title" style="text-align:center; font-size:clamp(1.6rem,3.5vw,2.2rem); margin-bottom:18px;">
-            Event #1 — Badminton
-        </h2>
-
-        <span class="event-badge">🟢 Registration Open</span>
-        <h3 class="event-name">ArenaX Badminton Skill Challenge</h3>
-
-        <div class="event-meta">
-            <div class="meta-item"><i class="fa-solid fa-location-dot"></i> Dehradun, Uttarakhand</div>
-            <div class="meta-item"><i class="fa-solid fa-calendar"></i> May 2026</div>
-            <div class="meta-item"><i class="fa-solid fa-clock"></i> Full Day Event</div>
-        </div>
-
-        <div class="pricing">
-            <div class="price-tile">
-                <span class="price-amt">₹499</span>
-                <span class="price-lbl">Singles</span>
-            </div>
-            <div class="price-tile">
-                <span class="price-amt">₹999</span>
-                <span class="price-lbl">Doubles (per pair)</span>
-            </div>
-        </div>
-
-        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:22px;">
-            <span class="urgency-dot" style="background:var(--red);"></span>
-            <p class="slots-warn" style="margin:0;">Only 20 players per category — slots filling fast</p>
-        </div>
-
-        <a href="#" class="btn-primary" onclick="openReg(); return false;">
-            Claim Your ArenaX Rank →
-        </a>
-
-        <p style="margin-top:14px; font-size:0.75rem; color:rgba(255,255,255,0.28);">
-            Payment link sent via WhatsApp after registration. No on-spot entries.
-        </p>
+  <section>
+    <div class="in center">
+      <h2>Why it is different.</h2>
     </div>
-
-</section>
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     AUDIENCE
-============================================= -->
-<section id="audience" class="wrap">
-
-    <div style="max-width:580px;">
-        <p class="section-label">For You If</p>
-        <h2 class="section-title">Who Should Play ArenaX</h2>
+    <div class="in cmp rv-k">
+      <div class="them"><h3>A typical online AI course</h3><ul><li><span>Syllabus</span><b>Theirs</b></li><li><span>Teacher</span><b>Replaced by video</b></li><li><span>Discipline</span><b>One for all</b></li><li><span>Assessment</span><b>Right or wrong</b></li><li><span>Committee</span><b>Your problem</b></li><li><span>Devices</span><b>Laptop and Wi-Fi</b></li></ul></div>
+      <div class="us"><h3>AI Adhyay</h3><ul><li><span>Syllabus</span><b>Yours</b></li><li><span>Teacher</span><b>Leads the class</b></li><li><span>Discipline</span><b>An edition per department</b></li><li><span>Assessment</span><b>Right, wrong, and how sure</b></li><li><span>Committee</span><b>Paperwork delivered</b></li><li><span>Devices</span><b>Any phone</b></li></ul></div>
     </div>
+  </section>
 
-    <div class="audience-grid">
-        <div class="aud-card reveal reveal-d1">
-            <div class="aud-icon">🎯</div>
-            <div>
-                <h4>The Self-Aware Player</h4>
-                <p>You think you're better than most at your club. Prove it with an official rank — or discover exactly what's holding you back.</p>
-            </div>
-        </div>
-        <div class="aud-card reveal reveal-d2">
-            <div class="aud-icon">📈</div>
-            <div>
-                <h4>The Stuck Player</h4>
-                <p>Playing for years but feel stuck at the same level? ArenaX tells you precisely why — and gives you a roadmap to improve.</p>
-            </div>
-        </div>
-        <div class="aud-card reveal reveal-d1">
-            <div class="aud-icon">🎓</div>
-            <div>
-                <h4>Students &amp; College Players</h4>
-                <p>Build a verifiable sports profile. A ranked ArenaX certificate looks great on college applications, LinkedIn, and sports CVs.</p>
-            </div>
-        </div>
-        <div class="aud-card reveal reveal-d2">
-            <div class="aud-icon">🏅</div>
-            <div>
-                <h4>Competitive Aspirants</h4>
-                <p>Aiming for district or state level? Get a structured baseline assessment first. Know your exact starting point before scaling up.</p>
-            </div>
-        </div>
+  <section id="pilot" class="alt">
+    <div class="in center">
+      <h2>Start with one department.</h2>
+      <p class="sub">One batch, one term. A clear result to judge us by.</p>
     </div>
+    <ol class="in steps rv-k">
+      <li><h3>Send your syllabus</h3><p>We return the committee document.</p></li>
+      <li><h3>We build the kit</h3><p>Lessons, labs, quizzes and teacher guides.</p></li>
+      <li><h3>Your teachers run it</h3><p>You see the class report and every passport.</p></li>
+    </ol>
+  </section>
 
-</section>
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     SPONSOR SECTION
-============================================= -->
-<section id="sponsors" class="wrap">
-<div class="glass-panel" style="text-align:center;">
-
-    <p class="section-label">Partner With ArenaX</p>
-    <h2 class="section-title">Sponsor the Arena</h2>
-    <p class="section-body" style="margin: 12px auto; text-align:center; max-width:520px;">
-        We're building India's most credible skill-ranked sports platform.
-        Join us as a Title Sponsor, Equipment Partner, or Associate Brand.
-    </p>
-
-    <div class="sponsor-chips">
-        <div class="s-chip">🏸 Sports &amp; Fitness Brands</div>
-        <div class="s-chip">🎓 Universities &amp; Colleges</div>
-        <div class="s-chip">🏫 Schools &amp; Sports Academies</div>
-        <div class="s-chip">⚡ Energy &amp; Lifestyle Brands</div>
-        <div class="s-chip">🏢 Local &amp; Regional Businesses</div>
+  <section id="call" class="dark">
+    <div class="in call">
+      <div>
+        <h2>Let's talk about your course.</h2>
+        <p class="sub">Tell us about your course. We will show you how it would look, built from your syllabus.</p>
+      </div>
+      <form id="callForm" novalidate>
+        <div class="f2">
+          <div class="field"><label for="f1">Your name</label><input id="f1" required autocomplete="name"></div>
+          <div class="field"><label for="f2">Role</label><input id="f2" placeholder="Dean, HoD, Principal"></div>
+        </div>
+        <div class="field"><label for="f3">Institution</label><input id="f3" required autocomplete="organization"></div>
+        <div class="f2">
+          <div class="field"><label for="f4">Email</label><input id="f4" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="f5">Type</label><select id="f5"><option>University</option><option>College</option><option>School</option></select></div>
+        </div>
+        <button class="btn solid" type="submit">Request a call</button>
+        <p class="note" id="formNote">Or write to contactarenax@gmail.com</p>
+      </form>
     </div>
+  </section>
 
-    <div style="margin-top:10px;">
-        <a href="sponsorship.html" class="btn-ghost">Explore Sponsorship Opportunities →</a>
+</main>
+
+<dialog id="pp" aria-labelledby="ppName">
+  <div class="d-id">
+    <div class="crest">अ</div>
+    <div><p>Learning passport · AI for Health Sciences · Even term</p><h3 id="ppName">Riya Sharma</h3><p>B.Sc. Nursing · Semester 2 · Section A · Passport AA-27-0412</p></div>
+    <span class="stamp">CHECKED<br>COURSE<br>TEACHER<br>14 APR</span>
+    <button class="x" id="ppClose" type="button" aria-label="Close passport">×</button>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="score">Scorecard</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="feed">Feedback</button>
+  </div>
+  <div class="d-body">
+    <div id="t-score">
+      <div class="sum"><div><strong>78%</strong>Continuous assessment</div><div><strong>72nd</strong>Class percentile</div><div><strong>B+</strong>Grade so far</div></div>
+      <table class="tbl">
+        <thead><tr><th>Quiz</th><th>Date</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td>Unit 1 · What AI can and cannot do</td><td>12 Jan</td><td>9 / 10</td></tr>
+          <tr><td>Unit 2 · How AI makes predictions</td><td>2 Feb</td><td>7 / 10</td></tr>
+          <tr><td>Unit 3 · AI in patient care</td><td>23 Feb</td><td>8 / 10</td></tr>
+          <tr><td>Unit 4 · Privacy and consent</td><td>16 Mar</td><td>5 / 10</td></tr>
+          <tr><td>Unit 5 · Bias and fairness</td><td>6 Apr</td><td>8 / 10</td></tr>
+          <tr><td>Lab record</td><td>Term</td><td>27 / 30</td></tr>
+        </tbody>
+      </table>
     </div>
-
-</div>
-</section>
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     FAQ
-============================================= -->
-<div id="faq-wrap">
-<div class="glass-panel">
-
-    <div style="text-align:center; margin-bottom:38px;">
-        <p class="section-label">Got Questions?</p>
-        <h2 class="section-title">Frequently Asked</h2>
+    <div id="t-feed" hidden>
+      <p style="font-weight:600">What Riya knows, topic by topic</p>
+      <div class="topics" id="topics"></div>
+      <div class="legend"><span><i style="background:var(--mas)"></i>Mastered</span><span><i style="background:var(--uns)"></i>Unsure</span><span><i style="background:var(--wro)"></i>Confidently wrong</span><span><i style="background:var(--not)"></i>Not yet learnt</span></div>
+      <div class="cal"><strong>81%</strong><p>Knows what she knows: her confidence matched her answer 81% of the time, up from 52% in Unit 1.</p></div>
+      <div class="next">
+        <div><b>Revisit</b> Patient privacy: Lesson 9, the consent examples, then a 5-question check.</div>
+        <div><b>Practise</b> Spotting bias: 10 questions with feedback after each answer.</div>
+        <div><b>Discuss</b> When not to use AI: one case card in the next class.</div>
+      </div>
     </div>
+    <p class="d-note">Shared with the student and her teacher. Not used to rank students. All names and figures are samples.</p>
+  </div>
+</dialog>
 
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            How many matches will I play?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            Every participant plays multiple matches. ArenaX uses a structured format
-            that ensures enough performance data for a meaningful assessment — not a
-            single-match elimination format.
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            Is this a regular knockout tournament?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            No. ArenaX combines match play with performance evaluation. The goal is
-            skill assessment and official ranking, not elimination. Everyone gets
-            ranked regardless of win/loss record.
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            Does everyone get a certificate?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            Yes — every participant receives a performance-based certificate containing
-            their official rank, skill category, and performance band. This is NOT a
-            participation certificate. It contains real, assessed data.
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            Is ArenaX for beginners?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            ArenaX is designed for developing and competitive players who want
-            structured feedback on their game. Participants are matched with others
-            of similar level and age, so assessments are meaningful.
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            How does payment work?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            Register via the form to hold your slot — registration itself is free.
-            A payment link will be sent to your WhatsApp number within 24 hours.
-            Your slot is only confirmed upon payment. No on-spot registrations.
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            Is Mixed Doubles available?
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-a">
-            Based on registrations, ArenaX may introduce additional pairing formats
-            including Mixed Doubles. Confirmed category details will be shared before
-            the event.
-        </div>
-    </div>
-
-    <div style="text-align:center; margin-top:32px;">
-        <a href="registration-faq.html" class="btn-ghost">View All FAQs →</a>
-    </div>
-
-</div><!-- /glass-panel -->
-</div><!-- /faq-wrap -->
-
-<div class="divider"></div>
-
-
-<!-- =============================================
-     FINAL CTA
-============================================= -->
-<section id="final-cta">
-<div class="wrap">
-<div class="glass-panel" style="text-align:center; max-width:700px; margin:0 auto;">
-    <p class="section-label">Limited Slots</p>
-    <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.2rem);">
-        Ready to Find Your<br>
-        <span class="gold-text">True Rank?</span>
-    </h2>
-    <p class="section-body" style="margin: 16px auto 32px; text-align:center;">
-        20 slots per category. No on-spot entries.<br>
-        Secure your place in the first ArenaX Badminton Skill Challenge.
-    </p>
-    <a href="#" class="btn-primary" onclick="openReg(); return false;"
-       style="font-size:1rem; padding:16px 44px;">
-        Claim Your ArenaX Rank →
-    </a>
-    <p class="mfootnote" style="margin-top:16px;">
-        Free to register. Payment link sent via WhatsApp within 24 hours.
-    </p>
-</div>
-</div>
-</section>
-
-
-<!-- =============================================
-     FOOTER
-============================================= -->
 <footer>
-    <div class="footer-grid">
-        <div>
-            <img src="assets/image/arenax_navbar.png" alt="ArenaX" style="height:34px;"
-                 onerror="this.style.display='none'; this.nextSibling.style.display='block'">
-            <span style="display:none; font-family:'Playfair Display',serif; color:var(--gold); font-size:1.2rem; letter-spacing:2px;">ARENAX</span>
-            <p class="footer-brand-text">
-                ArenaX Sports Events is building India's first verified, skill-ranked
-                sports assessment platform. We run structured performance evaluation
-                events that give athletes a real, meaningful rank — not just a trophy.
-            </p>
-        </div>
-        <div class="footer-col">
-            <h4>Navigate</h4>
-            <ul>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="sponsorship.html">Sponsorship</a></li>
-                <li><a href="registration-faq.html">FAQs</a></li>
-                <li><a href="certificate-validation.html">Verify Certificate</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact</h4>
-            <ul>
-                <li><a href="#">Dehradun, Uttarakhand, India</a></li>
-                <li><a href="mailto:contact@arenax.in">contact@arenax.in</a></li>
-                <li><a href="https://arenax.in">arenax.in</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p class="footer-copy">© 2026 ArenaX Sports Events. All rights reserved.</p>
-        <div class="social-row">
-            <a href="https://instagram.com/arenax.in" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://youtube.com/@arenax" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-    </div>
+  <div class="in foot">
+    <span>A product of ArenaX Digital Solutions · Udyam-registered MSME (UDYAM-HR-19-0056959) · Haryana</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · © 2026 ArenaX Digital Solutions</span>
+  </div>
 </footer>
 
-
-<!-- =============================================
-     REGISTRATION MODAL
-============================================= -->
-<div class="modal-bg" id="regModal">
-    <div class="modal-box">
-        <button class="modal-x" onclick="closeReg()" aria-label="Close">&times;</button>
-
-        <div class="mprog-wrap">
-            <div class="mprog" id="mProg" style="width:20%"></div>
-        </div>
-
-        <!-- Step 1: Identity -->
-        <div class="mstep on" id="ms1">
-            <h3>Join the Arena</h3>
-            <p class="mhint">Step 1 of 5 · Your basic details</p>
-            <input type="text"  id="mName"  class="mfield" placeholder="Full Name *">
-            <input type="tel"   id="mPhone" class="mfield" placeholder="WhatsApp Number — 10 digits, no +91 *" maxlength="10">
-            <input type="email" id="mEmail" class="mfield" placeholder="Email Address (optional)">
-            <button class="mbtn" onclick="mGo1()">Continue →</button>
-        </div>
-
-        <!-- Step 2: Level -->
-        <div class="mstep" id="ms2">
-            <h3>Your Current Level</h3>
-            <p class="mhint">Step 2 of 5 · Be honest — you'll be matched accordingly</p>
-            <div class="choices">
-                <button class="choice" onclick="mLevel('Beginner', this)">🌱 Beginner<br><small>Still learning basics</small></button>
-                <button class="choice" onclick="mLevel('Intermediate', this)">⚡ Intermediate<br><small>Playing regularly</small></button>
-            </div>
-            <div class="choices full">
-                <button class="choice" onclick="mLevel('Advanced', this)">🏆 Advanced — Competitive player</button>
-            </div>
-        </div>
-
-        <!-- Step 3: Event -->
-        <div class="mstep" id="ms3">
-            <h3>Event Type</h3>
-            <p class="mhint">Step 3 of 5 · Singles or Doubles?</p>
-            <div class="choices">
-                <button class="choice" onclick="mEvent('Singles', this)">🏸 Singles<br><small>₹499</small></button>
-                <button class="choice" onclick="mEvent('Doubles', this)">👥 Doubles<br><small>₹999 per pair</small></button>
-            </div>
-            <input type="text" id="mPartner" class="mfield"
-                   placeholder="Partner's Full Name (Doubles only)"
-                   style="display:none; margin-top:8px;">
-            <button class="mbtn" id="mEventNext" style="display:none;" onclick="mGo3()">Continue →</button>
-        </div>
-
-        <!-- Step 4: Style -->
-        <div class="mstep" id="ms4">
-            <h3>Your Playing Style</h3>
-            <p class="mhint">Step 4 of 5 · How do you naturally play?</p>
-            <div class="choices">
-                <button class="choice" onclick="mStyle('Aggressive', this)">🔥 Aggressive<br><small>Attack-first game</small></button>
-                <button class="choice" onclick="mStyle('Defensive', this)">🛡 Defensive<br><small>Counter &amp; retrieve</small></button>
-            </div>
-            <div class="choices full">
-                <button class="choice" onclick="mStyle('Balanced', this)">⚖ Balanced Controller — Mix of both</button>
-            </div>
-        </div>
-
-        <!-- Step 5: Confirm -->
-        <div class="mstep" id="ms5">
-            <h3>Ready to Rank?</h3>
-            <p class="mhint">Step 5 of 5 · Confirm your details</p>
-            <div class="msummary" id="mSum"></div>
-            <p class="mfootnote" style="margin-bottom:12px;">
-                A payment link will be sent to your WhatsApp within 24 hours.<br>
-                Your slot is tentatively held until payment.
-            </p>
-            <button class="mbtn" id="mSubmit" onclick="mSubmitFn(this)">
-                Confirm &amp; Secure My Slot 🏸
-            </button>
-        </div>
-
-    </div>
-</div>
-
-
-<!-- =============================================
-     JAVASCRIPT
-============================================= -->
 <script>
-    /* ---------- NAVBAR SCROLL + HERO PARALLAX ----------
-       The hero-bg is position:fixed so it naturally stays.
-       We add a gentle scale-in as user scrolls to give
-       a cinematic zoom effect before sections cover it.
-    --------------------------------------------------- */
-    const navbar = document.getElementById('navbar');
-    const heroBg = document.getElementById('hero-bg');
-    let ticking = false;
+(function(){
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const sy = window.scrollY;
-                // Navbar
-                navbar.classList.toggle('scrolled', sy > 50);
-                // Subtle zoom: starts at scale(1), reaches ~scale(1.08) by vh
-                if (heroBg) {
-                    const vhRatio = Math.min(sy / window.innerHeight, 1);
-                    const scale  = 1 + vhRatio * 0.08;   // max 8% zoom
-                    heroBg.style.transform = `scale(${scale})`;
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
+  // ---- phone quiz ----
+  const scr=$('#screen'); const KINDS={
+    mas:['Mastered','#4C8C6A','Right, and you knew it.'],
+    uns:['Unsure','#C79A45','Right, but not sure. One more example locks it in.'],
+    wro:['Confidently wrong','#C2604F','Wrong and sure. A mark would hide this. Your teacher sees it.'],
+    not:['Not yet learnt','#8E8E93','Wrong, and you sensed it. The lesson has not landed yet.']};
+  function ask(){
+    scr.innerHTML=`<div class="qhead"><span>Lesson 4 · Quick check</span><span>1 / 1</span></div>
+      <p class="qtext">A model trained in one hospital is used in another. Its accuracy will most likely…</p>
+      <div style="display:grid;gap:8px">
+        <button class="qopt" data-i="0" aria-pressed="false">Stay the same</button>
+        <button class="qopt" data-i="1" aria-pressed="false">Drop</button>
+        <button class="qopt" data-i="2" aria-pressed="false">Rise</button></div>
+      <p class="qlabel">How sure are you?</p>
+      <div class="conf"><button data-c="0" aria-pressed="false">Just guessing</button><button data-c="1" aria-pressed="false">Fairly sure</button><button data-c="2" aria-pressed="false">Very sure</button></div>
+      <button class="qgo" disabled>Submit</button><p class="copy">© 2026 ArenaX Digital Solutions · AI Adhyay</p>`;
+    let a=null,c=null; const go=scr.querySelector('.qgo');
+    const sel=(grp,b,k)=>{scr.querySelectorAll(grp).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');if(k==='a')a=+b.dataset.i;else c=+b.dataset.c;go.disabled=(a===null||c===null)};
+    scr.querySelectorAll('.qopt').forEach(b=>b.onclick=()=>sel('.qopt',b,'a'));
+    scr.querySelectorAll('.conf button').forEach(b=>b.onclick=()=>sel('.conf button',b,'c'));
+    go.onclick=()=>{const right=a===1,sure=c>0;const[k,col,line]=KINDS[right?(sure?'mas':'uns'):(sure?'wro':'not')];
+      scr.innerHTML=`<div class="qres"><div class="orb" style="background:${col};box-shadow:0 0 30px ${col}"></div>
+        <div class="kind">${k}</div><p class="kindline">${right?'':'The answer is “Drop”: new scanners and patients differ from the training data. '}${line}</p>
+        <button class="again">Try again</button><p class="copy" style="margin-top:auto">© 2026 ArenaX Digital Solutions · AI Adhyay</p></div>`;
+      scr.querySelector('.again').onclick=ask;};
+  }
+  ask();
 
-    /* ---------- SCROLL REVEAL ---------- */
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // ---- editions ----
+  const E=[
+    ['Engineering edition','Will this bearing fail this month?','Vibration readings from factory motors, labelled healthy or failing, predict which pumps need service before they stop.','Train a classifier on 2,000 sensor readings and find the failures it missed.','Which mistake costs more on a factory floor: a false alarm or a missed failure?'],
+    ['Medicine edition','Does this X-ray need a radiologist today?','Chest X-rays labelled normal or abnormal sort the morning queue by urgency.','Read a triage model’s confusion matrix and count the abnormal scans it missed.','Who answers for a missed finding: the model, the vendor or the doctor who signed?'],
+    ['Nursing edition','Is this patient getting worse?','Ward vitals labelled stable or deteriorating raise an early warning for the night nurse.','Tune an early-warning model and watch the alarm count change with the threshold.','How many false alarms a night will a ward accept before it ignores them?'],
+    ['Pharmacy edition','Is this prescription risky?','Prescriptions labelled safe or interaction-risk flag combinations for the pharmacist.','Find the risky drug pairs a classifier calls safe.','If the model flags too often, pharmacists stop reading. What do you tune?'],
+    ['Management edition','Should this loan be checked by hand?','Past applications labelled repaid or defaulted flag new ones for a credit officer.','Train a classifier, then compare its approval rate for two applicant groups.','Is a model that is accurate overall but unfair to one group acceptable to a bank?'],
+    ['Hotel management edition','Is this guest review a complaint?','Reviews labelled praise or complaint route each new one to front office or housekeeping.','Label 200 reviews, train a classifier and check which complaints slipped through.','Would you let the model reply to a guest, or only sort the reviews?'],
+    ['Agriculture edition','Is this wheat leaf diseased?','Phone photos labelled healthy or rust-infected show a farmer where to spray.','Test a leaf classifier on photos taken in shade and in sunlight; compare its errors.','What happens if the model was trained only on another state’s crop?'],
+    ['School edition · Class 9','Is this message spam?','Messages labelled spam or genuine teach a filter what to block.','Sort 30 messages by hand, then train a simple filter and see what it gets wrong.','Should a filter ever delete a message without asking you?']];
+  const chips=$$('.chip'), les=$('#lesson'), bar=$('#edBar'); let ei=0,tour=!RM,tt,started=false;
+  const show=(i,anim)=>{const d=E[i];const f=()=>{$('#edName').textContent=d[0];$('#edT').textContent=d[1];$('#edEx').textContent=d[2];$('#edLab').textContent=d[3];$('#edAsk').textContent=d[4];les.classList.remove('swap')};
+    chips.forEach((c,j)=>c.setAttribute('aria-selected',String(i===j)));if(anim&&!RM){les.classList.add('swap');setTimeout(f,260)}else f()};
+  const step=()=>{if(!tour)return;bar.classList.remove('run');void bar.offsetWidth;bar.classList.add('run');tt=setTimeout(()=>{ei=(ei+1)%E.length;show(ei,true);step()},4500)};
+  chips.forEach((c,i)=>c.onclick=()=>{tour=false;clearTimeout(tt);bar.classList.remove('run');ei=i;show(i,true)});
+  show(0,false);
 
-    /* ---------- FAQ ---------- */
-    function toggleFaq(el) {
-        el.parentElement.classList.toggle('open');
-    }
 
-    /* ---------- MODAL STATE ---------- */
-    const D = {};   // collected form data
-    let curStep = 1;
+  // ---- Adhyay Live: slide + phones in sync ----
+  const MX=hot=>`<div class="mx${hot?' hot':''}"><span></span><span class="h">Test: yes</span><span class="h">Test: no</span>
+      <span class="h rowh">Truth: yes</span><span class="c tp">True positive<small>caught</small></span><span class="c fn">False negative<small>missed</small></span>
+      <span class="h rowh">Truth: no</span><span class="c fp">False positive<small>false alarm</small></span><span class="c tn">True negative<small>cleared</small></span></div>`;
+  const SCENE=`<svg class="scene" viewBox="0 0 240 170" role="img" aria-label="A doctor holding a positive test tells a male patient he is pregnant">
+<rect x="0" y="0" width="240" height="170" rx="14" fill="#F5F5F7"/>
+<rect x="0" y="138" width="240" height="32" rx="0" fill="#ECECEE"/>
+<g>
+<rect x="34" y="78" width="54" height="70" rx="16" fill="#FFFFFF" stroke="#D2D2D7" stroke-width="2"/>
+<path d="M50 80 L61 104 L72 80" fill="none" stroke="#D2D2D7" stroke-width="2"/>
+<path d="M52 84 C46 104 50 116 61 116 C72 116 76 104 70 84" fill="none" stroke="#1D1D1F" stroke-width="2.4"/>
+<circle cx="61" cy="118" r="4" fill="#1D1D1F"/>
+<circle cx="61" cy="58" r="17" fill="#E9C2A0"/>
+<path d="M44 54 C46 38 76 38 78 54 C72 46 52 46 44 54Z" fill="#3A3A3C"/>
+<circle cx="55" cy="58" r="1.8" fill="#1D1D1F"/><circle cx="67" cy="58" r="1.8" fill="#1D1D1F"/>
+<path d="M56 66 Q61 70 66 66" fill="none" stroke="#1D1D1F" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="84" y="96" width="20" height="30" rx="3" fill="#FFFFFF" stroke="#1D1D1F" stroke-width="1.6"/>
+<rect x="88" y="102" width="12" height="5" rx="1" fill="#C2604F"/>
+<text x="94" y="120" text-anchor="middle" font-family="Geist,Arial,sans-serif" font-size="9" font-weight="700" fill="#C2604F">+</text>
+</g>
+<g>
+<rect x="152" y="80" width="56" height="68" rx="16" fill="#6E7F99"/>
+<circle cx="180" cy="58" r="17" fill="#D9A77F"/>
+<path d="M163 54 C163 40 197 40 197 54 L195 50 C188 44 172 44 165 50Z" fill="#2C2C2E"/>
+<path d="M166 62 C168 76 192 76 194 62 C190 70 170 70 166 62Z" fill="#2C2C2E"/>
+<circle cx="174" cy="57" r="1.8" fill="#1D1D1F"/><circle cx="186" cy="57" r="1.8" fill="#1D1D1F"/>
+<ellipse cx="180" cy="66" rx="3" ry="3.6" fill="#1D1D1F"/>
+<text x="212" y="44" font-family="Geist,Arial,sans-serif" font-size="20" font-weight="700" fill="#C79A45">?</text>
+<text x="180" y="122" text-anchor="middle" font-family="Geist,Arial,sans-serif" font-size="16" fill="#FFFFFF">♂</text>
+</g>
+<g>
+<rect x="74" y="10" width="112" height="30" rx="15" fill="#1D1D1F"/>
+<path d="M86 38 L80 50 L96 39Z" fill="#1D1D1F"/>
+<text x="130" y="30" text-anchor="middle" font-family="Geist,Arial,sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">“You're pregnant!”</text>
+</g>
+</svg>`;
+  const POLL=`<div class="qslide"><div class="qart">${SCENE}</div><div class="qside2"><div class="qq">A doctor tells a man, “You are pregnant.” This is a…</div>
+      <div class="poll" id="poll"><div>False positive<b><i></i></b><span>78%</span></div><div>False negative<b><i></i></b><span>15%</span></div><div>True negative<b><i></i></b><span>7%</span></div></div></div></div>`;
+  const SL=[
+    {b:'<div class="big">When a test is wrong, how is it wrong?</div><div class="small">Two kinds of mistake. One of them costs more.</div>',p:'When a test is wrong, how is it wrong?',o:null},
+    {b:'<div class="small">Every yes/no test has four outcomes</div>'+MX(false),p:'Four outcomes: look at the board',o:null},
+    {b:POLL,p:'A doctor tells a man, “You are pregnant.” This is a…',o:['False positive','False negative','True negative'],poll:[78,15,7]},
+    {b:'<div class="small">The test said yes. The truth is no.</div>'+MX(true),p:'False positive: the test said yes, the truth is no.',o:null}];
+  const slide=$('#slide'),mphs=$$('.mph'); let si=0; const picks=[0,0,1];
+  const paint=()=>{const S=SL[si];$('#sB').innerHTML=S.b;$('#sNo').textContent=(si+1)+' / '+SL.length;
+    if(S.poll){setTimeout(()=>{const bars=$$('#poll i');bars.forEach((b,j)=>b.style.width=S.poll[j]+'%')},350)}
+    mphs.forEach((m,j)=>{m.querySelector('.pn').textContent=si+1;m.querySelector('.mt').innerHTML=(S.poll?'<span class="mini-art">'+SCENE+'</span>':'')+S.p.replace(/</g,'&lt;');
+      m.querySelector('.mb').innerHTML=S.o?S.o.map((o,x)=>`<span class="${x===picks[j]?'on':''}">${o}</span>`).join(''):'';});
+    slide.classList.remove('swap');mphs.forEach(m=>m.classList.remove('swap'))};
+  paint();
+  if(!RM)setInterval(()=>{slide.classList.add('swap');mphs.forEach(m=>m.classList.add('swap'));setTimeout(()=>{si=(si+1)%SL.length;paint()},300)},4200);
 
-    function openReg() {
-        curStep = 1;
-        Object.keys(D).forEach(k => delete D[k]);
-        document.querySelectorAll('.mstep').forEach(s => s.classList.remove('on'));
-        document.getElementById('ms1').classList.add('on');
-        document.getElementById('mProg').style.width = '20%';
-        // reset choices
-        document.querySelectorAll('.choice').forEach(b => b.classList.remove('sel'));
-        document.getElementById('mPartner').style.display = 'none';
-        document.getElementById('mEventNext').style.display = 'none';
-        document.getElementById('regModal').classList.add('on');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeReg() {
-        document.getElementById('regModal').classList.remove('on');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('regModal').addEventListener('click', function(e) {
-        if (e.target === this) closeReg();
-    });
+  // ---- quadrant dots + focus ----
+  const quad=$('#quad'); let s=11; const rnd=()=>{s=(s*9301+49297)%233280;return s/233280};
+  const box={wro:[4,46,8,46],mas:[54,96,8,46],not:[4,46,54,92],uns:[54,96,54,92]}; const cnt={mas:18,uns:8,wro:7,not:7};
+  Object.entries(cnt).forEach(([k,n])=>{const[x0,x1,y0,y1]=box[k];for(let i=0;i<n;i++){const d=document.createElement('span');d.className='qd '+k;d.dataset.k=k;
+    d.style.left=(x0+8+rnd()*(x1-x0-16))+'%';d.style.top=(y0+14+rnd()*(y1-y0-22))+'%';if(!RM)d.style.animationDelay=(rnd()*2.4)+'s';quad.appendChild(d)}});
+  const Q={
+    wro:['7 students are sure, and wrong.','A mark puts them with everyone who failed. They are different: they will not ask for help, because they think they know.','Talk to these 7 first. One conversation now saves a wrong habit later.'],
+    mas:['18 students have it, and know they have it.','Right answers, held with confidence. The lesson has landed.','Move them ahead, or pair them with someone who is unsure.'],
+    uns:['8 students got it right, but are not sure.','A mark counts them as passed. Next week they may not be.','One more worked example and a short check locks it in.'],
+    not:['7 students have not learnt it yet, and they know it.','Wrong and unsure. They will ask, if someone gives them the chance.','Give them the lesson again, slower, with the case card.']};
+  const setQ=k=>{$('#qsT').textContent=Q[k][0];$('#qsP').textContent=Q[k][1];$('#qsA').textContent=Q[k][2];
+    quad.classList.add('focus');quad.querySelectorAll('.qc,.qd').forEach(e=>e.classList.toggle('on',e.dataset.k===k))};
+  quad.querySelectorAll('.qc').forEach(c=>{c.addEventListener('mouseenter',()=>setQ(c.dataset.k));c.addEventListener('click',()=>setQ(c.dataset.k))});
+  quad.addEventListener('mouseleave',()=>{quad.classList.remove('focus');setQ('wro');quad.classList.remove('focus')});
 
-    function goTo(n) {
-        document.querySelectorAll('.mstep').forEach(s => s.classList.remove('on'));
-        document.getElementById('ms' + n).classList.add('on');
-        document.getElementById('mProg').style.width = (n * 20) + '%';
-        curStep = n;
-    }
+  // ---- 7 of 40 dots ----
+  const dots=$('#dots'); const pick=[3,9,14,21,26,30,37];
+  for(let i=0;i<40;i++){const sp=document.createElement('span');if(pick.includes(i))sp.className='on';dots.appendChild(sp)}
 
-    /* Step 1 validation */
-    function mGo1() {
-        D.name  = document.getElementById('mName').value.trim();
-        D.phone = document.getElementById('mPhone').value.trim();
-        D.email = document.getElementById('mEmail').value.trim();
-        if (!D.name)              { shake('mName');  return; }
-        if (!/^[0-9]{10}$/.test(D.phone)) { shake('mPhone'); alert('Enter a valid 10-digit WhatsApp number (no +91 or spaces).'); return; }
-        goTo(2);
-    }
+  // ---- passport dialog ----
+  const dlg=$('#pp');
+  const T=[['What AI can and cannot do','mas'],['How AI makes predictions','mas'],['Writing a clear request','mas'],['Checking facts and sources','uns'],['AI in patient records','mas'],['AI in medical images','uns'],['Spotting bias','not'],['Patient privacy','wro'],['Consent and copyright','uns'],['When not to use AI','not'],['Asking for the right format','mas'],['Designing a checked workflow','uns']];
+  const colr={mas:'color-mix(in srgb,var(--mas) 30%,#fff)',uns:'color-mix(in srgb,var(--uns) 35%,#fff)',wro:'color-mix(in srgb,var(--wro) 35%,#fff)',not:'color-mix(in srgb,var(--not) 30%,#fff)'};
+  $('#topics').innerHTML=T.map(([t,k])=>`<span style="background:${colr[k]}">${t}</span>`).join('');
+  $('#openPP').onclick=()=>{if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')};
+  $('#ppClose').onclick=()=>dlg.close?dlg.close():dlg.removeAttribute('open');
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+  $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));$('#t-score').hidden=b.dataset.t!=='score';$('#t-feed').hidden=b.dataset.t!=='feed'});
 
-    /* Step 2: level */
-    function mLevel(val, btn) {
-        D.level = val;
-        document.querySelectorAll('#ms2 .choice').forEach(b => b.classList.remove('sel'));
-        btn.classList.add('sel');
-        setTimeout(() => goTo(3), 280);
-    }
+  // ---- reveal + count-up ----
+  if('IntersectionObserver' in window && !RM){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.remove('pre');io.unobserve(t);
+      if(t.classList.contains('qwrap'))t.querySelectorAll('.ct').forEach(n=>{const to=+n.dataset.n;let v=0;n.textContent='0';const iv=setInterval(()=>{v++;n.textContent=v;if(v>=to)clearInterval(iv)},55)});
+      if(t.classList.contains('editions')&&!started){started=true;step()}
+    }),{threshold:.2});
+    $$('.rv,.rv-k').forEach(t=>{if(t.getBoundingClientRect().top>innerHeight)t.classList.add('pre');io.observe(t)});
+  }
 
-    /* Step 3: event */
-    function mEvent(val, btn) {
-        D.event = val;
-        document.querySelectorAll('#ms3 .choice').forEach(b => b.classList.remove('sel'));
-        btn.classList.add('sel');
-        if (val === 'Doubles') {
-            document.getElementById('mPartner').style.display = 'block';
-            document.getElementById('mEventNext').style.display = 'block';
-        } else {
-            document.getElementById('mPartner').style.display = 'none';
-            document.getElementById('mEventNext').style.display = 'none';
-            setTimeout(() => goTo(4), 280);
-        }
-    }
-    function mGo3() {
-        D.partner = document.getElementById('mPartner').value.trim();
-        goTo(4);
-    }
-
-    /* Step 4: style */
-    function mStyle(val, btn) {
-        D.style = val;
-        document.querySelectorAll('#ms4 .choice').forEach(b => b.classList.remove('sel'));
-        btn.classList.add('sel');
-        // build summary
-        document.getElementById('mSum').innerHTML = `
-            <b>Name:</b> ${D.name}<br>
-            <b>WhatsApp:</b> ${D.phone}<br>
-            ${D.email ? '<b>Email:</b> ' + D.email + '<br>' : ''}
-            <b>Level:</b> ${D.level}<br>
-            <b>Event:</b> ${D.event}${D.partner ? ' (Partner: ' + D.partner + ')' : ''}<br>
-            <b>Style:</b> ${val}
-        `;
-        D.style = val;
-        setTimeout(() => goTo(5), 280);
-    }
-
-    /* Step 5: submit */
-    function mSubmitFn(btn) {
-        btn.textContent = 'Securing your slot…';
-        btn.disabled = true;
-        D.source = 'Homepage';
-        D.timestamp = new Date().toISOString();
-
-        fetch('https://script.google.com/macros/s/AKfycbwpEBc38_usv92n0B8nyGUmcoD8elZAg_mBAiA--WsT0NXuiZpPf3P44pCDJh6w1Uy5QA/exec', {
-            method: 'POST',
-            body: JSON.stringify(D)
-        })
-        .then(r => r.json())
-        .then(res => {
-            if (res.status === 'duplicate') {
-                document.getElementById('mSum').innerHTML = `
-                    <b style="color:var(--red)">Already Registered</b><br>
-                    <span>This WhatsApp number is already in our system.<br>
-                    We'll contact you shortly.</span>`;
-                btn.textContent = 'Close';
-                btn.disabled = false;
-                btn.onclick = closeReg;
-                return;
-            }
-            const id = res.playerID || res.id || 'AX-BAD-2026-PENDING';
-            document.getElementById('mSum').innerHTML = `
-                <b style="color:var(--cyan)">🎉 Slot Secured!</b><br>
-                Your ArenaX ID: <b style="color:var(--gold-lt)">${id}</b><br>
-                <span style="font-size:0.78rem;color:rgba(255,255,255,0.45);">
-                    Payment link arriving on WhatsApp within 24 hours.</span>`;
-            btn.textContent = '✓ Done';
-            btn.disabled = false;
-            btn.onclick = closeReg;
-        })
-        .catch(err => {
-            console.error(err);
-            // Fallback: still show success-ish (don't lose the lead)
-            document.getElementById('mSum').innerHTML = `
-                <b style="color:var(--cyan)">Registration Received!</b><br>
-                <span style="font-size:0.78rem;color:rgba(255,255,255,0.45);">
-                    We'll reach out on WhatsApp: ${D.phone}</span>`;
-            btn.textContent = '✓ Done';
-            btn.disabled = false;
-            btn.onclick = closeReg;
-        });
-    }
-
-    /* Shake animation for validation */
-    function shake(id) {
-        const el = document.getElementById(id);
-        el.style.borderColor = 'var(--red)';
-        el.style.animation = 'none';
-        setTimeout(() => { el.style.animation = ''; el.style.borderColor = ''; }, 600);
-    }
+  // ---- form: opens the visitor's email app with the details filled in ----
+  $('#callForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target;const note=$('#formNote');
+    if(!f.checkValidity()){note.textContent='Please fill your name, institution and a valid email.';note.className='note';return}
+    const v=id=>$(id).value.trim();
+    const body='Name: '+v('#f1')+'\nRole: '+v('#f2')+'\nInstitution: '+v('#f3')+'\nEmail: '+v('#f4')+'\nType: '+v('#f5')+'\n\nI would like to book a call about AI Adhyay.';
+    location.href='mailto:contactarenax@gmail.com?subject='+encodeURIComponent('AI Adhyay: book a call ('+v('#f3')+')')+'&body='+encodeURIComponent(body);
+    note.textContent='Your email app should open with these details. If it does not, please write to contactarenax@gmail.com.';note.className='note ok'});
+})();
 </script>
-
 </body>
 </html>
