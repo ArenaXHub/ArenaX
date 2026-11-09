@@ -155,7 +155,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .qwrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,48px);align-items:center;margin-top:clamp(40px,6vw,64px)}
 .qwrap > *{min-width:0}
 @media (max-width:880px){.qwrap{grid-template-columns:1fr}}
-.tgrid{display:grid;grid-template-columns:5.2em repeat(5,1fr);gap:6px;font-size:.82rem}
+.tgrid{display:grid;grid-template-columns:5.2em repeat(5,minmax(0,1fr));gap:6px;font-size:.82rem;min-width:0}
+@media (max-width:520px){.tgrid{grid-template-columns:3.9em repeat(5,minmax(0,1fr));gap:4px;font-size:.7rem}.tgrid .th{font-size:.62rem}.tgrid .th .lf{display:none}.tgrid .th .sf{display:inline}.tgrid .tc{aspect-ratio:1.25;border-radius:6px}}
+.tgrid .sf{display:none}
 .tgrid .th{color:var(--on-black-muted);text-align:center;font-size:.76rem;line-height:1.2;padding-bottom:4px;cursor:pointer;transition:color .3s}
 .tgrid .sn{color:var(--on-black);display:flex;align-items:center;cursor:pointer}
 .tgrid .tc{aspect-ratio:1.7;border-radius:8px;background:var(--black-card);display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;color:rgba(0,0,0,0);transition:background .5s,color .5s,opacity .35s}
@@ -782,10 +784,10 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
 
   // ---- topic grid + focus ----
   const tg=$('#tgrid');
-  const TOP=['AI basics','Predictions','Model errors','Privacy','Bias'];
+  const TOP=['AI basics','Predictions','Model errors','Privacy','Bias'],TOPS=['Basics','Predict','Errors','Privacy','Bias'];
   const STU=[['Riya',[92,85,70,55,78]],['Aarav',[80,62,48,30,40]],['Simran',[88,75,66,42,58]],['Rohit',[74,70,52,35,61]],['Priya',[95,90,84,72,80]],['Mohit',[60,55,40,38,45]],['Kavya',[90,82,76,68,70]],['Karan',[58,44,36,28,33]]];
   const lvl=v=>v>=75?'g':v>=50?'a':'r';
-  tg.innerHTML='<span></span>'+TOP.map((t,c)=>`<span class="th" data-c="${c}">${t}</span>`).join('')+
+  tg.innerHTML='<span></span>'+TOP.map((t,c)=>`<span class="th" data-c="${c}"><span class="lf">${t}</span><span class="sf">${TOPS[c]}</span></span>`).join('')+
     STU.map(([n,v],r)=>`<span class="sn" data-r="${r}">${n}</span>`+v.map((x,c)=>`<span class="tc" data-r="${r}" data-c="${c}" data-v="${x}">${x}</span>`).join('')).join('')+
     '<span class="sn" style="color:var(--on-black-muted)">Class</span>'+TOP.map((_,c)=>`<span class="av">${Math.round(STU.reduce((a,s)=>a+s[1][c],0)/STU.length)}%</span>`).join('');
   const cells=[...tg.querySelectorAll('.tc')];
