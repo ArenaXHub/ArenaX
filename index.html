@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://arenax.in/">
 <link rel="canonical" href="https://arenax.in/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%231D1D1F'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='serif' font-size='22' fill='%23D4B98C'%3E%E0%A4%85%3C/text%3E%3C/svg%3E">
-<meta name="description" content="AI courses built from your own syllabus. Your teachers teach; you see who has understood, who is unsure and who is confidently wrong.">
+<meta name="description" content="AI courses built from your own syllabus. Your teachers teach; you see who needs help, and on which topic.">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
 /* Layout: a product-store page. One idea per section, one visual per idea, big type, lots of air.
@@ -155,27 +155,15 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .qwrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,48px);align-items:center;margin-top:clamp(40px,6vw,64px)}
 .qwrap > *{min-width:0}
 @media (max-width:880px){.qwrap{grid-template-columns:1fr}}
-.quad{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:1.45;max-width:100%;border-radius:24px;overflow:hidden;border:1px solid var(--black-rule);background:var(--black-card)}
-.qc{position:relative;padding:16px 18px;border:1px solid var(--black-rule);cursor:pointer;transition:background .4s,opacity .4s}
-.qc .lb{font-weight:600;font-size:.95rem}
-.qc .ds{font-size:.8rem;color:var(--on-black-muted)}
-.qc .ct{position:absolute;bottom:12px;font-size:clamp(2rem,4.4vw,3.2rem);font-weight:650;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
-.qc.r{text-align:right}.qc.r .ct{right:18px}.qc.l .ct{left:18px}
-.qc.wro{color:var(--wro-g);background:radial-gradient(circle at 30% 40%,color-mix(in srgb,var(--wro-g) 16%,transparent),transparent 70%)}
-.qc.mas{color:var(--mas-g);background:radial-gradient(circle at 70% 40%,color-mix(in srgb,var(--mas-g) 14%,transparent),transparent 70%)}
-.qc.not{color:var(--not-g)}
-.qc.uns{color:var(--uns-g);background:radial-gradient(circle at 70% 60%,color-mix(in srgb,var(--uns-g) 12%,transparent),transparent 70%)}
-.qc.wro .ct{text-shadow:0 0 24px color-mix(in srgb,var(--wro-g) 70%,transparent);animation:glow 2.4s ease-in-out infinite}
-@keyframes glow{50%{text-shadow:0 0 42px var(--wro-g)}}
-.qd{position:absolute;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);transition:opacity .4s,transform .4s var(--ease);pointer-events:none}
-.qd.mas{background:var(--mas-g);box-shadow:0 0 10px var(--mas-g)}
-.qd.uns{background:var(--uns-g);box-shadow:0 0 10px var(--uns-g)}
-.qd.wro{background:var(--wro-g);box-shadow:0 0 14px var(--wro-g);animation:pulse 2.4s ease-in-out infinite}
-.qd.not{background:var(--not-g);box-shadow:0 0 6px var(--not-g)}
-@keyframes pulse{50%{box-shadow:0 0 22px 3px var(--wro-g)}}
-.quad.focus .qc:not(.on){opacity:.35}
-.quad.focus .qd:not(.on){opacity:.15}
-.quad .qd.on{transform:translate(-50%,-50%) scale(1.35)}
+.tgrid{display:grid;grid-template-columns:5.2em repeat(5,1fr);gap:6px;font-size:.82rem}
+.tgrid .th{color:var(--on-black-muted);text-align:center;font-size:.76rem;line-height:1.2;padding-bottom:4px;cursor:pointer;transition:color .3s}
+.tgrid .sn{color:var(--on-black);display:flex;align-items:center;cursor:pointer}
+.tgrid .tc{aspect-ratio:1.7;border-radius:8px;background:var(--black-card);display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;color:rgba(0,0,0,0);transition:background .5s,color .5s,opacity .35s}
+.tgrid .tc.g{background:var(--mas-g);color:rgba(0,0,0,.55)}.tgrid .tc.a{background:var(--uns-g);color:rgba(0,0,0,.55)}.tgrid .tc.r{background:var(--wro-g);color:rgba(0,0,0,.6)}
+.tgrid .av{color:var(--on-black);font-weight:600;text-align:center;padding-top:6px}
+.tgrid.focus .tc:not(.on){opacity:.22}
+.lg{display:inline-block;width:9px;height:9px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}.lg:first-child{margin-left:0}
+.lg.g{background:var(--mas-g)}.lg.a{background:var(--uns-g)}.lg.r{background:var(--wro-g)}
 .axis{display:flex;justify-content:space-between;font-size:.8rem;color:var(--on-black-muted);margin-top:10px}
 .qside h3{font-size:clamp(1.5rem,2.6vw,2rem)}
 .qside p{color:var(--on-black-muted);margin-top:12px}
@@ -456,7 +444,7 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
     </div>
 
     <div class="in editions rv">
-      <div class="ed-head"><h3>Same lesson. An edition for each department.</h3><p>The outcome stays fixed. The example, the lab and the class question change.</p></div>
+      <div class="ed-head"><h3>Same lesson. An edition for each department.</h3><p>The example, the tool, the lab, the case study and the capstone change. The outcome, the depth and the marks do not.</p></div>
       <div class="chips" role="tablist" aria-label="Department">
         <button class="chip" role="tab" aria-selected="true" data-d="0">Engineering</button>
         <button class="chip" role="tab" aria-selected="false" data-d="1">Medicine</button>
@@ -476,7 +464,7 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
             <div><dt>Lab</dt><dd id="edLab"></dd></div>
             <div><dt>Ask the class</dt><dd id="edAsk"></dd></div>
           </dl>
-          <p class="same">Same in every edition: CO2, apply a classifier to labelled data and read its mistakes (Bloom level: Apply).</p>
+          <p class="same">Same in every edition: CO2, apply a classifier to labelled data and read its mistakes (Bloom level: Apply), with the same marks and rubric. A fairness report shows every edition is assessed at the same depth.</p>
         </div>
       </article>
     </div>
@@ -505,23 +493,18 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
   </section>
   <section id="reports" class="dark">
     <div class="in center">
-      <h2>A mark shows who passed. This shows who needs you.</h2>
-      <p class="sub">Every answer carries a quick “how sure are you?”. Right or wrong, sure or unsure: four kinds of student.</p>
+      <h2>A mark shows who passed. This shows who needs you, and on what.</h2>
+      <p class="sub">Every question is tagged to a topic. After each quiz you see every student, topic by topic.</p>
     </div>
     <div class="in qwrap rv">
       <div>
-        <div class="quad" id="quad" aria-label="A sample class of 40 after Unit 3">
-          <div class="qc l wro" data-k="wro"><div class="lb">Confidently wrong</div><div class="ds">wrong and sure</div><div class="ct" data-n="7">7</div></div>
-          <div class="qc r mas" data-k="mas"><div class="lb">Mastered</div><div class="ds">right and sure</div><div class="ct" data-n="18">18</div></div>
-          <div class="qc l not" data-k="not"><div class="lb">Not yet learnt</div><div class="ds">wrong and unsure</div><div class="ct" data-n="7">7</div></div>
-          <div class="qc r uns" data-k="uns"><div class="lb">Unsure</div><div class="ds">right and unsure</div><div class="ct" data-n="8">8</div></div>
-        </div>
-        <div class="axis"><span>← Wrong</span><span>Sample class of 40 · after Unit 3</span><span>Right →</span></div>
+        <div class="tgrid" id="tgrid" aria-label="A sample class after Unit 3, topic by topic"></div>
+        <div class="axis"><span><i class="lg g"></i>Strong <i class="lg a"></i>Getting there <i class="lg r"></i>Needs help</span><span>Sample class · after Unit 3</span></div>
       </div>
       <div class="qside" id="qside">
-        <h3 id="qsT">7 students are sure, and wrong.</h3>
-        <p id="qsP">A mark puts them with everyone who failed. They are different: they will not ask for help, because they think they know.</p>
-        <div class="act"><b>What the teacher does</b><span id="qsA">Talk to these 7 first. One conversation now saves a wrong habit later.</span></div>
+        <h3 id="qsT">Patient privacy: 5 of 8 below half.</h3>
+        <p id="qsP">One topic, most of the class. The rest of the unit landed; this lesson did not.</p>
+        <div class="act"><b>What the teacher does</b><span id="qsA">Re-teach Lesson 9 this week. A 20-minute version is in the kit.</span></div>
       </div>
     </div>
   </section>
@@ -538,7 +521,7 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
           <div class="card">
             <p class="what">Topic to re-teach</p>
             <div class="viz"><div class="v-big">16<small> of 40</small></div></div>
-            <div><h3>Patient privacy</h3><p>16 students in Section A answered wrong, and were sure.</p></div>
+            <div><h3>Patient privacy</h3><p>16 of 40 in Section A scored below half on it.</p></div>
             <span class="do">Re-teach Lesson 9 this week</span>
           </div>
           <div class="card">
@@ -550,7 +533,7 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
           <div class="card">
             <p class="what">Section comparison</p>
             <div class="viz"><div class="pair"><div>Section A<b><i style="width:58%"></i></b>58%</div><div>Section B<b><i style="width:76%"></i></b>76%</div></div></div>
-            <div><h3>Section B is a unit ahead</h3><p>Mastered topics, Unit 3. B's teacher used the case cards.</p></div>
+            <div><h3>Section B is a unit ahead</h3><p>Strong topics, Unit 3. B's teacher used the case cards.</p></div>
             <span class="do">Share B's case cards with A</span>
           </div>
         </div>
@@ -564,8 +547,8 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
         <h2>A passport for every student.</h2>
         <p class="sub">Not a mark sheet. A record of what the student knows, signed by the teacher.</p>
         <div class="pp-points">
-          <div><i>1</i><div><b>Scorecard</b><p>Every quiz of the term, the running total and where the student stands in the class.</p></div></div>
-          <div><i>2</i><div><b>Feedback</b><p>Topic by topic: mastered, unsure, confidently wrong, not yet learnt. And what to do next.</p></div></div>
+          <div><i>1</i><div><b>Scorecard</b><p>Every unit quiz of the term, counted the way your ordinance says, and where the student stands.</p></div></div>
+          <div><i>2</i><div><b>Feedback</b><p>Topic by topic, from every practice check and quiz: strong, getting there, needs help, not yet taught. Feedback on every answer, and what to do next.</p></div></div>
           <div><i>3</i><div><b>Stamped by the teacher</b><p>The course teacher checks and signs it. Never used to rank.</p></div></div>
         </div>
       </div>
@@ -583,7 +566,7 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
             <span class="punits"><i class="d">1</i><i class="d">2</i><i class="d">3</i><i class="w">4</i><i>5</i></span>
           </span>
           <span class="who"><b>Riya Sharma</b><span>B.Sc. Nursing · Sem 2 · Section A · sample</span></span>
-          <span class="mini"><span><strong>78%</strong>Score</span><span><strong>72nd</strong>Percentile</span><span><strong>81%</strong>Self-aware</span></span>
+          <span class="mini"><span><strong>78%</strong>Score</span><span><strong>72nd</strong>Percentile</span><span><strong>B+</strong>Grade</span></span>
         </button>
         <span class="open-hint">Tap the passport to open it</span>
       </div>
@@ -609,8 +592,8 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
       <h2>Why it is different.</h2>
     </div>
     <div class="in cmp rv-k">
-      <div class="them"><h3>A typical online AI course</h3><ul><li><span>Syllabus</span><b>Theirs</b></li><li><span>Teacher</span><b>Replaced by video</b></li><li><span>Discipline</span><b>One for all</b></li><li><span>Assessment</span><b>Right or wrong</b></li><li><span>Committee</span><b>Your problem</b></li><li><span>Devices</span><b>Laptop and Wi-Fi</b></li></ul></div>
-      <div class="us"><h3>AI Adhyay</h3><ul><li><span>Syllabus</span><b>Yours</b></li><li><span>Teacher</span><b>Leads the class</b></li><li><span>Discipline</span><b>An edition per department</b></li><li><span>Assessment</span><b>Right, wrong, and how sure</b></li><li><span>Committee</span><b>Paperwork delivered</b></li><li><span>Devices</span><b>Any phone</b></li></ul></div>
+      <div class="them"><h3>A typical online AI course</h3><ul><li><span>Syllabus</span><b>Theirs</b></li><li><span>Teacher</span><b>Replaced by video</b></li><li><span>Discipline</span><b>One for all</b></li><li><span>Assessment</span><b>One exam at the end</b></li><li><span>Committee</span><b>Your problem</b></li><li><span>Devices</span><b>Laptop and Wi-Fi</b></li></ul></div>
+      <div class="us"><h3>AI Adhyay</h3><ul><li><span>Syllabus</span><b>Yours</b></li><li><span>Teacher</span><b>Leads the class</b></li><li><span>Discipline</span><b>An edition per department</b></li><li><span>Assessment</span><b>Practice after every lesson, a scored quiz every unit</b></li><li><span>Committee</span><b>Paperwork delivered</b></li><li><span>Devices</span><b>Any phone</b></li></ul></div>
     </div>
   </section>
 
@@ -679,8 +662,8 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
     <div id="t-feed" hidden>
       <p style="font-weight:600">What Riya knows, topic by topic</p>
       <div class="topics" id="topics"></div>
-      <div class="legend"><span><i style="background:var(--mas)"></i>Mastered</span><span><i style="background:var(--uns)"></i>Unsure</span><span><i style="background:var(--wro)"></i>Confidently wrong</span><span><i style="background:var(--not)"></i>Not yet learnt</span></div>
-      <div class="cal"><strong>81%</strong><p>Knows what she knows: her confidence matched her answer 81% of the time, up from 52% in Unit 1.</p></div>
+      <div class="legend"><span><i style="background:var(--mas)"></i>Strong</span><span><i style="background:var(--uns)"></i>Getting there</span><span><i style="background:var(--wro)"></i>Needs help</span><span><i style="background:var(--not)"></i>Not yet taught</span></div>
+      <div class="cal"><strong>+16</strong><p>Points since Unit 1: her quiz average rose from 62% to 78%. Two topics left to strengthen this term.</p></div>
       <div class="next">
         <div><b>Revisit</b> Patient privacy: Lesson 9, the consent examples, then a 5-question check.</div>
         <div><b>Practise</b> Spotting bias: 10 questions with feedback after each answer.</div>
@@ -704,11 +687,10 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
   // ---- phone quiz ----
-  const scr=$('#screen'); const KINDS={
-    mas:['Mastered','#4C8C6A','Right, and you knew it.'],
-    uns:['Unsure','#C79A45','Right, but not sure. One more example locks it in.'],
-    wro:['Confidently wrong','#C2604F','Wrong and sure. A mark would hide this. Your teacher sees it.'],
-    not:['Not yet learnt','#8E8E93','Wrong, and you sensed it. The lesson has not landed yet.']};
+  const scr=$('#screen');
+  const FB=['A model learns from the hospital it was trained in. New scanners and new patients look different, so accuracy usually drops.',
+            'New scanners and new patients differ from the training data, so accuracy usually drops. This is called data shift.',
+            'A new hospital rarely helps a model: its scanners and patients differ from the training data, so accuracy usually drops.'];
   function ask(){
     scr.innerHTML=`<div class="qhead"><span>Lesson 4 · Quick check</span><span>1 / 1</span></div>
       <p class="qtext">A model trained in one hospital is used in another. Its accuracy will most likely…</p>
@@ -716,16 +698,13 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
         <button class="qopt" data-i="0" aria-pressed="false">Stay the same</button>
         <button class="qopt" data-i="1" aria-pressed="false">Drop</button>
         <button class="qopt" data-i="2" aria-pressed="false">Rise</button></div>
-      <p class="qlabel">How sure are you?</p>
-      <div class="conf"><button data-c="0" aria-pressed="false">Just guessing</button><button data-c="1" aria-pressed="false">Fairly sure</button><button data-c="2" aria-pressed="false">Very sure</button></div>
       <button class="qgo" disabled>Submit</button><p class="copy">© 2026 ArenaX Digital Solutions · AI Adhyay</p>`;
-    let a=null,c=null; const go=scr.querySelector('.qgo');
-    const sel=(grp,b,k)=>{scr.querySelectorAll(grp).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');if(k==='a')a=+b.dataset.i;else c=+b.dataset.c;go.disabled=(a===null||c===null)};
-    scr.querySelectorAll('.qopt').forEach(b=>b.onclick=()=>sel('.qopt',b,'a'));
-    scr.querySelectorAll('.conf button').forEach(b=>b.onclick=()=>sel('.conf button',b,'c'));
-    go.onclick=()=>{const right=a===1,sure=c>0;const[k,col,line]=KINDS[right?(sure?'mas':'uns'):(sure?'wro':'not')];
+    let a=null; const go=scr.querySelector('.qgo');
+    scr.querySelectorAll('.qopt').forEach(b=>b.onclick=()=>{scr.querySelectorAll('.qopt').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');a=+b.dataset.i;go.disabled=false});
+    go.onclick=()=>{const right=a===1,col=right?'#4C8C6A':'#C2604F';
       scr.innerHTML=`<div class="qres"><div class="orb" style="background:${col};box-shadow:0 0 30px ${col}"></div>
-        <div class="kind">${k}</div><p class="kindline">${right?'':'The answer is “Drop”: new scanners and patients differ from the training data. '}${line}</p>
+        <div class="kind">${right?'Right':'Not quite'}</div><p class="kindline">${FB[a]}</p>
+        <p class="kindline" style="opacity:.75">Topic: data shift · Lesson 4. Your teacher sees this topic in the class report.</p>
         <button class="again">Try again</button><p class="copy" style="margin-top:auto">© 2026 ArenaX Digital Solutions · AI Adhyay</p></div>`;
       scr.querySelector('.again').onclick=ask;};
   }
@@ -801,20 +780,27 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
   paint();
   if(!RM)setInterval(()=>{slide.classList.add('swap');mphs.forEach(m=>m.classList.add('swap'));setTimeout(()=>{si=(si+1)%SL.length;paint()},300)},4200);
 
-  // ---- quadrant dots + focus ----
-  const quad=$('#quad'); let s=11; const rnd=()=>{s=(s*9301+49297)%233280;return s/233280};
-  const box={wro:[4,46,8,46],mas:[54,96,8,46],not:[4,46,54,92],uns:[54,96,54,92]}; const cnt={mas:18,uns:8,wro:7,not:7};
-  Object.entries(cnt).forEach(([k,n])=>{const[x0,x1,y0,y1]=box[k];for(let i=0;i<n;i++){const d=document.createElement('span');d.className='qd '+k;d.dataset.k=k;
-    d.style.left=(x0+8+rnd()*(x1-x0-16))+'%';d.style.top=(y0+14+rnd()*(y1-y0-22))+'%';if(!RM)d.style.animationDelay=(rnd()*2.4)+'s';quad.appendChild(d)}});
-  const Q={
-    wro:['7 students are sure, and wrong.','A mark puts them with everyone who failed. They are different: they will not ask for help, because they think they know.','Talk to these 7 first. One conversation now saves a wrong habit later.'],
-    mas:['18 students have it, and know they have it.','Right answers, held with confidence. The lesson has landed.','Move them ahead, or pair them with someone who is unsure.'],
-    uns:['8 students got it right, but are not sure.','A mark counts them as passed. Next week they may not be.','One more worked example and a short check locks it in.'],
-    not:['7 students have not learnt it yet, and they know it.','Wrong and unsure. They will ask, if someone gives them the chance.','Give them the lesson again, slower, with the case card.']};
-  const setQ=k=>{$('#qsT').textContent=Q[k][0];$('#qsP').textContent=Q[k][1];$('#qsA').textContent=Q[k][2];
-    quad.classList.add('focus');quad.querySelectorAll('.qc,.qd').forEach(e=>e.classList.toggle('on',e.dataset.k===k))};
-  quad.querySelectorAll('.qc').forEach(c=>{c.addEventListener('mouseenter',()=>setQ(c.dataset.k));c.addEventListener('click',()=>setQ(c.dataset.k))});
-  quad.addEventListener('mouseleave',()=>{quad.classList.remove('focus');setQ('wro');quad.classList.remove('focus')});
+  // ---- topic grid + focus ----
+  const tg=$('#tgrid');
+  const TOP=['AI basics','Predictions','Model errors','Privacy','Bias'];
+  const STU=[['Riya',[92,85,70,55,78]],['Aarav',[80,62,48,30,40]],['Simran',[88,75,66,42,58]],['Rohit',[74,70,52,35,61]],['Priya',[95,90,84,72,80]],['Mohit',[60,55,40,38,45]],['Kavya',[90,82,76,68,70]],['Karan',[58,44,36,28,33]]];
+  const lvl=v=>v>=75?'g':v>=50?'a':'r';
+  tg.innerHTML='<span></span>'+TOP.map((t,c)=>`<span class="th" data-c="${c}">${t}</span>`).join('')+
+    STU.map(([n,v],r)=>`<span class="sn" data-r="${r}">${n}</span>`+v.map((x,c)=>`<span class="tc" data-r="${r}" data-c="${c}" data-v="${x}">${x}</span>`).join('')).join('')+
+    '<span class="sn" style="color:var(--on-black-muted)">Class</span>'+TOP.map((_,c)=>`<span class="av">${Math.round(STU.reduce((a,s)=>a+s[1][c],0)/STU.length)}%</span>`).join('');
+  const cells=[...tg.querySelectorAll('.tc')];
+  const paintGrid=()=>cells.forEach((el,k)=>{const r=+el.dataset.r,c=+el.dataset.c;setTimeout(()=>el.classList.add(lvl(+el.dataset.v)),RM?0:120*(r+c))});
+  const TQ={
+    c3:['Patient privacy: 5 of 8 below half.','One topic, most of the class. The rest of the unit landed; this lesson did not.','Re-teach Lesson 9 this week. A 20-minute version is in the kit.'],
+    c2:['Model errors: 3 students below half.','Most of the class can read a confusion matrix. Three cannot yet.','A short practice set of 10 questions, with feedback after each answer.'],
+    c0:['AI basics: the whole class is through.','Every student is at or above half; most are strong.','Move on. Use these students as pair partners in the lab.'],
+    r7:['Karan needs you: weak in 4 of 5 topics.','Not one bad quiz: the same gap, unit after unit.','A one-to-one conversation this week, then the catch-up path in the kit.'],
+    r4:['Priya is strong in every topic.','She has the whole unit, including the hard case on privacy.','Let her lead a peer group for the students who need privacy again.']};
+  const setT=(key,sel)=>{const q=TQ[key];if(!q)return;$('#qsT').textContent=q[0];$('#qsP').textContent=q[1];$('#qsA').textContent=q[2];
+    tg.classList.add('focus');cells.forEach(el=>el.classList.toggle('on',sel(el)))};
+  tg.querySelectorAll('.th').forEach(h=>{const c=h.dataset.c,f=()=>setT('c'+c,el=>el.dataset.c===c);h.addEventListener('mouseenter',f);h.addEventListener('click',f)});
+  tg.querySelectorAll('.sn[data-r]').forEach(h=>{const r=h.dataset.r,f=()=>setT('r'+r,el=>el.dataset.r===r);h.addEventListener('mouseenter',f);h.addEventListener('click',f)});
+  tg.addEventListener('mouseleave',()=>{tg.classList.remove('focus');setT('c3',()=>true);tg.classList.remove('focus')});
 
   // ---- 7 of 40 dots ----
   const dots=$('#dots'); const pick=[3,9,14,21,26,30,37];
@@ -833,11 +819,13 @@ footer{padding-block:34px 44px;font-size:.82rem;color:var(--muted);border-top:1p
   // ---- reveal + count-up ----
   if('IntersectionObserver' in window && !RM){
     const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.remove('pre');io.unobserve(t);
-      if(t.classList.contains('qwrap'))t.querySelectorAll('.ct').forEach(n=>{const to=+n.dataset.n;let v=0;n.textContent='0';const iv=setInterval(()=>{v++;n.textContent=v;if(v>=to)clearInterval(iv)},55)});
+      if(t.classList.contains('qwrap'))paintGrid();
       if(t.classList.contains('editions')&&!started){started=true;step()}
     }),{threshold:.2});
     $$('.rv,.rv-k').forEach(t=>{if(t.getBoundingClientRect().top>innerHeight)t.classList.add('pre');io.observe(t)});
   }
+
+  if(!('IntersectionObserver' in window) || RM) paintGrid();
 
   // ---- form: opens the visitor's email app with the details filled in ----
   $('#callForm').addEventListener('submit',e=>{e.preventDefault();const f=e.target;const note=$('#formNote');
