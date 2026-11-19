@@ -137,6 +137,7 @@ html[data-build=public] .foot-private{display:none}
 .hero h1{margin-top:16px}
 .hero .lead{margin-top:16px;font-size:19px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.appcta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:14px}.appcta .note{max-width:420px}
 .who{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
 .who>span{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--rule);padding:7px 11px;border-radius:999px;box-shadow:var(--soft)}
 .who>.who-mu{background:#ECECE7;border-color:#D3D3CC}
@@ -652,7 +653,7 @@ footer.site{padding-bottom:100px}
     <span class="tag run" data-t="hero_tag">HAZRI + HISAAB · THEKEDAR KE LIYE</span>
     <h1 data-t="hero_h1">Hazri register, ab phone par.</h1>
     <p class="lead" data-t="hero_lead">Munshi button dabaye. Thekedar ko shaam tak poora hisaab.</p>
-    <div class="actions"><a class="btn primary lift" href="#demo" data-t="hero_cta1">Demo dekho</a><a class="btn lift" href="#contact" data-lead data-t="hero_cta2">10 Din free</a></div>
+    <div class="actions"><a class="btn primary lift" href="#demo" data-t="hero_cta1">Demo dekho</a><a class="btn lift" href="#contact" data-lead data-t="hero_cta2">10 Din free</a><a class="btn lift" href="app/" data-app><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tap"/></svg><span data-t="app_btn">Demo app kholo</span></a></div>
     <div class="who"><span class="who-mz"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-worker"/></svg> <span data-t="who_1">Mazdoor: koi app nahi</span></span><span class="who-mu"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pad"/></svg> <span data-t="who_2">Munshi: 4 button</span></span><span class="who-th"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg> <span data-t="who_3">Thekedar: poora hisaab</span></span></div>
   </div>
   <div class="phone" aria-label="SiteBook munshi app, playing by itself"><div class="screen" id="heroScreen"></div></div>
@@ -669,7 +670,7 @@ footer.site{padding-bottom:100px}
 </div></section>
 
 <section class="band shape left" id="demo" aria-labelledby="h-demo"><div class="wrap stack">
-  <div class="head"><span class="tag run" data-t="demo_tag">LIVE DEMO</span><h2 id="h-demo" data-t="demo_h2">Khud chala ke dekho</h2><p class="lead" data-t="demo_lead">Do asli site. Tap karo, kuch save nahi hota.</p></div>
+  <div class="head"><span class="tag run" data-t="demo_tag">LIVE DEMO</span><h2 id="h-demo" data-t="demo_h2">Khud chala ke dekho</h2><p class="lead" data-t="demo_lead">Do asli site. Tap karo, kuch save nahi hota.</p><p class="appcta"><a class="btn primary lift" href="app/" data-app><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tap"/></svg><span data-t="app_btn">Demo app kholo</span></a><span class="note" data-t="app_note">Poora app: login, munshi, thekedar, hisaab-wala, CA. Demo — data sirf aapke phone par.</span></p></div>
   <div><div class="tabs" role="tablist" aria-label="Demo role"><span class="ind" aria-hidden="true"></span>
     <button role="tab" id="tab-munshi" aria-selected="true" aria-controls="p-munshi"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pad"/></svg><span data-t="tab_munshi">Munshi app</span></button>
     <button role="tab" id="tab-thekedar" aria-selected="false" aria-controls="p-thekedar" tabindex="-1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><span data-t="tab_thekedar">Thekedar</span></button>
@@ -815,6 +816,8 @@ const T = {
   hero_tag:['हाज़िरी + हिसाब · ठेकेदार के लिए','HAZRI + HISAAB · THEKEDAR KE LIYE','ATTENDANCE + ACCOUNTS · FOR CONTRACTORS'],
   hero_h1:['हाज़िरी रजिस्टर, अब फ़ोन पर।','Hazri register, ab phone par.','The attendance register, now on the phone.'],
   hero_lead:['मुंशी बटन दबाए। ठेकेदार को शाम तक पूरा हिसाब।','Munshi button dabaye. Thekedar ko shaam tak poora hisaab.','The munshi taps. The contractor has the full account by evening.'],
+  app_btn:['डेमो ऐप खोलो','Demo app kholo','Open the demo app'],
+  app_note:['पूरा ऐप: लॉगिन, मुंशी, ठेकेदार, हिसाब-वाला, CA। डेमो — डेटा सिर्फ़ आपके फ़ोन पर।','Poora app: login, munshi, thekedar, hisaab-wala, CA. Demo — data sirf aapke phone par.','The full app: login, munshi, contractor, accountant, CA. Demo — data stays on your phone only.'],
   hero_cta1:['डेमो देखो','Demo dekho','See the demo'], hero_cta2:['{d} दिन फ्री','{d} Din free','{d} days free'],
   who_1:['मज़दूर: कोई ऐप नहीं','Mazdoor: koi app nahi','Worker: no app'], who_2:['मुंशी: 4 बटन','Munshi: 4 button','Munshi: 4 buttons'], who_3:['ठेकेदार: पूरा हिसाब','Thekedar: poora hisaab','Contractor: full account'],
   stamp:['हाज़िरी जमा','HAZRI JAMA','SUBMITTED'],
@@ -1011,6 +1014,8 @@ const siteById = (id) => SITES.find(s => s.id === id);
 const monthOf = (site, ym) => site.months.find(m => m.month === ym);
 const workerActive = (w) => w.hours.some(h => isNum(h) && h > 0);
 const label = (s) => SITE_LABEL[s.id] || s.name;
+// man-days in a month: the sum of the worker rows (the register's own total row is short for some PS-1 months)
+const monthDays = (m) => Math.round(m.workers.reduce((a, w) => a + (w.total_days || 0), 0) * 100) / 100;
 const hasBill = (m) => m.derived.billed !== null && m.derived.bachat !== null;
 
 /* ===================== COUNT-UP + PLAY-ON-VIEW ===================== */
@@ -1247,7 +1252,7 @@ function renderGlance() {
   const stat = (cls, icn, val, lab) => el('div', { class: 'stat lift ' + cls }, el('span', { class: 'si', 'aria-hidden': 'true' }, ic(icn)), el('b', { class: 'money' }, val), el('span', { class: 'sl' }, lab));
   $('#glanceStrip').replaceChildren(
     stat('', 'worker', num(d.active_workers, 'int', 'g-w'), t('st_workers')),
-    stat('', 'cal', num(m.register_totals.total_days, 'dec', 'g-d'), t('st_days')),
+    stat('', 'cal', num(monthDays(m), 'dec', 'g-d'), t('st_days')),
     stat('s-billed', 'building', num(d.billed, 'inr', 'g-b'), t('st_billed')),
     stat('s-wages', 'cashout', num(d.wages_register, 'inr', 'g-wg'), t('st_wages')),
     stat('s-bachat', 'bag', num(d.bachat, 'inr', 'g-p'), `${t('st_bachat')} · ${Math.round(d.bachat_pct)}%`));
@@ -1278,7 +1283,7 @@ function tiles() {
   const bst = hb ? stateOf(d.bachat_pct) : null;
   $('#tiles').replaceChildren(
     tile('t-billed', 'building', t('k_billed'), hb ? num(d.billed, 'inr', key + 'b') : '–', hb ? t('k_billed_sub') : t('no_bill')),
-    tile('t-wages', 'worker', t('k_wages'), num(d.wages_register, 'inr', key + 'w'), t('k_wages_sub', { n: d.active_workers, d: m.register_totals.total_days })),
+    tile('t-wages', 'worker', t('k_wages'), num(d.wages_register, 'inr', key + 'w'), t('k_wages_sub', { n: d.active_workers, d: monthDays(m) })),
     tile('t-bachat ' + (bst || ''), 'bag', t('k_bachat'), hb ? num(d.bachat, 'inr', key + 'p') : '–', hb ? `${Math.round(d.bachat_pct)}% · ${t('k_bachat_sub')}` : t('no_bill'), hb ? stateChip(bst, t('st_' + bst)) : null),
     tile('t-owed ' + (d.owed_count ? 'action' : 'good'), 'warn', t('k_owed'), num(d.owed_by_workers, 'inr', key + 'o'), t('k_owed_sub', { n: d.owed_count }), stateChip(d.owed_count ? 'action' : 'good', d.owed_count ? t('st_action') : t('st_clear'))));
 }
@@ -1668,6 +1673,8 @@ function startLoops() {
   if (HAS_IO) { new IntersectionObserver(es => es.forEach(e => { cdVisible = e.isIntersecting; }), { threshold: 0 }).observe($('#launch')); new IntersectionObserver(es => es.forEach(e => { plansVisible = e.isIntersecting; }), { threshold: 0 }).observe($('#plans')); }
 }
 (function init() {
+  // the private real-name file is opened on its own, so its app links point to the published demo app
+  if (document.documentElement.dataset.build === 'private') $$('a[data-app]').forEach(a => { a.href = 'https://arenax.in/sitebook/app/'; a.target = '_blank'; a.rel = 'noopener'; });
   let saved = null; try { saved = localStorage.getItem('sitebook-lang'); } catch (e) {}
   LANG = saved && LANGS[saved] !== undefined ? saved : 'hn';
   applyStatic(); heroPhone.render();
