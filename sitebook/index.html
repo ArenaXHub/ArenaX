@@ -544,6 +544,16 @@ footer.site{padding-bottom:100px}
 .fxbox{display:grid;justify-items:center;text-align:center;gap:4px}
 .fx{font:800 56px/1 var(--display);color:var(--good);letter-spacing:-.03em}
 .fxbox>span:last-child{font-weight:600;color:var(--muted)}
+.calc-in{display:grid;gap:14px}
+.calc .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end}
+.calc input[type=number]{min-height:46px;border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font:inherit;font-weight:600;background:var(--raised);color:var(--ink);width:100%}
+.calc label>span{font-size:14px}
+@media (max-width:420px){.calc .row2{grid-template-columns:1fr}}
+.calc .out hr{border:0;border-top:1px dashed var(--rule);margin:8px 0}
+.calc .out .big.gain b{color:var(--good)}
+.free{color:var(--good);font-weight:800}
+.lonb{font-weight:600}.lonb s{opacity:.6}.lonb b{color:var(--marigold);font-weight:800}
+.plan .price .free{font-size:26px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .rv{opacity:1;transform:none}
@@ -711,11 +721,19 @@ footer.site{padding-bottom:100px}
   <div class="plans" id="plans"></div>
   <div class="stack" style="gap:12px"><h3 data-t="addons_h">Add-ons</h3><div class="addons" id="addons"></div></div>
   <div class="card">
-    <h3 data-t="calc_h">Kitna lagega?</h3>
+    <h3 data-t="calc_h">Kitna kharcha, kitna fayda?</h3>
+    <p class="note" data-t="calc_lead">Apne numbers daalo. Fayda andaaza hai.</p>
     <div class="calc" style="margin-top:14px">
-      <div style="display:grid;gap:16px">
-        <label><span><span data-t="calc_sites">Site</span>: <output id="calcSitesOut">2</output></span><input type="range" id="calcSites" min="1" max="12" value="2"></label>
-        <label><span><span data-t="calc_labour">Har site par active mazdoor</span>: <output id="calcLabOut">35</output></span><input type="range" id="calcLab" min="5" max="120" step="5" value="35"></label>
+      <div class="calc-in">
+        <label><span><span data-t="calc_sites">Site</span>: <output id="calcSitesOut">1</output></span><input type="range" id="calcSites" min="1" max="12" value="1"></label>
+        <div class="row2">
+          <label><span data-t="calc_workers">Har site par mazdoor</span><input type="number" id="calcLab" inputmode="numeric" min="1" max="2000" step="1"></label>
+          <label><span data-t="calc_rate">Average din ka rate (₹)</span><input type="number" id="calcRate" inputmode="numeric" min="0" max="10000" step="10"></label>
+        </div>
+        <div class="row2">
+          <label><span data-t="calc_munshi">Munshi ki tankhwah / mahina (₹)</span><input type="number" id="calcMunshi" inputmode="numeric" min="0" max="500000" step="500"></label>
+          <label><span data-t="calc_hours">Munshi ka bacha samay (ghante / din)</span><input type="number" id="calcHours" inputmode="decimal" min="0" max="10" step="0.5"></label>
+        </div>
       </div>
       <div class="out" id="calcOut"></div>
     </div>
@@ -750,15 +768,18 @@ const PRICING = {
   trial: { days: 10, sites: 1 },
   site: { monthly: 2999, includedLabour: 40, extraLabour: 10, annualMonths: 10 },
   // Launch offer: contractors who join in the launch month pay this, locked for lockMonths. Dec 2026 = pilot with the two contractors.
-  launch: { monthly: 1999, off: 1000, lockMonths: 6, start: '2027-01-01' },
+  // onboardingFree: contractors who join in the launch month get onboarding free (shown as the struck-through onboarding price)
+  launch: { monthly: 1999, off: 1000, lockMonths: 6, start: '2027-01-01', onboardingFree: true },
   onboarding: 4999,
   enterprise: { minSites: 10 },
   addons: { qr: null, whatsapp: null }   // null = Ask Price
 };
 // Query form: WhatsApp number in international form without + (e.g. 91XXXXXXXXXX). null = the form sends by email only.
-const CONTACT = { whatsapp: null, email: 'contactarenax@gmail.com' };
+const CONTACT_WHATSAPP = null; // ArenaX business WhatsApp only, as '91XXXXXXXXXX' (no +). Rule 5 exception approved by KP on 19 Nov 2026 for this number only.
+const CONTACT = { whatsapp: CONTACT_WHATSAPP, email: 'contactarenax@gmail.com' };
 // Fayda estimate shown to contractors: stated assumptions, applied to the register numbers.
-const SAVINGS = { hazriErrorPct: 1, munshiHoursSavedPerDay: 1, munshiWorkHoursPerDay: 10, refSite: 'motidau-ps-1-gujarat', refMonth: '2026-02' };
+// workDaysPerMonth: paid day-units per worker per month, overtime included (the reference register averages about 30).
+const SAVINGS = { hazriErrorPct: 1, munshiHoursSavedPerDay: 1, munshiWorkHoursPerDay: 10, workDaysPerMonth: 30, refSite: 'motidau-ps-1-gujarat', refMonth: '2026-02' };
 const DEMO = {
   dates: { 'davengere-site': '2026-09-18', 'motidau-ps-1-gujarat': '2026-02-18' },
   glance: { site: 'motidau-ps-1-gujarat', month: '2026-02' },
@@ -872,7 +893,7 @@ const T = {
   pl_ent:['मल्टी-साइट / कंपनी','Multi-site / Company','Multi-site / Company'], pl_ent_p:['कस्टम','Custom','Custom'], pl_ent_sub:['{n}+ साइट','{n}+ site','{n}+ sites'], pl_ent_l:['कंपनी व्यू|अपनी ब्रांडिंग|सपोर्ट','Company view|Apni branding|Support','Company view|Your branding|Support'],
   pl_hot:['ज़्यादातर ठेकेदारों के लिए','Zyadatar thekedar ke liye','For most contractors'],
   addons_h:['ऐड-ऑन','Add-ons','Add-ons'], ad_qr:['QR / NFC मज़दूर कार्ड','QR / NFC worker card','QR / NFC worker card'], ad_qr_l:['स्कैन से हाज़िरी','Scan se hazri','Mark by scan'], ad_wa:['WhatsApp पर्ची','WhatsApp parchi','WhatsApp pay slip'], ad_wa_l:['हफ़्ते की पर्ची, आवाज़ में','Hafte ki parchi, awaaz mein','Weekly slip, as a voice note'], ad_price:['Ask Price','Ask Price','Ask Price'],
-  calc_h:['कितना लगेगा?','Kitna lagega?','What will it cost?'], calc_sites:['साइट','Site','Sites'], calc_labour:['हर साइट पर एक्टिव मज़दूर','Har site par active mazdoor','Active workers per site'],
+  calc_h:['कितना खर्चा, कितना फ़ायदा?','Kitna kharcha, kitna fayda?','What it costs, what you gain'], calc_sites:['साइट','Site','Sites'], calc_labour:['हर साइट पर एक्टिव मज़दूर','Har site par active mazdoor','Active workers per site'],
   calc_launch:['लॉन्च दाम पर, हर महीने + GST','Launch daam par, har mahine + GST','At launch price, per month + GST'], calc_regular:['रेगुलर प्राइस, हर महीने + GST','Regular daam, har mahine + GST','Regular price, per month + GST'],
   calc_base:['साइट','Site','Sites'], calc_extra:['एक्स्ट्रा मज़दूर','Extra mazdoor','Extra workers'], calc_gst:['GST {g}%','GST {g}%','GST {g}%'], calc_total:['GST के साथ','GST ke saath','With GST'], calc_annual:['सालाना ({a} महीने)','Saalana ({a} mahine)','Annual ({a} months)'], calc_ent:['{n}+ साइट: कस्टम प्लान','{n}+ site: custom plan','{n}+ sites: custom plan'],
   consult_kicker:['ARENAX · बिज़नेस कंसल्टिंग','ARENAX · BUSINESS CONSULTING','ARENAX · BUSINESS CONSULTING'],
@@ -907,6 +928,13 @@ const T = {
   fy_h:['खर्चा कम, फ़ायदा ज़्यादा','Kharcha kam, fayda zyada','Spend less, gain more'], fy_per:['हर महीने, हर साइट (अंदाज़ा)','Har mahine, har site (andaaza)','Per month, per site (estimate)'], fy_cost:['SiteBook का खर्चा','SiteBook ka kharcha','SiteBook costs'], fy_gain:['आपका फ़ायदा','Aapka fayda','Your gain'],
   fy_a:['अगर सिर्फ़ {p}% हाज़िरी गलत लिखी हो: {v}','Agar sirf {p}% hazri galat likhi ho: {v}','If only {p}% of attendance is wrong: {v}'], fy_b:['मुंशी का रोज़ {h} घंटा बचे: {v}','Munshi ka roz {h} ghanta bache: {v}','The munshi saves {h} hour a day: {v}'], fy_base:['{site} · {month} के रजिस्टर पर','{site} · {month} ke register par','On the {site} · {month} register'], fy_x:['खर्चे से ज़्यादा फ़ायदा','kharche se zyada fayda','more than it costs'],
   sv_h:['SiteBook से इस महीने फ़ायदा (अंदाज़ा)','SiteBook se is mahine fayda (andaaza)','Gained with SiteBook this month (estimate)'], sv_sub:['खर्चे {c} का {x} गुना','Kharcha {c} ka {x} guna','{x}× the {c} cost'], sv_how:['{p}% हाज़िरी की गलती + मुंशी का रोज़ {h} घंटा','{p}% hazri galti + munshi ka roz {h} ghanta','{p}% attendance errors + {h} munshi hour a day'],
+
+  calc_lead:['अपने नंबर डालो। फ़ायदा अंदाज़ा है।','Apne numbers daalo. Fayda andaaza hai.','Enter your own numbers. The gain is an estimate.'],
+  calc_workers:['हर साइट पर मज़दूर','Har site par mazdoor','Workers per site'], calc_rate:['औसत दिन का रेट (₹)','Average din ka rate (₹)','Average daily rate (₹)'],
+  calc_munshi:['मुंशी की तनख़्वाह / महीना (₹)','Munshi ki tankhwah / mahina (₹)','Munshi salary / month (₹)'], calc_hours:['मुंशी का बचा समय (घंटे / दिन)','Munshi ka bacha samay (ghante / din)','Munshi time saved (hours / day)'],
+  calc_gain_h:['आपका फ़ायदा (अंदाज़ा), हर महीने','Aapka fayda (andaaza), har mahine','Your gain (estimate), per month'], calc_wages:['महीने की मज़दूरी ({d} दिन)','Mahine ki mazdoori ({d} din)','Monthly wages ({d} days)'],
+  calc_err:['{p}% हाज़िरी की गलती','{p}% hazri ki galti','{p}% attendance errors'], calc_mtime:['मुंशी का रोज़ {h} घंटा','Munshi ka roz {h} ghanta','{h} munshi hour(s) a day'],
+  calc_onb:['ऑनबोर्डिंग (एक बार)','Onboarding (ek baar)','Onboarding (one-time)'], free:['फ्री','FREE','FREE'], onb_free_note:['{m} में जुड़ने वालों के लिए','{m} mein judne walon ke liye','For contractors who join in {m}'],
   calc_gain:['अंदाज़ा फ़ायदा, हर महीने','Andaaza fayda, har mahine','Estimated gain, per month'], calc_x:['फ़ायदा ÷ खर्चा','Fayda ÷ kharcha','Gain ÷ cost'],
   mon:['जन,फ़र,मार्च,अप्रै,मई,जून,जुला,अग,सित,अक्टू,नव,दिस','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'],
   dow:['रवि,सोम,मंगल,बुध,गुरु,शुक्र,शनि','Sun,Mon,Tue,Wed,Thu,Fri,Sat','Sun,Mon,Tue,Wed,Thu,Fri,Sat'],
@@ -1361,7 +1389,7 @@ function launchWindow() { const ls = new Date(PRICING.launch.start + 'T00:00:00'
 function renderPricing() {
   const P = PRICING, { le } = launchWindow(), mName = fmtMonth(P.launch.start.slice(0, 7)), over = new Date() > le;
   const leIso = `${le.getFullYear()}-${pad(le.getMonth() + 1)}-${pad(le.getDate())}`;
-  $('#launch').replaceChildren(el('div', {}, el('span', { class: 'tag run' }, t('l_tag')), el('div', { class: 'lprice' }, el('s', {}, inr(P.site.monthly)), el('b', {}, inr(P.launch.monthly)), el('small', {}, t('per_site'))), el('p', {}, t('l_body', { m: mName, k: P.launch.lockMonths }))), el('div', { id: 'cd' }));
+  $('#launch').replaceChildren(el('div', {}, el('span', { class: 'tag run' }, t('l_tag')), el('div', { class: 'lprice' }, el('s', {}, inr(P.site.monthly)), el('b', {}, inr(P.launch.monthly)), el('small', {}, t('per_site'))), el('p', {}, t('l_body', { m: mName, k: P.launch.lockMonths })), P.launch.onboardingFree && !over ? el('p', { class: 'lonb' }, t('pl_onb'), ' ', el('s', {}, inr(P.onboarding)), ' ', el('b', {}, t('free'))) : null), el('div', { id: 'cd' }));
   clearInterval(cdTimer);
   const tick = (force) => { if (!cdVisible && force !== true) return; const now = new Date(); if (now > le) { $('#cd').replaceChildren(el('div', { class: 'cdl' }, t('l_over'))); clearInterval(cdTimer); return; } let ms = le - now; const d = Math.floor(ms / 864e5); ms -= d * 864e5; const h = Math.floor(ms / 36e5); ms -= h * 36e5; const mi = Math.floor(ms / 6e4); const s = Math.floor((ms - mi * 6e4) / 1000);
     $('#cd').replaceChildren(el('div', { class: 'cdl' }, `${t('l_ends')} · ${fmtDate(P.launch.start)}–${fmtDate(leIso)}`), el('div', { class: 'cd' }, ...[[d, 'cd_d'], [h, 'cd_h'], [mi, 'cd_m'], [s, 'cd_s']].map(([v, k]) => el('div', {}, el('b', {}, v), el('span', {}, t(k)))))); };
@@ -1370,7 +1398,7 @@ function renderPricing() {
   $('#plans').replaceChildren(
     plan('', 'gift', t('pl_trial'), ['₹0'], t('pl_trial_sub', { d: P.trial.days }), tl('pl_trial_l')),
     plan('hot', 'crane', t('pl_site'), over ? [inr(P.site.monthly)] : [el('s', {}, inr(P.site.monthly)), inr(P.launch.monthly)], t('per_site'), tl('pl_site_l', { inc: P.site.includedLabour, x: P.site.extraLabour, a: P.site.annualMonths }), over ? null : el('p', { class: 'note' }, t('pl_after', { x: inr(P.site.monthly) }))),
-    plan('', 'toolbox', t('pl_onb'), [inr(P.onboarding)], t('pl_onb_sub'), tl('pl_onb_l')),
+    plan('', 'toolbox', t('pl_onb'), P.launch.onboardingFree && !over ? [el('s', {}, inr(P.onboarding)), el('span', { class: 'free' }, t('free'))] : [inr(P.onboarding)], t('pl_onb_sub'), tl('pl_onb_l'), P.launch.onboardingFree && !over ? el('p', { class: 'note' }, t('onb_free_note', { m: mName })) : null),
     plan('', 'building', t('pl_ent'), [t('pl_ent_p')], t('pl_ent_sub', { n: P.enterprise.minSites }), tl('pl_ent_l')));
   $('#addons').replaceChildren(...[['idcard', 'ad_qr', 'ad_qr_l', P.addons.qr, 'qr'], ['chat', 'ad_wa', 'ad_wa_l', P.addons.whatsapp, 'wa']].map(([icn, h, l, price, pk]) => el('div', { class: 'card addon-card lift', ...popAttrs(pk) }, el('span', { class: 'aic', 'aria-hidden': 'true' }, ic(icn)), el('div', {}, el('h3', { class: 'h4' }, t(h), el('span', { class: 'addon' }, t('addon'))), el('p', { class: 'note' }, t(l)), el('span', { class: 'tapme' }, t('tapme'), ' ›')), el('span', { class: 'ap' }, price === null ? t('ad_price') : inr(price)))));
   renderFayda(); renderCalc();
@@ -1392,18 +1420,43 @@ function savebar() {
   const s = dSite(), m = dMonth(), f = faydaFor(m), cost = costNow(), x = Math.round(f.total / cost * 10) / 10;
   $('#savebar').replaceChildren(ic('bag'), el('div', {}, el('div', { class: 'sv-l' }, t('sv_h')), el('b', { class: 'money' }, num(f.total, 'inr', s.id + m.month + 'sv')), el('div', { class: 'sv-s' }, `${t('sv_sub', { x, c: inr(cost) })} · ${t('sv_how', { p: SAVINGS.hazriErrorPct, h: SAVINGS.munshiHoursSavedPerDay })}`)));
 }
+let calcInit = false;
+function calcDefaults() {
+  // defaults come from the reference register; the contractor overwrites them with his own numbers
+  const ref = monthOf(siteById(SAVINGS.refSite), SAVINGS.refMonth), ws = ref.workers.filter(w => w.pay_type === 'daily' && workerActive(w));
+  $('#calcLab').value = ws.length; $('#calcRate').value = Math.round(ws.reduce((a, w) => a + w.rate, 0) / ws.length / 5) * 5;
+  $('#calcMunshi').value = Math.round(munshiSalary(ref)); $('#calcHours').value = SAVINGS.munshiHoursSavedPerDay;
+}
 function renderCalc() {
-  const P = PRICING, sites = +$('#calcSites').value, lab = +$('#calcLab').value; $('#calcSitesOut').textContent = sites; $('#calcLabOut').textContent = lab;
-  const over = new Date() > launchWindow().le; const extraN = Math.max(0, lab - P.site.includedLabour); const extra = sites * extraN * P.site.extraLabour;
+  if (!calcInit) { calcInit = true; calcDefaults(); }
+  const P = PRICING, get = (id, lo, hi) => { const v = parseFloat($(id).value); return isFinite(v) ? Math.min(hi, Math.max(lo, v)) : 0; };
+  const sites = +$('#calcSites').value, lab = Math.round(get('#calcLab', 0, 2000)), rate = get('#calcRate', 0, 10000), munshi = get('#calcMunshi', 0, 500000), hrs = get('#calcHours', 0, 10);
+  $('#calcSitesOut').textContent = sites;
+  const over = new Date() > launchWindow().le, onbFree = P.launch.onboardingFree && !over;
+  const extraN = Math.max(0, lab - P.site.includedLabour), extra = sites * extraN * P.site.extraLabour;
   const reg = sites * P.site.monthly + extra, lau = sites * P.launch.monthly + extra, price = over ? reg : lau, gst = price * P.gstPct / 100;
+  // fayda (andaaza): wrong attendance on the month's wages + the munshi's saved time valued from his own salary
+  const wages = sites * lab * rate * SAVINGS.workDaysPerMonth, errV = wages * SAVINGS.hazriErrorPct / 100;
+  const timeV = sites * munshi * hrs / SAVINGS.munshiWorkHoursPerDay, gain = errV + timeV;
   const row = (l, v, strong) => el('div', { class: 'row' + (strong ? ' strong' : '') }, el('span', {}, l), el('span', { class: 'money' }, v));
-  const ref = monthOf(siteById(SAVINGS.refSite), SAVINGS.refMonth), perW = ref.derived.wages_register / ref.derived.active_workers;
-  const gain = sites * (lab * perW * SAVINGS.hazriErrorPct / 100 + munshiSalary(ref) * SAVINGS.munshiHoursSavedPerDay / SAVINGS.munshiWorkHoursPerDay);
-  $('#calcOut').replaceChildren(...[el('span', { class: 'note' }, over ? t('calc_regular') : t('calc_launch')), el('div', { class: 'big' }, el('b', { class: 'money' }, inr(price)), over ? null : el('s', { class: 'money' }, inr(reg))),
-    row(t('calc_base'), `${sites} × ${inr(over ? P.site.monthly : P.launch.monthly)}`), row(t('calc_extra'), `${sites} × ${extraN} × ${inr(P.site.extraLabour)} = ${inr(extra)}`), row(t('calc_gst', { g: P.gstPct }), inr(gst)), row(t('calc_total'), inr(price + gst), true), row(t('calc_annual', { a: P.site.annualMonths }), inr(reg * P.site.annualMonths) + ' + GST'), row(t('calc_gain'), inr(gain), true), row(t('calc_x'), (Math.round(gain / price * 10) / 10) + '×'),
+  $('#calcOut').replaceChildren(...[
+    el('span', { class: 'note' }, over ? t('calc_regular') : t('calc_launch')),
+    el('div', { class: 'big' }, el('b', { class: 'money' }, inr(price)), over ? null : el('s', { class: 'money' }, inr(reg))),
+    row(t('calc_base'), `${sites} × ${inr(over ? P.site.monthly : P.launch.monthly)}`),
+    row(t('calc_extra'), `${sites} × ${extraN} × ${inr(P.site.extraLabour)} = ${inr(extra)}`),
+    row(t('calc_gst', { g: P.gstPct }), inr(gst)), row(t('calc_total'), inr(price + gst), true),
+    row(t('calc_annual', { a: P.site.annualMonths }), inr(reg * P.site.annualMonths) + ' + GST'),
+    row(t('calc_onb'), onbFree ? [el('s', {}, inr(P.onboarding)), ' ', el('span', { class: 'free' }, t('free'))] : inr(P.onboarding)),
+    el('hr'),
+    el('span', { class: 'note' }, t('calc_gain_h')),
+    el('div', { class: 'big gain' }, el('b', { class: 'money' }, inr(gain))),
+    row(t('calc_wages', { d: SAVINGS.workDaysPerMonth }), inr(wages)),
+    row(t('calc_err', { p: SAVINGS.hazriErrorPct }), inr(errV)),
+    row(t('calc_mtime', { h: hrs }), inr(timeV)),
+    row(t('calc_x'), price ? (Math.round(gain / price * 10) / 10) + '×' : '–', true),
     sites >= P.enterprise.minSites ? el('span', { class: 'note' }, t('calc_ent', { n: P.enterprise.minSites })) : null].filter(Boolean));
 }
-$('#calcSites').addEventListener('input', renderCalc); $('#calcLab').addEventListener('input', renderCalc);
+['#calcSites', '#calcLab', '#calcRate', '#calcMunshi', '#calcHours'].forEach(id => $(id).addEventListener('input', renderCalc));
 
 
 /* ===================== POPUPS + QUERY FORM ===================== */
