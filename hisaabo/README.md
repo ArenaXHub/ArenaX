@@ -1,21 +1,21 @@
-# KhataSite by ArenaX
+# Hisaabo by ArenaX · Hazri se hisaab tak
 
 Labour Management System for construction labour contractors. A product of ArenaX Digital Solutions.
 
-Live path: `https://arenax.in/khatasite/` (this folder is served as-is by GitHub Pages; the root homepage is untouched).
+Live path: `https://arenax.in/hisaabo/` (this folder is served as-is by GitHub Pages; the root homepage is untouched).
 
-Renamed from SiteBook on 19 Nov 2026. The old paths `https://arenax.in/sitebook/` and `https://arenax.in/sitebook/app/` are redirect pages (`sitebook/index.html` and `sitebook/app/index.html` at the repository root) so links already shared keep working. The app is planned at `khatasite.arenax.in` (separate hosting; see the ArenaX decision log).
+Named **Hisaabo by ArenaX** (tagline "Hazri se hisaab tak") on 19 Nov 2026, after SiteBook and KhataSite. The old addresses `arenax.in/sitebook/`, `/sitekhata/` and `/khatasite/`, each with its `app/`, are redirect pages at the repository root, so links already shared keep working. The app is planned at `hisaabo.arenax.in` (separate hosting; see the ArenaX decision log). Logo files: `assets/favicon.svg` (the mark); the full logo set and trademark files are kept privately.
 
 The page carries `noindex` because the demo is built from two real site registers (hours, rates, advances, dues, company receipts) and is shared by link with the contractors who provided them. Worker names in the public build are shortened to first name + initial; the repository is public and real worker names are never committed. Nothing about ArenaX's own business (admin console, costs) belongs in this folder; that lives in the private ArenaX workspace.
 
 ## Folder
 
 ```
-khatasite/
+hisaabo/
   index.html                 the whole site: product page + live demo (inline CSS/JS, data inlined as JSON)
-  app/index.html             quick demo app (front end only): login + one-tap roles, reads data/khatasite-demo.json
+  app/index.html             quick demo app (front end only): login + one-tap roles, reads data/hisaabo-demo.json
   assets/                    favicon.svg, og.png (fonts are the site's own, ../assets/fonts; the ₹ sign and the हिंदी label use tiny fonts embedded in index.html)
-  data/khatasite-demo.json    everything the build script extracted and derived (full, pretty-printed)
+  data/hisaabo-demo.json    everything the build script extracted and derived (full, pretty-printed)
   raw/                       the two Excel registers (ignored by git: this repo is public)
   tools/build_demo_data.py   Excel -> JSON -> inlined into index.html
   tools/sync_app.py          copies the site's fonts, icon sprite and shared strings into app/index.html
@@ -27,14 +27,14 @@ khatasite/
 ## Rebuild the demo data
 
 ```
-py -I khatasite/tools/build_demo_data.py khatasite/raw/Davengere_Site.xlsx khatasite/raw/PS-1_ALKESH.xlsx ^
-   --out khatasite/data/khatasite-demo.json --inline khatasite/index.html --mask ^
-   --private-html C:\Users\Kamal\Projects\ArenaX\private\khatasite-demo-real.html
+py -I hisaabo/tools/build_demo_data.py hisaabo/raw/Davengere_Site.xlsx hisaabo/raw/PS-1_ALKESH.xlsx ^
+   --out hisaabo/data/hisaabo-demo.json --inline hisaabo/index.html --mask ^
+   --private-html C:\Users\Kamal\Projects\ArenaX\private\hisaabo-demo-real.html
 ```
 
 `--mask` is the public build: worker names become first name + initial ("Sakindera R."), free-text remarks and receipt notes are dropped, supervisor and site names and every number stay. `--private-html` writes a second, self-contained page with the real names and the fonts embedded, outside the repository, for the two contractors (sent by WhatsApp). Always build the public page with `--mask`; never commit the private file.
 
-Needs Python 3.12 and `openpyxl`. The script prints a month-by-month summary (workers, wages, billed, receipts) so the numbers can be checked against the registers. `--inline` replaces the JSON between `<!--KHATASITE-DATA-->` markers in `index.html` with a slimmed copy (only the fields the page uses); `--inline-months` (default 4) sets how many months with labour entries per site are inlined, the summary rows stay complete.
+Needs Python 3.12 and `openpyxl`. The script prints a month-by-month summary (workers, wages, billed, receipts) so the numbers can be checked against the registers. `--inline` replaces the JSON between `<!--HISAABO-DATA-->` markers in `index.html` with a slimmed copy (only the fields the page uses); `--inline-months` (default 4) sets how many months with labour entries per site are inlined, the summary rows stay complete.
 
 The EMP/AADHAR column is never read. No phone numbers exist in the registers. Keep it that way.
 
@@ -64,23 +64,23 @@ Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,4
 
 ## Demo app (`app/`)
 
-A front-end-only version of the app at `arenax.in/khatasite/app/`, opened from the "Demo app kholo" buttons on the site. It is marked "Demo — data sirf aapke phone par" on every screen.
+A front-end-only version of the app at `arenax.in/hisaabo/app/`, opened from the "Demo app kholo" buttons on the site. It is marked "Demo — data sirf aapke phone par" on every screen.
 
 - Login screen with a mobile-number field (the demo sends no OTP) and one-tap guest roles: Thekedar, Munshi · Davengere Site, Munshi · PS-1 Motidau, Hisaab-wala, CA.
 - Munshi: marks the demo day (8 / 12 / 4 hours or absent), gives kharchi, sees the week's register in days only, submits (geo and photo shown as a demo), then moves to the next demo day. No rates or wages.
 - Thekedar: approves the munshi's day, changes a worker's rate from a chosen date, sees bill, wages, bachat, owed, alerts and daily bachat for any site and month.
 - Hisaab-wala: records payments (cash, UPI, bank), advances and site expenses; downloads the wage register, attendance register and monthly summary as CSV. Cannot change rates.
 - CA: view only: month-by-month summary, wage register, attendance register, the same CSV downloads.
-- Data: the masked `data/khatasite-demo.json`. With no demo changes every figure equals the register. Changes live only in this browser (`localStorage` key `arenax-demo-app-v1`, every access in try/catch); "Reset demo" clears them. With storage blocked the app still works and says changes will not be kept.
+- Data: the masked `data/hisaabo-demo.json`. With no demo changes every figure equals the register. Changes live only in this browser (`localStorage` key `arenax-demo-app-v1`, every access in try/catch); "Reset demo" clears them. With storage blocked the app still works and says changes will not be kept.
 - Theme picker (same as phone, light, dark) and the three languages (हिंदी, Hinglish, English), both remembered in this browser.
-- After changing the site's fonts, icons or the shared strings, run `py -I khatasite/tools/sync_app.py khatasite/index.html khatasite/app/index.html`.
+- After changing the site's fonts, icons or the shared strings, run `py -I hisaabo/tools/sync_app.py hisaabo/index.html hisaabo/app/index.html`.
 - The private real-name file links its app buttons to the published app, since it is opened on its own.
 
 ## Verify before committing
 
 ```
 py -I -m http.server 8765 --bind 127.0.0.1        # from the repo root
-# then screenshot http://127.0.0.1:8765/khatasite/index.html at 1280 and 390 px wide,
+# then screenshot http://127.0.0.1:8765/hisaabo/index.html at 1280 and 390 px wide,
 # check the console is clean and document.documentElement.scrollWidth == clientWidth
 # Lighthouse mobile (performance ≥ 85) against a gzip server, as GitHub Pages serves gzip
 ```

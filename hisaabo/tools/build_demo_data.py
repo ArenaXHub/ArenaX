@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build the KhataSite demo data from two "Daily Manhours Report" Excel registers.
+"""Build the Hisaabo demo data from two "Daily Manhours Report" Excel registers.
 
 Usage:
-    py -I khatasite/tools/build_demo_data.py <register.xlsx> [<register.xlsx> ...] \
-        --out khatasite/data/khatasite-demo.json [--inline khatasite/index.html]
+    py -I hisaabo/tools/build_demo_data.py <register.xlsx> [<register.xlsx> ...] \
+        --out hisaabo/data/hisaabo-demo.json [--inline hisaabo/index.html]
 
 Each workbook is one site. Monthly labour sheets (e.g. "FEB-26") hold one row per
 worker with hours per date (8 h = 1 day), weekly pocket-money (kharchi) + mess
@@ -22,7 +22,7 @@ Output: one JSON with sites, months, workers, daily hours, weekly kharchi, dues,
 rates, billing, receipts, expenses and the derived numbers the demo page shows
 (daily wages, daily billing, daily bachat (billed minus wages), monthly billed vs wages, rate history).
 With --inline the JSON is written into the page between the markers
-<!--KHATASITE-DATA--> ... <!--/KHATASITE-DATA--> as a JSON script tag.
+<!--HISAABO-DATA--> ... <!--/HISAABO-DATA--> as a JSON script tag.
 """
 from __future__ import annotations
 
@@ -685,22 +685,22 @@ def embed_fonts(html: str, base: Path) -> str:
 def inline_into(html_path: Path, data: dict, keep_months: int = 4) -> None:
     data = slim_for_inline(data, keep_months)
     html = html_path.read_text(encoding="utf-8")
-    start, end = "<!--KHATASITE-DATA-->", "<!--/KHATASITE-DATA-->"
+    start, end = "<!--HISAABO-DATA-->", "<!--/HISAABO-DATA-->"
     i, j = html.find(start), html.find(end)
     if i < 0 or j < 0:
         sys.exit(f"markers not found in {html_path}")
     blob = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    new = html[: i + len(start)] + '\n<script id="khatasite-data" type="application/json">' + blob + "</script>\n" + html[j:]
+    new = html[: i + len(start)] + '\n<script id="hisaabo-data" type="application/json">' + blob + "</script>\n" + html[j:]
     html_path.write_text(new, encoding="utf-8")
 
 
 def write_private(template: Path, out: Path, data: dict, keep_months: int) -> None:
     """One self-contained HTML with real names and embedded fonts, written outside the repo."""
     html = template.read_text(encoding="utf-8")
-    start, end = "<!--KHATASITE-DATA-->", "<!--/KHATASITE-DATA-->"
+    start, end = "<!--HISAABO-DATA-->", "<!--/HISAABO-DATA-->"
     i, j = html.find(start), html.find(end)
     blob = json.dumps(slim_for_inline(data, keep_months), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    html = html[: i + len(start)] + '\n<script id="khatasite-data" type="application/json">' + blob + "</script>\n" + html[j:]
+    html = html[: i + len(start)] + '\n<script id="hisaabo-data" type="application/json">' + blob + "</script>\n" + html[j:]
     html = html.replace('data-build="public"', 'data-build="private"', 1)
     html = embed_fonts(html, template.parent)
     out.parent.mkdir(parents=True, exist_ok=True)
