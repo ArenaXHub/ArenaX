@@ -46,7 +46,7 @@ Geo-lock 200 m · morning time window · group photo · offline-first PWA with s
 - **Free trial**: 10 Din, 1 site, all features, no card (long enough for one full weekly hisaab).
 - **Site Plan**: ₹2,999 per site per month + GST, includes 40 active labour per site; ₹10 per extra active labour. "Active" = marked present at least once that month. Munshi and accountant logins free. Annual = pay 10 months.
 - **Launch offer**: ₹1,999 per site per month (₹1,000 off, shown against the struck-through ₹2,999) for contractors who join in the launch month (January 2027, `launch.start = 2027-01-01`), locked for their first 6 months. December 2026 is the pilot with the two contractors, who get this offer.
-- **Onboarding (one-time)**: ₹4,999: register import, munshi training, site setup (GPS, time window). Free for contractors who join in the launch month (January 2027), shown as the struck-through ₹4,999 (`launch.onboardingFree`).
+- **Onboarding (one-time)**: ₹4,999: register import, munshi training, site setup (GPS, time window). Not free in the launch offer (`launch.onboardingFree: false`; KP, 19 Nov 2026).
 - **Add-ons**: QR / NFC worker card; WhatsApp parchi (weekly pay slip / voice note). "Ask Price".
 - **Multi-site / company**: 10+ sites, custom.
 - No competitor names or prices on the public page.
@@ -92,4 +92,4 @@ Cash and register flow audit · register import to SiteBook · Labour Codes setu
 - Worker names are shortened (first name + initial) in everything public; the real-name demo is built outside the repository and never committed.
 - v2: no internal ArenaX views, costs or business numbers on any public page or in this repository; QR / NFC card and WhatsApp parchi are add-ons.
 - v2.1: pricing ₹2,999 regular, ₹1,999 launch, onboarding ₹4,999, "Ask Price" for add-ons, "10 Din" trial; bachat = company bill − total site expense (wages, which include kharchi + mess, plus extra), as in the register's month total; onboarding without QR cards; fayda estimate shown to contractors; sample popups (WhatsApp parchi, printed slip, QR card, geo-lock, morning window, group photo, offline, register, dashboard); always-visible CTA with a query form.
-- v2.2: launch-month joiners get onboarding free (₹4,999 struck through); the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary.
+- v2.2: the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary. Onboarding stays ₹4,999 in the launch offer (free onboarding was tried and withdrawn the same day).
