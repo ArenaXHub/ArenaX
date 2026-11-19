@@ -9,7 +9,7 @@ website (index.html) so both look and read the same; they sit between markers:
 
 Run after changing any of those on the website:
 
-    py -I sitebook/tools/sync_app.py sitebook/index.html sitebook/app/index.html
+    py -I khatasite/tools/sync_app.py khatasite/index.html khatasite/app/index.html
 """
 import re
 import sys

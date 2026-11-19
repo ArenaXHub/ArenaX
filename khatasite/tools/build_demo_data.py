@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build the SiteBook demo data from two "Daily Manhours Report" Excel registers.
+"""Build the KhataSite demo data from two "Daily Manhours Report" Excel registers.
 
 Usage:
-    py -I sitebook/tools/build_demo_data.py <register.xlsx> [<register.xlsx> ...] \
-        --out sitebook/data/sitebook-demo.json [--inline sitebook/index.html]
+    py -I khatasite/tools/build_demo_data.py <register.xlsx> [<register.xlsx> ...] \
+        --out khatasite/data/khatasite-demo.json [--inline khatasite/index.html]
 
 Each workbook is one site. Monthly labour sheets (e.g. "FEB-26") hold one row per
 worker with hours per date (8 h = 1 day), weekly pocket-money (kharchi) + mess
@@ -22,7 +22,7 @@ Output: one JSON with sites, months, workers, daily hours, weekly kharchi, dues,
 rates, billing, receipts, expenses and the derived numbers the demo page shows
 (daily wages, daily billing, daily bachat (billed minus wages), monthly billed vs wages, rate history).
 With --inline the JSON is written into the page between the markers
-<!--SITEBOOK-DATA--> ... <!--/SITEBOOK-DATA--> as a JSON script tag.
+<!--KHATASITE-DATA--> ... <!--/KHATASITE-DATA--> as a JSON script tag.
 """
 from __future__ import annotations
 
@@ -620,11 +620,11 @@ def mask_name(name: str) -> str:
 
 
 def mask_names(data: dict) -> dict:
-    """Public build: worker names become first name + initial; supervisor and site names stay;
-    free-text remarks and receipt notes (which name people) are dropped. Numbers are untouched."""
+    """Public build: worker and supervisor names become first name + initial (KP, 19 Nov 2026: full names only in the
+    private file); site names stay; free-text remarks and receipt notes (which name people) are dropped. Numbers are untouched."""
     out = json.loads(json.dumps(data))
     for site in out["sites"]:
-        keep = {site["supervisor"]}
+        keep: set[str] = set()
         mapping: dict[str, str] = {}
         used: set[str] = set()
 
@@ -641,17 +641,24 @@ def mask_names(data: dict) -> dict:
                 mapping[name] = cand
             return mapping[name]
 
+        site["supervisor"] = m(site["supervisor"])  # first, so the supervisor keeps the plain short form
         for month in site["months"] + site["billing_only_months"]:
+            if month.get("supervisor"):
+                month["supervisor"] = m(month["supervisor"])
             for w in month.get("workers", []):
                 w["name"] = m(w["name"])
                 w["remarks"] = ""
             for r in month.get("receipts", []):
                 r["note"] = ""
             bill = month.get("billing")
+            if bill and bill.get("supervisor"):
+                bill["supervisor"] = m(bill["supervisor"])
+            if month.get("kind") == "billing" and month.get("supervisor"):
+                month["supervisor"] = m(month["supervisor"])
             for row in (bill["rows"] if bill else month.get("rows", [])):
                 row["name"] = m(row["name"])
         site["rate_history"] = {m(k): v for k, v in site["rate_history"].items()}
-        site["name_policy"] = "worker names shortened to first name + initial"
+        site["name_policy"] = "worker and supervisor names shortened to first name + initial"
     return out
 
 
@@ -678,22 +685,22 @@ def embed_fonts(html: str, base: Path) -> str:
 def inline_into(html_path: Path, data: dict, keep_months: int = 4) -> None:
     data = slim_for_inline(data, keep_months)
     html = html_path.read_text(encoding="utf-8")
-    start, end = "<!--SITEBOOK-DATA-->", "<!--/SITEBOOK-DATA-->"
+    start, end = "<!--KHATASITE-DATA-->", "<!--/KHATASITE-DATA-->"
     i, j = html.find(start), html.find(end)
     if i < 0 or j < 0:
         sys.exit(f"markers not found in {html_path}")
     blob = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    new = html[: i + len(start)] + '\n<script id="sitebook-data" type="application/json">' + blob + "</script>\n" + html[j:]
+    new = html[: i + len(start)] + '\n<script id="khatasite-data" type="application/json">' + blob + "</script>\n" + html[j:]
     html_path.write_text(new, encoding="utf-8")
 
 
 def write_private(template: Path, out: Path, data: dict, keep_months: int) -> None:
     """One self-contained HTML with real names and embedded fonts, written outside the repo."""
     html = template.read_text(encoding="utf-8")
-    start, end = "<!--SITEBOOK-DATA-->", "<!--/SITEBOOK-DATA-->"
+    start, end = "<!--KHATASITE-DATA-->", "<!--/KHATASITE-DATA-->"
     i, j = html.find(start), html.find(end)
     blob = json.dumps(slim_for_inline(data, keep_months), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    html = html[: i + len(start)] + '\n<script id="sitebook-data" type="application/json">' + blob + "</script>\n" + html[j:]
+    html = html[: i + len(start)] + '\n<script id="khatasite-data" type="application/json">' + blob + "</script>\n" + html[j:]
     html = html.replace('data-build="public"', 'data-build="private"', 1)
     html = embed_fonts(html, template.parent)
     out.parent.mkdir(parents=True, exist_ok=True)
