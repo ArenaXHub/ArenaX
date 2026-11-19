@@ -1,8 +1,8 @@
-# KhataSite · product brief (v0.5, 19 Nov 2026)
+# Hisaabo by ArenaX · product brief (v0.6, 19 Nov 2026)
 
-KhataSite is a Labour Management System for construction labour contractors (thekedars) who run several sites for a principal company, pay labour by the day and settle weekly in cash. A product of ArenaX Digital Solutions.
+Hisaabo is a Labour Management System for construction labour contractors (thekedars) who run several sites for a principal company, pay labour by the day and settle weekly in cash. A product of ArenaX Digital Solutions.
 
-Pilot material: two real registers (Davengere Site, supervisor Sonu N.; Motidau PS-1 Gujarat, supervisor/foreman Arun S.; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/khatasite/` is built from them, with worker names shortened.
+Pilot material: two real registers (Davengere Site, supervisor Sonu N.; Motidau PS-1 Gujarat, supervisor/foreman Arun S.; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/hisaabo/` is built from them, with worker names shortened.
 
 ArenaX's own business side (admin console, costs) is kept in the private ArenaX workspace, not in this public repository.
 
@@ -16,7 +16,7 @@ ArenaX's own business side (admin console, costs) is kept in the private ArenaX 
 
 ## Users (hard constraints)
 
-| User | Reality | What KhataSite asks of them |
+| User | Reality | What Hisaabo asks of them |
 |---|---|---|
 | Labour (mazdoor) | cannot read or write | nothing: no login, no app. QR card or WhatsApp slip (add-ons), printed weekly slip |
 | Supervisor (munshi, foreman) | one per site, barely literate, marks a paper register, gives cash advances | tap pictures: 4 attendance buttons per worker, note images for kharchi, one submit. Sees days and the kharchi he gave, never rates or wages |
@@ -77,13 +77,13 @@ The Contract Labour (Regulation and Abolition) Act was repealed when the four La
 
 ## ArenaX as business consultants
 
-Cash and register flow audit · register import to KhataSite · Labour Codes setup · munshi training (one morning on site).
+Cash and register flow audit · register import to Hisaabo · Labour Codes setup · munshi training (one morning on site).
 
 ## Roadmap
 
 | Phase | Scope | Notes |
 |---|---|---|
-| 0 (now) | Product page + clickable demo from the two registers; quick demo app (front end only: login, one-tap roles, data kept in the browser) at `khatasite/app/` | this repo, `khatasite/` |
+| 0 (now) | Product page + clickable demo from the two registers; quick demo app (front end only: login, one-tap roles, data kept in the browser) at `hisaabo/app/` | this repo, `hisaabo/` |
 | 1 | Pilot (Dec 2026) with the PS-1 / Davengere contractor: munshi PWA (offline attendance, kharchi, submit with geo + photo), thekedar dashboard, weekly settlement, rate history | launch offer ₹2,499 for the first 6 months |
 | 1.5 | Accountant role, register import tool (this build script generalised), Labour Codes register export, QR card and WhatsApp parchi add-ons | onboarding ₹3,999 / ₹4,999 on the monthly plan, free on the annual plan |
 | 2 | Company view (read-only attendance proof for billing), multi-site plans, payment gateway for subscriptions | |
@@ -100,5 +100,6 @@ Cash and register flow audit · register import to KhataSite · Labour Codes set
 - v2.2: the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary. Onboarding stays ₹4,999 in the launch offer (free onboarding was tried and withdrawn the same day).
 - v2.3: monthly plan ₹3,999 per site per month; launch offer ₹2,499 for the first month only, for contractors who join in January 2027; annual plan ₹25,000 per site per year (₹2,083 a month); the fayda is set against the annual plan per month. Onboarding, final rule: free on the annual plan; on the monthly plan ₹3,999 if booked by 31 Dec 2026, ₹4,999 after.
 - v2.5: the launch price ₹2,499 is locked for the first 6 months (replaces "first month only"); after 31 Dec 2026 the annual onboarding box strikes ₹4,999; multi-site discount 2–4 sites 10%, 5–9 sites 15%, 10+ sites Ask Price, not stacking with the launch price.
-- v2.6: renamed from SiteBook to KhataSite (KP's name rule of 19 Nov 2026: "Hisaabo" is the name of a live accounting app, "SiteKhata" of an Android app). Website `arenax.in/khatasite/`; the old `arenax.in/sitebook/` redirects there. App address (planned): `khatasite.arenax.in`.
+- v2.6: renamed from SiteBook to KhataSite (KP's name rule of 19 Nov 2026: "Hisaabo" is the name of a live accounting app, "SiteKhata" of an Android app). Website `arenax.in/khatasite/`; the old `arenax.in/sitebook/` redirects there. App address (planned): `khatasite.arenax.in`. (Superseded by v2.8.)
 - v2.7: annual plan ₹29,999 per site per year (₹2,500 a month); 2–4 sites ₹26,999, 5–9 sites ₹25,499, 10+ sites Ask Price. Onboarding stays free on the annual plan.
+- v2.8: renamed to **Hisaabo**, shown as "Hisaabo by ArenaX" with the tagline "Hazri se hisaab tak" (KP's final decision, 19 Nov 2026, overriding the earlier name rule). Website `arenax.in/hisaabo/`; `arenax.in/sitebook/`, `/sitekhata/` and `/khatasite/` (and their `app/`) redirect there. App address (planned): `hisaabo.arenax.in`. New logo: an H whose crossbar is a tick.

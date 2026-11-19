@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="hi" data-lang="hn" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F1F1EE">
+<title>Hisaabo by ArenaX · demo app</title>
+<meta name="description" content="Hisaabo demo app: try the munshi, thekedar, hisaab-wala and CA screens. Demo data stays on your phone.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* theme before first paint: the viewer's own choice, kept only in this browser */
+(function () { var p = 'auto'; try { p = localStorage.getItem('arenax-demo-theme') || 'auto'; } catch (e) {}
+  var dark = p === 'dark' || (p === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light'); })();
+</script>
+<style>
+/* Hisaabo demo app · one self-contained page. Same look as the website (tokens, components, icons); light and dark themes. */
+/*@FONTS*/
+@font-face{font-family:"Manrope";font-weight:700 800;font-display:optional;src:url(../../assets/fonts/manrope-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-weight:400 500;font-display:optional;src:url(../../assets/fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-weight:600 700;font-display:optional;src:url(../../assets/fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"SBRupee";font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,d09GMgABAAAAAAjsABEAAAAAEswAAAiSAAKJugAAAAAAAAAAAAAAAAAAAAAAAAAAGhQbIBw2BmAANAiBIgmabREICoIkghQBNgIkAwgLBgAEIAUGByAMgTwbjBFRlG1Sk+Lnge2M+hUWWVpcygPTMR00ySYJUbj4kx/V9fUiMrOqWvhwfbvbOQB4nVm4e4nT7pE6Qieh4P/R1s+KEjzNDQ+xDGL/fwbLGioJmlkraop6uupksMWf7/uD37p1xEK4lsuyyPm83TibvJpdIZbbCHrdStkdpvGlLVqmFtegRW1NePrWSlu/uu8ugG59gIVHYSJ0jBlc6J3A7ASBFLAwiJJJGCaV5xPF1mWZU3GvFCOOFRDbfTxtBQTAC3qQe2fAjXJUgoaPHD8dFuRfAmN0hGrSgz7I6UuXr3b2oK4qS3Lru+0bVyQGbi34Nl2GAvgszwYwLmmJFiJKxbthD/L6jHlGjJs+Etp+yZlGrv3vJ0I14+hagnDxD3knABtKDOFhEEGjsYSNFBplv+Q41cP6zWgQ8uJkJ8fLMCwntvLO4cD/fzflaC3nvxTzmQyvRR/XAvx4ylfOH845biBU4bcQw5xSPuT6QIDqX4pRBbE5/3QW4z9nHviNixn0mphLj78BbQIz0iRLzzbwfz/D+Pmc6FOaZlmrn/HA1v23aEPDwubOezAHDLPxACKUGCDHjnWAXUvx5kCWz0OTeDBZTDAyeYTlt1+SN+/62ZXJI5hBTydizUmxmVVFhndLmswY8lDa5brw8uY0Wqs/u6RF3KUCOxvh3E0dkIGHKzlnBxtuLMDUBMbhxvaEY1o5Y+XRbYJlgTvnRlGf87LLUI1bMjA5rZ54QLgmQlq3FAqvE0ojhkbnfYbagHTz5rWsqo/iBztN3MqDaj9UG7xoxKcXBtTbX45q7VrqkeVNKq9d9zYnyz4LfSeoOo9exaUCyjFxaQATLMYTNzWaQG3s4H4NDVCL+gyYLk2EF4uNpF5gckJH7piV8YKvZvlgHgiTeNGrTFzLqzBxj3V7qgaGIa1o0temljRXUKaKqdiKpqofwnDJeKJN8QySUicKVmqL9wmC2jh4dvNM3pnPF33A55VnyfIcB/wOtRI+PDX9+gSNGT/EVPwzBwIuggfzCLWRNPS1SQBF/eJKQKMFgjx7n6ocx/k0vsl+BkLwqDfp2bsgdT4wkZbDVARHH4rB6o2hLhKoGQyDLVafjf/a0KMJYa9TJUJBmgP6s/bkc/o/vUEdkDiUsF8J42kzPszwM5+3AomtihxvWoE7G0MAmYGYo2tH2KrgfJ8IWtQEb/VJ41FUG1Wg7k9428aZIvaL//DayplWPZUDUSoilwIFVPKkUFmKVEixSilRJaVqSJmaUq6WVKhrSDNG/gUx2mfvk6mBfq/JzoGWLjWF9q/91poG+39aV7KFr+6SKiqxEaoRahBqEeoQ6hEaEBoRmpCRbag9rdI+fSEcGllreSTREdTSprE/TQe0O+0t0Ik0kypHWLdnT9JVxzlHgXRF/ojqXae+XYzOVhU/TNLVvNek+5BWHTmyB91a/+BetthGcuY9Q3VFAXcECn8jX+B63/ZqjxTs+KT0oVazXfQDw7zvKNBPc6wNDPT4GiAs9gKDVKbHM2o0A7URtif92VE2s05p7nyGNA4DQg+HLwZigEJCFpGGtM7Xrm4KXLi06jtMavuY0ZF4psabIqRGkQFi8RPl4fWZfvHzru1+cdktzTGasKC+Vuw4bVqQuKyuPOmi19B5GGVpCHTLcAFG5xAo/goF76szCVls2u05w8IUtlo41xaLbGesZHxXZLJ/ZR1q7AHIsreyLaWWleg5usyMY3IgQUg7klCln7V7HWqSGRaqOGXB1IEqu6cQ4ZYiuq8KpqdGrXkH3xoqlET6Yxi03pOPhUiWK9X5WGXOTn73dBaqII73W7BjHeYlPSGDqaHyH08J9fTavc1JbW5qh0QvBbKYLt+61xvXI6yy2EEPgZhP+zMOhbj3dm2RGvtYj+mQaOgwZViGQi1NCv2TOtwaDyA4p7ObWjW2N8sPfDjVWlgEhSf7v5jpcrCz4Gm2d2t7zmtNb59XKyOGIHaJmtJIyIt6e3M2Y3sHwaik4PJXBtznxUPcWn2tc0aPG0MFtaX028PHwmBNxl0JhRNTo2lfm5RVxnOuU8a1TDeBAbi6TFSSSXWImKzspiBJnUrqNFKnk8Nm8AsOX6WZTUMyqy4Rsw27OZmyzlXWeco6X9ktmBnoQqCLgC4GbgmSRpfS6DIaXU5TXrE6wqwkzCrCrCbMGsKsJcw6wqwnpm6gqgEJOZY3Qmku49tNZN3mow9N9OgtbXlCytYqMtuqSLb3RXJsdtgkO20y2dWClt0QGbuHrN2Lln19kRqV/TbFAZvioE1xyKY4bFMcsSmO1qQ5ZtMct2lO2DQnbZpTNs1pm57jTNszLsnftVeIrTlrRU7UTf75oj57AIEcB4GfUJEpjAp9DAfI6ddCgaTIX1Wd8knvOu+MOWL6nJnTO2Z9FOS5+3Spm3xw33iiwgP37dyrH/bNeD/z0ScLW3pvPOA590nVq78689x7pz/y/9v1/6D/OX/EcV+yT7Hrpv5lfP7dN/ST+tYTh5Zs0GurHvpnSMkW3h/Wdu4F471X7xz+8Hg4M+xOLAEAuj3g93lclmlYGCVJCFoAospxWwAvAHMFxrvzotd5WqFQUJlFrfpORXlRoeRRMGAqw1znslhJAimsEUTU9zrlPB5ALWpboqFIKHovbrO8FQSAz7z8bl/n2UWB1G9WQHwHAB/1PS8CwLe7fgc4v9Ov/CoAF4lC0a97Rv+3ul+D5fMicyJMNM8o1EFxW0EfRuLc0BePG0RGGhDIu+qc2Iri0uNexDvX7DzRxTk5eu3dYHMe5tDngUxHjUJL2220d5wcJnutRqPEVNaNi0ziUZw02qWtjOt7h74eQQg+uGEchoLLkVBf6CJk5xbLh+fr6PSU2Tl9ejYk0IZpXrYOg2SYLZvulebk96y9E3gE9xvNskwpb8uL5JxAXsgzZsZn1HIDw4cDAA==) format("woff2");unicode-range:U+20B9}
+@font-face{font-family:"SBHindi";font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,d09GMgABAAAAAARUAA4AAAAACBwAAAQCAAKJugAAAAAAAAAAAAAAAAAAAAAAAAAAGhwbg1ocgSoGYABMEQgKhgSFCwE2AiQDHAsSAAQgBQYHIBuaBlFUS96D/KmAHMNh9KoXtdLmI5q2dDTrhXwr7HB2ejG+4EEa+XkzaGO4Zg9r8fC8XvTnvmTG6yypjl9EJXVCZWAScg2r/6P8CzeAPT1GcMKJcFAc/oyX6ZMkozUVnJ4CsAMVFxZP2eXLFRUI+xdJJVkllYXpxTz50JlaW3UX0Sii0+liJVOKaoR0dFFL0JgP9UP7RnpNZkm8UkJ6c2viCgkVR1g7T5z07BcEmoAkCSGTVIRA3QTr5IuWrNqkx667HT4hgZ2Y++506P57JocWCSHttPPh+2m7z24H768LkiRDQihpmmF/13haTVWurS76GCIkPJ6wb2O+fmI0JVWhKmkP+hggJKEUYAYrCLGOdI4YmdzVEmE2dUOhvJukrCniMwJ8XVhFuDxwYaGXMAGBHDPMIsHhYnfd4Sx0RJrzRjoij56k1slaWO+WhEwhtJUj6aKfpT3J1ZXVOQAa2kmG9UywQC6j5BIHLk0djnRSoUcpybyW7STtrelWgUNc/6AQFZHwwnFkqkZYoey/LGFZRUhlYE8iHUWWq0hISSAkZUlcnKVLghLp7BRW9o6LbYroRmpQqxPt5eKVm5aYV0u1efne/31LvncqEBCvpsPRTwkJGQqZQCE3DXVVSaql2pDa9Nq8Fp7AXH9Z+92e7jEBiAtbrx2ogvalLZrEXJSSsxjxC1Pz0OhZYrEsacDR+bcSPwgrob6IE2+ienl6z9S7evn1cP3CG41FM9rB2Rv33gbbxUl8Qtm7vyUXw16XgjCu3Pdw3h6enwYXzsBM637iuMTlfbfDRsG5+nK4ur4pQhckuy43bydE46ImuGuQXZWGd7Zl973uApSKRiSvX6nLxtaef+sYk2aZKPXdga/bve+h269liZNlbfw4oYcyG9ddAYMtHrO+lZ6kOl//r+u/lIsPu3VfKbo+dev27om7u2r1Lbx8aXftit/ncWKeD16tpyOxG17ZRcE53AMwQVrHicLyC/MlMpHSj834rywFmXhYO9lg9xgOGQvsFeVLJnqjBveyV37rcc7OywBl3lFt9wk2BhVfZ7/fCIhxe3pfYc2EuWe/L9rdknoCz8TOTIuD/HtjEMaT/YGHf0dhleISZZmmHmpl42RWdvXq9vlSN90gsaYVMFAiTdviD1z1nNEv9IpJkkX1XWzH87poX0ND9B3trWRn3hx42qcLdwH+8joe1qO9BaXTnBm6Vslq3pbmzubNP/xxyJCVpgtPTSJ4fqVz36pd64aFztjceOcUh3xvLOu14PxjEEhn3f3CqzsV29vN+q3aLvsSXlt41J3wxaB5zyFJNmoSCD6bePxtJ3zTAYI2l+NXaIVJFD82ok+F37fAhUeqZvGNVU5ZxlZrCg==) format("woff2")}
+@font-face{font-family:"Mukta";font-weight:400;font-display:swap;src:url(../../assets/fonts/mukta-devanagari-400-normal.woff2) format("woff2");unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+25CC,U+A830-A839,U+A8E0-A8FF}
+/*@/FONTS*/
+:root{
+  --surface:#F1F1EE;--raised:#F9F9F7;--card:#FFFFFF;--well:#E8E8E3;--ink:#17181A;--on-ink:#FFFFFF;--muted:#5B5D60;--rule:#D9D9D4;
+  --marigold:#E3A21A;--on-marigold:#141414;--link:#8A5A00;--focus:#1F5FBF;
+  --good:#1F7A4D;--good-soft:#E1F1E7;--good-line:#A9D3B9;--watch:#8A5A00;--watch-soft:#FBF0D6;--watch-line:#EBCB85;--act:#B23A0E;--act-soft:#F9E0D8;--act-line:#E9B3A3;
+  --c-billed:#2B6CB0;--c-wages:#E3A21A;--c-bachat:#1F7A4D;--c-loss:#B23A0E;
+  --gold-soft:rgba(227,162,26,.18);--paper:#FBF7EA;--paper-rule:#D8CCA6;--paper-head:rgba(216,204,166,.35);
+  --scrim:rgba(241,241,238,.97);--stamp-bg:rgba(255,255,255,.94);
+  --display:"SBRupee","Manrope","Segoe UI",Roboto,system-ui,sans-serif;
+  --body:"SBRupee","Inter","Segoe UI",Roboto,system-ui,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --lift:0 20px 40px -22px rgba(10,10,10,.38);--soft:0 2px 8px rgba(10,10,10,.06);
+  color-scheme:light;
+}
+html[data-theme="dark"]{
+  --surface:#121314;--raised:#1A1B1D;--card:#1E2022;--well:#26282B;--ink:#EDEDEA;--on-ink:#121314;--muted:#A6A8AB;--rule:#34373A;
+  --marigold:#E3A21A;--on-marigold:#141414;--link:#E8B54A;--focus:#7AA7FF;
+  --good:#4CB782;--good-soft:#173527;--good-line:#2C6A4B;--watch:#E8B54A;--watch-soft:#3A2E12;--watch-line:#6B5520;--act:#F07B57;--act-soft:#3D1F16;--act-line:#7A3A26;
+  --c-billed:#6EA8E8;--c-wages:#E3A21A;--c-bachat:#4CB782;--c-loss:#F07B57;
+  --gold-soft:rgba(227,162,26,.22);--paper:#22211C;--paper-rule:#4A4636;--paper-head:rgba(120,110,80,.28);
+  --scrim:rgba(18,19,20,.96);--stamp-bg:rgba(30,32,34,.96);
+  --lift:0 20px 40px -22px rgba(0,0,0,.7);--soft:0 2px 8px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+html[data-lang=hi]{--display:"SBRupee","Manrope","Mukta","Nirmala UI","Noto Sans Devanagari",system-ui,sans-serif;--body:"SBRupee","Inter","Mukta","Nirmala UI","Noto Sans Devanagari",system-ui,sans-serif}
+.langs button[data-lang=hi]{font-family:"SBHindi","Nirmala UI","Noto Sans Devanagari",sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-0.02em;margin:0}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.08;font-weight:800;letter-spacing:-0.03em}
+h2{font-size:clamp(22px,4vw,28px);line-height:1.15;font-weight:800}
+h3{font-size:18px;line-height:1.25;font-weight:700}
+.h4{font-size:16px;font-weight:700;line-height:1.3}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ico{width:1.15em;height:1.15em;display:inline-block;vertical-align:-.2em;flex:none}
+.money{font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:18px;min-width:0;box-shadow:var(--soft)}
+.tag{display:inline-block;width:max-content;font:600 12px/1 var(--mono);letter-spacing:.06em;padding:6px 9px;border-radius:5px}
+.tag.run{background:var(--marigold);color:var(--on-marigold)}
+.tag.soft{border:1px solid var(--rule);color:var(--muted);background:var(--raised)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:12px;font:600 15px/1.2 var(--body);border:1px solid var(--rule);color:var(--ink);background:var(--card);cursor:pointer;text-decoration:none}
+.btn:hover{text-decoration:none}
+.btn.primary{background:var(--marigold);color:var(--on-marigold);border-color:var(--marigold)}
+.btn.ink{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.btn.small{min-height:38px;padding:7px 12px;font-size:14px;border-radius:10px}
+.btn:disabled{opacity:.45;cursor:default}
+.lift{transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s}
+@media (hover:hover){.lift:hover{transform:translateY(-3px);box-shadow:var(--lift),0 0 0 1px rgba(227,162,26,.3),0 0 26px -6px rgba(227,162,26,.5)}}
+.lift:active,.btn:active{transform:scale(.97)!important;transition-duration:.08s}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:4px 10px;color:var(--muted);min-height:32px;cursor:pointer}
+.chip.on{color:var(--ink);border-color:var(--marigold);background:var(--gold-soft)}
+
+/* top: demo bar + header */
+.top{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+.demo-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 16px;background:var(--watch-soft);color:var(--ink);border-bottom:1px solid var(--watch-line);font-size:13px;font-weight:600}
+.demo-bar .ico{color:var(--watch)}
+.demo-bar .chip{background:var(--card);color:var(--ink);font-weight:600;min-height:34px;white-space:nowrap}
+.demo-bar .chip.warn{border-color:var(--act);color:var(--act)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 16px;max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:8px;color:var(--ink);font:800 18px/1 var(--display);letter-spacing:-.02em;min-width:0}
+.logo:hover{text-decoration:none}
+.logo .mark{width:34px;height:34px;flex:none}
+.logo .tag{font-size:10px;padding:4px 6px}
+.logo .wmw{display:grid;gap:3px;line-height:1}.logo .by{font:500 10px/1 var(--mono);color:var(--muted);letter-spacing:.04em}
+.tools{display:flex;align-items:center;gap:6px}
+.langs{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:3px;background:var(--raised);gap:2px}
+.langs button{border:0;background:transparent;border-radius:999px;padding:6px 9px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);min-height:34px}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+.themewrap{position:relative}
+.iconbtn{width:40px;height:40px;border-radius:999px;border:1px solid var(--rule);background:var(--raised);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.iconbtn .ico{width:20px;height:20px}
+.menu{position:absolute;right:0;top:46px;background:var(--card);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--lift);padding:6px;display:grid;gap:2px;min-width:170px;z-index:30}
+.menu button{display:flex;align-items:center;gap:10px;border:0;background:transparent;border-radius:8px;padding:10px 12px;text-align:left;cursor:pointer;font-size:14px;font-weight:600}
+.menu button[aria-checked="true"]{background:var(--gold-soft)}
+.menu button:hover{background:var(--raised)}
+
+/* layout */
+main{max-width:1100px;margin:0 auto;padding:18px 16px 96px}
+.stack{display:grid;gap:16px}
+.narrow{max-width:560px;margin:0 auto}
+.rolebar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rolebar .who{display:flex;align-items:center;gap:10px;font-weight:700}
+.rolebar .who .ric{width:40px;height:40px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center}
+.rolebar .who .ric .ico{width:22px;height:22px}
+.rolebar small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+.pickers{display:flex;gap:10px;flex-wrap:wrap}
+.pickers label,.field{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--muted);min-width:0}
+select,input[type=number],input[type=tel],input[type=text]{min-height:44px;border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font-weight:600;background:var(--card);color:var(--ink);max-width:100%}
+.seg{display:flex;gap:4px;border:1px solid var(--rule);border-radius:12px;padding:4px;background:var(--raised);overflow-x:auto}
+.seg button{flex:1 0 auto;border:0;background:transparent;border-radius:9px;min-height:40px;padding:6px 12px;font-weight:600;font-size:14px;cursor:pointer;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 9px;border-radius:999px;background:var(--well);color:var(--muted)}
+
+/* login */
+.login{display:grid;gap:18px}
+.login .lead{color:var(--muted)}
+.otp{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.otp .field{flex:1 1 200px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.rolecard{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:14px;cursor:pointer;min-height:76px;color:var(--ink)}
+.rolecard .ric{width:46px;height:46px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center}
+.rolecard .ric .ico{width:26px;height:26px}
+.rolecard b{display:block;font:700 16px/1.25 var(--display)}
+.rolecard small{display:block;color:var(--muted);font-size:13px;line-height:1.35;margin-top:2px}
+.rolecard .go{color:var(--muted)}
+.rolecard .lvl{display:inline-block;margin-top:6px;font:600 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:5px;border:1px solid var(--rule);color:var(--muted)}
+
+/* munshi (same components as the website's phone) */
+.mhead{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:700;font-size:16px}
+.mhead small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+.tally{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tally div{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:6px 4px;text-align:center;font-size:12px;color:var(--muted);line-height:1.25}
+.tally b{display:block;font:800 21px/1.15 var(--display);color:var(--ink)}
+.tally .t-abs b{color:var(--act)}.tally .t-ok b{color:var(--good)}.tally .t-km b{font-size:17px;line-height:1.4}
+.wlist{display:grid;gap:10px}
+.wcard{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:10px 12px;display:grid;gap:8px}
+.wcard.done{border-color:var(--good);box-shadow:0 0 0 2px rgba(31,122,77,.14)}
+.wcard.absent{border-color:var(--act)}
+.wrow{display:flex;align-items:center;gap:10px}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 15px/1 var(--display);color:#fff;flex:none}
+.wname{font-weight:700;font-size:15px;line-height:1.2;flex:1;min-width:0}
+.wname small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.wstate{min-width:24px;display:flex;justify-content:flex-end}.wstate .ico{width:24px;height:24px}
+.hbtns{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.hbtn{border:1px solid var(--rule);background:var(--surface);border-radius:12px;min-height:56px;display:grid;place-items:center;gap:2px;padding:6px 2px;cursor:pointer;font-size:11px;font-weight:600;line-height:1.1;color:var(--ink)}
+.hbtn b{display:flex;gap:1px;line-height:1}.hbtn .ico{width:22px;height:22px}
+.hbtn[aria-pressed="true"]{background:var(--marigold);border-color:var(--marigold);color:var(--on-marigold)}
+.hbtn.abs[aria-pressed="true"]{background:var(--act-soft);border-color:var(--act);color:var(--ink)}
+.hbtn:disabled{cursor:default;opacity:.55}
+.wtools{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.stepper button{width:44px;height:40px;border:0;background:transparent;font-size:18px;cursor:pointer;color:var(--ink)}
+.stepper output{min-width:56px;text-align:center;font-weight:700;font-size:13px}
+.advbtn{border:1px solid var(--rule);background:var(--surface);border-radius:999px;min-height:40px;padding:0 12px;font-weight:600;font-size:13px;cursor:pointer;color:var(--ink)}
+.advbtn.has{background:var(--gold-soft);border-color:var(--marigold)}
+.mfoot{position:sticky;bottom:0;z-index:10;padding:10px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--surface) 78%,transparent);display:grid;gap:8px}
+.footrow{display:flex;gap:8px}.footrow>*{flex:1}
+.bigbtn{min-height:52px;border-radius:14px;font-weight:700;font-size:15px;line-height:1.15;padding:6px 10px;border:1px solid var(--rule);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--ink)}
+.bigbtn:active{transform:scale(.96)}
+.bigbtn.primary{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.bigbtn.gold{background:var(--marigold);border-color:var(--marigold);color:var(--on-marigold)}
+.bigbtn:disabled{opacity:.45;cursor:default}
+.lockbar{display:flex;align-items:center;gap:10px;background:var(--good-soft);border:1px solid var(--good-line);color:var(--good);border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.notebtn{border:0;background:transparent;padding:0;cursor:pointer;border-radius:10px;min-height:44px}
+.notebtn svg{width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.notebtn:active svg{transform:scale(.92)}
+.advsum{display:flex;justify-content:space-between;align-items:center;font-weight:700;padding:6px 2px}
+.paper{background:var(--paper);border:1px solid var(--paper-rule);border-radius:10px;overflow:auto;font-family:var(--mono);font-size:12px;max-width:100%}
+.paper table{border-collapse:collapse;min-width:100%}
+.paper th,.paper td{border:1px solid var(--paper-rule);padding:4px 6px;text-align:center;white-space:nowrap}
+.paper th{background:var(--paper-head);font-weight:600}
+.paper td:first-child,.paper th:first-child{text-align:left;position:sticky;left:0;background:var(--paper);font-family:var(--body);font-weight:600;min-width:96px;max-width:130px;overflow:hidden;text-overflow:ellipsis}
+.paper td.a{color:var(--act);font-weight:700}.paper td.l{color:var(--muted)}.paper td.today{background:rgba(227,162,26,.28);font-weight:700}
+.paper caption{text-align:left;padding:8px 10px;font-family:var(--body);font-weight:600;font-size:13px}
+.success{position:fixed;inset:0;background:var(--scrim);display:grid;place-items:center;text-align:center;padding:22px;z-index:40;animation:fade .3s var(--ease)}
+.success>div{max-width:380px;width:100%}
+.success ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;text-align:left}
+.success li{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font-size:14px;animation:slide .4s var(--ease) both}
+.success li:nth-child(2){animation-delay:.12s}.success li:nth-child(3){animation-delay:.24s}.success li:nth-child(4){animation-delay:.36s}
+.success .bigbtn{margin-top:16px;width:100%}
+.stamp{display:inline-flex;align-items:center;gap:6px;transform:rotate(-8deg);border:4px solid var(--good);color:var(--good);background:var(--stamp-bg);font:800 22px/1 var(--display);letter-spacing:.04em;padding:12px 16px;border-radius:12px;margin-bottom:12px;animation:stampIn .5s var(--ease) both;white-space:nowrap}
+.stamp .ico{width:24px;height:24px}
+@keyframes stampIn{from{opacity:0;transform:rotate(-8deg) scale(2)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes slide{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+
+/* thekedar, hisaab-wala, CA */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--rule);border-radius:16px;padding:14px;display:grid;gap:4px;align-content:start;min-width:0}
+.tile-top{display:flex;align-items:center;gap:8px}
+.tile-ic .ico{width:24px;height:24px}
+.tile-l{font-weight:600;font-size:14px;color:var(--muted)}
+.tile-v{font:800 clamp(20px,4.6vw,28px)/1.1 var(--display);letter-spacing:-.02em;overflow-wrap:anywhere}
+.tile-s{font-size:13px;color:var(--muted)}
+.tile.t-billed{border-top-color:var(--c-billed)}.tile.t-wages{border-top-color:var(--c-wages)}
+.tile.t-bachat{border-top-color:var(--good)}.tile.t-bachat .tile-v{color:var(--good)}
+.tile.t-bachat.watch{border-top-color:var(--marigold)}.tile.t-bachat.action{border-top-color:var(--act)}.tile.t-bachat.action .tile-v{color:var(--act)}
+.tile.t-owed.action{border-top-color:var(--act)}.tile.t-owed.action .tile-v{color:var(--act)}
+.tile.t-owed.good{border-top-color:var(--good)}
+.state{display:inline-flex;align-items:center;gap:4px;width:max-content;font-size:12px;font-weight:700;padding:4px 8px;border-radius:999px}
+.state.good{background:var(--good-soft);color:var(--good)}.state.watch{background:var(--watch-soft);color:var(--watch)}.state.action{background:var(--act-soft);color:var(--act)}
+.alerts{display:flex;gap:10px;flex-wrap:wrap}
+.alert{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;padding:10px 14px;border-radius:12px;border:1px solid var(--rule);border-left:4px solid var(--rule);background:var(--card)}
+.alert .ai .ico{width:22px;height:22px}
+.alert.good{border-color:var(--good-line);border-left-color:var(--good);background:var(--good-soft)}
+.alert.watch{border-color:var(--watch-line);border-left-color:var(--marigold);background:var(--watch-soft)}
+.alert.action{border-color:var(--act-line);border-left-color:var(--act);background:var(--act-soft)}
+.alert .al{font:700 11px/1 var(--mono);letter-spacing:.04em;opacity:.85}
+.alert.good .al{color:var(--good)}.alert.watch .al{color:var(--watch)}.alert.action .al{color:var(--act)}
+.box{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px;display:grid;gap:10px;min-width:0}
+.box-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tblwrap{overflow-x:auto;max-width:100%;border:1px solid var(--rule);border-radius:12px}
+table.data{border-collapse:collapse;width:100%;font-size:14px}
+table.data th,table.data td{padding:8px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--rule)}
+table.data th:first-child,table.data td:first-child{text-align:left;position:sticky;left:0;background:var(--card)}
+table.data thead th{font-size:12px;color:var(--muted);font-weight:700;background:var(--raised)}
+table.data thead th:first-child{background:var(--raised)}
+table.data tfoot td{font-weight:800}
+table.data td.neg{color:var(--act);font-weight:700}
+table.data tr.editrow td{background:var(--gold-soft);white-space:normal;text-align:left}
+.form{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.form .field{flex:1 1 140px}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.list li{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--rule);border-radius:10px;padding:8px 10px;font-size:14px;background:var(--raised)}
+.list li small{display:block;color:var(--muted);font-size:12px}
+.viz svg{width:100%;height:auto;display:block;overflow:visible}
+.viz .gl{stroke:var(--rule)}.viz .bl{stroke:var(--ink)}.viz .ax{fill:var(--muted);font-size:10px}
+.viz rect.b{fill:var(--c-bachat)}.viz rect.b.n{fill:var(--c-loss)}.viz rect.b.w{fill:var(--c-wages)}
+.viz rect.b:hover{opacity:.8}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--on-ink);padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.err{display:grid;gap:12px;justify-items:start}
+@media (max-width:480px){.seg button{flex:1 1 0;min-width:0;padding:6px 4px;font-size:13px;white-space:normal;line-height:1.15}.seg button .ico{display:none}}
+@media (max-width:420px){
+  .logo .wm{font-size:16px}
+  .langs button{padding:6px 7px}
+  .tally b{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<!--@SPRITE-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#F5B301"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="#F5B301" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z" fill="#5B5FC7"/></symbol>
+<symbol id="i-half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="#5B5FC7" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="#5B5FC7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" stroke="#E0364B" stroke-width="3.4" stroke-linecap="round"/></symbol>
+<symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1F7A4D"/><path d="M7.4 12.4l3.1 3.1 6.1-6.6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2" fill="#3E9B57"/><circle cx="12" cy="12" r="3" fill="#E6F4EA"/><path d="M5.5 9h1M17.5 15h1" stroke="#E6F4EA" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z" fill="#E0364B"/><circle cx="12" cy="9.5" r="2.7" fill="#fff"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z" fill="#2B6CB0"/><path d="M4 21a2 2 0 0 1 2-2h13v2z" fill="#9CC0E8"/><path d="M8 7h7M8 10.5h7" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-pad" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2" fill="#E3A21A"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4.5" stroke="#17181A" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" fill="#5B5D60"/><circle cx="12" cy="13" r="3.6" fill="#fff"/><circle cx="12" cy="13" r="2" fill="#5B5D60"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#fff" stroke="#17181A" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#17181A" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 10a4.3 4.3 0 0 1-.5 8.5z" fill="#7FB0E0"/></symbol>
+<symbol id="i-worker" viewBox="0 0 24 24"><circle cx="12" cy="9.6" r="4" fill="#F2C29B"/><path d="M6.6 8.3a5.4 5.4 0 0 1 10.8 0z" fill="#F5B301"/><rect x="5.6" y="7.7" width="12.8" height="1.8" rx=".9" fill="#E09A00"/><path d="M4.5 21c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5z" fill="#3E7CB1"/><path d="M10.5 14.7h3L12 17.6z" fill="#F5B301"/></symbol>
+<symbol id="i-boss" viewBox="0 0 24 24"><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7z" fill="#2B4C7E"/><circle cx="12" cy="8" r="4" fill="#F2C29B"/><path d="M9.4 14l2.6 2.2 2.6-2.2z" fill="#fff"/><path d="M12 15.6l-1.4 1.6 1.4 3.8 1.4-3.8z" fill="#E0364B"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="#E6F0FA"/><path d="M6 16l4-4 3 3 5-6" stroke="#1F7A4D" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 9h3v3" stroke="#1F7A4D" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5" fill="#fff" stroke="#9AA0A6" stroke-width="1.2"/><path d="M3 8a2.5 2.5 0 0 1 2.5-2.5h13A2.5 2.5 0 0 1 21 8v2H3z" fill="#E0364B"/><path d="M8 3v4M16 3v4" stroke="#5B5D60" stroke-width="2" stroke-linecap="round"/><g fill="#9AA0A6"><rect x="6" y="12.5" width="3" height="2.5" rx=".5"/><rect x="10.5" y="12.5" width="3" height="2.5" rx=".5"/><rect x="15" y="12.5" width="3" height="2.5" rx=".5"/><rect x="6" y="16.5" width="3" height="2.5" rx=".5"/><rect x="10.5" y="16.5" width="3" height="2.5" rx=".5"/></g></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5" fill="#6B8BB8"/><g fill="#DCE8F6"><rect x="7.5" y="5.5" width="3" height="2.5"/><rect x="13.5" y="5.5" width="3" height="2.5"/><rect x="7.5" y="10" width="3" height="2.5"/><rect x="13.5" y="10" width="3" height="2.5"/><rect x="7.5" y="14.5" width="3" height="2.5"/><rect x="13.5" y="14.5" width="3" height="2.5"/></g><rect x="10.5" y="17" width="3" height="4" fill="#3B5378"/></symbol>
+<symbol id="i-cashout" viewBox="0 0 24 24"><g transform="rotate(-12 11 12)"><rect x="3" y="7" width="16" height="10" rx="2" fill="#3E9B57"/><circle cx="11" cy="12" r="2.5" fill="#E6F4EA"/></g><path d="M19 5.5l3-1.5M19.5 9.5h3" stroke="#3E9B57" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M9 3.5h6L13.5 7h-3z" fill="#C98A2B"/><path d="M12 7c-5 0-8 5.5-8 9 0 3 2.5 5 8 5s8-2 8-5c0-3.5-3-9-8-9z" fill="#E3A21A"/><path d="M9.5 7h5" stroke="#8A5A00" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="14.5" r="3" fill="#FBE3A3"/></symbol>
+<symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" fill="#F5B301" stroke="#E09A00" stroke-width="1" stroke-linejoin="round"/><path d="M12 9.5v5" stroke="#17181A" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.6" r="1.3" fill="#17181A"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 17h-9l-5 4v-4H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5z" fill="#25A35A"/><path d="M7 9.5h10M7 12.5h6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4-2 1.4z" fill="#fff" stroke="#9AA0A6" stroke-width="1.2" stroke-linejoin="round"/><path d="M9 8h6M9 11h6M9 14h4" stroke="#5B5D60" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-bank" viewBox="0 0 24 24"><path d="M12 3l9 5H3z" fill="#5B6B86"/><rect x="3" y="18.5" width="18" height="2.5" rx=".5" fill="#5B6B86"/><g fill="#8EA0BD"><rect x="5" y="9.5" width="2.5" height="8"/><rect x="10.75" y="9.5" width="2.5" height="8"/><rect x="16.5" y="9.5" width="2.5" height="8"/></g></symbol>
+<symbol id="i-upi" viewBox="0 0 24 24"><rect x="8" y="2.5" width="10" height="19" rx="2" fill="#17181A"/><rect x="9.3" y="5" width="7.4" height="13" rx=".8" fill="#9CC0E8"/><path d="M2 12h6m-2.2-2.2L8 12l-2.2 2.2" stroke="#1F7A4D" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H10l2 2h7.5A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z" fill="#E3A21A"/><path d="M3 10h18" stroke="#C98A2B" stroke-width="1.2"/></symbol>
+<symbol id="i-bowl" viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0z" fill="#C0582B"/><path d="M3 11h18" stroke="#8A3A17" stroke-width="1.4"/><path d="M8.5 8c0-1.5 1.5-1.5 1.5-3M12 8c0-1.5 1.5-1.5 1.5-3M15.5 8c0-1.5 1.5-1.5 1.5-3" stroke="#9AA0A6" stroke-width="1.4" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-tap" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="6" fill="none" stroke="#E3A21A" stroke-width="1.6" opacity=".7"/><path d="M10.5 9V5.5a1.5 1.5 0 0 1 3 0v5l3.2.7a2 2 0 0 1 1.5 2.3l-.9 4.5A2 2 0 0 1 15.3 20.5h-4a2 2 0 0 1-1.6-.8l-3-4a1.4 1.4 0 0 1 2.1-1.8l1.7 1.6z" fill="#F2C29B" stroke="#C9926A" stroke-width=".8"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10.5" rx="2" fill="#E3A21A"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="#5B5D60" stroke-width="2.2" fill="none"/><circle cx="12" cy="15.5" r="1.6" fill="#8A5A00"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" fill="#fff" stroke="#5B5D60" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" fill="#2B6CB0"/><circle cx="12" cy="12" r="1.4" fill="#17181A"/></symbol>
+<symbol id="i-red" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#E0364B"/></symbol>
+<symbol id="i-idcard" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2" fill="#2B6CB0"/><path d="M2.5 7a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v1.5h-19z" fill="#1F4E8C"/><circle cx="8" cy="12.6" r="2.4" fill="#F2C29B"/><path d="M4.8 17.2c.4-1.7 1.7-2.4 3.2-2.4s2.8.7 3.2 2.4z" fill="#F2C29B"/><path d="M13.5 11.5h5.5M13.5 14.5h4" stroke="#DCE8F6" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.5h8.5l4 4V21a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5z" fill="#fff" stroke="#9AA0A6" stroke-width="1.2"/><path d="M14.5 2.5v4h4" fill="#E8E8E3" stroke="#9AA0A6" stroke-width="1.2" stroke-linejoin="round"/><path d="M8.5 11h7M8.5 14h7M8.5 17h4.5" stroke="#2B6CB0" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-noentry" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#fff" stroke="#E0364B" stroke-width="2.4"/><path d="M5.8 5.8l12.4 12.4" stroke="#E0364B" stroke-width="2.4"/><circle cx="12" cy="8" r="1.6" fill="#5B5D60"/><path d="M12 10v4.5M10 17l2-2.5 2 2.5" stroke="#5B5D60" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-door" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="1" fill="#B5651D"/><rect x="8" y="5" width="8" height="6" rx=".5" fill="#C98A50"/><rect x="8" y="12.5" width="8" height="6" rx=".5" fill="#C98A50"/><circle cx="15.2" cy="12" r="1" fill="#FBE3A3"/><path d="M3 21h18" stroke="#5B5D60" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-sunrise" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="3" fill="#FBE3C8"/><path d="M7 16a5 5 0 0 1 10 0z" fill="#F5B301"/><path d="M12 6.5V9M6.3 9.3l1.6 1.6M17.7 9.3l-1.6 1.6" stroke="#F5B301" stroke-width="1.6" stroke-linecap="round"/><path d="M2 16h20v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#E0773A"/></symbol>
+<symbol id="i-offline" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2" fill="#F08A3C"/><rect x="8.3" y="5" width="7.4" height="13" rx=".8" fill="#FFE3CC"/><path d="M10 9.5l4 4M14 9.5l-4 4" stroke="#B23A0E" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-bars" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="#F1F1EE" stroke="#D9D9D4"/><rect x="6" y="12" width="3" height="6" rx=".6" fill="#2B6CB0"/><rect x="10.5" y="8" width="3" height="10" rx=".6" fill="#E3A21A"/><rect x="15" y="10" width="3" height="8" rx=".6" fill="#1F7A4D"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="#DCE8F6" stroke="#2B6CB0" stroke-width="2.4"/><path d="M15 15l5.5 5.5" stroke="#5B5D60" stroke-width="3" stroke-linecap="round"/></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l2.5-7h13l2.5 7v6a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19z" fill="#9CC0E8"/><path d="M3 13h5l1.5 2.5h5L16 13h5" stroke="#2B6CB0" stroke-width="1.6" fill="none"/><path d="M12 2.5v8m-3-3l3 3 3-3" stroke="#1F7A4D" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 4l10 5-10 5L2 9z" fill="#17181A"/><path d="M6 11v4.5c0 1.5 2.7 3 6 3s6-1.5 6-3V11l-6 3z" fill="#3B3D40"/><path d="M21 9.5V15" stroke="#E3A21A" stroke-width="1.6" stroke-linecap="round"/><circle cx="21" cy="15.5" r="1.2" fill="#E3A21A"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="10" width="17" height="11" rx="1.2" fill="#E0364B"/><rect x="2.5" y="7" width="19" height="4" rx="1" fill="#F05A6E"/><rect x="10.7" y="7" width="2.6" height="14" fill="#F5B301"/><path d="M12 7c-1.5-3-5-3.5-5-1.5S10 7 12 7zm0 0c1.5-3 5-3.5 5-1.5S14 7 12 7z" fill="#F5B301"/></symbol>
+<symbol id="i-crane" viewBox="0 0 24 24"><path d="M6 21V5" stroke="#E3A21A" stroke-width="2.4"/><path d="M3 5h18" stroke="#E3A21A" stroke-width="2.4" stroke-linecap="round"/><path d="M6 5l4-2.5" stroke="#5B5D60" stroke-width="1.4"/><path d="M17 5v6" stroke="#5B5D60" stroke-width="1.4"/><rect x="14.8" y="11" width="4.4" height="3.6" fill="#6B8BB8"/><rect x="3" y="20" width="6" height="1.6" fill="#5B5D60"/></symbol>
+<symbol id="i-toolbox" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="11" rx="1.5" fill="#E0364B"/><path d="M9 9V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V9" stroke="#5B5D60" stroke-width="2" fill="none"/><rect x="3" y="12.5" width="18" height="2" fill="#B02A3C"/><rect x="10.5" y="11.5" width="3" height="4" rx=".6" fill="#F5B301"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5l5 5-5 5" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-yes" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-no" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#5B5D60"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="#5B5D60" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+</svg>
+<!--@/SPRITE-->
+<div class="top">
+  <div class="demo-bar" role="note"><span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-warn"/></svg> <span data-t="demo_note">Demo — data sirf aapke phone par</span></span><button class="chip" id="resetBtn" type="button" data-t="reset">Reset demo</button></div>
+  <header class="hdr">
+    <a class="logo" href="../"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#17181A"/><rect x="15" y="13" width="8" height="38" rx="4" fill="#FFFFFF"/><rect x="41" y="13" width="8" height="38" rx="4" fill="#FFFFFF"/><path d="M17 33.5l9.5 8.5L47 21.5" fill="none" stroke="#E3A21A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wmw"><span class="wm">Hisaabo</span><span class="by">by ArenaX</span></span><span class="tag soft">DEMO</span><span class="sr"> · <span data-t="back_site">Website par wapas</span></span></a>
+    <div class="tools">
+      <span class="langs" role="group" aria-label="Language"><button type="button" data-lang="hi" lang="hi" aria-pressed="false">हिं</button><button type="button" data-lang="hn" aria-pressed="true">Hn</button><button type="button" data-lang="en" aria-pressed="false">En</button></span>
+      <div class="themewrap"><button class="iconbtn" id="themeBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="themeMenu"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-half"/></svg></button>
+        <div class="menu" id="themeMenu" role="menu" hidden></div></div>
+    </div>
+  </header>
+</div>
+<main id="main" tabindex="-1"><p class="note" data-t="loading">Data aa raha hai…</p></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+/* ===================== CONFIG ===================== */
+const BRAND = 'Hisaabo';
+const DATA_URL = '../data/hisaabo-demo.json';           // the masked demo data the website is built from
+const STORE_KEY = 'arenax-demo-app-v1', LANG_KEY = 'arenax-demo-lang', THEME_KEY = 'arenax-demo-theme';
+const DEMO = { dates: { 'davengere-site': '2026-09-18', 'motidau-ps-1-gujarat': '2026-02-18' }, homeSite: 'motidau-ps-1-gujarat' };
+const SITE_LABEL = { 'motidau-ps-1-gujarat': 'PS-1 Motidau', 'davengere-site': 'Davengere Site' };
+const ROLES = [
+  { id: 'th', icon: 'boss', name: 'r_th', lvl: 'lv_owner', sub: 'ro_th' },
+  { id: 'mu-dav', icon: 'pad', name: 'r_mu', site: 'davengere-site', lvl: 'lv_site', sub: 'ro_mu' },
+  { id: 'mu-ps1', icon: 'pad', name: 'r_mu', site: 'motidau-ps-1-gujarat', lvl: 'lv_site', sub: 'ro_mu' },
+  { id: 'hw', icon: 'receipt', name: 'r_hw', lvl: 'lv_office', sub: 'ro_hw' },
+  { id: 'ca', icon: 'doc', name: 'r_ca', lvl: 'lv_ro', sub: 'ro_ca' }];
+
+/* ===================== STRINGS (hi / hn / en) ===================== */
+const T = {
+/*@SITE_T*/
+  // shared with the website (same wording); refreshed by tools/sync_app.py
+  mon:['जन,फ़र,मार्च,अप्रै,मई,जून,जुला,अग,सित,अक्टू,नव,दिस','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'],
+  dow:['रवि,सोम,मंगल,बुध,गुरु,शुक्र,शनि','Sun,Mon,Tue,Wed,Thu,Fri,Sat','Sun,Mon,Tue,Wed,Thu,Fri,Sat'],
+  h8:['8 घंटे','8 ghante','8 hours'],
+  h12:['12 घंटे OT','12 ghante OT','12 h OT'],
+  h4:['4 घंटे','4 ghante','4 hours'],
+  habs:['नहीं आया','Nahi aaya','Absent'],
+  hours_u:['घं','gh','h'],
+  day_u:['दिन','din','day'],
+  t_present:['आए','Aaye','Present'],
+  t_absent:['नहीं आए','Nahi aaye','Absent'],
+  t_left:['बाकी','Baaki','Pending'],
+  adv_btn:['खर्ची','Kharchi','Kharchi'],
+  adv_title:['खर्ची दो','Kharchi do','Give kharchi'],
+  adv_clear:['साफ़','Saaf','Clear'],
+  adv_done:['हो गया','Ho gaya','Done'],
+  reg_cap:['इस हफ़्ते का रजिस्टर','Is hafte ka register','This week\'s register'],
+  reg_name:['नाम','Naam','Name'],
+  submit:['हाज़िरी जमा करो','Hazri jama karo','Submit attendance'],
+  all_full:['सबको पूरा दिन','Sabko pura din','All full day'],
+  reg_show:['रजिस्टर','Register','Register'],
+  reg_hide:['हाज़िरी','Hazri','Marking'],
+  ok_title:['हाज़िरी जमा हो गई','Hazri jama ho gayi','Attendance submitted'],
+  ok_geo:['साइट लॉक · 200 मी के अंदर','site lock · 200 m ke andar','site lock · within 200 m'],
+  ok_photo:['ग्रुप फ़ोटो','Group photo','Group photo'],
+  ok_sync:['नेट आते ही सिंक','Net aate hi sync','Syncs when online'],
+  ok_close:['ठीक है','Theek hai','OK'],
+  stamp:['हाज़िरी जमा','HAZRI JAMA','SUBMITTED'],
+  voice:['आवाज़','Awaaz','Voice'],
+  speak_abs:['{name}, नहीं आया','{name}, nahi aaya','{name}, absent'],
+  speak_h:['{name}, {h} घंटे','{name}, {h} ghante','{name}, {h} hours'],
+  k_billed:['कंपनी से आया','Company se aaya','From the company'],
+  k_billed_sub:['महीने का बिल','Mahine ka bill','This month\'s bill'],
+  k_wages:['मज़दूरी','Mazdoori','Wages'],
+  k_wages_sub:['{n} मज़दूर · {d} दिन','{n} mazdoor · {d} din','{n} workers · {d} days'],
+  k_bachat:['बचत','Bachat','Profit'],
+  k_bachat_sub:['बिल − सारा ख़र्च','bill − saara kharcha','bill − all costs'],
+  k_owed:['मज़दूर पर बाकी','Mazdoor par baaki','Owed by workers'],
+  k_owed_sub:['{n} मज़दूर','{n} mazdoor','{n} workers'],
+  no_bill:['इस साइट का बिल अभी नहीं जुड़ा','Is site ka bill abhi nahi juda','No bill added for this site yet'],
+  st_good:['अच्छा','Achha','Good'],
+  st_watch:['ध्यान दो','Dhyan do','Watch'],
+  st_action:['अभी देखो','Abhi dekho','Act now'],
+  st_clear:['कोई बाकी नहीं','Koi baaki nahi','Nothing owed'],
+  al_owed:['{n} मज़दूर पर {x} बाकी','{n} mazdoor par {x} baaki','{n} workers owe {x}'],
+  al_absent:['{d}: {n} नहीं आए','{d}: {n} nahi aaye','{d}: {n} absent'],
+  al_allin:['{d}: सब आए','{d}: sab aaye','{d}: all present'],
+  al_left:['{n} मज़दूर साइट छोड़ गए','{n} mazdoor site chhod gaye','{n} workers left the site'],
+  c_name:['नाम','Naam','Name'],
+  c_days:['दिन','Din','Days'],
+  c_rate:['रेट','Rate','Rate'],
+  c_wage:['मज़दूरी','Mazdoori','Wage'],
+  c_km:['खर्ची+मेस','Kharchi+mess','Kharchi+mess'],
+  c_adv:['एडवांस','Advance','Advance'],
+  c_net:['नेट','Net','Net'],
+  c_total:['कुल','Kul','Total'],
+  fixed_pay:['फ़िक्स','fixed','fixed'],
+  per_month:['महीना','mahina','month'],
+  tt_date:['तारीख़','Tareekh','Date'],
+  tt_billed:['बिल','Bill','Bill'],
+  tt_wages:['मज़दूरी','Mazdoori','Wages'],
+  tt_bachat:['बचत','Bachat','Profit'],
+  tt_present:['आए','Aaye','Present'],
+  tt_absent:['नहीं आए','Nahi aaye','Absent'],
+  month:['महीना','Mahina','Month'],
+  leg_plus:['बचत +','Bachat +','Profit +'],
+  leg_minus:['घाटा −','Ghata −','Loss −'],
+  vd_h:['रोज़ की बचत','Roz ki bachat','Daily profit'],
+  vd_h_nb:['रोज़ की मज़दूरी','Roz ki mazdoori','Daily wages'],
+  vd_sub:['रोज़ का बिल − रोज़ की मज़दूरी','Roz ka bill − roz ki mazdoori','Daily bill − daily wages'],
+  vd_sub_nb:['हर दिन कितनी मज़दूरी बनी','Har din kitni mazdoori bani','Wages earned each day'],
+  tbl_show:['टेबल','Table','Table'],
+  tbl_hide:['चार्ट','Chart','Chart'],
+  r_th:['ठेकेदार','Thekedar','Contractor'],
+  r_mu:['मुंशी','Munshi','Munshi'],
+  r_hw:['हिसाब-वाला','Hisaab-wala','Accountant'],
+  lv_owner:['सारी साइट','Saari site','All sites'],
+  lv_site:['सिर्फ़ अपनी साइट','Sirf apni site','Own site only'],
+  lv_office:['ऑफ़िस से','Office se','From the office'],
+  p_pay:['पेमेंट','Payment','Payments'],
+  p_adv:['एडवांस','Advance','Advances'],
+  p_exp:['ख़र्चे','Kharche','Expenses'],
+  p_rep:['रिपोर्ट','Report','Reports'],
+/*@/SITE_T*/
+  demo_note:['डेमो — डेटा सिर्फ़ आपके फ़ोन पर','Demo — data sirf aapke phone par','Demo — data stays on your phone only'],
+  reset:['डेमो रीसेट','Reset demo','Reset demo'], reset_sure:['पक्का? फिर दबाओ','Pakka? Phir dabao','Sure? Tap again'], reset_done:['डेमो रीसेट हो गया','Demo reset ho gaya','Demo reset'],
+  no_store:['यह ब्राउज़र सेव नहीं कर रहा: पेज बंद करते ही बदलाव चले जाएँगे','Ye browser save nahi kar raha: page band karte hi badlav chale jayenge','This browser is not saving: your changes go when the page closes'],
+  theme:['थीम','Theme','Theme'], th_auto:['फ़ोन जैसी','Phone jaisi','Same as phone'], th_light:['हल्की','Light','Light'], th_dark:['डार्क','Dark','Dark'],
+  back_site:['वेबसाइट पर वापस','Website par wapas','Back to the website'],
+  loading:['डेटा आ रहा है…','Data aa raha hai…','Loading data…'], load_err:['डेटा नहीं आया। नेट देखकर फिर कोशिश करो।','Data nahi aaya. Net dekh kar phir koshish karo.','The data did not load. Check the connection and try again.'], retry:['फिर कोशिश','Phir koshish','Try again'],
+  login_h:['लॉगिन','Login','Log in'], login_sub:['असली ऐप में मोबाइल नंबर और OTP से लॉगिन होगा।','Asli app mein mobile number aur OTP se login hoga.','The real app logs in with a mobile number and OTP.'],
+  mobile:['मोबाइल नंबर','Mobile number','Mobile number'], otp_btn:['OTP भेजो','OTP bhejo','Send OTP'],
+  otp_note:['डेमो में OTP नहीं आता। नीचे से एक रोल चुनो।','Demo mein OTP nahi aata. Neeche se ek role chuno.','The demo sends no OTP. Pick a role below.'],
+  guest_h:['या एक टैप में देखो','Ya ek tap mein dekho','Or look around in one tap'], guest_sub:['कोई नंबर नहीं, कोई पासवर्ड नहीं। जो बदलोगे, सिर्फ़ इस फ़ोन पर रहेगा।','Koi number nahi, koi password nahi. Jo badloge, sirf is phone par rahega.','No number, no password. What you change stays on this phone only.'],
+  r_ca:['CA','CA','CA'], lv_ro:['सिर्फ़ देखना','Sirf dekhna','View only'],
+  ro_th:['सारी साइट, रेट, मंज़ूरी, बचत','Saari site, rate, manzoori, bachat','All sites, rates, approvals, profit'],
+  ro_mu:['हाज़िरी और खर्ची, बस अपनी साइट','Hazri aur kharchi, bas apni site','Attendance and kharchi, own site only'],
+  ro_hw:['पेमेंट, एडवांस, ख़र्चे, रिपोर्ट','Payment, advance, kharche, report','Payments, advances, expenses, reports'],
+  ro_ca:['रजिस्टर और रिपोर्ट, डाउनलोड','Register aur report, download','Registers and reports, download'],
+  you:['आप: {r}','Aap: {r}','You: {r}'], switch_role:['रोल बदलो','Role badlo','Switch role'],
+  site:['साइट','Site','Site'],
+  locked:['जमा हो गई · ठेकेदार को दिख रही है','Jama ho gayi · thekedar ko dikh rahi hai','Submitted · the contractor can see it'],
+  next_day:['अगला दिन (डेमो)','Agla din (demo)','Next day (demo)'], no_next:['डेमो डेटा यहीं तक है','Demo data yahin tak hai','The demo data ends here'],
+  km_today:['आज की खर्ची','Aaj ki kharchi','Kharchi today'], km_week:['इस हफ़्ते की खर्ची','Is hafte ki kharchi','Kharchi this week'],
+  km_none:['अभी कोई खर्ची नहीं दी','Abhi koi kharchi nahi di','No kharchi given yet'], km_worker:['किसको','Kisko','To whom'],
+  km_custom:['और रकम (₹)','Aur rakam (₹)','Other amount (₹)'], km_add:['जोड़ो','Jodo','Add'], km_saved:['{n} को {x} खर्ची दी','{n} ko {x} kharchi di','Gave {x} kharchi to {n}'],
+  km_reg:['रजिस्टर से','Register se','From the register'],
+  amount:['रकम (₹)','Rakam (₹)','Amount (₹)'], remove:['हटाओ','Hatao','Remove'], save:['सेव','Save','Save'], cancel:['रहने दो','Rehne do','Cancel'],
+  mu_no_money:['मुंशी को रेट या मज़दूरी नहीं दिखती। सिर्फ़ दिन और अपनी दी हुई खर्ची।','Munshi ko rate ya mazdoori nahi dikhti. Sirf din aur apni di hui kharchi.','The munshi sees no rates or wages: only days and the kharchi he gave.'],
+  sub_h:['मुंशी की हाज़िरी','Munshi ki hazri','Munshi\'s attendance'], sub_none:['अभी जमा नहीं हुई','Abhi jama nahi hui','Not submitted yet'],
+  sub_done:['{t} बजे जमा · {p} आए · {a} नहीं आए · खर्ची {k}','{t} baje jama · {p} aaye · {a} nahi aaye · kharchi {k}','Submitted {t} · {p} present · {a} absent · kharchi {k}'],
+  approve:['मंज़ूर करो','Manzoor karo','Approve'], approved:['मंज़ूर','Manzoor','Approved'], approved_t:['{s}, {d}: मंज़ूर','{s}, {d}: manzoor','{s}, {d}: approved'],
+  pending_h:['मंज़ूरी बाकी','Manzoori baaki','Waiting for approval'], pending_none:['कुछ बाकी नहीं','Kuch baaki nahi','Nothing waiting'],
+  workers_h:['मज़दूर और रेट','Mazdoor aur rate','Workers and rates'], rate_edit:['रेट बदलो','Rate badlo','Change rate'],
+  rate_new:['नया रेट (₹/दिन)','Naya rate (₹/din)','New rate (₹/day)'], rate_from:['कब से','Kab se','From'],
+  rate_saved:['{n}: नया रेट {r}, {d} से','{n}: naya rate {r}, {d} se','{n}: new rate {r} from {d}'], rate_ro:['रेट सिर्फ़ ठेकेदार बदलता है','Rate sirf thekedar badalta hai','Only the contractor changes rates'],
+  c_paid:['दिया','Diya','Paid'], c_left:['बाकी देना','Baaki dena','To pay'], pay_btn:['पेमेंट','Payment','Pay'],
+  mode:['कैसे','Kaise','Mode'], m_cash:['नकद','Cash','Cash'], m_upi:['UPI','UPI','UPI'], m_bank:['बैंक','Bank','Bank'],
+  pay_done:['{n} को {x} दिए ({m})','{n} ko {x} diye ({m})','Paid {x} to {n} ({m})'], pay_list:['इस महीने की पेमेंट (डेमो में जोड़ी)','Is mahine ki payment (demo mein jodi)','Payments added this month (demo)'],
+  adv_add:['एडवांस दो','Advance do','Give advance'], adv_list:['इस महीने के एडवांस (डेमो में जोड़े)','Is mahine ke advance (demo mein jode)','Advances added this month (demo)'], adv_done_t:['{n} को {x} एडवांस','{n} ko {x} advance','Advance {x} to {n}'],
+  exp_add:['ख़र्चा जोड़ो','Kharcha jodo','Add expense'], exp_note:['किस चीज़ का','Kis cheez ka','What for'], exp_list:['इस महीने के ख़र्चे (डेमो में जोड़े)','Is mahine ke kharche (demo mein jode)','Expenses added this month (demo)'],
+  exp_reg:['रजिस्टर के एक्स्ट्रा ख़र्चे: {x}','Register ke extra kharche: {x}','Register extras: {x}'], exp_done_t:['ख़र्चा {x} जुड़ा','Kharcha {x} juda','Expense {x} added'],
+  none_yet:['अभी कुछ नहीं जोड़ा','Abhi kuch nahi joda','Nothing added yet'],
+  rep_h:['रिपोर्ट डाउनलोड','Report download','Download reports'], rep_wage:['मज़दूरी रजिस्टर (CSV)','Mazdoori register (CSV)','Wage register (CSV)'],
+  rep_att:['हाज़िरी रजिस्टर (CSV)','Hazri register (CSV)','Attendance register (CSV)'], rep_sum:['महीनों का सार (CSV)','Mahino ka saar (CSV)','Monthly summary (CSV)'],
+  rep_note:['Labour Codes के हिसाब से रजिस्टर (Code on Wages 2019, OSH Code 2020)। डेमो डेटा।','Labour Codes ke hisaab se register (Code on Wages 2019, OSH Code 2020). Demo data.','Labour Codes-ready registers (Code on Wages 2019, OSH Code 2020). Demo data.'],
+  csv_done:['फ़ाइल डाउनलोड हो रही है','File download ho rahi hai','Downloading the file'],
+  ca_badge:['सिर्फ़ देख सकते हो','Sirf dekh sakte ho','View only'], sum_h:['हर महीने का हिसाब','Har mahine ka hisaab','Month by month'],
+  reg_wage_h:['मज़दूरी रजिस्टर','Mazdoori register','Wage register'], reg_att_h:['हाज़िरी रजिस्टर','Hazri register','Attendance register'],
+  c_receipts:['कैश आया','Cash aaya','Cash received'], c_desig:['काम','Kaam','Work'], c_type:['तरह','Tarah','Type'], daily_pay:['रोज़ाना','rozana','daily'],
+  saved:['सेव हो गया (सिर्फ़ इस फ़ोन पर)','Save ho gaya (sirf is phone par)','Saved (on this phone only)'],
+  csv_site:['साइट','Site','Site'], csv_demo:['डेमो डेटा, नाम छोटे किए गए','Demo data, naam chhote kiye gaye','Demo data, names shortened'],
+};
+
+/* ===================== HELPERS ===================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const SVGNS = 'http://www.w3.org/2000/svg';
+const ic = (name, cls) => { const s = document.createElementNS(SVGNS, 'svg'); s.setAttribute('class', 'ico' + (cls ? ' ' + cls : '')); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false'); const u = document.createElementNS(SVGNS, 'use'); u.setAttribute('href', '#i-' + name); s.append(u); return s; };
+const el = (tag, attrs = {}, ...kids) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (v === null || v === undefined || v === false) continue; if (k === 'class') n.className = v; else if (k === 'html') n.innerHTML = v; else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v === true ? '' : v); } for (const c of kids.flat()) if (c !== null && c !== undefined && c !== false) n.append(c.nodeType ? c : document.createTextNode(String(c))); return n; };
+const fmtIN = (n, dec = 0) => { const [i, f] = Math.abs(n).toFixed(dec).split('.'); const last = i.slice(-3), rest = i.slice(0, -3); return (rest ? rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last : last) + (f ? '.' + f : ''); };
+const inr = (n, dec = 0) => (n < 0 && Math.round(Math.abs(n) * 10 ** dec) !== 0 ? '−' : '') + '₹' + fmtIN(n, dec);
+const isNum = (v) => typeof v === 'number';
+const pad = (n) => String(n).padStart(2, '0');
+const r2 = (n) => Math.round(n * 100) / 100;
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const hue = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+const avatar = (name) => el('span', { class: 'avatar', style: `background:hsl(${hue(name)} 45% 40%)`, 'aria-hidden': 'true' }, name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase());
+const addDays = (iso, n) => { const d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const NOTES = [[100, '#C9B6E4', '#6B4BA3'], [200, '#F6C56B', '#B86E00'], [500, '#CFCFCF', '#6B6B6B']];
+const NOTE = (v, c1, c2) => `<svg viewBox="0 0 120 56" aria-hidden="true"><rect width="120" height="56" rx="5" fill="${c1}"/><rect x="6" y="6" width="108" height="44" rx="3" fill="none" stroke="${c2}" stroke-width="1.5" opacity=".7"/><circle cx="34" cy="28" r="13" fill="${c2}" opacity=".35"/><text x="80" y="35" text-anchor="middle" font-family="SBRupee,Manrope,sans-serif" font-weight="800" font-size="19" fill="#1a1a1a">₹${v}</text></svg>`;
+
+/* storage: every read and write guarded; the page works without it */
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+
+/* ===================== LANGUAGE ===================== */
+const LANGS = { hi: 0, hn: 1, en: 2 };
+let LANG = (() => { const s = store.get(LANG_KEY); return s && s in LANGS ? s : 'hn'; })();
+const t = (k, vars) => { const row = T[k]; let s = row ? row[LANGS[LANG]] : k; if (vars) for (const [a, b] of Object.entries(vars)) s = s.split('{' + a + '}').join(String(b)); return s; };
+const fmtDate = (iso) => { const [, m, d] = iso.split('-').map(Number); return `${d} ${t('mon').split(',')[m - 1]}`; };
+const fmtMonth = (ym) => { const [y, m] = ym.split('-').map(Number); return `${t('mon').split(',')[m - 1]} ${y}`; };
+const dow = (iso) => t('dow').split(',')[new Date(iso + 'T00:00:00').getDay()];
+function applyStatic() {
+  document.documentElement.setAttribute('data-lang', LANG); document.documentElement.lang = LANG === 'en' ? 'en' : 'hi';
+  $$('[data-t]').forEach(n => { n.textContent = t(n.dataset.t); });
+  $$('[data-t-aria]').forEach(n => n.setAttribute('aria-label', t(n.dataset.tAria)));
+  $$('.langs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+  renderThemeMenu();
+}
+$$('.langs button').forEach(b => b.addEventListener('click', () => { LANG = b.dataset.lang; store.set(LANG_KEY, LANG); applyStatic(); render(); }));
+
+/* ===================== THEME ===================== */
+let themePref = (() => { const p = store.get(THEME_KEY); return p === 'light' || p === 'dark' ? p : 'auto'; })();
+const darkMQ = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+function applyTheme() {
+  const dark = themePref === 'dark' || (themePref === 'auto' && darkMQ && darkMQ.matches);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const mc = $('meta[name="theme-color"]'); if (mc) mc.setAttribute('content', dark ? '#121314' : '#F1F1EE');
+  const ico = { auto: 'half', light: 'sun', dark: 'moon' }[themePref];
+  $('#themeBtn').replaceChildren(ic(ico)); $('#themeBtn').setAttribute('aria-label', `${t('theme')}: ${t('th_' + themePref)}`);
+}
+function renderThemeMenu() {
+  $('#themeMenu').replaceChildren(...['auto', 'light', 'dark'].map(p => el('button', { type: 'button', role: 'menuitemradio', 'aria-checked': String(p === themePref), onclick: () => { themePref = p; store.set(THEME_KEY, p); applyTheme(); closeThemeMenu(); renderThemeMenu(); } }, ic({ auto: 'half', light: 'sun', dark: 'moon' }[p]), t('th_' + p))));
+  applyTheme();
+}
+function closeThemeMenu() { $('#themeMenu').hidden = true; $('#themeBtn').setAttribute('aria-expanded', 'false'); }
+$('#themeBtn').addEventListener('click', (e) => { e.stopPropagation(); const open = $('#themeMenu').hidden; $('#themeMenu').hidden = !open; $('#themeBtn').setAttribute('aria-expanded', String(open)); if (open) { const c = $('#themeMenu [aria-checked="true"]'); if (c) c.focus(); } });
+document.addEventListener('click', (e) => { if (!e.target.closest('.themewrap')) closeThemeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeThemeMenu(); });
+if (darkMQ) { const f = () => { if (themePref === 'auto') applyTheme(); }; if (darkMQ.addEventListener) darkMQ.addEventListener('change', f); else if (darkMQ.addListener) darkMQ.addListener(f); }
+
+/* ===================== DEMO STATE (this browser only) ===================== */
+const fresh = () => ({ v: 1, role: null, att: {}, today: {}, subs: {}, km: [], adv: [], pay: [], exp: [], rate: {} });
+let S = (() => { try { const o = JSON.parse(store.get(STORE_KEY) || 'null'); if (o && o.v === 1) return Object.assign(fresh(), o); } catch (e) {} return fresh(); })();
+let canSave = true;
+function save() { canSave = store.set(STORE_KEY, JSON.stringify(S)); if (!canSave) $('[data-t="demo_note"]').textContent = t('no_store'); }
+let resetArmed = null;
+$('#resetBtn').addEventListener('click', () => {
+  const b = $('#resetBtn');
+  if (!resetArmed) { b.textContent = t('reset_sure'); b.classList.add('warn'); resetArmed = setTimeout(() => { resetArmed = null; b.classList.remove('warn'); b.textContent = t('reset'); }, 4000); return; }
+  clearTimeout(resetArmed); resetArmed = null; b.classList.remove('warn'); b.textContent = t('reset');
+  const role = S.role; S = fresh(); S.role = role; store.del(STORE_KEY); save(); ui = freshUI(); render(); toast(t('reset_done'));
+});
+let toastT = null;
+function toast(msg) { const n = $('#toast'); n.textContent = msg; n.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => n.classList.remove('on'), 2400); }
+
+/* ===================== DATA ===================== */
+let DATA = null, SITES = [];
+const siteById = (id) => SITES.find(s => s.id === id);
+const monthOf = (site, ym) => site.months.find(m => m.month === ym);
+const label = (s) => SITE_LABEL[s.id] || s.name;
+const activeMonths = (s) => s.months.filter(m => m.derived.active_workers > 0);
+const workerActive = (w) => w.hours.some(h => isNum(h) && h > 0);
+const hasBill = (m) => m.derived.billed !== null && m.derived.billed !== undefined && m.derived.bachat !== null && m.derived.bachat !== undefined;
+const muToday = (sid) => S.today[sid] || DEMO.dates[sid];
+const marksFor = (sid, date) => (S.att[sid] && S.att[sid][date]) || null;
+function hoursAt(sid, m, w, i) { const o = marksFor(sid, m.dates[i]); if (o && o[w.name] !== undefined) return o[w.name]; return w.hours[i]; }
+function rateAt(sid, w, date) { const ch = ((S.rate[sid] || {})[w.name] || []).filter(c => c.from <= date).sort((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : a.at - b.at)); return ch.length ? ch[ch.length - 1].rate : w.rate; }
+const inMonth = (e, ym) => e.date.slice(0, 7) === ym;
+const sumOf = (list, sid, ym, name) => list.filter(e => e.site === sid && inMonth(e, ym) && (!name || e.worker === name)).reduce((a, e) => a + e.amt, 0);
+// one worker in one month: register figures plus this browser's demo changes
+function workerCalc(s, m, w) {
+  const fixed = w.pay_type !== 'daily'; let hrs = 0, hrs0 = 0, wage = 0, wage0 = 0, active = false;
+  m.dates.forEach((d, i) => { const h = hoursAt(s.id, m, w, i), h0 = w.hours[i];
+    if (isNum(h)) { hrs += h; if (h > 0) active = true; if (!fixed) wage += h / 8 * rateAt(s.id, w, d); }
+    if (isNum(h0)) { hrs0 += h0; if (!fixed) wage0 += h0 / 8 * (w.rate || 0); } });
+  const base = w.payment || 0, dWage = fixed ? 0 : wage - wage0, wageNow = base + dWage;
+  const dKm = sumOf(S.km, s.id, m.month, w.name), dAdv = sumOf(S.adv, s.id, m.month, w.name);
+  const paid = S.pay.filter(p => p.site === s.id && p.month === m.month && p.worker === w.name).reduce((a, p) => a + p.amt, 0);
+  const net = (w.net_payment || 0) + dWage - dKm - dAdv;
+  const lastDate = m.dates[m.dates.length - 1];
+  return { w, fixed, active, days: r2((w.total_days || 0) + (hrs - hrs0) / 8), dDays: (hrs - hrs0) / 8, rate: fixed ? null : rateAt(s.id, w, lastDate), wage: wageNow, dWage, km: (w.pocket_mess_total || 0) + dKm, adv: (w.advance || 0) + dAdv, paid, net, left: net - paid };
+}
+function monthCalc(s, m) {
+  const all = m.workers.map(w => workerCalc(s, m, w)), d = m.derived;
+  const rows = all.filter(r => r.active || r.w.payment || r.w.net_payment);
+  const dW = all.reduce((a, r) => a + r.dWage, 0), addExp = sumOf(S.exp, s.id, m.month);
+  const wages = d.wages_register + dW, extras = (d.extras || 0) + addExp, hb = hasBill(m);
+  const bachat = hb ? d.billed - wages - extras : null;
+  const owedRows = all.filter(r => r.left < 0);
+  return { all, rows, wages, extras, hb, billed: d.billed, bachat, pct: hb && d.billed ? bachat / d.billed * 100 : null, owed: owedRows.reduce((a, r) => a - r.left, 0), owedN: owedRows.length,
+    days: r2(all.reduce((a, r) => a + r.days, 0)), active: all.filter(r => r.active).length };
+}
+function dailyCalc(s, m) {
+  const idx = Object.fromEntries(m.dates.map((d, i) => [d, i]));
+  return m.derived.daily.map(x => {
+    const i = idx[x.date]; if (i === undefined) return x;
+    let dW = 0; m.workers.forEach(w => { if (w.pay_type !== 'daily') return; const h = hoursAt(s.id, m, w, i), h0 = w.hours[i]; dW += (isNum(h) ? h : 0) / 8 * rateAt(s.id, w, x.date) - (isNum(h0) ? h0 : 0) / 8 * (w.rate || 0); });
+    const o = marksFor(s.id, x.date); let present = x.present, absent = x.absent;
+    if (o) { present = 0; absent = 0; m.workers.forEach(w => { const h = hoursAt(s.id, m, w, i); if (isNum(h) && h > 0) present++; else if (h === 'A') absent++; }); }
+    return { date: x.date, wages: x.wages + dW, billed: x.billed, bachat: x.bachat === null || x.bachat === undefined ? null : x.bachat - dW, present, absent };
+  });
+}
+
+/* ===================== UI STATE ===================== */
+const freshUI = () => ({ site: DEMO.homeSite, month: null, tab: 'pay', mview: 'mark', kmFor: null, kmAmt: 0, editRate: null, payFor: null, tbl: false });
+let ui = freshUI();
+function defMonth(sid) { const s = siteById(sid), ms = activeMonths(s), want = muToday(sid).slice(0, 7); return (ms.find(m => m.month === want) || ms[ms.length - 1]).month; }
+function ensurePick() { if (!siteById(ui.site)) ui.site = DEMO.homeSite; const s = siteById(ui.site); if (!ui.month || !activeMonths(s).some(m => m.month === ui.month)) ui.month = defMonth(ui.site); }
+
+/* ===================== SHARED PIECES ===================== */
+function roleBar(role) {
+  const s = role.site ? siteById(role.site) : null;
+  return el('div', { class: 'rolebar' },
+    el('div', { class: 'who' }, el('span', { class: 'ric', 'aria-hidden': 'true' }, ic(role.icon)), el('div', {}, t('you', { r: t(role.name) + (s ? ' · ' + label(s) : '') }), el('small', {}, t(role.lvl) + ' · ' + t(role.sub)))),
+    el('button', { class: 'btn small', type: 'button', onclick: () => { S.role = null; save(); ui = freshUI(); render(); } }, ic('door'), t('switch_role')));
+}
+function pickers() {
+  const s = siteById(ui.site);
+  return el('div', { class: 'pickers' },
+    el('label', {}, t('site'), el('select', { onchange: (e) => { ui.site = e.target.value; ui.month = defMonth(ui.site); ui.editRate = null; ui.payFor = null; render(); } }, ...SITES.map(x => el('option', { value: x.id, selected: x.id === ui.site }, label(x))))),
+    el('label', {}, t('month'), el('select', { onchange: (e) => { ui.month = e.target.value; ui.editRate = null; ui.payFor = null; render(); } }, ...activeMonths(s).map(m => el('option', { value: m.month, selected: m.month === ui.month }, fmtMonth(m.month))))));
+}
+const STATE_IC = { good: 'ok', watch: 'eye', action: 'red' };
+const stateOf = (pct) => pct >= 30 ? 'good' : pct >= 15 ? 'watch' : 'action';
+const stateChip = (st, txt) => el('span', { class: 'state ' + st }, ic(STATE_IC[st]), txt);
+function tilesRow(s, m, mc) {
+  const tile = (cls, icn, lab, val, sub, chip) => el('div', { class: 'tile ' + cls }, el('div', { class: 'tile-top' }, el('span', { class: 'tile-ic', 'aria-hidden': 'true' }, ic(icn)), el('span', { class: 'tile-l' }, lab)), el('b', { class: 'tile-v money' }, val), el('span', { class: 'tile-s' }, sub), chip || null);
+  const bst = mc.hb ? stateOf(mc.pct) : null;
+  return el('div', { class: 'tiles' },
+    tile('t-billed', 'building', t('k_billed'), mc.hb ? inr(mc.billed) : '–', mc.hb ? t('k_billed_sub') : t('no_bill')),
+    tile('t-wages', 'worker', t('k_wages'), inr(mc.wages), t('k_wages_sub', { n: mc.active, d: mc.days })),
+    tile('t-bachat ' + (bst || ''), 'bag', t('k_bachat'), mc.hb ? inr(mc.bachat) : '–', mc.hb ? `${Math.round(mc.pct)}% · ${t('k_bachat_sub')}` : t('no_bill'), mc.hb ? stateChip(bst, t('st_' + bst)) : null),
+    tile('t-owed ' + (mc.owedN ? 'action' : 'good'), 'warn', t('k_owed'), inr(mc.owed), t('k_owed_sub', { n: mc.owedN }), stateChip(mc.owedN ? 'action' : 'good', mc.owedN ? t('st_action') : t('st_clear'))));
+}
+function alertsRow(s, m, mc, daily) {
+  const out = [];
+  if (mc.owedN) out.push(['action', 'warn', t('al_owed', { n: mc.owedN, x: inr(mc.owed) })]);
+  const today = muToday(s.id); let row = today.slice(0, 7) === m.month ? daily.find(x => x.date === today) : null;
+  if (!row) row = [...daily].reverse().find(x => x.present > 0);
+  if (row) out.push(row.absent ? ['watch', 'noentry', t('al_absent', { d: fmtDate(row.date), n: row.absent })] : ['good', 'ok', t('al_allin', { d: fmtDate(row.date) })]);
+  if (m.derived.left_count) out.push(['watch', 'door', t('al_left', { n: m.derived.left_count })]);
+  const lab = { good: t('st_good'), watch: t('st_watch'), action: t('st_action') };
+  return el('div', { class: 'alerts' }, ...out.map(([st, icn, txt]) => el('div', { class: 'alert ' + st, role: 'status' }, el('span', { class: 'ai', 'aria-hidden': 'true' }, ic(icn)), el('span', {}, el('span', { class: 'al' }, lab[st].toUpperCase()), el('br'), txt))));
+}
+function dailyBox(s, m, daily) {
+  const hb = hasBill(m), key = hb ? 'bachat' : 'wages';
+  const box = el('section', { class: 'box viz' }, el('div', { class: 'box-h' }, el('div', {}, el('h3', {}, hb ? t('vd_h') : t('vd_h_nb')), el('p', { class: 'note' }, hb ? t('vd_sub') : t('vd_sub_nb'))),
+    el('button', { class: 'btn small', type: 'button', 'aria-pressed': String(ui.tbl), onclick: () => { ui.tbl = !ui.tbl; render(); } }, ui.tbl ? t('tbl_hide') : t('tbl_show'))));
+  if (ui.tbl) {
+    const cols = hb ? ['tt_date', 'tt_billed', 'tt_wages', 'tt_bachat', 'tt_present', 'tt_absent'] : ['tt_date', 'tt_wages', 'tt_present', 'tt_absent'];
+    box.append(el('div', { class: 'tblwrap', style: 'max-height:320px' }, el('table', { class: 'data' }, el('thead', {}, el('tr', {}, ...cols.map(c => el('th', { scope: 'col' }, t(c))))),
+      el('tbody', {}, ...daily.map(x => el('tr', {}, el('td', {}, `${dow(x.date)} ${fmtDate(x.date)}`), hb ? el('td', { class: 'money' }, inr(x.billed)) : null, el('td', { class: 'money' }, inr(x.wages)), hb ? el('td', { class: 'money' + (x.bachat < 0 ? ' neg' : '') }, inr(x.bachat)) : null, el('td', {}, x.present), el('td', {}, x.absent)))))));
+    return box;
+  }
+  const W = 560, H = 200, L = 44, R = 6, Tp = 10, B = 24, vals = daily.map(x => x[key] || 0);
+  const pos = Math.max(0, ...vals), negm = Math.max(0, -Math.min(0, ...vals)), span = (pos + negm) || 1, sc = (H - Tp - B) / span, y0 = Tp + pos * sc, bw = (W - L - R) / Math.max(1, daily.length);
+  const step = [500, 1000, 2000, 2500, 5000, 10000, 20000, 25000, 50000, 100000].find(v => v >= pos / 4) || 200000;
+  const svg = document.createElementNS(SVGNS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', hb ? t('vd_h') : t('vd_h_nb'));
+  let g = ''; for (let v = step; v <= pos; v += step) { const y = y0 - v * sc; g += `<line class="gl" x1="${L}" x2="${W - R}" y1="${y}" y2="${y}"/><text class="ax" x="${L - 6}" y="${y + 4}" text-anchor="end">${v >= 1000 ? (v / 1000) + 'k' : v}</text>`; }
+  g += `<line class="bl" x1="${L}" x2="${W - R}" y1="${y0}" y2="${y0}"/>`;
+  daily.forEach((x, i) => { const v = x[key] || 0, h = Math.abs(v) * sc, neg = v < 0, y = neg ? y0 : y0 - h, dd = Number(x.date.slice(8));
+    g += `<rect class="b${hb ? (neg ? ' n' : '') : ' w'}" x="${L + i * bw + 1}" y="${y}" width="${Math.max(1, bw - 2)}" height="${Math.max(0, h)}" rx="2"><title>${dow(x.date)} ${fmtDate(x.date)}: ${inr(v)} · ${t('tt_present')} ${x.present}</title></rect>`;
+    if (dd === 1 || dd % 7 === 0) g += `<text class="ax" x="${L + i * bw + bw / 2}" y="${H - 6}" text-anchor="middle">${dd}</text>`; });
+  svg.innerHTML = g;
+  box.append(svg, el('div', { class: 'legend' }, ...(hb ? [el('span', {}, el('i', { style: 'background:var(--c-bachat)' }), t('leg_plus')), el('span', {}, el('i', { style: 'background:var(--c-loss)' }), t('leg_minus'))] : [el('span', {}, el('i', { style: 'background:var(--c-wages)' }), t('tt_wages'))]), el('span', {}, fmtMonth(m.month))));
+  return box;
+}
+function workersTable(s, m, mc, mode) {
+  // mode: 'th' (rates editable), 'hw' (payments), 'ca' (read-only register)
+  const head = mode === 'hw' ? ['c_name', 'c_rate', 'c_wage', 'c_km', 'c_adv', 'c_paid', 'c_left', ''] : mode === 'ca' ? ['c_name', 'c_type', 'c_days', 'c_rate', 'c_wage', 'c_km', 'c_adv', 'c_net'] : ['c_name', 'c_days', 'c_rate', 'c_wage', 'c_km', 'c_adv', 'c_net'];
+  const tot = { days: 0, wage: 0, km: 0, adv: 0, paid: 0, net: 0, left: 0 }; const body = [];
+  for (const r of mc.rows) {
+    const w = r.w; tot.days += r.days; tot.wage += r.wage; tot.km += r.km; tot.adv += r.adv; tot.paid += r.paid; tot.net += r.net; tot.left += r.left;
+    const rateCell = r.fixed ? `${inr(w.monthly_salary || w.payment || 0)}/${t('per_month')}` : inr(r.rate);
+    const rateTd = el('td', { class: 'money' }, rateCell, mode === 'th' && !r.fixed ? el('button', { class: 'chip', type: 'button', style: 'margin-left:8px', 'aria-label': `${w.name}: ${t('rate_edit')}`, onclick: () => { ui.editRate = ui.editRate === w.name ? null : w.name; render(); } }, ic('pad'), t('rate_edit')) : null);
+    if (mode === 'hw') body.push(el('tr', {}, el('td', {}, w.name), el('td', { class: 'money' }, rateCell), el('td', { class: 'money' }, inr(r.wage)), el('td', { class: 'money' }, inr(r.km)), el('td', { class: 'money' }, inr(r.adv)), el('td', { class: 'money' }, inr(r.paid)), el('td', { class: 'money' + (r.left < 0 ? ' neg' : '') }, inr(r.left)),
+      el('td', {}, el('button', { class: 'btn small', type: 'button', disabled: r.left <= 0, onclick: () => { ui.payFor = ui.payFor === w.name ? null : w.name; render(); } }, ic('cash'), t('pay_btn')))));
+    else if (mode === 'ca') body.push(el('tr', {}, el('td', {}, w.name), el('td', {}, r.fixed ? t('fixed_pay') : t('daily_pay')), el('td', {}, r.days), el('td', { class: 'money' }, rateCell), el('td', { class: 'money' }, inr(r.wage)), el('td', { class: 'money' }, inr(r.km)), el('td', { class: 'money' }, inr(r.adv)), el('td', { class: 'money' + (r.net < 0 ? ' neg' : '') }, inr(r.net))));
+    else body.push(el('tr', {}, el('td', {}, w.name, r.fixed ? el('span', { class: 'note' }, ` · ${t('fixed_pay')}`) : null), el('td', {}, r.days), rateTd, el('td', { class: 'money' }, inr(r.wage)), el('td', { class: 'money' }, inr(r.km)), el('td', { class: 'money' }, inr(r.adv)), el('td', { class: 'money' + (r.net < 0 ? ' neg' : '') }, inr(r.net))));
+    if (mode === 'th' && ui.editRate === w.name) body.push(rateForm(s, m, r, head.length));
+    if (mode === 'hw' && ui.payFor === w.name) body.push(payForm(s, m, r, head.length));
+  }
+  const foot = mode === 'hw' ? [t('c_total'), '', inr(tot.wage), inr(tot.km), inr(tot.adv), inr(tot.paid), inr(tot.left), ''] : mode === 'ca' ? [t('c_total'), '', r2(tot.days), '', inr(tot.wage), inr(tot.km), inr(tot.adv), inr(tot.net)] : [t('c_total'), r2(tot.days), '', inr(tot.wage), inr(tot.km), inr(tot.adv), inr(tot.net)];
+  return el('div', { class: 'tblwrap' }, el('table', { class: 'data' }, el('thead', {}, el('tr', {}, ...head.map(k => el('th', { scope: 'col' }, k ? t(k) : '')))), el('tbody', {}, ...body), el('tfoot', {}, el('tr', {}, ...foot.map(v => el('td', { class: 'money' }, v))))));
+}
+function rateForm(s, m, r, span) {
+  const inp = el('input', { type: 'number', inputmode: 'numeric', min: '1', max: '5000', step: '5', value: String(Math.round(r.rate)), 'aria-label': t('rate_new') });
+  const from = el('select', { 'aria-label': t('rate_from') }, ...m.dates.map(d => el('option', { value: d, selected: d === (muToday(s.id).slice(0, 7) === m.month ? muToday(s.id) : m.dates[0]) }, `${dow(d)} ${fmtDate(d)}`)));
+  return el('tr', { class: 'editrow' }, el('td', { colspan: String(span) }, el('div', { class: 'form' },
+    el('label', { class: 'field' }, t('rate_new'), inp), el('label', { class: 'field' }, t('rate_from'), from),
+    el('button', { class: 'btn primary small', type: 'button', onclick: () => { const v = Math.round(parseFloat(inp.value)); if (!(v > 0 && v <= 5000)) { inp.focus(); return; }
+      S.rate[s.id] = S.rate[s.id] || {}; (S.rate[s.id][r.w.name] = S.rate[s.id][r.w.name] || []).push({ from: from.value, rate: v, at: Date.now() }); save(); ui.editRate = null; render(); toast(t('rate_saved', { n: r.w.name, r: inr(v), d: fmtDate(from.value) })); } }, t('save')),
+    el('button', { class: 'btn small', type: 'button', onclick: () => { ui.editRate = null; render(); } }, t('cancel')))));
+}
+function payForm(s, m, r, span) {
+  const amt = el('input', { type: 'number', inputmode: 'numeric', min: '1', step: '1', value: String(Math.max(0, Math.round(r.left))), 'aria-label': t('amount') });
+  let mode = 'cash';
+  const seg = el('div', { class: 'seg', role: 'group', 'aria-label': t('mode') }, ...['cash', 'upi', 'bank'].map(k => el('button', { type: 'button', 'data-k': k, 'aria-pressed': String(k === mode), onclick: (e) => { mode = k; $$('button', seg).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.k === mode))); } }, t('m_' + k))));
+  return el('tr', { class: 'editrow' }, el('td', { colspan: String(span) }, el('div', { class: 'form' },
+    el('label', { class: 'field' }, t('amount'), amt), el('div', { class: 'field' }, t('mode'), seg),
+    el('button', { class: 'btn primary small', type: 'button', onclick: () => { const v = Math.round(parseFloat(amt.value)); if (!(v > 0)) { amt.focus(); return; }
+      S.pay.push({ id: uid(), site: s.id, month: m.month, worker: r.w.name, amt: v, mode, date: payDate(s, m) }); save(); ui.payFor = null; render(); toast(t('pay_done', { n: r.w.name, x: inr(v), m: t('m_' + mode) })); } }, t('save')),
+    el('button', { class: 'btn small', type: 'button', onclick: () => { ui.payFor = null; render(); } }, t('cancel')))));
+}
+const payDate = (s, m) => (muToday(s.id).slice(0, 7) === m.month ? muToday(s.id) : m.dates[m.dates.length - 1]);
+function entryList(items, render1, onRemove) {
+  if (!items.length) return el('p', { class: 'note' }, t('none_yet'));
+  return el('ul', { class: 'list' }, ...items.map(e => el('li', {}, render1(e), onRemove ? el('button', { class: 'chip', type: 'button', onclick: () => onRemove(e) }, ic('x'), t('remove')) : null)));
+}
+
+/* ===================== CSV ===================== */
+function csvDownload(name, rows) {
+  const q = (v) => { const s = v === null || v === undefined ? '' : String(v); return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const txt = '﻿' + rows.map(r => r.map(q).join(',')).join('\r\n');
+  try { const url = URL.createObjectURL(new Blob([txt], { type: 'text/csv;charset=utf-8' })); const a = el('a', { href: url, download: name }); document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1500); toast(t('csv_done')); } catch (e) {}
+}
+const fileBase = (s, m) => `${BRAND.toLowerCase()}-demo-${s.id}-${m ? m.month : 'months'}`;
+function csvWage(s, m) { const mc = monthCalc(s, m);
+  csvDownload(fileBase(s, m) + '-wage-register.csv', [[BRAND + ' · ' + t('reg_wage_h')], [t('csv_site'), label(s), t('month'), fmtMonth(m.month)], [t('csv_demo')], [],
+    [t('c_name'), t('c_type'), t('c_days'), t('c_rate'), t('c_wage'), t('c_km'), t('c_adv'), t('c_paid'), t('c_net')],
+    ...mc.rows.map(r => [r.w.name, r.fixed ? t('fixed_pay') : t('daily_pay'), r.days, r.fixed ? (r.w.monthly_salary || r.w.payment || 0) : r.rate, Math.round(r.wage), Math.round(r.km), Math.round(r.adv), Math.round(r.paid), Math.round(r.left)])]); }
+function csvAtt(s, m) {
+  csvDownload(fileBase(s, m) + '-attendance-register.csv', [[BRAND + ' · ' + t('reg_att_h')], [t('csv_site'), label(s), t('month'), fmtMonth(m.month)], [t('csv_demo')], [],
+    [t('c_name'), ...m.dates.map(d => d.slice(8)), t('c_days')],
+    ...m.workers.filter(w => workerActive(w) || w.payment).map(w => { const hs = m.dates.map((d, i) => hoursAt(s.id, m, w, i)); return [w.name, ...hs.map(h => h === null || h === undefined ? '' : h), workerCalc(s, m, w).days]; })]); }
+function csvSum(s) {
+  csvDownload(fileBase(s, null) + '-summary.csv', [[BRAND + ' · ' + t('sum_h')], [t('csv_site'), label(s)], [t('csv_demo')], [], [t('month'), t('tt_wages'), t('tt_billed'), t('tt_bachat'), t('c_receipts')],
+    ...activeMonths(s).map(m => { const mc = monthCalc(s, m); return [fmtMonth(m.month), Math.round(mc.wages), mc.hb ? Math.round(mc.billed) : '', mc.hb ? Math.round(mc.bachat) : '', Math.round(m.receipts_total || 0)]; })]); }
+
+/* ===================== LOGIN ===================== */
+function loginScreen() {
+  const tel = el('input', { type: 'tel', inputmode: 'numeric', maxlength: '10', placeholder: '98XXXXXXXX', autocomplete: 'off', 'aria-describedby': 'otpNote' });
+  const otpNote = el('p', { class: 'note', id: 'otpNote', 'aria-live': 'polite' });
+  return el('div', { class: 'login narrow' },
+    el('div', {}, el('h1', {}, t('login_h')), el('p', { class: 'lead' }, t('login_sub'))),
+    el('div', { class: 'card stack' }, el('div', { class: 'otp' }, el('label', { class: 'field' }, t('mobile'), tel), el('button', { class: 'btn ink', type: 'button', onclick: () => { otpNote.textContent = t('otp_note'); } }, t('otp_btn'))), otpNote),
+    el('div', {}, el('h2', {}, t('guest_h')), el('p', { class: 'note', style: 'margin-top:4px' }, t('guest_sub'))),
+    el('div', { class: 'roles' }, ...ROLES.map(r => { const s = r.site ? siteById(r.site) : null;
+      return el('button', { class: 'rolecard lift', type: 'button', 'data-role': r.id, onclick: () => { S.role = r.id; save(); ui = freshUI(); if (s) ui.site = s.id; render(); window.scrollTo(0, 0); } },
+        el('span', { class: 'ric', 'aria-hidden': 'true' }, ic(r.icon)), el('span', {}, el('b', {}, t(r.name) + (s ? ' · ' + label(s) : '')), el('small', {}, t(r.sub)), el('span', { class: 'lvl' }, t(r.lvl))), el('span', { class: 'go', 'aria-hidden': 'true' }, ic('arrow'))); })),
+    el('p', {}, el('a', { href: '../' }, '← ' + t('back_site'))));
+}
+
+/* ===================== MUNSHI ===================== */
+let voiceOn = false;
+function speak(text) { if (!voiceOn || !('speechSynthesis' in window)) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'hi-IN'; speechSynthesis.speak(u); } catch (e) {} }
+function munshiScreen(role) {
+  const s = siteById(role.site), date = muToday(s.id), m = monthOf(s, date.slice(0, 7)), ws = m.workers.filter(w => w.pay_type === 'daily' && workerActive(w));
+  const marks = marksFor(s.id, date) || {}, sub = (S.subs[s.id] || {})[date], locked = !!sub;
+  const kmToday = S.km.filter(e => e.site === s.id && e.date === date);
+  const kmBy = (name) => kmToday.filter(e => e.worker === name).reduce((a, e) => a + e.amt, 0);
+  const vals = ws.map(w => marks[w.name]); const c = { p: vals.filter(v => isNum(v) && v > 0).length, a: vals.filter(v => v === 'A').length }; c.left = ws.length - c.p - c.a - vals.filter(v => v === 0).length; c.km = kmToday.reduce((a, e) => a + e.amt, 0);
+  const setMark = (name, h) => { if (locked) return; S.att[s.id] = S.att[s.id] || {}; S.att[s.id][date] = S.att[s.id][date] || {}; S.att[s.id][date][name] = h; save(); speak(h === 'A' ? t('speak_abs', { name }) : t('speak_h', { name, h })); render(); };
+  const head = el('div', { class: 'mhead' }, el('div', {}, label(s), el('small', {}, `${dow(date)} ${fmtDate(date)} · ${s.supervisor}`)),
+    el('button', { class: 'chip' + (voiceOn ? ' on' : ''), type: 'button', 'aria-pressed': String(voiceOn), onclick: () => { voiceOn = !voiceOn; render(); if (voiceOn) speak(BRAND); } }, ic('sound'), t('voice')));
+  const tally = el('div', { class: 'tally', 'aria-live': 'polite' }, el('div', { class: 't-ok' }, el('b', {}, c.p), t('t_present')), el('div', { class: 't-abs' }, el('b', {}, c.a), t('t_absent')), el('div', {}, el('b', {}, Math.max(0, c.left)), t('t_left')), el('div', { class: 't-km' }, el('b', { class: 'money' }, inr(c.km)), t('adv_btn')));
+  const seg = el('div', { class: 'seg', role: 'group' }, ...[['mark', 'pad', 'reg_hide'], ['km', 'cash', 'adv_btn'], ['reg', 'book', 'reg_show']].map(([k, icn, lab]) => el('button', { type: 'button', 'aria-pressed': String(ui.mview === k), onclick: () => { ui.mview = k; render(); } }, ic(icn), t(lab))));
+  let body;
+  if (ui.mview === 'km') body = munshiKharchi(s, m, date, ws, locked, kmToday);
+  else if (ui.mview === 'reg') body = munshiRegister(s, m, date, ws, marks);
+  else body = el('div', { class: 'wlist' }, ...ws.map(w => { const st = marks[w.name], hrs = isNum(st) ? st : 0, k = kmBy(w.name);
+    const hb = (h, icons, lab, cls = '') => el('button', { class: 'hbtn ' + cls, type: 'button', disabled: locked, 'aria-pressed': String(st === h), 'aria-label': `${w.name}: ${lab}`, onclick: () => setMark(w.name, h) }, el('b', { 'aria-hidden': 'true' }, icons), lab);
+    return el('div', { class: 'wcard' + (st === 'A' ? ' absent' : isNum(st) && st > 0 ? ' done' : ''), 'data-w': w.name },
+      el('div', { class: 'wrow' }, avatar(w.name), el('div', { class: 'wname' }, w.name, el('small', {}, isNum(st) ? `${hrs} ${t('hours_u')} = ${r2(hrs / 8)} ${t('day_u')}` : st === 'A' ? t('habs') : ' ')), el('span', { class: 'wstate', 'aria-hidden': 'true' }, st === 'A' ? ic('x') : isNum(st) && st > 0 ? ic('ok') : null)),
+      el('div', { class: 'hbtns' }, hb(8, [ic('sun')], t('h8')), hb(12, [ic('sun'), ic('moon')], t('h12')), hb(4, [ic('half')], t('h4')), hb('A', [ic('x')], t('habs'), 'abs')),
+      el('div', { class: 'wtools' },
+        el('span', { class: 'stepper' }, el('button', { type: 'button', disabled: locked, 'aria-label': `${w.name} −1 ${t('hours_u')}`, onclick: () => setMark(w.name, Math.max(0, hrs - 1)) }, '−'), el('output', {}, `${hrs} ${t('hours_u')}`), el('button', { type: 'button', disabled: locked, 'aria-label': `${w.name} +1 ${t('hours_u')}`, onclick: () => setMark(w.name, Math.min(16, hrs + 1)) }, '+')),
+        el('button', { class: 'advbtn' + (k ? ' has' : ''), type: 'button', disabled: locked, onclick: () => { ui.mview = 'km'; ui.kmFor = w.name; ui.kmAmt = 0; render(); } }, ic('cash'), ' ', k ? inr(k) : t('adv_btn')))); }));
+  const foot = el('div', { class: 'mfoot' }, locked
+    ? el('button', { class: 'bigbtn primary', type: 'button', onclick: () => nextDay(s) }, t('next_day'), ic('arrow'))
+    : el('div', { class: 'footrow' }, el('button', { class: 'bigbtn', type: 'button', onclick: () => { S.att[s.id] = S.att[s.id] || {}; const o = S.att[s.id][date] = S.att[s.id][date] || {}; ws.forEach(w => { if (o[w.name] === undefined) o[w.name] = 8; }); save(); render(); } }, ic('ok'), t('all_full')),
+        el('button', { class: 'bigbtn gold', type: 'button', onclick: () => munshiSubmit(s, date, ws, marks, c) }, t('submit'), ic('arrow'))));
+  return el('div', { class: 'narrow stack' }, roleBar(role), head, tally, locked ? el('div', { class: 'lockbar' }, ic('ok'), t('locked')) : null, seg, body, el('p', { class: 'note' }, t('mu_no_money')), foot);
+}
+function munshiKharchi(s, m, date, ws, locked, kmToday) {
+  if (!ui.kmFor || !ws.some(w => w.name === ui.kmFor)) ui.kmFor = ws[0] ? ws[0].name : null;
+  const sel = el('select', { 'aria-label': t('km_worker'), disabled: locked, onchange: (e) => { ui.kmFor = e.target.value; ui.kmAmt = 0; render(); } }, ...ws.map(w => el('option', { value: w.name, selected: w.name === ui.kmFor }, w.name)));
+  const custom = el('input', { type: 'number', inputmode: 'numeric', min: '1', step: '10', placeholder: '₹', disabled: locked, 'aria-label': t('km_custom') });
+  const give = el('div', { class: 'wcard' }, el('label', { class: 'field' }, t('km_worker'), sel),
+    el('div', { class: 'notes' }, ...NOTES.map(([v, a, b]) => el('button', { class: 'notebtn', type: 'button', disabled: locked, 'aria-label': '₹' + v, html: NOTE(v, a, b), onclick: () => { ui.kmAmt += v; render(); } }))),
+    el('div', { class: 'form' }, el('label', { class: 'field' }, t('km_custom'), custom), el('button', { class: 'btn small', type: 'button', disabled: locked, onclick: () => { const v = Math.round(parseFloat(custom.value)); if (v > 0) { ui.kmAmt += v; render(); } else custom.focus(); } }, t('km_add'))),
+    el('div', { class: 'advsum' }, el('span', {}, ic('cash'), ' ', t('adv_title')), el('span', { class: 'money' }, inr(ui.kmAmt))),
+    el('div', { class: 'footrow' }, el('button', { class: 'bigbtn', type: 'button', disabled: locked || !ui.kmAmt, onclick: () => { ui.kmAmt = 0; render(); } }, t('adv_clear')),
+      el('button', { class: 'bigbtn primary', type: 'button', disabled: locked || !ui.kmAmt, onclick: () => { S.km.push({ id: uid(), site: s.id, date, worker: ui.kmFor, amt: ui.kmAmt, by: 'munshi' }); const x = ui.kmAmt; ui.kmAmt = 0; save(); render(); toast(t('km_saved', { n: ui.kmFor, x: inr(x) })); } }, t('adv_done'))));
+  const today = el('div', { class: 'box' }, el('h3', {}, t('km_today')), entryList(kmToday, e => el('span', {}, e.worker, el('small', {}, inr(e.amt))), locked ? null : (e) => { S.km = S.km.filter(x => x.id !== e.id); save(); render(); }));
+  // this week: register kharchi for the week plus what was given in the demo
+  const wk = m.week_endings.findIndex(we => we >= date), we = m.week_endings[wk], ws0 = we ? addDays(we, -6) : null;
+  const weekRows = ws.map(w => { const reg = wk >= 0 ? ((w.weeks[wk] || {}).pocket || 0) : 0; const demo = S.km.filter(e => e.site === s.id && e.worker === w.name && ws0 && e.date >= ws0 && e.date <= we).reduce((a, e) => a + e.amt, 0); return [w.name, reg, demo]; }).filter(r => r[1] || r[2]);
+  const week = el('div', { class: 'box' }, el('h3', {}, t('km_week') + (we ? ` · ${fmtDate(ws0)}–${fmtDate(we)}` : '')),
+    weekRows.length ? el('div', { class: 'tblwrap' }, el('table', { class: 'data' }, el('thead', {}, el('tr', {}, el('th', { scope: 'col' }, t('c_name')), el('th', { scope: 'col' }, t('km_reg')), el('th', { scope: 'col' }, 'Demo'), el('th', { scope: 'col' }, t('c_total')))),
+      el('tbody', {}, ...weekRows.map(([n, a, b]) => el('tr', {}, el('td', {}, n), el('td', { class: 'money' }, inr(a)), el('td', { class: 'money' }, inr(b)), el('td', { class: 'money' }, inr(a + b))))))) : el('p', { class: 'note' }, t('km_none')));
+  return el('div', { class: 'stack' }, give, today, week);
+}
+function munshiRegister(s, m, date, ws, marks) {
+  const d0 = new Date(date + 'T00:00:00'), mon = addDays(date, -((d0.getDay() + 6) % 7)), days = [...Array(7)].map((_, i) => addDays(mon, i));
+  const cell = (w, d) => { if (d === date) { const st = marks[w.name]; return el('td', { class: 'today' }, st === 'A' ? 'A' : isNum(st) ? st : '·'); }
+    const mm = monthOf(s, d.slice(0, 7)); if (!mm) return el('td'); const i = mm.dates.indexOf(d); if (i < 0) return el('td'); const ww = mm.workers.find(x => x.name === w.name); const v = ww ? hoursAt(s.id, mm, ww, i) : null;
+    return el('td', { class: v === 'A' ? 'a' : typeof v === 'string' ? 'l' : '' }, d > date || v === null || v === undefined ? '' : v); };
+  return el('div', { class: 'paper' }, el('table', {}, el('caption', {}, t('reg_cap')), el('thead', {}, el('tr', {}, el('th', { scope: 'col' }, t('reg_name')), ...days.map(d => el('th', { scope: 'col' }, dow(d), el('br'), d.slice(8))))), el('tbody', {}, ...ws.map(w => el('tr', {}, el('td', {}, w.name), ...days.map(d => cell(w, d)))))));
+}
+function munshiSubmit(s, date, ws, marks, c) {
+  const now = new Date(), at = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  S.subs[s.id] = S.subs[s.id] || {}; S.subs[s.id][date] = { at, p: c.p, a: c.a, km: c.km, ok: false }; save(); speak(t('ok_title'));
+  const ov = el('div', { class: 'success', role: 'dialog', 'aria-modal': 'true', 'aria-label': t('ok_title') }, el('div', {}, el('div', { class: 'stamp' }, ic('ok'), ' ', t('stamp')), el('h2', {}, t('ok_title')),
+    el('p', { class: 'note' }, `${t('t_present')} ${c.p} · ${t('t_absent')} ${c.a} · ${t('adv_btn')} ${inr(c.km)}`),
+    el('ul', {}, el('li', {}, ic('pin'), ` ${label(s)} · ${t('ok_geo')}`), el('li', {}, ic('clock'), ` ${at}`), el('li', {}, ic('cam'), ' ', t('ok_photo'), ' ', ic('ok')), el('li', {}, ic('cloud'), ' ', t('ok_sync'))),
+    el('button', { class: 'bigbtn primary', type: 'button', onclick: () => { ov.remove(); render(); } }, t('ok_close'))));
+  document.body.append(ov); $('button', ov).focus();
+}
+function nextDay(s) {
+  const date = muToday(s.id), ms = activeMonths(s); let m = monthOf(s, date.slice(0, 7)), i = m.dates.indexOf(date), next = m.dates[i + 1];
+  if (!next) { const mi = ms.findIndex(x => x.month === m.month); const nm = ms[mi + 1]; next = nm ? nm.dates[0] : null; }
+  if (!next) { toast(t('no_next')); return; }
+  S.today[s.id] = next; save(); ui.mview = 'mark'; ui.kmAmt = 0; render(); window.scrollTo(0, 0);
+}
+
+/* ===================== THEKEDAR ===================== */
+function submissionBox(s) {
+  const date = muToday(s.id), sub = (S.subs[s.id] || {})[date];
+  return el('section', { class: 'box' }, el('div', { class: 'box-h' }, el('h3', {}, `${t('sub_h')} · ${label(s)}`), el('span', { class: 'badge' }, ic('cal'), `${dow(date)} ${fmtDate(date)}`)),
+    sub ? el('div', { class: 'box-h' }, el('p', {}, t('sub_done', { t: sub.at, p: sub.p, a: sub.a, k: inr(sub.km) })), sub.ok ? stateChip('good', t('approved')) : el('button', { class: 'btn primary small', type: 'button', onclick: () => approve(s.id, date) }, ic('ok'), t('approve'))) : el('p', { class: 'note' }, t('sub_none')));
+}
+function approve(sid, date) { S.subs[sid][date].ok = true; save(); render(); toast(t('approved_t', { s: label(siteById(sid)), d: fmtDate(date) })); }
+function pendingBox() {
+  const items = []; for (const s of SITES) for (const [d, x] of Object.entries(S.subs[s.id] || {})) if (!x.ok) items.push({ s, d, x });
+  return el('section', { class: 'box' }, el('h3', {}, t('pending_h')), items.length ? el('ul', { class: 'list' }, ...items.map(({ s, d, x }) => el('li', {}, el('span', {}, `${label(s)} · ${dow(d)} ${fmtDate(d)}`, el('small', {}, t('sub_done', { t: x.at, p: x.p, a: x.a, k: inr(x.km) }))), el('button', { class: 'btn primary small', type: 'button', onclick: () => approve(s.id, d) }, t('approve'))))) : el('p', { class: 'note' }, t('pending_none')));
+}
+function thekedarScreen(role) {
+  ensurePick(); const s = siteById(ui.site), m = monthOf(s, ui.month), mc = monthCalc(s, m), daily = dailyCalc(s, m);
+  return el('div', { class: 'stack' }, roleBar(role), pickers(), submissionBox(s), tilesRow(s, m, mc), alertsRow(s, m, mc, daily), dailyBox(s, m, daily),
+    el('section', { class: 'box' }, el('h3', {}, t('workers_h')), workersTable(s, m, mc, 'th')), pendingBox());
+}
+
+/* ===================== HISAAB-WALA ===================== */
+function hisaabScreen(role) {
+  ensurePick(); const s = siteById(ui.site), m = monthOf(s, ui.month), mc = monthCalc(s, m);
+  const tabs = el('div', { class: 'seg', role: 'group' }, ...[['pay', 'cash', 'p_pay'], ['adv', 'cashout', 'p_adv'], ['exp', 'receipt', 'p_exp'], ['rep', 'doc', 'p_rep']].map(([k, icn, lab]) => el('button', { type: 'button', 'aria-pressed': String(ui.tab === k), onclick: () => { ui.tab = k; ui.payFor = null; render(); } }, ic(icn), t(lab))));
+  let body;
+  const workers = mc.rows.map(r => r.w);
+  const dateSel = () => el('select', { 'aria-label': t('tt_date') }, ...m.dates.map(d => el('option', { value: d, selected: d === payDate(s, m) }, `${dow(d)} ${fmtDate(d)}`)));
+  if (ui.tab === 'adv') {
+    const who = el('select', { 'aria-label': t('km_worker') }, ...workers.map(w => el('option', { value: w.name }, w.name))), amt = el('input', { type: 'number', inputmode: 'numeric', min: '1', step: '100', 'aria-label': t('amount') }), dt = dateSel();
+    const list = S.adv.filter(e => e.site === s.id && inMonth(e, m.month));
+    body = el('div', { class: 'stack' }, el('section', { class: 'box' }, el('h3', {}, t('adv_add')), el('div', { class: 'form' }, el('label', { class: 'field' }, t('km_worker'), who), el('label', { class: 'field' }, t('amount'), amt), el('label', { class: 'field' }, t('tt_date'), dt),
+      el('button', { class: 'btn primary', type: 'button', onclick: () => { const v = Math.round(parseFloat(amt.value)); if (!(v > 0)) { amt.focus(); return; } S.adv.push({ id: uid(), site: s.id, date: dt.value, worker: who.value, amt: v, by: 'hisaab' }); save(); render(); toast(t('adv_done_t', { n: who.value, x: inr(v) })); } }, t('save')))),
+      el('section', { class: 'box' }, el('h3', {}, t('adv_list')), entryList(list, e => el('span', {}, e.worker, el('small', {}, `${inr(e.amt)} · ${fmtDate(e.date)}`)), (e) => { S.adv = S.adv.filter(x => x.id !== e.id); save(); render(); })),
+      el('section', { class: 'box' }, el('h3', {}, t('workers_h')), workersTable(s, m, mc, 'ca'), el('p', { class: 'note' }, t('rate_ro'))));
+  } else if (ui.tab === 'exp') {
+    const amt = el('input', { type: 'number', inputmode: 'numeric', min: '1', step: '50', 'aria-label': t('amount') }), what = el('input', { type: 'text', maxlength: '60', 'aria-label': t('exp_note') }), dt = dateSel();
+    const list = S.exp.filter(e => e.site === s.id && inMonth(e, m.month));
+    body = el('div', { class: 'stack' }, el('section', { class: 'box' }, el('h3', {}, t('exp_add')), el('p', { class: 'note' }, t('exp_reg', { x: inr(m.derived.extras || 0) })), el('div', { class: 'form' }, el('label', { class: 'field' }, t('amount'), amt), el('label', { class: 'field' }, t('exp_note'), what), el('label', { class: 'field' }, t('tt_date'), dt),
+      el('button', { class: 'btn primary', type: 'button', onclick: () => { const v = Math.round(parseFloat(amt.value)); if (!(v > 0)) { amt.focus(); return; } S.exp.push({ id: uid(), site: s.id, date: dt.value, amt: v, note: what.value.trim().slice(0, 60) }); save(); render(); toast(t('exp_done_t', { x: inr(v) })); } }, t('save')))),
+      el('section', { class: 'box' }, el('h3', {}, t('exp_list')), entryList(list, e => el('span', {}, e.note || '—', el('small', {}, `${inr(e.amt)} · ${fmtDate(e.date)}`)), (e) => { S.exp = S.exp.filter(x => x.id !== e.id); save(); render(); })), tilesRow(s, m, monthCalc(s, m)));
+  } else if (ui.tab === 'rep') {
+    body = reportsBox(s, m);
+  } else {
+    const list = S.pay.filter(p => p.site === s.id && p.month === m.month);
+    body = el('div', { class: 'stack' }, el('section', { class: 'box' }, el('h3', {}, t('p_pay')), workersTable(s, m, mc, 'hw'), el('p', { class: 'note' }, t('rate_ro'))),
+      el('section', { class: 'box' }, el('h3', {}, t('pay_list')), entryList(list, p => el('span', {}, p.worker, el('small', {}, `${inr(p.amt)} · ${t('m_' + p.mode)} · ${fmtDate(p.date)}`)), (p) => { S.pay = S.pay.filter(x => x.id !== p.id); save(); render(); })));
+  }
+  return el('div', { class: 'stack' }, roleBar(role), pickers(), tabs, body);
+}
+function reportsBox(s, m) {
+  return el('section', { class: 'box' }, el('h3', {}, t('rep_h')), el('p', { class: 'note' }, t('rep_note')),
+    el('div', { class: 'form' }, el('button', { class: 'btn', type: 'button', onclick: () => csvWage(s, m) }, ic('doc'), t('rep_wage')), el('button', { class: 'btn', type: 'button', onclick: () => csvAtt(s, m) }, ic('book'), t('rep_att')), el('button', { class: 'btn', type: 'button', onclick: () => csvSum(s) }, ic('bars'), t('rep_sum'))));
+}
+
+/* ===================== CA (view only) ===================== */
+function caScreen(role) {
+  ensurePick(); const s = siteById(ui.site), m = monthOf(s, ui.month), mc = monthCalc(s, m);
+  const sum = el('div', { class: 'tblwrap' }, el('table', { class: 'data' }, el('thead', {}, el('tr', {}, ...['month', 'tt_wages', 'tt_billed', 'tt_bachat', 'c_receipts'].map(k => el('th', { scope: 'col' }, t(k))))),
+    el('tbody', {}, ...activeMonths(s).map(x => { const c = monthCalc(s, x); return el('tr', {}, el('td', {}, fmtMonth(x.month)), el('td', { class: 'money' }, inr(c.wages)), el('td', { class: 'money' }, c.hb ? inr(c.billed) : '–'), el('td', { class: 'money' + (c.hb && c.bachat < 0 ? ' neg' : '') }, c.hb ? inr(c.bachat) : '–'), el('td', { class: 'money' }, inr(x.receipts_total || 0))); }))));
+  const ws = m.workers.filter(w => workerActive(w) || w.payment);
+  const grid = el('div', { class: 'paper' }, el('table', {}, el('caption', {}, `${t('reg_att_h')} · ${label(s)} · ${fmtMonth(m.month)}`), el('thead', {}, el('tr', {}, el('th', { scope: 'col' }, t('reg_name')), ...m.dates.map(d => el('th', { scope: 'col' }, d.slice(8))), el('th', { scope: 'col' }, t('c_days')))),
+    el('tbody', {}, ...ws.map(w => { const hs = m.dates.map((d, i) => hoursAt(s.id, m, w, i)); return el('tr', {}, el('td', {}, w.name), ...hs.map(h => el('td', { class: h === 'A' ? 'a' : typeof h === 'string' ? 'l' : '' }, h === null || h === undefined ? '' : h)), el('td', {}, workerCalc(s, m, w).days)); }))));
+  return el('div', { class: 'stack' }, roleBar(role), el('div', { class: 'box-h' }, pickers(), el('span', { class: 'badge' }, ic('eye'), t('ca_badge'))),
+    el('section', { class: 'box' }, el('h3', {}, t('sum_h') + ' · ' + label(s)), sum),
+    el('section', { class: 'box' }, el('h3', {}, `${t('reg_wage_h')} · ${fmtMonth(m.month)}`), workersTable(s, m, mc, 'ca')),
+    el('section', { class: 'box' }, grid), reportsBox(s, m));
+}
+
+/* ===================== RENDER + BOOT ===================== */
+function render() {
+  const main = $('#main'); if (!DATA) return;
+  const role = ROLES.find(r => r.id === S.role); document.body.setAttribute('data-screen', role ? role.id : 'login');
+  let view;
+  if (!role) view = loginScreen();
+  else if (role.site) view = munshiScreen(role);
+  else if (role.id === 'th') view = thekedarScreen(role);
+  else if (role.id === 'hw') view = hisaabScreen(role);
+  else view = caScreen(role);
+  main.replaceChildren(view);
+}
+async function boot() {
+  applyStatic();
+  try { const r = await fetch(DATA_URL); if (!r.ok) throw new Error(String(r.status)); DATA = await r.json(); SITES = DATA.sites.filter(s => activeMonths(s).length); if (!SITES.length) throw new Error('empty'); }
+  catch (e) { $('#main').replaceChildren(el('div', { class: 'err card' }, el('p', {}, t('load_err')), el('button', { class: 'btn primary', type: 'button', onclick: () => location.reload() }, t('retry')))); return; }
+  if (!ROLES.some(r => r.id === S.role)) S.role = null;
+  const role = ROLES.find(r => r.id === S.role); if (role && role.site) ui.site = role.site;
+  render();
+}
+boot();
+</script>
+</body>
+</html>
