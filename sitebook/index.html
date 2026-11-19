@@ -94,7 +94,7 @@ main>section{content-visibility:auto;contain-intrinsic-size:auto 760px}
 /* motion: lift, press, reveal */
 .lift{transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s}
 @media (hover:hover){
-  .lift:hover{transform:translateY(-4px) scale(1.03);box-shadow:var(--lift)}
+  .lift:hover{transform:translateY(-4px) scale(1.03);box-shadow:var(--lift),0 0 0 1px rgba(227,162,26,.3),0 0 26px -6px rgba(227,162,26,.5)}
   .btn.lift:hover{transform:translateY(-2px) scale(1.04)}
 }
 .lift:active,.btn:active{transform:scale(.97)!important;transition-duration:.08s}
@@ -139,6 +139,8 @@ html[data-build=public] .foot-private{display:none}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 .who{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
 .who>span{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--rule);padding:7px 11px;border-radius:999px;box-shadow:var(--soft)}
+.who>.who-mu{background:#ECECE7;border-color:#D3D3CC}
+.who>.who-th{background:linear-gradient(135deg,#1E1F22,#33291A);color:#FFF4DA;border-color:#C9A24A;box-shadow:0 0 0 1px rgba(201,162,74,.25),0 8px 20px -10px rgba(201,162,74,.7);font-weight:600}
 
 /* phone */
 .phone{width:min(340px,100%);margin:0 auto;background:#111;border-radius:42px;padding:11px;box-shadow:0 30px 60px -30px rgba(10,10,10,.55),0 0 0 1px rgba(0,0,0,.4);position:relative}
@@ -456,10 +458,96 @@ table.data tfoot td{font-weight:700;background:var(--well)}
 footer.site{border-top:1px solid var(--rule);padding:32px 0 40px;font-size:14px;color:var(--muted)}
 footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;margin-bottom:8px}
 
+
+/* v2.1: popups, floating CTA, fayda */
+[data-pop]{cursor:pointer}
+.tapme{display:inline-block;font-size:13px;font-weight:700;color:var(--link);margin-top:4px}
+.popable{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.pop-back{position:fixed;inset:0;z-index:70;background:rgba(23,24,26,.32);display:grid;place-items:center;padding:16px;animation:fade .2s var(--ease)}
+.pop{position:relative;width:min(400px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:20px;padding:18px;box-shadow:0 30px 60px -24px rgba(10,10,10,.55),0 0 0 1px rgba(227,162,26,.3),0 0 42px -10px rgba(227,162,26,.5);animation:popIn .28s var(--ease)}
+.pop h3{padding-right:48px;margin:2px 0 10px}
+.pop-x{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);background:var(--raised);font:400 24px/1 var(--body);cursor:pointer;display:grid;place-items:center}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
+.sample{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.05em;color:var(--watch);background:var(--watch-soft);border:1px solid #EBCB85;padding:4px 6px;border-radius:5px;margin-bottom:10px}
+.chat{background:#EAE4DA;border-radius:14px;overflow:hidden}
+.chat-h{display:flex;align-items:center;gap:8px;background:#1F6F5C;color:#fff;padding:10px 12px;font-weight:700}
+.chat-h small{font-weight:500;opacity:.85;margin-left:auto;font-size:12px}
+.bub{background:#D9F5C8;margin:12px;border-radius:12px 12px 12px 3px;padding:10px 12px;box-shadow:0 1px 1px rgba(0,0,0,.12);display:grid;gap:4px;font-size:14px}
+.bub-t{font-weight:700;margin-bottom:4px}
+.srow{display:flex;justify-content:space-between;gap:10px}
+.srow.sub{justify-content:flex-end;font-size:12px;color:var(--muted);margin-top:-4px}
+.srow.net{border-top:1px dashed #9CC49A;padding-top:6px;margin-top:2px;font-size:16px}
+.srow.net b{color:var(--good)}
+.vnote{display:flex;align-items:center;gap:10px;width:calc(100% - 24px);margin:0 12px 12px;background:#D9F5C8;border:0;border-radius:12px;padding:8px 10px;cursor:pointer;min-height:48px;font-weight:600;font-size:13px;text-align:left;color:var(--ink)}
+.vnote .play{width:34px;height:34px;border-radius:50%;background:#1F6F5C;color:#fff;display:grid;place-items:center;flex:none}
+.vnote .play .ico{width:18px;height:18px}
+.vnote .wave{display:flex;align-items:center;gap:2px;flex:1}
+.vnote .wave i{width:3px;border-radius:2px;background:#5C8F6B;display:block}
+.receipt{font-family:var(--mono);font-size:13px;background:#FFFEF8;border:1px solid var(--rule);border-radius:6px;padding:14px;box-shadow:0 4px 10px -6px rgba(0,0,0,.2)}
+.receipt hr{border:0;border-top:1px dashed #9AA0A6;margin:8px 0}
+.rc-h{font-weight:700;text-align:center}.rc-s{text-align:center;margin-top:4px}
+.prow{display:flex;justify-content:space-between;gap:10px}
+.rc-sign{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;font-size:11px;text-align:center;color:var(--muted)}
+.rc-sign i{display:block;height:34px;border-bottom:1px solid #9AA0A6;margin-bottom:4px}
+.rc-sign i.thumb{width:46px;height:52px;border:1px dashed #9AA0A6;border-radius:40%;margin:0 auto 4px}
+.idc{border-radius:16px;overflow:hidden;border:1px solid var(--rule);box-shadow:0 10px 24px -12px rgba(0,0,0,.35);margin-bottom:10px}
+.idc-h{background:var(--ink);color:#fff;padding:10px 14px;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.idc-h small{font-weight:500;opacity:.8}
+.idc-b{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px;background:#fff}
+.idc-b b{display:block}.idc-b small{display:block;color:var(--muted);font-size:12px}
+.qr{width:84px;height:84px;display:block}
+.geomap,.gphoto{width:100%;height:auto;display:block;border-radius:12px}
+.gph{position:relative;margin-bottom:10px}
+.gstamp{position:absolute;left:8px;bottom:8px;background:rgba(23,24,26,.78);color:#fff;font-size:12px;font-weight:600;padding:5px 8px;border-radius:6px;display:flex;align-items:center;gap:4px}
+.tl{position:relative;height:56px;margin:10px 6px 6px;border-bottom:2px solid var(--rule)}
+.tl-ok{position:absolute;top:12px;height:24px;background:var(--good-soft);border:1px solid #A9D3B9;border-radius:6px}
+.tl-m{position:absolute;top:6px;width:4px;height:36px;border-radius:2px;margin-left:-2px}
+.tl-m.ok{background:var(--good)}.tl-m.late{background:var(--marigold)}
+.tl-h{position:absolute;bottom:-20px;transform:translateX(-50%);font-size:11px;color:var(--muted)}
+ul.plain{list-style:none;padding:0;margin:28px 0 8px;display:grid;gap:8px;font-size:14px}
+ul.plain li{display:flex;align-items:center;gap:6px}
+.offq{display:grid;gap:6px}
+.offh{display:flex;align-items:center;gap:6px;font-weight:700;padding:8px 10px;border-radius:10px;font-size:14px}
+.offh.bad{background:var(--watch-soft);color:var(--watch)}.offh.good{background:var(--good-soft);color:var(--good)}
+.offr{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--rule);border-radius:10px;font-size:14px}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.mini{border:1px solid var(--rule);border-radius:12px;padding:10px;display:grid;gap:2px;font-size:13px;color:var(--muted)}
+.mini b{font:800 18px/1.1 var(--display);color:var(--ink)}.mini.good b{color:var(--good)}.mini.bad b{color:var(--act)}
+.mini .ico{width:22px;height:22px}
+.lead{display:grid;gap:10px}
+.lead label{display:grid;gap:4px;font-size:14px;font-weight:600}
+.lead input,.lead select,.lead textarea{min-height:46px;border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font:inherit;font-weight:400;background:var(--raised);color:var(--ink);width:100%}
+.lead .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lead .err{color:var(--act);font-size:13px;font-weight:600;min-height:1em;margin:0}
+.lead .btns{display:grid;gap:8px}
+.btn.wa{background:#1F8F4E;color:#fff;border-color:#1F8F4E}
+.thanks{display:grid;justify-items:center;text-align:center;gap:8px;padding:10px 0}
+.thanks .ico{width:48px;height:48px}
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:40;display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:10px 18px;border-radius:999px;border:0;background:var(--marigold);color:var(--on-marigold);font:700 15px/1 var(--body);box-shadow:0 12px 28px -10px rgba(10,10,10,.45),0 0 0 4px rgba(227,162,26,.2),0 0 26px -6px rgba(227,162,26,.6);cursor:pointer;transition:opacity .2s,transform .2s var(--ease)}
+.fab .ico{width:22px;height:22px}
+.fab:hover{transform:translateY(-2px) scale(1.04)}
+.fab.hide{opacity:0;pointer-events:none;transform:translateY(12px)}
+footer.site{padding-bottom:100px}
+.savebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#E6F4EA,#F7FBF8);border:1px solid #A9D3B9;border-left:6px solid var(--good);border-radius:16px;padding:14px 16px}
+.savebar>.ico{width:40px;height:40px}
+.savebar .sv-l{font-weight:700;font-size:15px}
+.savebar b{display:block;font:800 28px/1.1 var(--display);color:var(--good)}
+.savebar .sv-s{font-size:13px;color:var(--muted)}
+.fayda{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:center;background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--good);border-radius:20px;padding:20px;box-shadow:var(--soft)}
+@media (max-width:760px){.fayda{grid-template-columns:1fr}}
+.fbar{display:grid;gap:10px;margin:12px 0}
+.fbar .r{display:grid;grid-template-columns:132px minmax(0,1fr);gap:10px;align-items:center;font-size:14px;font-weight:600}
+.fbar .t{height:32px;border-radius:8px;transform-origin:left center;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;color:#fff;font-weight:800;font-size:13px;white-space:nowrap;min-width:64px}
+.js .fbar .t{transform:scaleX(0)}
+.js .fbar.play .t{transform:scaleX(1);transition:transform .9s var(--ease) calc(var(--d) * 1ms)}
+.fylist{margin:6px 0;padding-left:18px;font-size:14px;color:var(--muted);display:grid;gap:4px}
+.fxbox{display:grid;justify-items:center;text-align:center;gap:4px}
+.fx{font:800 56px/1 var(--display);color:var(--good);letter-spacing:-.03em}
+.fxbox>span:last-child{font-weight:600;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .rv{opacity:1;transform:none}
-  .js .stackbar .seg,.js svg.bars rect.b{transform:none}
+  .js .stackbar .seg,.js svg.bars rect.b,.js .fbar .t{transform:none}
   .pipe b{display:none}
 }
 </style>
@@ -513,6 +601,7 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5l5 5-5 5" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-yes" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-no" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
 <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#5B5D60"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="#5B5D60" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
 </svg>
 <a class="skip" href="#main" data-t="skip">Skip to content</a>
@@ -528,7 +617,7 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
   </nav>
   <span class="privchip" data-t="priv_chip">PRIVATE DEMO · ASLI NAAM</span>
   <span class="langs" role="group" aria-label="Language"><button type="button" data-lang="hi" aria-pressed="false" lang="hi"><span class="full">हिंदी</span><span class="short" aria-hidden="true">हिं</span></button><button type="button" data-lang="hn" aria-pressed="true"><span class="full">Hinglish</span><span class="short" aria-hidden="true">Hn</span></button><button type="button" data-lang="en" aria-pressed="false"><span class="full">English</span><span class="short" aria-hidden="true">En</span></button></span>
-  <a href="#contact" class="btn primary small cta lift" data-t="cta_trial_short">10 din free</a>
+  <a href="#contact" class="btn primary small cta lift" data-lead data-t="cta_trial_short">10 Din free</a>
 </div></header>
 
 <main id="main">
@@ -537,8 +626,8 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
     <span class="tag run" data-t="hero_tag">HAZRI + HISAAB · THEKEDAR KE LIYE</span>
     <h1 data-t="hero_h1">Hazri register, ab phone par.</h1>
     <p class="lead" data-t="hero_lead">Munshi button dabaye. Thekedar ko shaam tak poora hisaab.</p>
-    <div class="actions"><a class="btn primary lift" href="#demo" data-t="hero_cta1">Demo dekho</a><a class="btn lift" href="#contact" data-t="hero_cta2">10 din free</a></div>
-    <div class="who"><span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-worker"/></svg> <span data-t="who_1">Mazdoor: koi app nahi</span></span><span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pad"/></svg> <span data-t="who_2">Munshi: 4 button</span></span><span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg> <span data-t="who_3">Thekedar: poora hisaab</span></span></div>
+    <div class="actions"><a class="btn primary lift" href="#demo" data-t="hero_cta1">Demo dekho</a><a class="btn lift" href="#contact" data-lead data-t="hero_cta2">10 Din free</a></div>
+    <div class="who"><span class="who-mz"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-worker"/></svg> <span data-t="who_1">Mazdoor: koi app nahi</span></span><span class="who-mu"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pad"/></svg> <span data-t="who_2">Munshi: 4 button</span></span><span class="who-th"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg> <span data-t="who_3">Thekedar: poora hisaab</span></span></div>
   </div>
   <div class="phone" aria-label="SiteBook munshi app, playing by itself"><div class="screen" id="heroScreen"></div></div>
 </div></div>
@@ -578,6 +667,7 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
     <div class="stack" style="gap:18px">
       <div class="pick"><label><span class="sr" data-t="site">Site</span><select id="dashSite" aria-label="Site"></select></label><label><span class="sr" data-t="month">Mahina</span><select id="dashMonth" aria-label="Month"></select></label></div>
       <div class="tiles" id="tiles"></div>
+      <div class="savebar" id="savebar"></div>
       <div class="alerts" id="alerts" aria-label="Alerts"></div>
       <div class="dgrid"><div class="viz" id="where"></div><div class="viz ringbox" id="ring"></div></div>
       <div class="grid-2"><div class="viz" id="vizDaily"></div><div class="viz" id="vizMonthly"></div></div>
@@ -617,6 +707,7 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
 <section class="band tint" id="pricing" aria-labelledby="h-price"><div class="wrap stack">
   <div class="head"><h2 id="h-price" data-t="price_h2">Kimat</h2><p class="lead" data-t="price_lead">Har site ka ek plan. Munshi aur hisaab-wala login free.</p></div>
   <div class="launch" id="launch"></div>
+  <div class="fayda" id="fayda"></div>
   <div class="plans" id="plans"></div>
   <div class="stack" style="gap:12px"><h3 data-t="addons_h">Add-ons</h3><div class="addons" id="addons"></div></div>
   <div class="card">
@@ -637,11 +728,12 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
 </div></section>
 
 <section class="band ctaband" id="contact" aria-labelledby="h-cta"><div class="wrap stack">
-  <div class="head"><h2 id="h-cta" data-t="cta_h2">10 din free. Ek site. Poora SiteBook.</h2><p class="lead" data-t="cta_lead">Card nahi. Apna register bhejo, site hum chaalu karenge.</p></div>
-  <div class="actions" style="margin-top:0"><a class="btn primary lift" href="mailto:contactarenax@gmail.com?subject=SiteBook%20free%20trial"><span data-t="cta_btn">Free trial shuru karo</span> · contactarenax@gmail.com</a><a class="btn lift" href="#demo" data-t="cta_btn2">Demo par wapas</a></div>
+  <div class="head"><h2 id="h-cta" data-t="cta_h2">10 Din free. Ek site. Poora SiteBook.</h2><p class="lead" data-t="cta_lead">Card nahi. Apna register bhejo, site hum chaalu karenge.</p></div>
+  <div class="actions" style="margin-top:0"><a class="btn primary lift" data-lead href="mailto:contactarenax@gmail.com?subject=SiteBook%20free%20trial"><span data-t="cta_btn">Free trial shuru karo</span> · contactarenax@gmail.com</a><a class="btn lift" href="#demo" data-t="cta_btn2">Demo par wapas</a></div>
 </div></section>
 </main>
 
+<button class="fab" id="fab" type="button" data-lead><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><span data-t="fab">10 Din free trial</span></button>
 <footer class="site"><div class="wrap">
   <div class="line"><span>SiteBook · <span data-t="foot_prod">A product of ArenaX Digital Solutions</span></span><span data-t="foot_msme">Udyam-registered MSME · Haryana, India</span></div>
   <div class="line"><a href="mailto:contactarenax@gmail.com">contactarenax@gmail.com</a><span class="foot-public" data-t="foot_demo">Demo mein mazdooron ke naam chhote kiye gaye hain.</span><span class="foot-private" data-t="foot_demo_priv">Private demo: asli naam. Aage na bhejein.</span></div>
@@ -656,13 +748,17 @@ footer .line{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
 const PRICING = {
   currency: '₹', gstPct: 18,
   trial: { days: 10, sites: 1 },
-  site: { monthly: 1599, includedLabour: 40, extraLabour: 10, annualMonths: 10 },
+  site: { monthly: 2999, includedLabour: 40, extraLabour: 10, annualMonths: 10 },
   // Launch offer: contractors who join in the launch month pay this, locked for lockMonths. Dec 2026 = pilot with the two contractors.
-  launch: { monthly: 1299, off: 300, lockMonths: 6, start: '2027-01-01' },
-  onboarding: 2999,
+  launch: { monthly: 1999, off: 1000, lockMonths: 6, start: '2027-01-01' },
+  onboarding: 4999,
   enterprise: { minSites: 10 },
-  addons: { qr: null, whatsapp: null }   // null = price on request
+  addons: { qr: null, whatsapp: null }   // null = Ask Price
 };
+// Query form: WhatsApp number in international form without + (e.g. 91XXXXXXXXXX). null = the form sends by email only.
+const CONTACT = { whatsapp: null, email: 'contactarenax@gmail.com' };
+// Fayda estimate shown to contractors: stated assumptions, applied to the register numbers.
+const SAVINGS = { hazriErrorPct: 1, munshiHoursSavedPerDay: 1, munshiWorkHoursPerDay: 10, refSite: 'motidau-ps-1-gujarat', refMonth: '2026-02' };
 const DEMO = {
   dates: { 'davengere-site': '2026-09-18', 'motidau-ps-1-gujarat': '2026-02-18' },
   glance: { site: 'motidau-ps-1-gujarat', month: '2026-02' },
@@ -673,19 +769,19 @@ const SITE_LABEL = { 'motidau-ps-1-gujarat': 'PS-1 Motidau', 'davengere-site': '
 /* ===================== STRINGS (hi / hn / en) ===================== */
 const T = {
   skip:['मुख्य सामग्री पर जाएँ','Skip to content','Skip to content'],
-  nav_demo:['डेमो','Demo','Demo'], nav_roles:['कौन क्या','Kaun kya','Roles'], nav_pricing:['कीमत','Kimat','Pricing'], nav_setup:['सेटअप','Setup','Setup'], nav_contact:['संपर्क','Sampark','Contact'],
+  nav_demo:['डेमो','Demo','Demo'], nav_roles:['एक्सेस','Access','Access'], nav_pricing:['कीमत','Kimat','Pricing'], nav_setup:['सेटअप','Setup','Setup'], nav_contact:['संपर्क','Sampark','Contact'],
   priv_chip:['निजी डेमो · असली नाम','PRIVATE DEMO · ASLI NAAM','PRIVATE DEMO · REAL NAMES'],
-  cta_trial_short:['{d} दिन फ्री','{d} din free','{d} days free'],
+  cta_trial_short:['{d} दिन फ्री','{d} Din free','{d} days free'], fab:['{d} दिन फ्री ट्रायल','{d} Din free trial','{d}-day free trial'],
   hero_tag:['हाज़िरी + हिसाब · ठेकेदार के लिए','HAZRI + HISAAB · THEKEDAR KE LIYE','ATTENDANCE + ACCOUNTS · FOR CONTRACTORS'],
   hero_h1:['हाज़िरी रजिस्टर, अब फ़ोन पर।','Hazri register, ab phone par.','The attendance register, now on the phone.'],
   hero_lead:['मुंशी बटन दबाए। ठेकेदार को शाम तक पूरा हिसाब।','Munshi button dabaye. Thekedar ko shaam tak poora hisaab.','The munshi taps. The contractor has the full account by evening.'],
-  hero_cta1:['डेमो देखो','Demo dekho','See the demo'], hero_cta2:['{d} दिन फ्री','{d} din free','{d} days free'],
+  hero_cta1:['डेमो देखो','Demo dekho','See the demo'], hero_cta2:['{d} दिन फ्री','{d} Din free','{d} days free'],
   who_1:['मज़दूर: कोई ऐप नहीं','Mazdoor: koi app nahi','Worker: no app'], who_2:['मुंशी: 4 बटन','Munshi: 4 button','Munshi: 4 buttons'], who_3:['ठेकेदार: पूरा हिसाब','Thekedar: poora hisaab','Contractor: full account'],
   stamp:['हाज़िरी जमा','HAZRI JAMA','SUBMITTED'],
-  glance_h2:['एक साइट का महीना, एक नज़र में','Ek site ka mahina, ek nazar mein','One site\'s month at a glance'],
+  glance_h2:['एक साइट का पूरा महीना, एक स्क्रीन पर','Ek site ka poora mahina, ek screen par','One site\'s whole month, on one screen'],
   st_workers:['मज़दूर','Mazdoor','Workers'], st_days:['हाज़िरी दिन','Hazri din','Days worked'], st_billed:['कंपनी का बिल','Company ka bill','Billed to company'], st_wages:['मज़दूरी','Mazdoori','Wages'], st_bachat:['बचत','Bachat','Profit'],
-  money_h2:['पैसे का सफ़र','Paise ka safar','Where the money moves'],
-  money_lead:['हफ़्ते में चार हाथ। हर हाथ का हिसाब एक जगह।','Hafte mein chaar haath. Har haath ka hisaab ek jagah.','Four hands a week. Every hand on record.'],
+  money_h2:['कंपनी से मज़दूर तक, हर रुपया','Company se mazdoor tak, har rupaya','Every rupee, company to worker'],
+  money_lead:['कंपनी का पेमेंट, मुंशी की खर्ची, मज़दूर की मज़दूरी: सब एक ऐप में।','Company ka payment, munshi ki kharchi, mazdoor ki mazdoori: sab ek app mein.','Company payments, munshi cash, workers\' pay: all in one app.'],
   hop_co:['कंपनी','Company','Company'], hop_th:['ठेकेदार','Thekedar','Contractor'], hop_mu:['मुंशी','Munshi','Munshi'], hop_mz:['मज़दूर','Mazdoor','Worker'],
   ha_co:['बिल {x}','Bill {x}','Bill {x}'], ha_th:['बचत {x}','Bachat {x}','Profit {x}'], ha_mu:['खर्ची + मेस {x}','Kharchi + mess {x}','Kharchi + mess {x}'], ha_mz:['मज़दूरी {x}','Mazdoori {x}','Wages {x}'],
   hc_co:['बिल|कैश आया|तारीख़','Bill|Cash aaya|Tareekh','Bill|Cash in|Dated'],
@@ -722,7 +818,7 @@ const T = {
   no_bill:['इस साइट का बिल अभी नहीं जुड़ा','Is site ka bill abhi nahi juda','No bill added for this site yet'],
   st_good:['अच्छा','Achha','Good'], st_watch:['ध्यान दो','Dhyan do','Watch'], st_action:['अभी देखो','Abhi dekho','Act now'], st_clear:['कोई बाकी नहीं','Koi baaki nahi','Nothing owed'],
   al_owed:['{n} मज़दूर पर {x} बाकी','{n} mazdoor par {x} baaki','{n} workers owe {x}'],
-  al_absent:['आज ({d}) {n} नहीं आए','Aaj ({d}) {n} nahi aaye','Today ({d}) {n} absent'], al_allin:['आज ({d}) सब आए','Aaj ({d}) sab aaye','Today ({d}) all present'],
+  al_absent:['{d}: {n} नहीं आए','{d}: {n} nahi aaye','{d}: {n} absent'], al_allin:['{d}: सब आए','{d}: sab aaye','{d}: all present'],
   al_kh_up:['इस हफ़्ते खर्ची {p}% ज़्यादा','Is hafte kharchi {p}% zyada','Kharchi {p}% higher this week'], al_kh_ok:['इस हफ़्ते खर्ची ठीक','Is hafte kharchi theek','Kharchi normal this week'],
   al_adv:['{n} मज़दूर: एडवांस मज़दूरी से ज़्यादा','{n} mazdoor: advance mazdoori se zyada','{n} workers: advance above wages'],
   al_left:['{n} मज़दूर साइट छोड़ गए','{n} mazdoor site chhod gaye','{n} workers left the site'],
@@ -745,10 +841,10 @@ const T = {
   f_hours:['घंटे','ghante','hours'], f_rate:['रेट','rate','rate'], f_wage:['दिन की मज़दूरी','din ki mazdoori','day\'s wage'], f_old:['पुराने दिन पुराने रेट पर','Purane din purane rate par','Past days keep the old rate'],
   rate_reg:['पहले से','pehle se','earlier'], rate_new:['अभी','abhi','just now'], from_d:['से','se','from'],
   cash_h:['कंपनी से कैश','Company se cash','Cash from company'], cash_sub:['{site} · {month} · कुल {total}','{site} · {month} · kul {total}','{site} · {month} · total {total}'],
-  roles_h2:['कौन क्या देखता है','Kaun kya dekhta hai','Who sees what'],
+  roles_h2:['कौन क्या देख सकता है','Kaun kya dekh sakta hai','Who can see what'],
   roles_lead:['मुंशी: एक साइट। ठेकेदार: सब साइट। मज़दूर: कुछ नहीं चाहिए।','Munshi: ek site. Thekedar: sab site. Mazdoor: kuch nahi chahiye.','Munshi: one site. Contractor: every site. Worker: needs nothing.'],
   r_th:['ठेकेदार','Thekedar','Contractor'], r_mu:['मुंशी','Munshi','Munshi'], r_hw:['हिसाब-वाला','Hisaab-wala','Accountant'], r_co:['कंपनी व्यू','Company view','Company view'], r_mz:['मज़दूर','Mazdoor','Worker'],
-  lv_owner:['मालिक','Malik','Owner'], lv_site:['एक साइट','Ek site','One site'], lv_office:['ऑफ़िस','Office','Office'], lv_p2:['फ़ेज़ 2','Phase 2','Phase 2'], lv_none:['बिना लॉगिन','Bina login','No login'],
+  lv_owner:['सारी साइट','Saari site','All sites'], lv_site:['सिर्फ़ अपनी साइट','Sirf apni site','Own site only'], lv_office:['ऑफ़िस से','Office se','From the office'], lv_p2:['जल्द आ रहा','Jald aa raha','Coming soon'], lv_none:['लॉगिन नहीं','Login nahi','No login'],
   p_allsites:['सब साइट','Sab site','All sites'], p_rate:['रेट','Rate','Rates'], p_approve:['हिसाब मंज़ूर','Hisaab manzoor','Approve pay'], p_bachat:['बचत','Bachat','Profit'], p_paymu:['मुंशी को पैसा','Munshi ko paisa','Pay munshi'],
   p_hazri:['हाज़िरी','Hazri','Attendance'], p_kharchi:['खर्ची','Kharchi','Kharchi'], p_ack:['कैश की पावती','Cash ki paavti','Cash receipt'], p_past:['पिछला दिन','Pichhla din','Past days'],
   p_pay:['पेमेंट','Payment','Payments'], p_adv:['एडवांस','Advance','Advances'], p_exp:['ख़र्चे','Kharche','Expenses'], p_rep:['रिपोर्ट','Report','Reports'],
@@ -764,33 +860,54 @@ const T = {
   tr7:['लेबर कोड रजिस्टर|OSH Code 2020, Code on Wages 2019','Labour Codes-ready register|OSH Code 2020, Code on Wages 2019','Labour Codes-ready registers|OSH Code 2020, Code on Wages 2019'],
   tr8:['एक नज़र में हिसाब|साइट और महीने के हिसाब से','Ek nazar mein hisaab|Site aur mahine ke hisaab se','Accounts at a glance|By site and month'],
   price_h2:['कीमत','Kimat','Pricing'],
-  price_lead:['हर साइट का एक प्लान। मुंशी और हिसाब-वाला लॉगिन मुफ़्त।','Har site ka ek plan. Munshi aur hisaab-wala login free.','One plan per site. Munshi and accountant logins are free.'],
+  price_lead:['हर साइट का एक प्लान। मुंशी और हिसाब-वाला लॉगिन फ्री।','Har site ka ek plan. Munshi aur hisaab-wala login free.','One plan per site. Munshi and accountant logins are free.'],
   l_tag:['लॉन्च ऑफ़र','LAUNCH OFFER','LAUNCH OFFER'], per_site:['/ साइट / महीना + GST','/ site / mahina + GST','/ site / month + GST'],
   l_body:['{m} में जुड़ो · पहले {k} महीने इसी दाम पर','{m} mein judo · pehle {k} mahine isi daam par','Join in {m} · this price for your first {k} months'],
   l_ends:['ऑफ़र ख़त्म होने में','Offer khatam hone mein','Offer ends in'], l_over:['लॉन्च ऑफ़र बंद','Launch offer band','Launch offer closed'],
   cd_d:['दिन','din','days'], cd_h:['घंटे','ghante','hrs'], cd_m:['मिनट','minute','min'], cd_s:['सेकंड','second','sec'],
-  pl_trial:['फ्री ट्रायल','Free trial','Free trial'], pl_trial_sub:['{d} दिन','{d} din','{d} days'], pl_trial_l:['1 साइट|सारे फ़ीचर|कार्ड नहीं|एक पूरे हफ़्ते का हिसाब','1 site|Saare feature|Card nahi|Ek poore hafte ka hisaab','1 site|All features|No card|One full weekly settlement'],
-  pl_site:['साइट प्लान','Site Plan','Site Plan'], pl_site_l:['{inc} एक्टिव मज़दूर शामिल|हर अतिरिक्त मज़दूर ₹{x}|मुंशी + हिसाब-वाला मुफ़्त|सालाना: {a} महीने दो','{inc} active mazdoor shamil|Har extra mazdoor ₹{x}|Munshi + hisaab-wala free|Saalana: {a} mahine do','{inc} active workers included|₹{x} per extra worker|Munshi + accountant free|Annual: pay {a} months'],
+  pl_trial:['फ्री ट्रायल','Free trial','Free trial'], pl_trial_sub:['{d} दिन','{d} Din','{d} days'], pl_trial_l:['1 साइट|सारे फ़ीचर|कार्ड नहीं|एक पूरे हफ़्ते का हिसाब','1 site|Saare feature|Card nahi|Ek poore hafte ka hisaab','1 site|All features|No card|One full weekly settlement'],
+  pl_site:['साइट प्लान','Site Plan','Site Plan'], pl_site_l:['{inc} एक्टिव मज़दूर शामिल|हर एक्स्ट्रा मज़दूर ₹{x}|मुंशी + हिसाब-वाला फ्री|सालाना: {a} महीने दो','{inc} active mazdoor shamil|Har extra mazdoor ₹{x}|Munshi + hisaab-wala free|Saalana: {a} mahine do','{inc} active workers included|₹{x} per extra worker|Munshi + accountant free|Annual: pay {a} months'],
   pl_after:['लॉन्च के बाद {x}','Launch ke baad {x}','{x} after launch'],
   pl_onb:['ऑनबोर्डिंग','Onboarding','Onboarding'], pl_onb_sub:['एक बार','ek baar','one-time'], pl_onb_l:['पुराना रजिस्टर इम्पोर्ट|मुंशी ट्रेनिंग|साइट सेटअप (GPS, समय)','Purana register import|Munshi training|Site setup (GPS, samay)','Register import|Munshi training|Site setup (GPS, time)'],
   pl_ent:['मल्टी-साइट / कंपनी','Multi-site / Company','Multi-site / Company'], pl_ent_p:['कस्टम','Custom','Custom'], pl_ent_sub:['{n}+ साइट','{n}+ site','{n}+ sites'], pl_ent_l:['कंपनी व्यू|अपनी ब्रांडिंग|सपोर्ट','Company view|Apni branding|Support','Company view|Your branding|Support'],
   pl_hot:['ज़्यादातर ठेकेदारों के लिए','Zyadatar thekedar ke liye','For most contractors'],
-  addons_h:['ऐड-ऑन','Add-ons','Add-ons'], ad_qr:['QR / NFC मज़दूर कार्ड','QR / NFC worker card','QR / NFC worker card'], ad_qr_l:['स्कैन से हाज़िरी','Scan se hazri','Mark by scan'], ad_wa:['WhatsApp पर्ची','WhatsApp parchi','WhatsApp pay slip'], ad_wa_l:['हफ़्ते की पर्ची, आवाज़ में','Hafte ki parchi, awaaz mein','Weekly slip, as a voice note'], ad_price:['दाम पूछिए','Daam poochhiye','Price on request'],
+  addons_h:['ऐड-ऑन','Add-ons','Add-ons'], ad_qr:['QR / NFC मज़दूर कार्ड','QR / NFC worker card','QR / NFC worker card'], ad_qr_l:['स्कैन से हाज़िरी','Scan se hazri','Mark by scan'], ad_wa:['WhatsApp पर्ची','WhatsApp parchi','WhatsApp pay slip'], ad_wa_l:['हफ़्ते की पर्ची, आवाज़ में','Hafte ki parchi, awaaz mein','Weekly slip, as a voice note'], ad_price:['Ask Price','Ask Price','Ask Price'],
   calc_h:['कितना लगेगा?','Kitna lagega?','What will it cost?'], calc_sites:['साइट','Site','Sites'], calc_labour:['हर साइट पर एक्टिव मज़दूर','Har site par active mazdoor','Active workers per site'],
-  calc_launch:['लॉन्च दाम पर, हर महीने + GST','Launch daam par, har mahine + GST','At launch price, per month + GST'], calc_regular:['नियमित दाम, हर महीने + GST','Regular daam, har mahine + GST','Regular price, per month + GST'],
-  calc_base:['साइट','Site','Sites'], calc_extra:['अतिरिक्त मज़दूर','Extra mazdoor','Extra workers'], calc_gst:['GST {g}%','GST {g}%','GST {g}%'], calc_total:['GST के साथ','GST ke saath','With GST'], calc_annual:['सालाना ({a} महीने)','Saalana ({a} mahine)','Annual ({a} months)'], calc_ent:['{n}+ साइट: कस्टम प्लान','{n}+ site: custom plan','{n}+ sites: custom plan'],
+  calc_launch:['लॉन्च दाम पर, हर महीने + GST','Launch daam par, har mahine + GST','At launch price, per month + GST'], calc_regular:['रेगुलर प्राइस, हर महीने + GST','Regular daam, har mahine + GST','Regular price, per month + GST'],
+  calc_base:['साइट','Site','Sites'], calc_extra:['एक्स्ट्रा मज़दूर','Extra mazdoor','Extra workers'], calc_gst:['GST {g}%','GST {g}%','GST {g}%'], calc_total:['GST के साथ','GST ke saath','With GST'], calc_annual:['सालाना ({a} महीने)','Saalana ({a} mahine)','Annual ({a} months)'], calc_ent:['{n}+ साइट: कस्टम प्लान','{n}+ site: custom plan','{n}+ sites: custom plan'],
   consult_kicker:['ARENAX · बिज़नेस कंसल्टिंग','ARENAX · BUSINESS CONSULTING','ARENAX · BUSINESS CONSULTING'],
   consult_h2:['सेटअप हम करते हैं','Setup hum karte hain','We set it up'],
   co1:['कैश का ऑडिट|पैसा कहाँ रुकता है, देखते हैं','Cash ka audit|Paisa kahan rukta hai, dekhte hain','Cash audit|We find where money gets stuck'],
   co2:['रजिस्टर इम्पोर्ट|पुराना रजिस्टर एक दिन में चालू','Register import|Purana register ek din mein chaalu','Register import|Your old register live in a day'],
   co3:['लेबर कोड सेटअप|रजिस्टर नियम के हिसाब से','Labour Codes setup|Register niyam ke hisaab se','Labour Codes setup|Registers set up to the rules'],
   co4:['मुंशी ट्रेनिंग|साइट पर एक सुबह','Munshi training|Site par ek subah','Munshi training|One morning on site'],
-  cta_h2:['{d} दिन फ्री। एक साइट। पूरा SiteBook।','{d} din free. Ek site. Poora SiteBook.','{d} days free. One site. All of SiteBook.'],
+  cta_h2:['{d} दिन फ्री। एक साइट। पूरा SiteBook।','{d} Din free. Ek site. Poora SiteBook.','{d} days free. One site. All of SiteBook.'],
   cta_lead:['कार्ड नहीं। अपना रजिस्टर भेजो, साइट हम चालू करेंगे।','Card nahi. Apna register bhejo, site hum chaalu karenge.','No card. Send your register and we set up the site.'],
   cta_btn:['फ्री ट्रायल शुरू करो','Free trial shuru karo','Start free trial'], cta_btn2:['डेमो पर वापस','Demo par wapas','Back to the demo'],
-  foot_prod:['ArenaX Digital Solutions का उत्पाद','A product of ArenaX Digital Solutions','A product of ArenaX Digital Solutions'], foot_msme:['उद्यम-पंजीकृत MSME · हरियाणा, भारत','Udyam-registered MSME · Haryana, India','Udyam-registered MSME · Haryana, India'], foot_msme2:['उद्यम-पंजीकृत MSME','Udyam-registered MSME','Udyam-registered MSME'],
+  foot_prod:['ArenaX Digital Solutions का प्रोडक्ट','A product of ArenaX Digital Solutions','A product of ArenaX Digital Solutions'], foot_msme:['Udyam रजिस्टर्ड MSME · हरियाणा, भारत','Udyam-registered MSME · Haryana, India','Udyam-registered MSME · Haryana, India'], foot_msme2:['Udyam रजिस्टर्ड MSME','Udyam-registered MSME','Udyam-registered MSME'],
   foot_demo:['डेमो में मज़दूरों के नाम छोटे किए गए हैं।','Demo mein mazdooron ke naam chhote kiye gaye hain.','Worker names in the demo are shortened.'],
   foot_demo_priv:['निजी डेमो: असली नाम। कृपया आगे न भेजें।','Private demo: asli naam. Aage na bhejein.','Private demo: real names. Please do not forward.'],
+
+  tapme:['सैंपल देखो','Sample dekho','See sample'], pop_close:['बंद करो','Band karo','Close'], sample:['सैंपल','SAMPLE','SAMPLE'],
+  wa_title:['WhatsApp पर्ची','WhatsApp parchi','WhatsApp pay slip'], wa_head:['हफ़्ते की पर्ची','Hafte ki parchi','Weekly pay slip'], voice_l:['आवाज़ में सुनो','Awaaz mein suno','Listen as a voice note'],
+  s_week:['हफ़्ता','Hafta','Week'], s_days:['दिन','Din','Days'], s_wage:['मज़दूरी','Mazdoori','Wages'], s_kharchi:['खर्ची','Kharchi','Kharchi'], s_mess:['मेस','Mess','Mess'], s_net:['मिलेगा','Milega','You get'],
+  print_title:['छपी पर्ची','Chhapi parchi','Printed slip'], sig:['ठेकेदार','Thekedar','Contractor'], thumb:['मज़दूर का अंगूठा','Mazdoor ka angootha','Worker thumbprint'],
+  qr_title:['QR / NFC मज़दूर कार्ड','QR / NFC mazdoor card','QR / NFC worker card'], qr_line:['स्कैन करो, नाम आ गया। टाइपिंग नहीं।','Scan karo, naam aa gaya. Typing nahi.','Scan, and the name is there. No typing.'], qr_id:['मज़दूर ID','Mazdoor ID','Worker ID'],
+  geo_title:['200 मी जियो-लॉक','Geo-lock 200 m','Geo-lock 200 m'], geo_in:['अंदर: हाज़िरी लग सकती है','Andar: hazri lag sakti hai','Inside: can mark'], geo_out:['बाहर: हाज़िरी नहीं','Bahar: hazri nahi','Outside: blocked'],
+  win_title:['सुबह की खिड़की','Subah ki window','Morning window'], win_ok:['8:12 · हाज़िरी लग गई','8:12 · hazri lag gayi','8:12 · marked'], win_late:['10:05 · ठेकेदार की मंज़ूरी चाहिए','10:05 · thekedar ki manzoori chahiye','10:05 · needs contractor approval'], win_note:['समय ठेकेदार तय करता है, जैसे 7:30 से 9:30।','Samay thekedar tay karta hai, jaise 7:30 se 9:30.','The contractor sets the window, e.g. 7:30 to 9:30.'],
+  photo_title:['ग्रुप फ़ोटो','Group photo','Group photo'], photo_line:['हर हाज़िरी के साथ एक फ़ोटो, साइट और समय की मोहर।','Har hazri ke saath ek photo, site aur samay ki mohar.','One photo with every submit, stamped with site and time.'],
+  off_title:['बिना नेट चले','Bina net chale','Works offline'], off_q:['नेट नहीं · {n} हाज़िरी फ़ोन में सेव','Net nahi · {n} hazri phone mein save','No network · {n} saved on the phone'], off_ok:['नेट आया · सब सिंक','Net aaya · sab sync','Back online · all synced'],
+  reg_title:['मज़दूरी रजिस्टर','Mazdoori register','Wage register'], reg_note:['लेबर कोड के लिए तैयार (OSH Code 2020, Code on Wages 2019)','Labour Codes-ready (OSH Code 2020, Code on Wages 2019)','Labour Codes-ready (OSH Code 2020, Code on Wages 2019)'], c_ded:['कटौती','Katauti','Deductions'],
+  dash_title:['एक नज़र में हिसाब','Ek nazar mein hisaab','Accounts at a glance'], dash_btn:['ठेकेदार डेमो खोलो','Thekedar demo kholo','Open the contractor demo'],
+  lead_title:['{d} दिन फ्री ट्रायल','{d} Din free trial','{d}-day free trial'], lead_sub:['अपनी डिटेल भरो, हम कॉल करेंगे।','Apni details bharo, hum call karenge.','Leave your details and we will call you.'],
+  f_name:['नाम','Naam','Name'], f_phone:['मोबाइल नंबर','Mobile number','Mobile number'], f_city:['शहर / साइट की जगह','Shehar / site ki jagah','City / site location'], f_sites:['कितनी साइट','Kitni site','How many sites'], f_labour:['कुल मज़दूर','Kul mazdoor','Total workers'], f_msg:['कुछ और (ज़रूरी नहीं)','Kuch aur (zaroori nahi)','Anything else (optional)'],
+  f_wa:['WhatsApp पर भेजो','WhatsApp par bhejo','Send on WhatsApp'], f_mail:['ईमेल से भेजो','Email se bhejo','Send by email'], f_err_name:['नाम लिखो','Naam likho','Enter your name'], f_err_phone:['10 अंक का मोबाइल नंबर डालो','10 ank ka mobile number daalo','Enter a 10-digit mobile number'], f_note:['आपकी डिटेल सिर्फ़ ArenaX को जाती है।','Aapki details sirf ArenaX ko jaati hain.','Your details go only to ArenaX.'],
+  f_thanks_h:['शुक्रिया!','Shukriya!','Thank you!'], f_thanks_wa:['WhatsApp खुल गया है, मैसेज भेज दो।','WhatsApp khul gaya hai, message bhej do.','WhatsApp is open; press send.'], f_thanks_mail:['ईमेल खुल गया है, भेज दो। हम जल्दी कॉल करेंगे।','Email khul gaya hai, bhej do. Hum jaldi call karenge.','Your email app is open; press send. We will call you soon.'],
+  lead_msg:['नमस्ते ArenaX, मुझे SiteBook का {d} दिन का फ्री ट्रायल चाहिए।\nनाम: {name}\nमोबाइल: {phone}\nजगह: {city}\nसाइट: {sites}\nमज़दूर: {labour}\n{msg}\n(arenax.in/sitebook)','Namaste ArenaX, mujhe SiteBook ka {d} Din free trial chahiye.\nNaam: {name}\nMobile: {phone}\nJagah: {city}\nSite: {sites}\nMazdoor: {labour}\n{msg}\n(arenax.in/sitebook)','Hello ArenaX, I would like the SiteBook {d}-day free trial.\nName: {name}\nMobile: {phone}\nPlace: {city}\nSites: {sites}\nWorkers: {labour}\n{msg}\n(arenax.in/sitebook)'],
+  fy_h:['खर्चा कम, फ़ायदा ज़्यादा','Kharcha kam, fayda zyada','Spend less, gain more'], fy_per:['हर महीने, हर साइट (अंदाज़ा)','Har mahine, har site (andaaza)','Per month, per site (estimate)'], fy_cost:['SiteBook का खर्चा','SiteBook ka kharcha','SiteBook costs'], fy_gain:['आपका फ़ायदा','Aapka fayda','Your gain'],
+  fy_a:['अगर सिर्फ़ {p}% हाज़िरी गलत लिखी हो: {v}','Agar sirf {p}% hazri galat likhi ho: {v}','If only {p}% of attendance is wrong: {v}'], fy_b:['मुंशी का रोज़ {h} घंटा बचे: {v}','Munshi ka roz {h} ghanta bache: {v}','The munshi saves {h} hour a day: {v}'], fy_base:['{site} · {month} के रजिस्टर पर','{site} · {month} ke register par','On the {site} · {month} register'], fy_x:['खर्चे से ज़्यादा फ़ायदा','kharche se zyada fayda','more than it costs'],
+  sv_h:['SiteBook से इस महीने फ़ायदा (अंदाज़ा)','SiteBook se is mahine fayda (andaaza)','Gained with SiteBook this month (estimate)'], sv_sub:['खर्चे {c} का {x} गुना','Kharcha {c} ka {x} guna','{x}× the {c} cost'], sv_how:['{p}% हाज़िरी की गलती + मुंशी का रोज़ {h} घंटा','{p}% hazri galti + munshi ka roz {h} ghanta','{p}% attendance errors + {h} munshi hour a day'],
+  calc_gain:['अंदाज़ा फ़ायदा, हर महीने','Andaaza fayda, har mahine','Estimated gain, per month'], calc_x:['फ़ायदा ÷ खर्चा','Fayda ÷ kharcha','Gain ÷ cost'],
   mon:['जन,फ़र,मार्च,अप्रै,मई,जून,जुला,अग,सित,अक्टू,नव,दिस','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'],
   dow:['रवि,सोम,मंगल,बुध,गुरु,शुक्र,शनि','Sun,Mon,Tue,Wed,Thu,Fri,Sat','Sun,Mon,Tue,Wed,Thu,Fri,Sat'],
 };
@@ -805,8 +922,9 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const SVGNS = 'http://www.w3.org/2000/svg';
 const ic = (name, cls) => { const s = document.createElementNS(SVGNS, 'svg'); s.setAttribute('class', 'ico' + (cls ? ' ' + cls : '')); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false'); const u = document.createElementNS(SVGNS, 'use'); u.setAttribute('href', '#i-' + name); s.append(u); return s; };
 const el = (tag, attrs = {}, ...kids) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (v === null || v === undefined || v === false) continue; if (k === 'class') n.className = v; else if (k === 'html') n.innerHTML = v; else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v === true ? '' : v); } for (const c of kids.flat()) if (c !== null && c !== undefined && c !== false) n.append(c.nodeType ? c : document.createTextNode(String(c))); return n; };
-const NF = {}; const nf = (dec) => NF[dec] || (NF[dec] = new Intl.NumberFormat('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }));
-const inr = (n, dec = 0) => (n < 0 ? '−' : '') + '₹' + nf(dec).format(Math.abs(n));
+// Indian digit grouping (1,23,45,678) without Intl, which is slow to start on low-end phones
+const fmtIN = (n, dec = 0) => { const [i, f] = Math.abs(n).toFixed(dec).split('.'); const last = i.slice(-3), rest = i.slice(0, -3); return (rest ? rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last : last) + (f ? '.' + f : ''); };
+const inr = (n, dec = 0) => (n < 0 && Math.round(Math.abs(n) * 10 ** dec) !== 0 ? '−' : '') + '₹' + fmtIN(n, dec);
 const lakh = (n) => '₹' + (n / 100000).toFixed(2) + ' L';
 const isNum = (v) => typeof v === 'number';
 const pad = (n) => String(n).padStart(2, '0');
@@ -833,7 +951,7 @@ const hasBill = (m) => m.derived.billed !== null && m.derived.bachat !== null;
 
 /* ===================== COUNT-UP + PLAY-ON-VIEW ===================== */
 const COUNTED = new Set();
-const fmtN = (v, f) => f === 'inr' ? inr(v) : f === 'pct' ? Math.round(v) + '%' : f === 'dec' ? String(Math.round(v * 100) / 100) : nf(0).format(v);
+const fmtN = (v, f) => f === 'inr' ? inr(v) : f === 'pct' ? Math.round(v) + '%' : f === 'dec' ? String(Math.round(v * 100) / 100) : fmtIN(v);
 const countIO = HAS_IO ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { countIO.unobserve(e.target); runCount(e.target); } }), { threshold: .3 }) : null;
 function num(to, fmt, key) {
   const n = el('span', { class: 'num' });
@@ -857,6 +975,9 @@ function applyStatic() {
 function applyLang(lang) { LANG = lang; try { localStorage.setItem('sitebook-lang', lang); } catch (e) {} applyStatic(); renderAll(); }
 $$('.langs button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
 $('#menu').addEventListener('click', () => { const o = $('#nav').classList.toggle('open'); $('#menu').setAttribute('aria-expanded', String(o)); });
+const closeMenu = () => { if ($('#nav').classList.contains('open')) { $('#nav').classList.remove('open'); $('#menu').setAttribute('aria-expanded', 'false'); } };
+addEventListener('scroll', closeMenu, { passive: true });
+document.addEventListener('pointerdown', (e) => { if (!e.target.closest('#nav, #menu')) closeMenu(); });
 $$('#nav a').forEach(a => a.addEventListener('click', () => $('#nav').classList.remove('open')));
 
 /* ===================== PHONE (hero + munshi demo) ===================== */
@@ -923,7 +1044,7 @@ class Phone {
   }
   render() {
     const s = this.site(), today = this.today();
-    this.bar.replaceChildren(el('div', {}, label(s), el('small', {}, `${t('app_today')} ${dow(today)} ${fmtDate(today)} · ${s.supervisor}`)),
+    this.bar.replaceChildren(el('div', {}, label(s), el('small', {}, `${dow(today)} ${fmtDate(today)} · ${s.supervisor}`)),
       this.o.hero ? ic('pin') : el('button', { class: 'chip' + (this.voice ? ' on' : ''), type: 'button', 'aria-pressed': String(this.voice), onclick: () => { this.voice = !this.voice; this.render(); if (this.voice) this.speak('SiteBook'); } }, ic('sound'), t('voice')));
     if (this.pick) this.pick.replaceChildren(...SITES.map(x => el('button', { type: 'button', 'aria-pressed': String(x.id === this.siteId), onclick: () => { this.siteId = x.id; this.reset(); this.step(1); } }, label(x))));
     this.renderTally();
@@ -1073,7 +1194,7 @@ function renderChain() {
   const kids = [];
   hops.forEach(([icn, h, a, v, c], k) => {
     const CHIPI = { hc_co: ['receipt', 'bank', 'cal'], hc_th: ['upi', 'bag', 'folder'], hc_mu: ['ok', 'cash', 'bowl'], hc_mz: ['cal', 'cash', 'chat'] };
-    const chips = tl(c).map((x, j) => el('span', {}, ic(CHIPI[c][j]), ' ', x, (k === 3 && j === 2) ? el('span', { class: 'addon' }, t('addon')) : null));
+    const chips = tl(c).map((x, j) => el('span', (k === 3 && j === 2) ? { class: 'popable', ...popAttrs('wa') } : {}, ic(CHIPI[c][j]), ' ', x, (k === 3 && j === 2) ? el('span', { class: 'addon' }, t('addon')) : null));
     kids.push(el('div', { class: 'hop lift', style: `--k:${k}` }, el('span', { class: 'hic', 'aria-hidden': 'true' }, ic(icn)), el('h3', {}, t(h)), el('span', { class: 'amt money' }, t(a, { x: lakh(v) })), el('div', { class: 'chips' }, ...chips)));
     if (k < 3) kids.push(el('div', { class: 'pipe', style: `--k:${k}`, 'aria-hidden': 'true' }, el('b', {}, el('i'))));
   });
@@ -1218,18 +1339,18 @@ function renderDash() {
   const s = dSite(); const months = s.months.filter(m => m.derived.active_workers > 0); if (!months.some(m => m.month === dash.month)) dash.month = months[months.length - 1].month;
   const mSel = $('#dashMonth'); mSel.replaceChildren(...months.map(m => el('option', { value: m.month }, fmtMonth(m.month)))); mSel.value = dash.month;
   if (!dMonth().week_endings.includes(dash.week)) dash.week = 'month';
-  tiles(); alerts(); whereBar(); ring(); dailyChart(); monthlyChart(); settlement(); ratePanel(); cashPanel();
+  tiles(); savebar(); alerts(); whereBar(); ring(); dailyChart(); monthlyChart(); settlement(); ratePanel(); cashPanel();
 }
 $('#dashSite').addEventListener('change', (e) => { dash.site = e.target.value; dash.rateW = null; renderDash(); });
 $('#dashMonth').addEventListener('change', (e) => { dash.month = e.target.value; renderDash(); });
 
 /* ===================== ROLES / TRUST / CONSULT ===================== */
 function renderCards() {
-  const Y = (k) => el('span', { class: 'perm y' }, ic('yes'), t(k)), N = (k) => el('span', { class: 'perm n' }, ic('no'), t(k)), I = (icn, k, addon) => el('span', { class: 'perm i' }, ic(icn), ' ', t(k), addon ? el('span', { class: 'addon' }, t('addon')) : null);
-  const roles = [['boss', 'r_th', 'lv_owner', [Y('p_allsites'), Y('p_rate'), Y('p_approve'), Y('p_bachat'), Y('p_paymu')]], ['pad', 'r_mu', 'lv_site', [Y('p_hazri'), Y('p_kharchi'), Y('p_ack'), N('p_rate'), N('p_past')]], ['receipt', 'r_hw', 'lv_office', [Y('p_pay'), Y('p_adv'), Y('p_exp'), Y('p_rep'), N('p_rate')]], ['building', 'r_co', 'lv_p2', [Y('p_proof'), Y('p_photo'), I('eye', 'p_ro')]], ['worker', 'r_mz', 'lv_none', [I('idcard', 'p_qr', true), I('chat', 'p_wa', true), I('receipt', 'p_print'), N('p_login')]]];
+  const Y = (k) => el('span', { class: 'perm y' }, ic('yes'), t(k)), N = (k) => el('span', { class: 'perm n' }, ic('no'), t(k)), I = (icn, k, addon, pk) => el('span', { class: 'perm i' + (pk ? ' popable' : ''), ...(pk ? popAttrs(pk) : {}) }, ic(icn), ' ', t(k), addon ? el('span', { class: 'addon' }, t('addon')) : null);
+  const roles = [['boss', 'r_th', 'lv_owner', [Y('p_allsites'), Y('p_rate'), Y('p_approve'), Y('p_bachat'), Y('p_paymu')]], ['pad', 'r_mu', 'lv_site', [Y('p_hazri'), Y('p_kharchi'), Y('p_ack'), N('p_rate'), N('p_past')]], ['receipt', 'r_hw', 'lv_office', [Y('p_pay'), Y('p_adv'), Y('p_exp'), Y('p_rep'), N('p_rate')]], ['building', 'r_co', 'lv_p2', [Y('p_proof'), Y('p_photo'), I('eye', 'p_ro')]], ['worker', 'r_mz', 'lv_none', [I('idcard', 'p_qr', true, 'qr'), I('chat', 'p_wa', true, 'wa'), I('receipt', 'p_print', false, 'print'), N('p_login')]]];
   $('#roleCards').replaceChildren(...roles.map(([icn, k, lv, perms]) => el('div', { class: 'card rcard lift' }, el('span', { class: 'tag soft lvl' }, t(lv)), el('span', { class: 'ric', 'aria-hidden': 'true' }, ic(icn)), el('h3', {}, t(k)), el('div', { class: 'perms' }, ...perms))));
-  const trust = [['pin', 'tr1'], ['sunrise', 'tr2'], ['cam', 'tr3'], ['idcard', 'tr4', true], ['offline', 'tr5'], ['chat', 'tr6', true], ['doc', 'tr7'], ['bars', 'tr8']];
-  $('#trustCards').replaceChildren(...trust.map(([icn, k, addon]) => { const [h, p] = tl(k); return el('div', { class: 'card tcard lift' }, el('span', { class: 'tic', 'aria-hidden': 'true' }, ic(icn)), el('h3', { class: 'h4' }, h, addon ? el('span', { class: 'addon' }, t('addon')) : null), el('p', {}, p)); }));
+  const trust = [['pin', 'tr1', false, 'geo'], ['sunrise', 'tr2', false, 'win'], ['cam', 'tr3', false, 'photo'], ['idcard', 'tr4', true, 'qr'], ['offline', 'tr5', false, 'off'], ['chat', 'tr6', true, 'wa'], ['doc', 'tr7', false, 'reg'], ['bars', 'tr8', false, 'dash']];
+  $('#trustCards').replaceChildren(...trust.map(([icn, k, addon, pk]) => { const [h, p] = tl(k); return el('div', { class: 'card tcard lift', ...popAttrs(pk) }, el('span', { class: 'tic', 'aria-hidden': 'true' }, ic(icn)), el('h3', { class: 'h4' }, h, addon ? el('span', { class: 'addon' }, t('addon')) : null), el('p', {}, p), el('span', { class: 'tapme' }, t('tapme'), ' ›')); }));
   const co = [['search', 'co1'], ['inbox', 'co2'], ['doc', 'co3'], ['cap', 'co4']];
   $('#consultCards').replaceChildren(...co.map(([icn, k]) => { const [h, p] = tl(k); return el('div', { class: 'card tcard lift' }, el('span', { class: 'tic', 'aria-hidden': 'true' }, ic(icn)), el('h3', { class: 'h4' }, h), el('p', {}, p)); }));
 }
@@ -1251,19 +1372,161 @@ function renderPricing() {
     plan('hot', 'crane', t('pl_site'), over ? [inr(P.site.monthly)] : [el('s', {}, inr(P.site.monthly)), inr(P.launch.monthly)], t('per_site'), tl('pl_site_l', { inc: P.site.includedLabour, x: P.site.extraLabour, a: P.site.annualMonths }), over ? null : el('p', { class: 'note' }, t('pl_after', { x: inr(P.site.monthly) }))),
     plan('', 'toolbox', t('pl_onb'), [inr(P.onboarding)], t('pl_onb_sub'), tl('pl_onb_l')),
     plan('', 'building', t('pl_ent'), [t('pl_ent_p')], t('pl_ent_sub', { n: P.enterprise.minSites }), tl('pl_ent_l')));
-  $('#addons').replaceChildren(...[['idcard', 'ad_qr', 'ad_qr_l', P.addons.qr], ['chat', 'ad_wa', 'ad_wa_l', P.addons.whatsapp]].map(([icn, h, l, price]) => el('div', { class: 'card addon-card lift' }, el('span', { class: 'aic', 'aria-hidden': 'true' }, ic(icn)), el('div', {}, el('h3', { class: 'h4' }, t(h), el('span', { class: 'addon' }, t('addon'))), el('p', { class: 'note' }, t(l))), el('span', { class: 'ap' }, price === null ? t('ad_price') : inr(price)))));
-  renderCalc();
+  $('#addons').replaceChildren(...[['idcard', 'ad_qr', 'ad_qr_l', P.addons.qr, 'qr'], ['chat', 'ad_wa', 'ad_wa_l', P.addons.whatsapp, 'wa']].map(([icn, h, l, price, pk]) => el('div', { class: 'card addon-card lift', ...popAttrs(pk) }, el('span', { class: 'aic', 'aria-hidden': 'true' }, ic(icn)), el('div', {}, el('h3', { class: 'h4' }, t(h), el('span', { class: 'addon' }, t('addon'))), el('p', { class: 'note' }, t(l)), el('span', { class: 'tapme' }, t('tapme'), ' ›')), el('span', { class: 'ap' }, price === null ? t('ad_price') : inr(price)))));
+  renderFayda(); renderCalc();
+}
+function munshiSalary(m) { const f = m.workers.find(w => w.pay_type !== 'daily' && w.monthly_salary); return f ? f.monthly_salary : 25000; }
+function faydaFor(m) { const a = m.derived.wages_register * SAVINGS.hazriErrorPct / 100; const b = munshiSalary(m) * SAVINGS.munshiHoursSavedPerDay / SAVINGS.munshiWorkHoursPerDay; return { a, b, total: a + b }; }
+const costNow = () => (new Date() > launchWindow().le ? PRICING.site.monthly : PRICING.launch.monthly);
+function renderFayda() {
+  const s = siteById(SAVINGS.refSite), m = monthOf(s, SAVINGS.refMonth), f = faydaFor(m), cost = costNow(), x = Math.round(f.total / cost * 10) / 10;
+  const bars = el('div', { class: 'fbar' },
+    el('div', { class: 'r' }, el('span', {}, t('fy_cost')), el('div', {}, el('div', { class: 't', style: `width:${Math.max(cost / f.total * 100, 22)}%;background:#5B5D60;--d:0` }, inr(cost)))),
+    el('div', { class: 'r' }, el('span', {}, t('fy_gain')), el('div', {}, el('div', { class: 't', style: 'width:100%;background:var(--good);--d:220' }, inr(f.total)))));
+  $('#fayda').replaceChildren(el('div', {}, el('h3', {}, t('fy_h')), el('p', { class: 'note' }, t('fy_per')), arm(bars),
+      el('ul', { class: 'fylist' }, el('li', {}, t('fy_a', { p: SAVINGS.hazriErrorPct, v: inr(f.a) })), el('li', {}, t('fy_b', { h: SAVINGS.munshiHoursSavedPerDay, v: inr(f.b) }))),
+      el('p', { class: 'note' }, t('fy_base', { site: label(s), month: fmtMonth(m.month) }))),
+    el('div', { class: 'fxbox' }, el('span', { class: 'fx' }, num(x, 'dec', 'fy-x'), '×'), el('span', {}, t('fy_x'))));
+}
+function savebar() {
+  const s = dSite(), m = dMonth(), f = faydaFor(m), cost = costNow(), x = Math.round(f.total / cost * 10) / 10;
+  $('#savebar').replaceChildren(ic('bag'), el('div', {}, el('div', { class: 'sv-l' }, t('sv_h')), el('b', { class: 'money' }, num(f.total, 'inr', s.id + m.month + 'sv')), el('div', { class: 'sv-s' }, `${t('sv_sub', { x, c: inr(cost) })} · ${t('sv_how', { p: SAVINGS.hazriErrorPct, h: SAVINGS.munshiHoursSavedPerDay })}`)));
 }
 function renderCalc() {
   const P = PRICING, sites = +$('#calcSites').value, lab = +$('#calcLab').value; $('#calcSitesOut').textContent = sites; $('#calcLabOut').textContent = lab;
   const over = new Date() > launchWindow().le; const extraN = Math.max(0, lab - P.site.includedLabour); const extra = sites * extraN * P.site.extraLabour;
   const reg = sites * P.site.monthly + extra, lau = sites * P.launch.monthly + extra, price = over ? reg : lau, gst = price * P.gstPct / 100;
   const row = (l, v, strong) => el('div', { class: 'row' + (strong ? ' strong' : '') }, el('span', {}, l), el('span', { class: 'money' }, v));
+  const ref = monthOf(siteById(SAVINGS.refSite), SAVINGS.refMonth), perW = ref.derived.wages_register / ref.derived.active_workers;
+  const gain = sites * (lab * perW * SAVINGS.hazriErrorPct / 100 + munshiSalary(ref) * SAVINGS.munshiHoursSavedPerDay / SAVINGS.munshiWorkHoursPerDay);
   $('#calcOut').replaceChildren(...[el('span', { class: 'note' }, over ? t('calc_regular') : t('calc_launch')), el('div', { class: 'big' }, el('b', { class: 'money' }, inr(price)), over ? null : el('s', { class: 'money' }, inr(reg))),
-    row(t('calc_base'), `${sites} × ${inr(over ? P.site.monthly : P.launch.monthly)}`), row(t('calc_extra'), `${sites} × ${extraN} × ${inr(P.site.extraLabour)} = ${inr(extra)}`), row(t('calc_gst', { g: P.gstPct }), inr(gst)), row(t('calc_total'), inr(price + gst), true), row(t('calc_annual', { a: P.site.annualMonths }), inr(reg * P.site.annualMonths) + ' + GST'),
+    row(t('calc_base'), `${sites} × ${inr(over ? P.site.monthly : P.launch.monthly)}`), row(t('calc_extra'), `${sites} × ${extraN} × ${inr(P.site.extraLabour)} = ${inr(extra)}`), row(t('calc_gst', { g: P.gstPct }), inr(gst)), row(t('calc_total'), inr(price + gst), true), row(t('calc_annual', { a: P.site.annualMonths }), inr(reg * P.site.annualMonths) + ' + GST'), row(t('calc_gain'), inr(gain), true), row(t('calc_x'), (Math.round(gain / price * 10) / 10) + '×'),
     sites >= P.enterprise.minSites ? el('span', { class: 'note' }, t('calc_ent', { n: P.enterprise.minSites })) : null].filter(Boolean));
 }
 $('#calcSites').addEventListener('input', renderCalc); $('#calcLab').addEventListener('input', renderCalc);
+
+
+/* ===================== POPUPS + QUERY FORM ===================== */
+const popAttrs = (k) => ({ 'data-pop': k, role: 'button', tabindex: '0' });
+function sampleWorker() {
+  const s = siteById('motidau-ps-1-gujarat'), m = monthOf(s, '2026-02'), we = '2026-02-22', k = m.week_endings.indexOf(we);
+  const days7 = [...Array(7)].map((_, i) => addDays(we, i - 6));
+  for (const w of m.workers) {
+    if (w.pay_type !== 'daily') continue;
+    let hrs = 0; days7.forEach(d => { const i = m.dates.indexOf(d); if (i >= 0 && isNum(w.hours[i])) hrs += w.hours[i]; });
+    const wk = w.weeks[k] || { pocket: 0, mess: 0 }, days = daysFromHours(hrs), wage = Math.round(days * w.rate), net = wage - wk.pocket - wk.mess;
+    if (hrs >= 48 && net > 0) return { s, m, w, hrs, days, wage, pocket: wk.pocket, mess: wk.mess, net, idx: m.workers.indexOf(w), from: days7[0], to: we };
+  }
+}
+function qrSvg(seed) {
+  let h = 2166136261; for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  const rnd = () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return (h >>> 0) / 4294967296; };
+  const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#17181A"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#17181A"/>`;
+  let g = ''; for (let y = 0; y < 21; y++) for (let x = 0; x < 21; x++) { const f = (x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12); if (!f && rnd() > .52) g += `<rect x="${x}" y="${y}" width="1" height="1" fill="#17181A"/>`; }
+  return `<svg viewBox="-1 -1 23 23" class="qr" aria-hidden="true"><rect x="-1" y="-1" width="23" height="23" fill="#fff"/>${g}${finder(0, 0)}${finder(14, 0)}${finder(0, 14)}</svg>`;
+}
+const POPS = {
+  wa: () => {
+    const d = sampleWorker(), km = d.pocket + d.mess;
+    const row = (k, v, cls) => el('div', { class: 'srow ' + (cls || '') }, el('span', {}, t(k)), el('b', { class: 'money' }, v));
+    const say = () => { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(`${d.w.name}, इस हफ़्ते ${d.days} दिन। मज़दूरी ${d.wage} रुपये। खर्ची और मेस ${km} रुपये। आपको ${d.net} रुपये मिलेंगे।`); u.lang = 'hi-IN'; speechSynthesis.speak(u); } catch (e) {} };
+    return { title: t('wa_title'), body: el('div', {}, el('span', { class: 'sample' }, t('sample')),
+      el('div', { class: 'chat' }, el('div', { class: 'chat-h' }, ic('chat'), el('span', {}, 'SiteBook'), el('small', {}, t('wa_head'))),
+        el('div', { class: 'bub' }, el('div', { class: 'bub-t' }, `${d.w.name} · ${label(d.s)}`), row('s_week', `${fmtDate(d.from)} – ${fmtDate(d.to)}`), row('s_days', `${d.days} (${d.hrs} ${t('hours_u')})`), row('s_wage', inr(d.wage)), el('div', { class: 'srow sub' }, `${d.days} × ${inr(d.w.rate)}`), row('s_kharchi', '−' + inr(d.pocket)), row('s_mess', '−' + inr(d.mess)), row('s_net', inr(d.net), 'net')),
+        el('button', { class: 'vnote', type: 'button', 'data-keep': '', onclick: say }, el('span', { class: 'play' }, ic('play')), el('span', { class: 'wave', 'aria-hidden': 'true' }, ...Array.from({ length: 24 }, (_, i) => el('i', { style: `height:${6 + ((i * 7) % 15)}px` }))), el('span', {}, t('voice_l'))))) };
+  },
+  print: () => {
+    const d = sampleWorker(); const r = (k, v) => el('div', { class: 'prow' }, el('span', {}, t(k)), el('span', {}, v));
+    return { title: t('print_title'), body: el('div', {}, el('span', { class: 'sample' }, t('sample')), el('div', { class: 'receipt' }, el('div', { class: 'rc-h' }, 'SITEBOOK · ' + label(d.s)), el('div', { class: 'rc-s' }, d.w.name), el('hr'),
+      r('s_week', `${fmtDate(d.from)} – ${fmtDate(d.to)}`), r('s_days', String(d.days)), r('s_wage', inr(d.wage)), r('s_kharchi', '−' + inr(d.pocket)), r('s_mess', '−' + inr(d.mess)), el('hr'), r('s_net', inr(d.net)),
+      el('div', { class: 'rc-sign' }, el('div', {}, el('i'), t('sig')), el('div', {}, el('i', { class: 'thumb' }), t('thumb'))))) };
+  },
+  qr: () => {
+    const d = sampleWorker(), id = 'SB-PS1-' + String(d.idx + 1).padStart(3, '0');
+    return { title: t('qr_title'), body: el('div', {}, el('span', { class: 'sample' }, t('sample')), el('div', { class: 'idc' }, el('div', { class: 'idc-h' }, 'SiteBook', el('small', {}, label(d.s))),
+      el('div', { class: 'idc-b' }, avatar(d.w.name), el('div', {}, el('b', {}, d.w.name), el('small', {}, `${t('qr_id')}: ${id}`), el('small', {}, `${t('r_mu')}: ${d.s.supervisor}`)), el('span', { html: qrSvg(id) }))), el('p', { class: 'note' }, t('qr_line'))) };
+  },
+  geo: () => {
+    const svg = '<svg viewBox="0 0 300 190" class="geomap" aria-hidden="true"><rect width="300" height="190" rx="12" fill="#EEF2EA"/><path d="M-10 142 L310 104" stroke="#fff" stroke-width="16"/><path d="M95 -10 L125 200" stroke="#fff" stroke-width="11"/><rect x="176" y="58" width="44" height="30" rx="3" fill="#D8D2C3"/><rect x="36" y="22" width="34" height="24" rx="3" fill="#D8D2C3"/><circle cx="150" cy="95" r="64" fill="rgba(31,122,77,.12)" stroke="#1F7A4D" stroke-width="2" stroke-dasharray="6 5"/><path d="M150 95H214" stroke="#1F7A4D" stroke-width="1.5"/><use href="#i-pin" x="136" y="68" width="28" height="28"/><circle cx="176" cy="120" r="8" fill="#1F7A4D" stroke="#fff" stroke-width="3"/><circle cx="264" cy="36" r="8" fill="#E0364B" stroke="#fff" stroke-width="3"/></svg>';
+    return { title: t('geo_title'), body: el('div', {}, el('span', { html: svg }), el('div', { class: 'legend' }, el('span', {}, el('i', { style: 'background:#1F7A4D' }), t('geo_in')), el('span', {}, el('i', { style: 'background:#E0364B' }), t('geo_out')), el('span', {}, '– – 200 m'))) };
+  },
+  win: () => {
+    const pct = (h) => (h - 6) / 5 * 100;
+    return { title: t('win_title'), body: el('div', {}, el('div', { class: 'tl' }, el('div', { class: 'tl-ok', style: `left:${pct(7.5)}%;width:${pct(9.5) - pct(7.5)}%` }), el('span', { class: 'tl-m ok', style: `left:${pct(8.2)}%` }), el('span', { class: 'tl-m late', style: `left:${pct(10.08)}%` }), ...[6, 7, 8, 9, 10, 11].map(h => el('small', { class: 'tl-h', style: `left:${pct(h)}%` }, `${h}:00`))),
+      el('ul', { class: 'plain' }, el('li', {}, ic('ok'), t('win_ok')), el('li', {}, ic('clock'), t('win_late'))), el('p', { class: 'note' }, t('win_note'))) };
+  },
+  photo: () => {
+    const cols = ['#3E7CB1', '#B5651D', '#1F7A4D', '#6250D6', '#E0364B', '#3E7CB1'];
+    const people = [40, 85, 130, 175, 220, 265].map((x, i) => `<rect x="${x - 15}" y="98" width="30" height="52" rx="10" fill="${cols[i]}"/><circle cx="${x}" cy="86" r="11" fill="#F2C29B"/><path d="M${x - 12} 82a12 12 0 0 1 24 0z" fill="#F5B301"/>`).join('');
+    const svg = `<svg viewBox="0 0 300 170" class="gphoto" aria-hidden="true"><rect width="300" height="170" fill="#CFE3F5"/><rect y="128" width="300" height="42" fill="#C9B79C"/><path d="M204 128V40h80v88" fill="none" stroke="#9AA0A6" stroke-width="4"/><path d="M204 70h80M204 100h80M244 40v88" stroke="#B9BEC4" stroke-width="3"/>${people}</svg>`;
+    return { title: t('photo_title'), body: el('div', {}, el('span', { class: 'sample' }, t('sample')), el('div', { class: 'gph' }, el('span', { html: svg }), el('div', { class: 'gstamp' }, ic('pin'), ` PS-1 Motidau · ${fmtDate('2026-02-18')} · 8:12`)), el('p', { class: 'note' }, t('photo_line'))) };
+  },
+  off: () => {
+    const ws = monthOf(siteById('davengere-site'), '2026-09').workers.filter(w => w.pay_type === 'daily').slice(0, 3);
+    return { title: t('off_title'), body: el('div', { class: 'offq' }, el('div', { class: 'offh bad' }, ic('offline'), t('off_q', { n: ws.length })), ...ws.map(w => el('div', { class: 'offr' }, el('span', {}, w.name), el('span', {}, `8 ${t('hours_u')}`), ic('clock'))), el('div', { class: 'offh good' }, ic('cloud'), t('off_ok'), ic('ok'))) };
+  },
+  reg: () => {
+    const s = siteById('motidau-ps-1-gujarat'), m = monthOf(s, '2026-02'), ws = m.workers.filter(w => w.pay_type === 'daily').slice(0, 4);
+    return { title: t('reg_title'), body: el('div', {}, el('span', { class: 'sample' }, t('sample')), el('p', { class: 'note', style: 'margin-bottom:8px' }, `${label(s)} · ${fmtMonth(m.month)}`),
+      el('div', { class: 'tblwrap' }, el('table', { class: 'data' }, el('thead', {}, el('tr', {}, ...['c_name', 'c_days', 'c_rate', 'c_wage', 'c_ded', 'c_net'].map(k => el('th', {}, t(k))))),
+        el('tbody', {}, ...ws.map(w => el('tr', {}, el('td', {}, w.name), el('td', {}, w.total_days), el('td', { class: 'money' }, inr(w.rate)), el('td', { class: 'money' }, inr(w.payment)), el('td', { class: 'money' }, inr(w.pocket_mess_total + w.advance)), el('td', { class: 'money ' + (w.net_payment < 0 ? 'neg' : '') }, inr(w.net_payment))))))),
+      el('p', { class: 'note', style: 'margin-top:8px' }, t('reg_note'))) };
+  },
+  dash: () => {
+    const d = monthOf(siteById('motidau-ps-1-gujarat'), '2026-02').derived;
+    const mini = (icn, k, v, cls) => el('div', { class: 'mini ' + (cls || '') }, ic(icn), el('span', {}, t(k)), el('b', { class: 'money' }, v));
+    return { title: t('dash_title'), body: el('div', {}, el('div', { class: 'minis' }, mini('building', 'k_billed', inr(d.billed)), mini('worker', 'k_wages', inr(d.wages_register)), mini('bag', 'k_bachat', inr(d.bachat), 'good'), mini('warn', 'k_owed', inr(d.owed_by_workers), 'bad')),
+      el('button', { class: 'btn primary', type: 'button', 'data-keep': '', onclick: () => { closePop(); selectTab($('#tab-thekedar')); $('#demo').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); } }, t('dash_btn'), ic('arrow'))) };
+  },
+  lead: () => {
+    const f = el('form', { class: 'lead', novalidate: '' }), opt = (arr) => arr.map(v => el('option', { value: v }, v));
+    f.append(el('p', { class: 'note' }, t('lead_sub')),
+      el('label', {}, t('f_name'), el('input', { name: 'name', autocomplete: 'name', required: '' })),
+      el('label', {}, t('f_phone'), el('input', { name: 'phone', type: 'tel', inputmode: 'numeric', autocomplete: 'tel-national', maxlength: '14', required: '' })),
+      el('label', {}, t('f_city'), el('input', { name: 'city', autocomplete: 'address-level2' })),
+      el('div', { class: 'row2' }, el('label', {}, t('f_sites'), el('select', { name: 'sites' }, ...opt(['1', '2–5', '6–10', '10+']))), el('label', {}, t('f_labour'), el('select', { name: 'labour' }, ...opt(['1–40', '41–80', '81–150', '150+'])))),
+      el('label', {}, t('f_msg'), el('textarea', { name: 'msg', rows: '2' })),
+      el('p', { class: 'err', role: 'alert' }),
+      el('div', { class: 'btns' }, CONTACT.whatsapp ? el('button', { class: 'btn wa', type: 'submit' }, ic('chat'), t('f_wa')) : null,
+        el('button', { class: 'btn' + (CONTACT.whatsapp ? '' : ' primary'), type: CONTACT.whatsapp ? 'button' : 'submit', onclick: CONTACT.whatsapp ? () => sendLead(f, 'mail') : null }, t('f_mail'))),
+      el('p', { class: 'note' }, t('f_note')));
+    f.addEventListener('submit', (e) => { e.preventDefault(); sendLead(f, CONTACT.whatsapp ? 'wa' : 'mail'); });
+    return { title: t('lead_title', { d: PRICING.trial.days }), body: f, form: true };
+  },
+};
+function sendLead(f, via) {
+  const v = (n) => (f.elements[n].value || '').trim(), err = $('.err', f), name = v('name'), phone = v('phone').replace(/\D/g, '').slice(-10);
+  if (!name) { err.textContent = t('f_err_name'); f.elements.name.focus(); return; }
+  if (!/^[6-9]\d{9}$/.test(phone)) { err.textContent = t('f_err_phone'); f.elements.phone.focus(); return; }
+  const msg = t('lead_msg', { d: PRICING.trial.days, name, phone, city: v('city') || '-', sites: v('sites'), labour: v('labour'), msg: v('msg') }).replace(/\n{2,}/g, '\n');
+  if (via === 'wa' && CONTACT.whatsapp) window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  else location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent('SiteBook free trial: ' + name)}&body=${encodeURIComponent(msg)}`;
+  f.replaceChildren(el('div', { class: 'thanks' }, ic('ok'), el('h3', { class: 'h4' }, t('f_thanks_h')), el('p', {}, via === 'wa' && CONTACT.whatsapp ? t('f_thanks_wa') : t('f_thanks_mail'))));
+}
+let POP = null;
+function closePop() { if (!POP) return; const { back, opener, offs } = POP; POP = null; offs.forEach(f => f()); back.remove(); $('#fab').classList.remove('hide'); if (opener && opener.focus) opener.focus({ preventScroll: true }); }
+function openPop(key, opener) {
+  closePop(); const def = POPS[key]; if (!def) return;
+  const { title, body, form } = def(), hid = 'pop-h-' + key;
+  const box = el('div', { class: 'pop', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': hid }, el('button', { class: 'pop-x', type: 'button', 'aria-label': t('pop_close'), 'data-keep': '', onclick: closePop }, '×'), el('h3', { id: hid }, title), body);
+  const back = el('div', { class: 'pop-back' }, box); document.body.append(back);
+  const offs = [], on = (tg, ev, fn, o) => { tg.addEventListener(ev, fn, o); offs.push(() => tg.removeEventListener(ev, fn, o)); };
+  on(document, 'keydown', (e) => { if (e.key === 'Escape') closePop(); });
+  if (form) on(back, 'pointerdown', (e) => { if (e.target === back) closePop(); });
+  else setTimeout(() => { if (POP && POP.back === back) {
+    const own = (e) => box.contains(e.target) && box.scrollHeight > box.clientHeight + 2;
+    on(window, 'scroll', closePop, { passive: true });
+    on(document, 'wheel', (e) => { if (!own(e)) closePop(); }, { passive: true });
+    on(document, 'touchmove', (e) => { if (!own(e)) closePop(); }, { passive: true });
+    on(document, 'pointerdown', (e) => { if (!e.target.closest('[data-keep]')) closePop(); }, true); } }, 0);
+  POP = { back, opener, offs }; $('#fab').classList.add('hide');
+  const first = form ? $('input', box) : $('.pop-x', box); if (first) first.focus({ preventScroll: true });
+}
+document.addEventListener('click', (e) => {
+  const l = e.target.closest('[data-lead]'); if (l) { e.preventDefault(); openPop('lead', l); return; }
+  const p = e.target.closest('[data-pop]'); if (p && !e.target.closest('.pop')) openPop(p.dataset.pop, p);
+});
+document.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-pop]')) { e.preventDefault(); openPop(e.target.dataset.pop, e.target); } });
 
 /* ===================== RENDER ALL + INIT ===================== */
 function renderAll() { heroPhone.render(); demoPhone.render(); renderSteps(); renderGlance(); renderChain(); renderDash(); renderCards(); renderPricing(); }
