@@ -14,7 +14,7 @@ Older addresses (`/sitebook/`, `/khatasite/`, `/sitekhata/` and their `app/`) ar
 
 ## Public data is fictional
 
-This repository is public. Every page here shows a fictional company (Shree Ganesh Constructions), client (ABC Infra Ltd), sites (Site A – Ahmedabad, Site B – Pune), supervisors and workers. The numbers come from real registers but every money amount is shifted by a random 10–15 % per site, so totals, nets and margins still add up while no figure matches a real one. Hours, day codes and dates keep the register's arithmetic (8 h = 1 day). Real names, real numbers and the real site and client names are never committed; they exist only in the raw registers, a git-ignored name map and a private file outside the repository.
+This repository is public. Every page here shows a fictional company (Shree Ganesh Constructions), client (ABC Infra Ltd), sites (Site A – Ahmedabad, Site B – Pune), supervisors and workers. The numbers come from real registers but every money amount is shifted by a random 10–15 % per site, and the shifted daily rates (worker and client) are rounded to the nearest ₹10, with payments, nets, billing and margin recomputed from them, so totals still add up while no figure matches a real one. Hours, day codes and dates keep the register's arithmetic (8 h = 1 day). Real names, real numbers and the real site and client names are never committed; they exist only in the raw registers, a git-ignored name map and a private file outside the repository.
 
 ## Folder
 

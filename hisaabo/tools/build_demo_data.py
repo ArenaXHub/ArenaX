@@ -649,6 +649,73 @@ def site_slot(path: Path, index: int) -> dict:
     return {"id": "site-" + "abcdefghij"[index], "real_label": None}
 
 
+def r10(v):
+    """Nearest Rs 10 (KP, 20 Nov 2026: shifted daily rates look like real ones)."""
+    return float(round(v / 10) * 10) if is_num(v) else v
+
+
+def _rebill(bill: dict) -> float:
+    """Client billing after rounding: rate per day-unit to Rs 10, row and month totals from units x rate, GST in proportion."""
+    old_total = bill.get("billed_total") or 0
+    for row in bill["rows"]:
+        row["rate"] = r10(row["rate"])
+        row["payment"] = float(round(sum(u for u in row["units"] if u) * row["rate"]))
+    bill["client_rates"] = {k: r10(v) for k, v in bill["client_rates"].items()}
+    new_total = float(round(sum(row["payment"] for row in bill["rows"])))
+    if old_total:
+        for k in ("gst", "billed_with_gst"):
+            if is_num(bill.get(k)):
+                bill[k] = float(round(bill[k] * new_total / old_total))
+    bill["billed_total"] = new_total
+    return new_total
+
+
+def round_site_rates(site: dict) -> None:
+    """Round the shifted daily rates to the nearest Rs 10, then recompute payments, nets, totals, daily wages, billing and margin."""
+    for b in site["billing_only_months"]:
+        _rebill(b)
+    for m in site["months"]:
+        delta = 0.0
+        for w in m.get("workers", []):
+            if w.get("pay_type") == "daily" and is_num(w.get("rate")) and w["rate"]:
+                new = r10(w["rate"])
+                if new != w["rate"]:
+                    newpay = float(round(w["payment"] * new / w["rate"]))
+                    dp = newpay - w["payment"]
+                    w["payment"], w["net_payment"], w["rate"] = newpay, float(round(w["net_payment"] + dp)), new
+                    delta += dp
+        rt = m.get("register_totals", {})
+        for k in ("payment", "net_payment"):
+            if is_num(rt.get(k)):
+                rt[k] = float(round(rt[k] + delta))
+        bill = m.get("billing")
+        billed = _rebill(bill) if bill else None
+        d = m.get("derived")
+        if not d:
+            continue
+        idx = {dd: i for i, dd in enumerate(m["dates"])}
+        bidx = {dd: i for i, dd in enumerate(bill["dates"])} if bill else {}
+        for x in d["daily"]:
+            i = idx.get(x["date"])
+            if i is not None:
+                x["wages"] = r2(sum(w["hours"][i] / DAY_HOURS * w["rate"] for w in m["workers"] if w["pay_type"] == "daily" and is_num(w["hours"][i])))
+            if bill:
+                j = bidx.get(x["date"])
+                x["billed"] = r2(sum((row["units"][j] or 0) * row["rate"] for row in bill["rows"])) if j is not None else 0.0
+            x["bachat"] = r2(x["billed"] - x["wages"])
+        d["wages_register"] = float(round(d["wages_register"] + delta))
+        d["wages_variable"] = r2(sum(x["wages"] for x in d["daily"]))
+        d["cash_to_workers"] = float(round(d["wages_register"] - d["kharchi_mess"]))
+        owed = [w for w in m["workers"] if w["net_payment"] < 0]
+        d["owed_by_workers"] = float(round(-sum(w["net_payment"] for w in owed)))
+        d["owed_count"] = len(owed)
+        if billed is not None:
+            d["billed"] = billed
+        if d.get("billed") is not None and d.get("bachat") is not None:
+            d["bachat"] = float(round(d["billed"] - d["wages_register"] - d["extras"]))
+            d["bachat_pct"] = r2(d["bachat"] / d["billed"] * 100) if d["billed"] else None
+
+
 def fictionalize(data: dict, seed: int) -> dict:
     """Public build (KP, 20 Nov 2026): fictional company, client, sites, supervisors and workers, and every money
     amount shifted by one random factor per site (10-15 % up or down, drawn from `seed`). Money is scaled by the same
@@ -752,16 +819,20 @@ def fictionalize(data: dict, seed: int) -> dict:
                 if d.get("billed") is not None and d.get("bachat") is not None:
                     d["bachat"] = float(round(d["billed"] - d["wages_register"] - d["extras"]))
                     d["bachat_pct"] = r2(d["bachat"] / d["billed"] * 100) if d["billed"] else None
-        site["client_rates"] = {k: money(v, f) for k, v in site["client_rates"].items()}
+        round_site_rates(site)
+        site["client_rates"] = {k: r10(money(v, f)) for k, v in site["client_rates"].items()}
         site["expenses_sheet"] = [{k: (v if k == "month" else money(v, f)) for k, v in e.items()} for e in site["expenses_sheet"]]
-        site["rate_history"] = {fname(k): {"rates": [{"month": r["month"], "rate": money(r["rate"], f)} for r in v["rates"]],
-                                            "changes": [{**c, "from": money(c["from"], f), "to": money(c["to"], f)} for c in v["changes"]]}
+        site["rate_history"] = {fname(k): {"rates": [{"month": r["month"], "rate": r10(money(r["rate"], f))} for r in v["rates"]],
+                                            "changes": [{**c, "from": r10(money(c["from"], f)), "to": r10(money(c["to"], f))} for c in v["changes"] if r10(money(c["from"], f)) != r10(money(c["to"], f))]}
                                 for k, v in site["rate_history"].items()}
         bym = {m["month"]: m for m in site["months"]}
+        bonly = {b["month"]: b for b in site["billing_only_months"]}
         for srow in site["summary"]:
             m = bym.get(srow["month"])
             for k in ("wages", "billed", "bachat", "extras", "kharchi_mess", "receipts", "advances", "dues"):
                 srow[k] = money(srow.get(k), f)
+            if not m and srow["month"] in bonly:
+                srow["billed"] = bonly[srow["month"]]["billed_total"]
             if m:
                 d = m["derived"]
                 srow.update(wages=d["wages_register"], billed=d["billed"], bachat=d["bachat"], bachat_pct=d["bachat_pct"],
