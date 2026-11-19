@@ -1,6 +1,7 @@
-# Raw registers stay out of git (public repo).
+# Raw registers and the local name map stay out of git (public repo).
 *.xlsx
 *.xls
 *.csv
+*.json
 !.gitignore
 !README.md

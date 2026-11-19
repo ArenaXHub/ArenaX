@@ -31,7 +31,7 @@
   --surface:#F1F1EE;--raised:#F9F9F7;--card:#FFFFFF;--well:#E8E8E3;--ink:#17181A;--on-ink:#FFFFFF;--muted:#5B5D60;--rule:#D9D9D4;
   --marigold:#E3A21A;--on-marigold:#141414;--link:#8A5A00;--focus:#1F5FBF;
   --good:#1F7A4D;--good-soft:#E1F1E7;--good-line:#A9D3B9;--watch:#8A5A00;--watch-soft:#FBF0D6;--watch-line:#EBCB85;--act:#B23A0E;--act-soft:#F9E0D8;--act-line:#E9B3A3;
-  --c-billed:#2B6CB0;--c-wages:#E3A21A;--c-bachat:#1F7A4D;--c-loss:#B23A0E;
+  --c-billed:#2B6CB0;--c-wages:#972527;--c-bachat:#1F7A4D;--c-loss:#B23A0E;--c-cost1:#972527;--c-cost2:#E24A3F;--c-cost3:#F3947F;--c-margin:#2A8D4F;
   --gold-soft:rgba(227,162,26,.18);--paper:#FBF7EA;--paper-rule:#D8CCA6;--paper-head:rgba(216,204,166,.35);
   --scrim:rgba(241,241,238,.97);--stamp-bg:rgba(255,255,255,.94);
   --display:"SBRupee","Manrope","Segoe UI",Roboto,system-ui,sans-serif;
@@ -45,7 +45,7 @@ html[data-theme="dark"]{
   --surface:#121314;--raised:#1A1B1D;--card:#1E2022;--well:#26282B;--ink:#EDEDEA;--on-ink:#121314;--muted:#A6A8AB;--rule:#34373A;
   --marigold:#E3A21A;--on-marigold:#141414;--link:#E8B54A;--focus:#7AA7FF;
   --good:#4CB782;--good-soft:#173527;--good-line:#2C6A4B;--watch:#E8B54A;--watch-soft:#3A2E12;--watch-line:#6B5520;--act:#F07B57;--act-soft:#3D1F16;--act-line:#7A3A26;
-  --c-billed:#6EA8E8;--c-wages:#E3A21A;--c-bachat:#4CB782;--c-loss:#F07B57;
+  --c-billed:#6EA8E8;--c-wages:#BA2B2E;--c-bachat:#4CB782;--c-loss:#F07B57;--c-cost1:#BA2B2E;--c-cost2:#F57661;--c-cost3:#FCC6B7;--c-margin:#3DAE66;
   --gold-soft:rgba(227,162,26,.22);--paper:#22211C;--paper-rule:#4A4636;--paper-head:rgba(120,110,80,.28);
   --scrim:rgba(18,19,20,.96);--stamp-bg:rgba(30,32,34,.96);
   --lift:0 20px 40px -22px rgba(0,0,0,.7);--soft:0 2px 8px rgba(0,0,0,.35);
@@ -257,6 +257,26 @@ table.data tr.editrow td{background:var(--gold-soft);white-space:normal;text-ali
   .tally b{font-size:19px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:14px}
+@media (max-width:720px){.cgrid{grid-template-columns:1fr}}
+.cbar{display:flex;height:56px;border-radius:10px;overflow:hidden;gap:2px;margin-top:10px;background:var(--card)}
+.cseg{display:grid;place-items:center;align-content:center;text-align:center;min-width:3px;font-weight:700;line-height:1.15;color:#fff;container-type:inline-size}
+.cseg-km,.cseg-ex{color:#17181A}
+html[data-theme="dark"] .cseg-bc{color:#0E1A12}
+.cseg .nm{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;padding:0 4px}
+.cseg .vl{font:800 14px/1.1 var(--display)}
+@container (max-width:30px){.cseg .vl{display:none}}
+.ccalls{position:relative;height:24px;margin-top:6px;font-size:12px;font-weight:700}
+.ccalls.rows2{height:46px}
+.ccall{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;display:inline-flex;align-items:center;gap:5px;padding:2px 6px;border-radius:6px;background:var(--card);border:1px solid var(--rule)}
+.ccall.r1{top:22px}
+.ccall i,.clegend i{width:10px;height:10px;border-radius:3px;flex:none}
+.clegend{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;font-size:14px}
+.clegend li{display:flex;align-items:center;gap:8px;min-width:0}.clegend span{flex:1;color:var(--muted)}
+@media (max-width:420px){.clegend{grid-template-columns:1fr}}
+.ringbox{display:grid;justify-items:center;text-align:center;gap:8px}
+.ringwrap{position:relative;width:150px;height:150px}.ringwrap svg{width:100%;height:100%}
+.ringnum{position:absolute;inset:0;display:grid;place-items:center;font:800 34px/1 var(--display)}
 </style>
 </head>
 <body>
@@ -329,14 +349,14 @@ table.data tr.editrow td{background:var(--gold-soft);white-space:normal;text-ali
 'use strict';
 /* ===================== CONFIG ===================== */
 const BRAND = 'Hisaabo';
-const DATA_URL = '../data/hisaabo-demo.json';           // the masked demo data the website is built from
-const STORE_KEY = 'arenax-demo-app-v1', LANG_KEY = 'arenax-demo-lang', THEME_KEY = 'arenax-demo-theme';
-const DEMO = { dates: { 'davengere-site': '2026-09-18', 'motidau-ps-1-gujarat': '2026-02-18' }, homeSite: 'motidau-ps-1-gujarat' };
-const SITE_LABEL = { 'motidau-ps-1-gujarat': 'PS-1 Motidau', 'davengere-site': 'Davengere Site' };
+const DATA_URL = '../data/hisaabo-demo.json';           // the fictional demo data the website is built from
+const STORE_KEY = 'arenax-demo-app-v2', LANG_KEY = 'arenax-demo-lang', THEME_KEY = 'arenax-demo-theme';
+// generic site ids in every build (site-a, site-b); names come from the data
+const DEMO = { dates: { 'site-b': '2026-09-18', 'site-a': '2026-02-18' }, homeSite: 'site-a' };
 const ROLES = [
   { id: 'th', icon: 'boss', name: 'r_th', lvl: 'lv_owner', sub: 'ro_th' },
-  { id: 'mu-dav', icon: 'pad', name: 'r_mu', site: 'davengere-site', lvl: 'lv_site', sub: 'ro_mu' },
-  { id: 'mu-ps1', icon: 'pad', name: 'r_mu', site: 'motidau-ps-1-gujarat', lvl: 'lv_site', sub: 'ro_mu' },
+  { id: 'mu-a', icon: 'pad', name: 'r_mu', site: 'site-a', lvl: 'lv_site', sub: 'ro_mu' },
+  { id: 'mu-b', icon: 'pad', name: 'r_mu', site: 'site-b', lvl: 'lv_site', sub: 'ro_mu' },
   { id: 'hw', icon: 'receipt', name: 'r_hw', lvl: 'lv_office', sub: 'ro_hw' },
   { id: 'ca', icon: 'doc', name: 'r_ca', lvl: 'lv_ro', sub: 'ro_ca' }];
 
@@ -349,132 +369,136 @@ const T = {
   h8:['8 घंटे','8 ghante','8 hours'],
   h12:['12 घंटे OT','12 ghante OT','12 h OT'],
   h4:['4 घंटे','4 ghante','4 hours'],
-  habs:['नहीं आया','Nahi aaya','Absent'],
+  habs:['गैरहाज़िर','Absent','Absent'],
   hours_u:['घं','gh','h'],
   day_u:['दिन','din','day'],
-  t_present:['आए','Aaye','Present'],
-  t_absent:['नहीं आए','Nahi aaye','Absent'],
+  t_present:['आए','Present','Present'],
+  t_absent:['गैरहाज़िर','Absent','Absent'],
   t_left:['बाकी','Baaki','Pending'],
-  adv_btn:['खर्ची','Kharchi','Kharchi'],
-  adv_title:['खर्ची दो','Kharchi do','Give kharchi'],
+  adv_btn:['खर्ची','Allowance','Allowance'],
+  adv_title:['खर्ची दो','Allowance do','Give allowance'],
   adv_clear:['साफ़','Saaf','Clear'],
   adv_done:['हो गया','Ho gaya','Done'],
   reg_cap:['इस हफ़्ते का रजिस्टर','Is hafte ka register','This week\'s register'],
   reg_name:['नाम','Naam','Name'],
-  submit:['हाज़िरी जमा करो','Hazri jama karo','Submit attendance'],
+  submit:['हाज़िरी जमा करो','Attendance submit karo','Submit attendance'],
   all_full:['सबको पूरा दिन','Sabko pura din','All full day'],
   reg_show:['रजिस्टर','Register','Register'],
-  reg_hide:['हाज़िरी','Hazri','Marking'],
-  ok_title:['हाज़िरी जमा हो गई','Hazri jama ho gayi','Attendance submitted'],
+  reg_hide:['हाज़िरी','Attendance','Attendance'],
+  ok_title:['हाज़िरी जमा हो गई','Attendance submit ho gayi','Attendance submitted'],
   ok_geo:['साइट लॉक · 200 मी के अंदर','site lock · 200 m ke andar','site lock · within 200 m'],
   ok_photo:['ग्रुप फ़ोटो','Group photo','Group photo'],
   ok_sync:['नेट आते ही सिंक','Net aate hi sync','Syncs when online'],
   ok_close:['ठीक है','Theek hai','OK'],
-  stamp:['हाज़िरी जमा','HAZRI JAMA','SUBMITTED'],
+  stamp:['हाज़िरी जमा','ATTENDANCE JAMA','SUBMITTED'],
   voice:['आवाज़','Awaaz','Voice'],
-  speak_abs:['{name}, नहीं आया','{name}, nahi aaya','{name}, absent'],
+  speak_abs:['{name}, गैरहाज़िर','{name}, absent','{name}, absent'],
   speak_h:['{name}, {h} घंटे','{name}, {h} ghante','{name}, {h} hours'],
-  k_billed:['कंपनी से आया','Company se aaya','From the company'],
-  k_billed_sub:['महीने का बिल','Mahine ka bill','This month\'s bill'],
-  k_wages:['मज़दूरी','Mazdoori','Wages'],
-  k_wages_sub:['{n} मज़दूर · {d} दिन','{n} mazdoor · {d} din','{n} workers · {d} days'],
-  k_bachat:['बचत','Bachat','Profit'],
-  k_bachat_sub:['बिल − सारा ख़र्च','bill − saara kharcha','bill − all costs'],
-  k_owed:['मज़दूर पर बाकी','Mazdoor par baaki','Owed by workers'],
-  k_owed_sub:['{n} मज़दूर','{n} mazdoor','{n} workers'],
-  no_bill:['इस साइट का बिल अभी नहीं जुड़ा','Is site ka bill abhi nahi juda','No bill added for this site yet'],
+  k_billed:['कंपनी का बिल','Client billing','Client billing'],
+  k_billed_sub:['महीने का बिल','Mahine ka bill','Billed this month'],
+  k_wages:['मज़दूरी','Wages','Wages'],
+  k_wages_sub:['{n} मज़दूर · {d} दिन','{n} workers · {d} din','{n} workers · {d} days'],
+  k_bachat:['बचत','Margin','Margin'],
+  k_bachat_sub:['बिल − सारा ख़र्च','billing − saara kharcha','billing − all costs'],
+  k_owed:['मज़दूर पर बाकी','Workers par baaki','Owed by workers'],
+  k_owed_sub:['{n} मज़दूर','{n} workers','{n} workers'],
+  no_bill:['इस साइट का बिल अभी नहीं जुड़ा','Is site ki billing abhi nahi judi','No client billing added for this site yet'],
   st_good:['अच्छा','Achha','Good'],
   st_watch:['ध्यान दो','Dhyan do','Watch'],
   st_action:['अभी देखो','Abhi dekho','Act now'],
   st_clear:['कोई बाकी नहीं','Koi baaki nahi','Nothing owed'],
-  al_owed:['{n} मज़दूर पर {x} बाकी','{n} mazdoor par {x} baaki','{n} workers owe {x}'],
-  al_absent:['{d}: {n} नहीं आए','{d}: {n} nahi aaye','{d}: {n} absent'],
-  al_allin:['{d}: सब आए','{d}: sab aaye','{d}: all present'],
-  al_left:['{n} मज़दूर साइट छोड़ गए','{n} mazdoor site chhod gaye','{n} workers left the site'],
+  al_owed:['{n} मज़दूर पर {x} बाकी','{n} workers par {x} baaki','{n} workers owe {x}'],
+  al_absent:['{d}: {n} गैरहाज़िर','{d}: {n} absent','{d}: {n} absent'],
+  al_allin:['{d}: सब आए','{d}: sab present','{d}: all present'],
+  al_left:['{n} मज़दूर साइट छोड़ गए','{n} workers site chhod gaye','{n} workers left the site'],
   c_name:['नाम','Naam','Name'],
   c_days:['दिन','Din','Days'],
   c_rate:['रेट','Rate','Rate'],
-  c_wage:['मज़दूरी','Mazdoori','Wage'],
-  c_km:['खर्ची+मेस','Kharchi+mess','Kharchi+mess'],
+  c_wage:['मज़दूरी','Wages','Wages'],
+  c_km:['खर्ची+मेस','Allowance & mess','Allowance & mess'],
   c_adv:['एडवांस','Advance','Advance'],
   c_net:['नेट','Net','Net'],
   c_total:['कुल','Kul','Total'],
   fixed_pay:['फ़िक्स','fixed','fixed'],
   per_month:['महीना','mahina','month'],
   tt_date:['तारीख़','Tareekh','Date'],
-  tt_billed:['बिल','Bill','Bill'],
-  tt_wages:['मज़दूरी','Mazdoori','Wages'],
-  tt_bachat:['बचत','Bachat','Profit'],
-  tt_present:['आए','Aaye','Present'],
-  tt_absent:['नहीं आए','Nahi aaye','Absent'],
+  tt_billed:['बिल','Billing','Billing'],
+  tt_wages:['मज़दूरी','Wages','Wages'],
+  tt_bachat:['बचत','Margin','Margin'],
+  tt_present:['आए','Present','Present'],
+  tt_absent:['गैरहाज़िर','Absent','Absent'],
   month:['महीना','Mahina','Month'],
-  leg_plus:['बचत +','Bachat +','Profit +'],
-  leg_minus:['घाटा −','Ghata −','Loss −'],
-  vd_h:['रोज़ की बचत','Roz ki bachat','Daily profit'],
-  vd_h_nb:['रोज़ की मज़दूरी','Roz ki mazdoori','Daily wages'],
-  vd_sub:['रोज़ का बिल − रोज़ की मज़दूरी','Roz ka bill − roz ki mazdoori','Daily bill − daily wages'],
-  vd_sub_nb:['हर दिन कितनी मज़दूरी बनी','Har din kitni mazdoori bani','Wages earned each day'],
+  leg_plus:['बचत +','Margin +','Margin +'],
+  leg_minus:['घाटा −','Loss −','Loss −'],
+  vd_h:['रोज़ की बचत','Roz ka margin','Daily margin'],
+  vd_h_nb:['रोज़ की मज़दूरी','Roz ki wages','Daily wages'],
+  vd_sub:['रोज़ का बिल − रोज़ की मज़दूरी','Roz ki billing − roz ki wages','Daily billing − daily wages'],
+  vd_sub_nb:['हर दिन कितनी मज़दूरी बनी','Har din kitni wages bani','Wages earned each day'],
   tbl_show:['टेबल','Table','Table'],
   tbl_hide:['चार्ट','Chart','Chart'],
-  r_th:['ठेकेदार','Thekedar','Contractor'],
-  r_mu:['मुंशी','Munshi','Munshi'],
-  r_hw:['हिसाब-वाला','Hisaab-wala','Accountant'],
+  r_th:['ठेकेदार','Contractor','Contractor'],
+  r_mu:['मुंशी','Supervisor','Supervisor'],
+  r_hw:['अकाउंटेंट','Accountant','Accountant'],
   lv_owner:['सारी साइट','Saari site','All sites'],
   lv_site:['सिर्फ़ अपनी साइट','Sirf apni site','Own site only'],
   lv_office:['ऑफ़िस से','Office se','From the office'],
   p_pay:['पेमेंट','Payment','Payments'],
   p_adv:['एडवांस','Advance','Advances'],
-  p_exp:['ख़र्चे','Kharche','Expenses'],
+  p_exp:['ख़र्चे','Expenses','Expenses'],
   p_rep:['रिपोर्ट','Report','Reports'],
 /*@/SITE_T*/
-  demo_note:['डेमो — डेटा सिर्फ़ आपके फ़ोन पर','Demo — data sirf aapke phone par','Demo — data stays on your phone only'],
+  demo_note:['डेमो — डेटा सिर्फ़ आपके फ़ोन पर','Demo — data sirf aapke phone par','Demo — data stays on your device'],
   reset:['डेमो रीसेट','Reset demo','Reset demo'], reset_sure:['पक्का? फिर दबाओ','Pakka? Phir dabao','Sure? Tap again'], reset_done:['डेमो रीसेट हो गया','Demo reset ho gaya','Demo reset'],
-  no_store:['यह ब्राउज़र सेव नहीं कर रहा: पेज बंद करते ही बदलाव चले जाएँगे','Ye browser save nahi kar raha: page band karte hi badlav chale jayenge','This browser is not saving: your changes go when the page closes'],
-  theme:['थीम','Theme','Theme'], th_auto:['फ़ोन जैसी','Phone jaisi','Same as phone'], th_light:['हल्की','Light','Light'], th_dark:['डार्क','Dark','Dark'],
+  no_store:['यह ब्राउज़र सेव नहीं कर रहा: पेज बंद करते ही बदलाव चले जाएँगे','Ye browser save nahi kar raha: page band karte hi badlav chale jayenge','This browser is not saving: your changes are lost when the page closes'],
+  theme:['थीम','Theme','Theme'], th_auto:['फ़ोन जैसी','Phone jaisi','Same as device'], th_light:['हल्की','Light','Light'], th_dark:['डार्क','Dark','Dark'],
   back_site:['वेबसाइट पर वापस','Website par wapas','Back to the website'],
   loading:['डेटा आ रहा है…','Data aa raha hai…','Loading data…'], load_err:['डेटा नहीं आया। नेट देखकर फिर कोशिश करो।','Data nahi aaya. Net dekh kar phir koshish karo.','The data did not load. Check the connection and try again.'], retry:['फिर कोशिश','Phir koshish','Try again'],
   login_h:['लॉगिन','Login','Log in'], login_sub:['असली ऐप में मोबाइल नंबर और OTP से लॉगिन होगा।','Asli app mein mobile number aur OTP se login hoga.','The real app logs in with a mobile number and OTP.'],
   mobile:['मोबाइल नंबर','Mobile number','Mobile number'], otp_btn:['OTP भेजो','OTP bhejo','Send OTP'],
   otp_note:['डेमो में OTP नहीं आता। नीचे से एक रोल चुनो।','Demo mein OTP nahi aata. Neeche se ek role chuno.','The demo sends no OTP. Pick a role below.'],
-  guest_h:['या एक टैप में देखो','Ya ek tap mein dekho','Or look around in one tap'], guest_sub:['कोई नंबर नहीं, कोई पासवर्ड नहीं। जो बदलोगे, सिर्फ़ इस फ़ोन पर रहेगा।','Koi number nahi, koi password nahi. Jo badloge, sirf is phone par rahega.','No number, no password. What you change stays on this phone only.'],
+  guest_h:['या एक टैप में देखो','Ya ek tap mein dekho','Or explore in one tap'], guest_sub:['कोई नंबर नहीं, कोई पासवर्ड नहीं। जो बदलोगे, सिर्फ़ इस फ़ोन पर रहेगा।','Koi number nahi, koi password nahi. Jo badloge, sirf is phone par rahega.','No number, no password. Your changes stay on this device.'],
   r_ca:['CA','CA','CA'], lv_ro:['सिर्फ़ देखना','Sirf dekhna','View only'],
-  ro_th:['सारी साइट, रेट, मंज़ूरी, बचत','Saari site, rate, manzoori, bachat','All sites, rates, approvals, profit'],
-  ro_mu:['हाज़िरी और खर्ची, बस अपनी साइट','Hazri aur kharchi, bas apni site','Attendance and kharchi, own site only'],
-  ro_hw:['पेमेंट, एडवांस, ख़र्चे, रिपोर्ट','Payment, advance, kharche, report','Payments, advances, expenses, reports'],
+  ro_th:['सारी साइट, रेट, मंज़ूरी, बचत','Saari site, rate, approval, margin','All sites, rates, approvals, margin'],
+  ro_mu:['हाज़िरी और खर्ची, बस अपनी साइट','Attendance aur allowance, bas apni site','Attendance and allowance, own site only'],
+  ro_hw:['पेमेंट, एडवांस, ख़र्चे, रिपोर्ट','Payment, advance, expenses, report','Payments, advances, expenses, reports'],
   ro_ca:['रजिस्टर और रिपोर्ट, डाउनलोड','Register aur report, download','Registers and reports, download'],
   you:['आप: {r}','Aap: {r}','You: {r}'], switch_role:['रोल बदलो','Role badlo','Switch role'],
   site:['साइट','Site','Site'],
-  locked:['जमा हो गई · ठेकेदार को दिख रही है','Jama ho gayi · thekedar ko dikh rahi hai','Submitted · the contractor can see it'],
+  locked:['जमा हो गई · ठेकेदार को दिख रही है','Submit ho gayi · Contractor ko dikh rahi hai','Submitted · visible to the contractor'],
   next_day:['अगला दिन (डेमो)','Agla din (demo)','Next day (demo)'], no_next:['डेमो डेटा यहीं तक है','Demo data yahin tak hai','The demo data ends here'],
-  km_today:['आज की खर्ची','Aaj ki kharchi','Kharchi today'], km_week:['इस हफ़्ते की खर्ची','Is hafte ki kharchi','Kharchi this week'],
-  km_none:['अभी कोई खर्ची नहीं दी','Abhi koi kharchi nahi di','No kharchi given yet'], km_worker:['किसको','Kisko','To whom'],
-  km_custom:['और रकम (₹)','Aur rakam (₹)','Other amount (₹)'], km_add:['जोड़ो','Jodo','Add'], km_saved:['{n} को {x} खर्ची दी','{n} ko {x} kharchi di','Gave {x} kharchi to {n}'],
+  km_today:['आज की खर्ची','Aaj ka allowance','Allowance today'], km_week:['इस हफ़्ते की खर्ची','Is hafte ka allowance','Allowance this week'],
+  km_none:['अभी कोई खर्ची नहीं दी','Abhi koi allowance nahi diya','No allowance given yet'], km_worker:['किसको','Kisko','To whom'],
+  km_custom:['और रकम (₹)','Aur rakam (₹)','Other amount (₹)'], km_add:['जोड़ो','Jodo','Add'], km_saved:['{n} को {x} खर्ची दी','{n} ko {x} allowance diya','Gave {x} allowance to {n}'],
   km_reg:['रजिस्टर से','Register se','From the register'],
   amount:['रकम (₹)','Rakam (₹)','Amount (₹)'], remove:['हटाओ','Hatao','Remove'], save:['सेव','Save','Save'], cancel:['रहने दो','Rehne do','Cancel'],
-  mu_no_money:['मुंशी को रेट या मज़दूरी नहीं दिखती। सिर्फ़ दिन और अपनी दी हुई खर्ची।','Munshi ko rate ya mazdoori nahi dikhti. Sirf din aur apni di hui kharchi.','The munshi sees no rates or wages: only days and the kharchi he gave.'],
-  sub_h:['मुंशी की हाज़िरी','Munshi ki hazri','Munshi\'s attendance'], sub_none:['अभी जमा नहीं हुई','Abhi jama nahi hui','Not submitted yet'],
-  sub_done:['{t} बजे जमा · {p} आए · {a} नहीं आए · खर्ची {k}','{t} baje jama · {p} aaye · {a} nahi aaye · kharchi {k}','Submitted {t} · {p} present · {a} absent · kharchi {k}'],
-  approve:['मंज़ूर करो','Manzoor karo','Approve'], approved:['मंज़ूर','Manzoor','Approved'], approved_t:['{s}, {d}: मंज़ूर','{s}, {d}: manzoor','{s}, {d}: approved'],
-  pending_h:['मंज़ूरी बाकी','Manzoori baaki','Waiting for approval'], pending_none:['कुछ बाकी नहीं','Kuch baaki nahi','Nothing waiting'],
-  workers_h:['मज़दूर और रेट','Mazdoor aur rate','Workers and rates'], rate_edit:['रेट बदलो','Rate badlo','Change rate'],
+  mu_no_money:['मुंशी को रेट या मज़दूरी नहीं दिखती। सिर्फ़ दिन और अपनी दी हुई खर्ची।','Supervisor ko rate ya wages nahi dikhte. Sirf din aur apna diya hua allowance.','Supervisors see no rates or wages: only days and the allowance they gave.'],
+  sub_h:['मुंशी की हाज़िरी','Attendance','Attendance'], sub_none:['अभी जमा नहीं हुई','Abhi submit nahi hui','Not submitted yet'],
+  sub_done:['{t} बजे जमा · {p} आए · {a} गैरहाज़िर · खर्ची {k}','{t} baje submit · {p} present · {a} absent · allowance {k}','Submitted {t} · {p} present · {a} absent · allowance {k}'],
+  approve:['मंज़ूर करो','Approve karo','Approve'], approved:['मंज़ूर','Approved','Approved'], approved_t:['{s}, {d}: मंज़ूर','{s}, {d}: approved','{s}, {d}: approved'],
+  pending_h:['मंज़ूरी बाकी','Approval baaki','Waiting for approval'], pending_none:['कुछ बाकी नहीं','Kuch baaki nahi','Nothing waiting'],
+  workers_h:['मज़दूर और रेट','Workers aur rate','Workers and rates'], rate_edit:['रेट बदलो','Rate badlo','Change rate'],
   rate_new:['नया रेट (₹/दिन)','Naya rate (₹/din)','New rate (₹/day)'], rate_from:['कब से','Kab se','From'],
-  rate_saved:['{n}: नया रेट {r}, {d} से','{n}: naya rate {r}, {d} se','{n}: new rate {r} from {d}'], rate_ro:['रेट सिर्फ़ ठेकेदार बदलता है','Rate sirf thekedar badalta hai','Only the contractor changes rates'],
+  rate_saved:['{n}: नया रेट {r}, {d} से','{n}: naya rate {r}, {d} se','{n}: new rate {r} from {d}'], rate_ro:['रेट सिर्फ़ ठेकेदार बदलता है','Rate sirf Contractor badalta hai','Only the contractor changes rates'],
   c_paid:['दिया','Diya','Paid'], c_left:['बाकी देना','Baaki dena','To pay'], pay_btn:['पेमेंट','Payment','Pay'],
   mode:['कैसे','Kaise','Mode'], m_cash:['नकद','Cash','Cash'], m_upi:['UPI','UPI','UPI'], m_bank:['बैंक','Bank','Bank'],
   pay_done:['{n} को {x} दिए ({m})','{n} ko {x} diye ({m})','Paid {x} to {n} ({m})'], pay_list:['इस महीने की पेमेंट (डेमो में जोड़ी)','Is mahine ki payment (demo mein jodi)','Payments added this month (demo)'],
   adv_add:['एडवांस दो','Advance do','Give advance'], adv_list:['इस महीने के एडवांस (डेमो में जोड़े)','Is mahine ke advance (demo mein jode)','Advances added this month (demo)'], adv_done_t:['{n} को {x} एडवांस','{n} ko {x} advance','Advance {x} to {n}'],
-  exp_add:['ख़र्चा जोड़ो','Kharcha jodo','Add expense'], exp_note:['किस चीज़ का','Kis cheez ka','What for'], exp_list:['इस महीने के ख़र्चे (डेमो में जोड़े)','Is mahine ke kharche (demo mein jode)','Expenses added this month (demo)'],
-  exp_reg:['रजिस्टर के एक्स्ट्रा ख़र्चे: {x}','Register ke extra kharche: {x}','Register extras: {x}'], exp_done_t:['ख़र्चा {x} जुड़ा','Kharcha {x} juda','Expense {x} added'],
+  exp_add:['ख़र्चा जोड़ो','Expense jodo','Add expense'], exp_note:['किस चीज़ का','Kis cheez ka','What for'], exp_list:['इस महीने के ख़र्चे (डेमो में जोड़े)','Is mahine ke expenses (demo mein jode)','Expenses added this month (demo)'],
+  exp_reg:['रजिस्टर के बाकी खर्च: {x}','Register ke other expenses: {x}','Other expenses in the register: {x}'], exp_done_t:['ख़र्चा {x} जुड़ा','Expense {x} juda','Expense {x} added'],
   none_yet:['अभी कुछ नहीं जोड़ा','Abhi kuch nahi joda','Nothing added yet'],
-  rep_h:['रिपोर्ट डाउनलोड','Report download','Download reports'], rep_wage:['मज़दूरी रजिस्टर (CSV)','Mazdoori register (CSV)','Wage register (CSV)'],
-  rep_att:['हाज़िरी रजिस्टर (CSV)','Hazri register (CSV)','Attendance register (CSV)'], rep_sum:['महीनों का सार (CSV)','Mahino ka saar (CSV)','Monthly summary (CSV)'],
+  rep_h:['रिपोर्ट डाउनलोड','Report download','Download reports'], rep_wage:['मज़दूरी रजिस्टर (CSV)','Wage register (CSV)','Wage register (CSV)'],
+  rep_att:['हाज़िरी रजिस्टर (CSV)','Attendance register (CSV)','Attendance register (CSV)'], rep_sum:['महीनों का सार (CSV)','Mahino ka saar (CSV)','Monthly summary (CSV)'],
   rep_note:['Labour Codes के हिसाब से रजिस्टर (Code on Wages 2019, OSH Code 2020)। डेमो डेटा।','Labour Codes ke hisaab se register (Code on Wages 2019, OSH Code 2020). Demo data.','Labour Codes-ready registers (Code on Wages 2019, OSH Code 2020). Demo data.'],
   csv_done:['फ़ाइल डाउनलोड हो रही है','File download ho rahi hai','Downloading the file'],
   ca_badge:['सिर्फ़ देख सकते हो','Sirf dekh sakte ho','View only'], sum_h:['हर महीने का हिसाब','Har mahine ka hisaab','Month by month'],
-  reg_wage_h:['मज़दूरी रजिस्टर','Mazdoori register','Wage register'], reg_att_h:['हाज़िरी रजिस्टर','Hazri register','Attendance register'],
-  c_receipts:['कैश आया','Cash aaya','Cash received'], c_desig:['काम','Kaam','Work'], c_type:['तरह','Tarah','Type'], daily_pay:['रोज़ाना','rozana','daily'],
-  saved:['सेव हो गया (सिर्फ़ इस फ़ोन पर)','Save ho gaya (sirf is phone par)','Saved (on this phone only)'],
-  csv_site:['साइट','Site','Site'], csv_demo:['डेमो डेटा, नाम छोटे किए गए','Demo data, naam chhote kiye gaye','Demo data, names shortened'],
+  reg_wage_h:['मज़दूरी रजिस्टर','Wage register','Wage register'], reg_att_h:['हाज़िरी रजिस्टर','Attendance register','Attendance register'],
+  c_receipts:['कैश आया','Cash aaya','Payments received'], c_desig:['काम','Kaam','Trade'], c_type:['तरह','Tarah','Type'], daily_pay:['रोज़ाना','rozana','daily'],
+  saved:['सेव हो गया (सिर्फ़ इस फ़ोन पर)','Save ho gaya (sirf is phone par)','Saved (on this device only)'],
+  csv_site:['साइट','Site','Site'], csv_demo:['डेमो डेटा, नाम और रकम काल्पनिक','Demo data, naam aur amounts fictional','Demo data, names and amounts fictional'],
+  pk_h:['खर्च का हिसाब','Cost breakdown','Cost breakdown'], pk_sub:['कंपनी का बिल {x}','Client billing {x}','Client billing {x}'], pk_sub_nb:['कुल ख़र्च {x}','Kul kharcha {x}','Total cost {x}'],
+  seg_km:['खर्ची + मेस','Allowance & mess','Allowance & mess'], seg_wg:['मज़दूरी','Wages','Wages'], seg_ex:['बाकी खर्च','Other expenses','Other expenses'], seg_bc:['बचत','Margin','Margin'],
+  ring_h:['बचत %','Margin %','Margin %'], ring_sub:['हर ₹100 के बिल पर ₹{p} बचे','Har ₹100 billing par ₹{p} margin','₹{p} margin on every ₹100 billed'],
+  tagline:['हाज़िरी से हिसाब तक','Hazri se hisaab tak','From attendance to accounts'],
 };
 
 /* ===================== HELPERS ===================== */
@@ -553,7 +577,7 @@ function toast(msg) { const n = $('#toast'); n.textContent = msg; n.classList.ad
 let DATA = null, SITES = [];
 const siteById = (id) => SITES.find(s => s.id === id);
 const monthOf = (site, ym) => site.months.find(m => m.month === ym);
-const label = (s) => SITE_LABEL[s.id] || s.name;
+const label = (s) => s.label || s.name;
 const activeMonths = (s) => s.months.filter(m => m.derived.active_workers > 0);
 const workerActive = (w) => w.hours.some(h => isNum(h) && h > 0);
 const hasBill = (m) => m.derived.billed !== null && m.derived.billed !== undefined && m.derived.bachat !== null && m.derived.bachat !== undefined;
@@ -821,9 +845,34 @@ function pendingBox() {
   const items = []; for (const s of SITES) for (const [d, x] of Object.entries(S.subs[s.id] || {})) if (!x.ok) items.push({ s, d, x });
   return el('section', { class: 'box' }, el('h3', {}, t('pending_h')), items.length ? el('ul', { class: 'list' }, ...items.map(({ s, d, x }) => el('li', {}, el('span', {}, `${label(s)} · ${dow(d)} ${fmtDate(d)}`, el('small', {}, t('sub_done', { t: x.at, p: x.p, a: x.a, k: inr(x.km) }))), el('button', { class: 'btn primary small', type: 'button', onclick: () => approve(s.id, d) }, t('approve'))))) : el('p', { class: 'note' }, t('pending_none')));
 }
+// Cost breakdown and Margin ring, as on the website: costs in reds (Wages darkest), Margin green, every segment labelled
+function costBox(s, m, mc) {
+  const km = (m.derived.kharchi_mess || 0) + sumOf(S.km, s.id, m.month), wg = Math.max(0, mc.wages - km);
+  const segs = [['wg', wg, 'var(--c-cost1)', t('seg_wg')], ['km', km, 'var(--c-cost2)', t('seg_km')], ['ex', mc.extras, 'var(--c-cost3)', t('seg_ex')]];
+  if (mc.hb && mc.bachat > 0) segs.push(['bc', mc.bachat, 'var(--c-margin)', t('seg_bc')]);
+  const parts = segs.filter(x => x[1] > 0), total = parts.reduce((a, x) => a + x[1], 0) || 1, WIDE = 22;
+  const bar = el('div', { class: 'cbar', role: 'img', 'aria-label': t('pk_h') + ': ' + parts.map(([, v, , lab]) => `${lab} ${inr(v)}`).join(', ') });
+  const calls = el('div', { class: 'ccalls', 'aria-hidden': 'true' }); let at = 0, n = 0;
+  parts.forEach(([k, v, c, lab]) => { const pct = v / total * 100, wide = pct >= WIDE;
+    bar.append(el('div', { class: 'cseg cseg-' + k, style: `width:${pct}%;background:${c}`, title: `${lab}: ${inr(v)} · ${pct.toFixed(0)}%` }, wide ? el('span', { class: 'nm' }, lab) : null, el('span', { class: 'vl' }, Math.round(pct) + '%')));
+    if (!wide) { calls.append(el('span', { class: 'ccall r' + (n % 2), style: `left:${Math.min(Math.max(at + pct / 2, 8), 92)}%` }, el('i', { style: `background:${c}` }), `${lab} · ${Math.round(pct)}%`)); n++; }
+    at += pct; });
+  if (n) calls.classList.add('rows' + Math.min(n, 2));
+  return el('section', { class: 'box' }, el('h3', {}, t('pk_h')), el('p', { class: 'note' }, mc.hb ? t('pk_sub', { x: inr(mc.billed) }) : t('pk_sub_nb', { x: inr(total) })), bar, n ? calls : null,
+    el('ul', { class: 'clegend' }, ...parts.map(([, v, c, lab]) => el('li', {}, el('i', { style: `background:${c}` }), el('span', {}, lab), el('b', { class: 'money' }, inr(v))))));
+}
+function ringBox(s, m, mc) {
+  const box = el('section', { class: 'box ringbox' }, el('h3', {}, t('ring_h')));
+  if (!mc.hb) { box.append(el('div', { class: 'ringwrap' }, el('div', { class: 'ringnum' }, '–')), el('p', { class: 'note' }, t('no_bill'))); return box; }
+  const pct = Math.max(0, Math.min(100, mc.pct)), st = stateOf(pct), R = 58, C = 2 * Math.PI * R;
+  const svg = document.createElementNS(SVGNS, 'svg'); svg.setAttribute('viewBox', '0 0 160 160'); svg.setAttribute('aria-hidden', 'true');
+  svg.innerHTML = `<circle cx="80" cy="80" r="${R}" fill="none" stroke="var(--well)" stroke-width="16"/><circle cx="80" cy="80" r="${R}" fill="none" stroke="var(--c-margin)" stroke-width="16" stroke-linecap="round" transform="rotate(-90 80 80)" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - pct / 100)}"/>`;
+  box.append(el('div', { class: 'ringwrap', role: 'img', 'aria-label': `${t('ring_h')} ${Math.round(pct)}%` }, svg, el('div', { class: 'ringnum' }, Math.round(pct) + '%')), stateChip(st, t('st_' + st)), el('p', { class: 'note' }, t('ring_sub', { p: Math.round(pct) })));
+  return box;
+}
 function thekedarScreen(role) {
   ensurePick(); const s = siteById(ui.site), m = monthOf(s, ui.month), mc = monthCalc(s, m), daily = dailyCalc(s, m);
-  return el('div', { class: 'stack' }, roleBar(role), pickers(), submissionBox(s), tilesRow(s, m, mc), alertsRow(s, m, mc, daily), dailyBox(s, m, daily),
+  return el('div', { class: 'stack' }, roleBar(role), pickers(), submissionBox(s), tilesRow(s, m, mc), alertsRow(s, m, mc, daily), el('div', { class: 'cgrid' }, costBox(s, m, mc), ringBox(s, m, mc)), dailyBox(s, m, daily),
     el('section', { class: 'box' }, el('h3', {}, t('workers_h')), workersTable(s, m, mc, 'th')), pendingBox());
 }
 

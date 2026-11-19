@@ -255,7 +255,7 @@ def parse_labour_sheet(ws):
             if not isinstance(v, str):
                 continue
             k = re.sub(r"\s+", " ", v.strip().upper())
-            if k == "DATE" and isinstance(ws.cell(r, c + 1).value, str) and ws.cell(r, c + 1).value.strip().upper() == "QIPL":
+            if k == "DATE" and isinstance(ws.cell(r, c + 1).value, str) and ws.cell(r, c + 1).value.strip().upper() in LOCAL["receipt_headers"]:
                 rr = r + 1
                 blank = 0
                 while rr <= ws.max_row and blank < 3:
@@ -533,15 +533,17 @@ def build(paths: list[Path]) -> dict:
         for ws in wb.worksheets:
             v = ws.cell(1, 3).value
             if isinstance(v, str) and v.strip():
-                principal = "Quartzite Infrastructure Private Limited" if v.upper().startswith("QUARTZITE") else title_case(v)
+                principal = next((full for pre, full in LOCAL["principal_names"].items() if v.upper().startswith(pre.upper())), title_case(v))
                 break
         client_rates = {}
         for b in billing:
             for k, v in b["client_rates"].items():
                 client_rates.setdefault(k, v)
+        slot = site_slot(p, len(sites))
         sites.append({
-            "id": re.sub(r"[^a-z0-9]+", "-", site_name.lower()).strip("-"),
+            "id": slot["id"],
             "name": site_name,
+            "label": slot["real_label"] or site_name,
             "supervisor": supervisor,
             "principal": principal,
             "source_file": p.name,
@@ -567,6 +569,7 @@ def build(paths: list[Path]) -> dict:
                 "dues": m["register_totals"].get("dues"),
             } for m in months],
         })
+    sites.sort(key=lambda x: x["id"])
     return {
         "generated": dt.date.today().isoformat(),
         "format": "Daily Manhours Report (8 h = 1 day; billing sheets in day-units)",
@@ -603,6 +606,168 @@ def _compact(o):
     if isinstance(o, dict):
         return {k: _compact(v) for k, v in o.items()}
     return o
+
+
+# ------------------------------------------------------- site slots, fictional build
+# Every build uses the same generic site ids, so the page config never names a real site.
+# Real registers map to a slot by file name; the fictional build (public) replaces names and shifts money.
+# Real site labels, receipt headers and the client's name live in raw/local.json (git-ignored, like the registers):
+#   {"slots": [{"match": "<file-name part>", "id": "site-a", "real_label": "<short real name>"}, ...],
+#    "receipt_headers": ["<header text above the client receipts>"], "principal_names": {"<prefix>": "<full name>"}}
+# Without it, sites take site-a, site-b ... in input order and the receipts header is read as "RECEIPTS".
+FICT_SITES = {"site-a": "Site A \u2013 Ahmedabad", "site-b": "Site B \u2013 Pune"}
+
+
+def _load_local() -> dict:
+    f = Path(__file__).resolve().parent.parent / "raw" / "local.json"
+    cfg = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    cfg.setdefault("slots", [])
+    cfg["receipt_headers"] = {h.upper() for h in cfg.get("receipt_headers", ["RECEIPTS"])}
+    cfg.setdefault("principal_names", {})
+    return cfg
+
+
+LOCAL = _load_local()
+FICT_COMPANY = "Shree Ganesh Constructions"
+FICT_CLIENT = "ABC Infra Ltd"
+FICT_SUPERVISORS = {"site-a": "Mahesh Chauhan", "site-b": "Vinod Patil"}
+FIRST = ("Aakash Ajay Amit Anil Arjun Ashok Babulal Balram Bharat Bhola Chandan Deepak Dharam Dinesh Ganesh Gopal Hari Harish "
+         "Jagdish Jeevan Kailash Kamal Kishan Lakhan Laxman Madan Manoj Mohan Mukesh Naresh Nitin Pankaj Pawan Prakash Pramod "
+         "Rajesh Rakesh Ramesh Ravi Sachin Sanjay Santosh Satish Shankar Shyam Sohan Sunil Suresh Tarun Umesh Vijay Vikram Yogesh").split()
+LAST = ("Bhagat Chavan Das Gaikwad Jadhav Kale Kumar Mahato Mandal Meena Mishra More Nayak Pawar Prasad Rathod Rawat Sahu "
+        "Shinde Singh Solanki Thakur Verma Yadav").split()
+MONEY_W = ("rate", "payment", "monthly_salary", "net_payment", "pocket_mess_total", "advance", "dues", "pre_amount", "ta_credit", "ta_debit")
+MONEY_T = ("pocket_mess_total", "advance", "dues", "payment", "net_payment", "extra_costs")
+DESIG_ROWS = ("forman", "foreman", "carpenter", "fitter", "helper", "total")
+
+
+def site_slot(path: Path, index: int) -> dict:
+    stem = path.stem.lower()
+    for sl in LOCAL["slots"]:
+        if sl["match"].lower() in stem:
+            return {"id": sl["id"], "real_label": sl.get("real_label")}
+    return {"id": "site-" + "abcdefghij"[index], "real_label": None}
+
+
+def fictionalize(data: dict, seed: int) -> dict:
+    """Public build (KP, 20 Nov 2026): fictional company, client, sites, supervisors and workers, and every money
+    amount shifted by one random factor per site (10-15 % up or down, drawn from `seed`). Money is scaled by the same
+    factor everywhere in a site, so totals, nets and the profit split still add up; hours, day codes, dates and head-
+    counts stay as in the registers so the register arithmetic (8 h = 1 day) holds. Remarks and receipt notes are dropped."""
+    import random
+    rng = random.Random(seed)
+    out = json.loads(json.dumps(data))
+    pool = [f"{a} {b}" for a in FIRST for b in LAST]
+    rng.shuffle(pool)
+    names: dict[str, str] = {}
+    firsts: set[str] = set()
+    # never hand out a fictional name that matches a real person in the registers (full pair or first name + initial)
+    real_people = set()
+    for site in data["sites"]:
+        real_people.add(site.get("supervisor") or "")
+        for m in site["months"] + site["billing_only_months"]:
+            real_people.update(w["name"] for w in m.get("workers", []))
+            real_people.update(r["name"] for r in ((m.get("billing") or {}).get("rows", []) + m.get("rows", [])))
+    taken = set()
+    for n in real_people:
+        parts = n.split()
+        if len(parts) >= 2:
+            taken.add((parts[0].lower(), parts[1].lower()))
+            taken.add((parts[0].lower(), parts[1][0].lower()))
+    pool = [c for c in pool if (c.split()[0].lower(), c.split()[1].lower()) not in taken and (c.split()[0].lower(), c.split()[1][0].lower()) not in taken]
+
+    def fname(real: str) -> str:
+        if real not in names:
+            cand = pool.pop()
+            while cand.split()[0] in firsts and len(firsts) < len(FIRST):
+                cand = pool.pop()
+            firsts.add(cand.split()[0])
+            names[real] = cand
+        return names[real]
+
+    def money(v, f, dec=0):
+        if v is None or not is_num(v):
+            return v
+        return round(v * f, dec) if dec else float(round(v * f))
+
+    out["codes"] = {"A": "absent", "L": "left the site", "TR1/TR2/TR3": "transferred to another site", "BH/MH/bhu": "other (to confirm)"}
+    out["company"] = FICT_COMPANY
+    out["name_policy"] = "fictional: company, client, sites and people; money shifted 10-15 % per site"
+    out.pop("format", None)
+    for site in out["sites"]:
+        fict = FICT_SITES.get(site["id"], site["id"].replace("-", " ").title())
+        f = (1 + rng.uniform(0.10, 0.15)) if rng.random() < 0.5 else (1 - rng.uniform(0.10, 0.15))
+        f = round(f, 3)
+        site["name"] = fict
+        site["label"] = fict
+        site["principal"] = FICT_CLIENT
+        site["supervisor"] = FICT_SUPERVISORS.get(site["id"], "Site Supervisor")
+        site["source_file"] = site["id"] + ".xlsx"
+        site.pop("name_policy", None)
+        for m in site["months"] + site["billing_only_months"]:
+            m["site"] = site["name"]
+            m["supervisor"] = site["supervisor"]
+            m.pop("sheet", None)
+            for w in m.get("workers", []):
+                w["name"] = fname(w["name"])
+                w["remarks"] = ""
+                # transfer codes name the contractor's real sites (PS1, PS3 ...): shown as TR1, TR3 ...
+                w["hours"] = [("TR" + h[2:]) if isinstance(h, str) and h.upper().startswith("PS") else h for h in w["hours"]]
+                for k in MONEY_W:
+                    w[k] = money(w.get(k), f, 2 if (k == "rate" and w.get("pay_type") != "daily") else 0)
+                for wk in w.get("weeks", []):
+                    wk["pocket"] = money(wk["pocket"], f)
+                    wk["mess"] = money(wk["mess"], f)
+            for k in MONEY_T:
+                if k in m.get("register_totals", {}):
+                    m["register_totals"][k] = money(m["register_totals"][k], f)
+            for r in m.get("receipts", []):
+                r["amount"] = money(r["amount"], f)
+                r["note"] = ""
+            if "receipts_total" in m:
+                m["receipts_total"] = float(round(sum(r["amount"] for r in m["receipts"])))
+            m["expenses"] = {k: money(v, f) for k, v in m.get("expenses", {}).items()}
+            bills = [m["billing"]] if m.get("billing") else ([m] if m.get("kind") == "billing" else [])
+            for b in bills:
+                b["site"] = site["name"]
+                b["supervisor"] = site["supervisor"]
+                b.pop("sheet", None)
+                for row in b["rows"]:
+                    if not row["name"].lower().startswith(DESIG_ROWS):
+                        row["name"] = fname(row["name"])
+                    row["rate"] = money(row["rate"], f)
+                    row["payment"] = money(row["payment"], f)
+                b["client_rates"] = {k: money(v, f) for k, v in b["client_rates"].items()}
+                for k in ("billed_total", "gst", "billed_with_gst"):
+                    b[k] = money(b.get(k), f)
+            if m.get("derived"):
+                d = m["derived"]
+                for k in ("extras", "ta_debit", "extra_expenses", "kharchi_mess", "cash_to_workers", "owed_by_workers", "bachat",
+                          "wages_variable", "fixed_salaries", "wages_register", "billed"):
+                    d[k] = money(d.get(k), f)
+                for x in d["daily"]:
+                    x["wages"] = money(x["wages"], f, 2)
+                    x["billed"] = money(x["billed"], f, 2)
+                    x["bachat"] = r2(x["billed"] - x["wages"])
+                if d.get("billed") is not None and d.get("bachat") is not None:
+                    d["bachat"] = float(round(d["billed"] - d["wages_register"] - d["extras"]))
+                    d["bachat_pct"] = r2(d["bachat"] / d["billed"] * 100) if d["billed"] else None
+        site["client_rates"] = {k: money(v, f) for k, v in site["client_rates"].items()}
+        site["expenses_sheet"] = [{k: (v if k == "month" else money(v, f)) for k, v in e.items()} for e in site["expenses_sheet"]]
+        site["rate_history"] = {fname(k): {"rates": [{"month": r["month"], "rate": money(r["rate"], f)} for r in v["rates"]],
+                                            "changes": [{**c, "from": money(c["from"], f), "to": money(c["to"], f)} for c in v["changes"]]}
+                                for k, v in site["rate_history"].items()}
+        bym = {m["month"]: m for m in site["months"]}
+        for srow in site["summary"]:
+            m = bym.get(srow["month"])
+            for k in ("wages", "billed", "bachat", "extras", "kharchi_mess", "receipts", "advances", "dues"):
+                srow[k] = money(srow.get(k), f)
+            if m:
+                d = m["derived"]
+                srow.update(wages=d["wages_register"], billed=d["billed"], bachat=d["bachat"], bachat_pct=d["bachat_pct"],
+                            extras=d["extras"], kharchi_mess=d["kharchi_mess"], receipts=m["receipts_total"])
+        site["_shift"] = f
+    return out
 
 
 def mask_name(name: str) -> str:
@@ -715,10 +880,13 @@ def main() -> None:
     ap.add_argument("--inline", type=Path, help="HTML page to inline the JSON into")
     ap.add_argument("--inline-months", type=int, default=4, help="months with labour entries to inline per site, newest first (default 4)")
     ap.add_argument("--mask", action="store_true", help="public build: worker names as first name + initial, remarks and receipt notes dropped")
-    ap.add_argument("--private-html", type=Path, help="also write a self-contained page with REAL names to this path (outside the repo)")
+    ap.add_argument("--fictional", action="store_true", help="public build: fictional company, client, sites and people; money shifted 10-15 %% per site")
+    ap.add_argument("--seed", type=int, default=20261120, help="random seed for --fictional (fixed, so a rebuild gives the same page)")
+    ap.add_argument("--private-html", type=Path, help="also write a self-contained page with REAL names and numbers to this path (outside the repo)")
     a = ap.parse_args()
     real = build(a.xlsx)
-    data = mask_names(real) if a.mask else real
+    data = fictionalize(real, a.seed) if a.fictional else (mask_names(real) if a.mask else real)
+    shifts = {x["id"]: x.pop("_shift") for x in data["sites"] if "_shift" in x}
     a.out.parent.mkdir(parents=True, exist_ok=True)
     a.out.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"wrote {a.out} ({a.out.stat().st_size // 1024} KB)")
@@ -729,7 +897,9 @@ def main() -> None:
             print(f"  {m['month']}  workers {m['workers']:>2} (active {m['active_workers']:>2})  wages {m['wages']:>12,.0f}  billed {b}  receipts {m['receipts']:>10,.0f}")
     if a.inline:
         inline_into(a.inline, data, a.inline_months)
-        print(f"inlined into {a.inline} ({'masked' if a.mask else 'REAL'} names)")
+        print(f"inlined into {a.inline} ({'fictional' if a.fictional else 'masked' if a.mask else 'REAL'} data)")
+    if shifts:
+        print("money shift per site (printed only, kept out of the JSON): " + ", ".join(f"{k} x{v}" for k, v in shifts.items()))
     if a.private_html:
         if not a.inline:
             sys.exit("--private-html needs --inline (the page is the template)")
