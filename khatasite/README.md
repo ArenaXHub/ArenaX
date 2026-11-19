@@ -4,7 +4,7 @@ Labour Management System for construction labour contractors. A product of Arena
 
 Live path: `https://arenax.in/khatasite/` (this folder is served as-is by GitHub Pages; the root homepage is untouched).
 
-Renamed from SiteBook on 19 Nov 2026. The old path `https://arenax.in/sitebook/` is a redirect page (`sitebook/index.html` at the repository root) so links already shared keep working. The app is planned at `khatasite.arenax.in` (separate hosting; see the ArenaX decision log).
+Renamed from SiteBook on 19 Nov 2026. The old paths `https://arenax.in/sitebook/` and `https://arenax.in/sitebook/app/` are redirect pages (`sitebook/index.html` and `sitebook/app/index.html` at the repository root) so links already shared keep working. The app is planned at `khatasite.arenax.in` (separate hosting; see the ArenaX decision log).
 
 The page carries `noindex` because the demo is built from two real site registers (hours, rates, advances, dues, company receipts) and is shared by link with the contractors who provided them. Worker names in the public build are shortened to first name + initial; the repository is public and real worker names are never committed. Nothing about ArenaX's own business (admin console, costs) belongs in this folder; that lives in the private ArenaX workspace.
 
@@ -13,10 +13,12 @@ The page carries `noindex` because the demo is built from two real site register
 ```
 khatasite/
   index.html                 the whole site: product page + live demo (inline CSS/JS, data inlined as JSON)
+  app/index.html             quick demo app (front end only): login + one-tap roles, reads data/khatasite-demo.json
   assets/                    favicon.svg, og.png (fonts are the site's own, ../assets/fonts; the ₹ sign and the हिंदी label use tiny fonts embedded in index.html)
   data/khatasite-demo.json    everything the build script extracted and derived (full, pretty-printed)
   raw/                       the two Excel registers (ignored by git: this repo is public)
   tools/build_demo_data.py   Excel -> JSON -> inlined into index.html
+  tools/sync_app.py          copies the site's fonts, icon sprite and shared strings into app/index.html
   docs/product-brief.md      users, roles, pricing, compliance wording, roadmap
   docs/data-model.md         tables for the real product
   verify/                    headless screenshots (desktop 1280, phone 390) used before each commit
@@ -59,6 +61,20 @@ Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,4
 - Icons: an inline SVG sprite at the top of `<body>`; use `ic('name')` in code. Do not use emoji: older Android phones show new emoji as empty boxes, and emoji font fallback slows the page.
 - Demo dates and default dashboard: the `DEMO` object next to it.
 - Strings: the `T` object (every key has Hindi, Hinglish, English, in that order).
+
+## Demo app (`app/`)
+
+A front-end-only version of the app at `arenax.in/khatasite/app/`, opened from the "Demo app kholo" buttons on the site. It is marked "Demo — data sirf aapke phone par" on every screen.
+
+- Login screen with a mobile-number field (the demo sends no OTP) and one-tap guest roles: Thekedar, Munshi · Davengere Site, Munshi · PS-1 Motidau, Hisaab-wala, CA.
+- Munshi: marks the demo day (8 / 12 / 4 hours or absent), gives kharchi, sees the week's register in days only, submits (geo and photo shown as a demo), then moves to the next demo day. No rates or wages.
+- Thekedar: approves the munshi's day, changes a worker's rate from a chosen date, sees bill, wages, bachat, owed, alerts and daily bachat for any site and month.
+- Hisaab-wala: records payments (cash, UPI, bank), advances and site expenses; downloads the wage register, attendance register and monthly summary as CSV. Cannot change rates.
+- CA: view only: month-by-month summary, wage register, attendance register, the same CSV downloads.
+- Data: the masked `data/khatasite-demo.json`. With no demo changes every figure equals the register. Changes live only in this browser (`localStorage` key `arenax-demo-app-v1`, every access in try/catch); "Reset demo" clears them. With storage blocked the app still works and says changes will not be kept.
+- Theme picker (same as phone, light, dark) and the three languages (हिंदी, Hinglish, English), both remembered in this browser.
+- After changing the site's fonts, icons or the shared strings, run `py -I khatasite/tools/sync_app.py khatasite/index.html khatasite/app/index.html`.
+- The private real-name file links its app buttons to the published app, since it is opened on its own.
 
 ## Verify before committing
 

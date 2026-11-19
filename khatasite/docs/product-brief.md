@@ -83,7 +83,7 @@ Cash and register flow audit · register import to KhataSite · Labour Codes set
 
 | Phase | Scope | Notes |
 |---|---|---|
-| 0 (now) | Product page + clickable demo from the two registers | this repo, `khatasite/` |
+| 0 (now) | Product page + clickable demo from the two registers; quick demo app (front end only: login, one-tap roles, data kept in the browser) at `khatasite/app/` | this repo, `khatasite/` |
 | 1 | Pilot (Dec 2026) with the PS-1 / Davengere contractor: munshi PWA (offline attendance, kharchi, submit with geo + photo), thekedar dashboard, weekly settlement, rate history | launch offer ₹2,499 for the first 6 months |
 | 1.5 | Accountant role, register import tool (this build script generalised), Labour Codes register export, QR card and WhatsApp parchi add-ons | onboarding ₹3,999 / ₹4,999 on the monthly plan, free on the annual plan |
 | 2 | Company view (read-only attendance proof for billing), multi-site plans, payment gateway for subscriptions | |
