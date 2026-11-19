@@ -792,7 +792,7 @@ const PRICING = {
   currency: '₹', gstPct: 18,
   trial: { days: 10, sites: 1 },
   // monthly = monthly plan per site + GST; annual = annual plan per site per year + GST
-  site: { monthly: 3999, annual: 25000, includedLabour: 40, extraLabour: 10 },
+  site: { monthly: 3999, annual: 29999, includedLabour: 40, extraLabour: 10 },
   // Launch offer: contractors who join in the launch month pay this, locked for lockMonths. Dec 2026 = pilot with the two contractors.
   launch: { monthly: 2499, off: 1500, lockMonths: 6, start: '2027-01-01' },
   // onboarding (one-time, per contractor): monthly plan pays `early` if booked by the end of `earlyBy`, `regular` after;
@@ -800,7 +800,8 @@ const PRICING = {
   onboarding: { regular: 4999, early: 3999, earlyBy: '2026-12-31', annualFree: true },
   // multiSite: % off the regular per-site price (monthly and annual) for a contractor's sites; the highest tier reached applies to all sites.
   // It does not stack with the launch price (the lower of the two applies). From enterprise.minSites sites the price is "Ask Price".
-  multiSite: [{ min: 2, pct: 10 }, { min: 5, pct: 15 }],
+  // annual: the tier's annual price per site per year (set by KP); without it the annual price takes the same % off
+  multiSite: [{ min: 2, pct: 10, annual: 26999 }, { min: 5, pct: 15, annual: 25499 }],
   enterprise: { minSites: 10 },
   addons: { qr: null, whatsapp: null }   // null = Ask Price
 };
@@ -1443,6 +1444,8 @@ function onbNow() { const O = PRICING.onboarding, end = new Date(O.earlyBy + 'T2
 // multi-site: % off for n sites (0 for one site), or null from enterprise.minSites sites (Ask Price)
 function siteDisc(n) { const P = PRICING; if (n >= P.enterprise.minSites) return null; let pct = 0; for (const tr of P.multiSite) if (n >= tr.min) pct = tr.pct; return pct; }
 const discP = (price, pct) => Math.round(price * (100 - pct) / 100);
+// annual price per site for n sites: the tier's own annual price when set, else the same % off
+function annualFor(n) { const P = PRICING, pct = siteDisc(n) || 0; let tierA = null; for (const tr of P.multiSite) if (n >= tr.min) tierA = tr.annual || null; return pct && tierA ? tierA : discP(P.site.annual, pct); }
 function cdBoxes(ms, cls) { const d = Math.floor(ms / 864e5); ms -= d * 864e5; const h = Math.floor(ms / 36e5); ms -= h * 36e5; const mi = Math.floor(ms / 6e4); const s = Math.floor((ms - mi * 6e4) / 1000);
   return el('div', { class: cls }, ...[[d, 'cd_d'], [h, 'cd_h'], [mi, 'cd_m'], [s, 'cd_s']].map(([v, k]) => el('div', {}, el('b', {}, v), el('span', {}, t(k))))); }
 function launchWindow() { const ls = new Date(PRICING.launch.start + 'T00:00:00'); const le = new Date(ls.getFullYear(), ls.getMonth() + 1, 0, 23, 59, 59); return { ls, le }; }
@@ -1473,7 +1476,7 @@ function renderPricing() {
     plan('', 'building', t('pl_ent'), [t('ad_price')], t('pl_ent_sub', { n: P.enterprise.minSites }), tl('pl_ent_l')));
   const tiers = P.multiSite.map((tr, i) => { const nx = P.multiSite[i + 1], hi = (nx ? nx.min : P.enterprise.minSites) - 1;
     return el('div', { class: 'mst' }, el('span', { class: 'k' }, t('ms_range', { a: tr.min, b: hi })), el('span', { class: 'off' }, t('ms_off', { p: tr.pct })),
-      el('span', { class: 'p money' }, inr(discP(P.site.monthly, tr.pct)), ' ', el('small', {}, t('per_site'))), el('small', {}, t('ms_py', { y: inr(discP(P.site.annual, tr.pct)) }))); });
+      el('span', { class: 'p money' }, inr(discP(P.site.monthly, tr.pct)), ' ', el('small', {}, t('per_site'))), el('small', {}, t('ms_py', { y: inr(tr.annual || discP(P.site.annual, tr.pct)) }))); });
   tiers.push(el('div', { class: 'mst' }, el('span', { class: 'k' }, t('pl_ent_sub', { n: P.enterprise.minSites })), el('span', { class: 'p' }, t('ad_price')), el('button', { type: 'button', class: 'btn small lift', 'data-lead': true }, t('ms_ask_btn'))));
   $('#msd').replaceChildren(el('h3', { class: 'h4' }, t('ms_h')), el('div', { class: 'msd-row' }, ...tiers), el('p', { class: 'note' }, t('ms_note')));
   $('#addons').replaceChildren(...[['idcard', 'ad_qr', 'ad_qr_l', P.addons.qr, 'qr'], ['chat', 'ad_wa', 'ad_wa_l', P.addons.whatsapp, 'wa']].map(([icn, h, l, price, pk]) => el('div', { class: 'card addon-card lift', ...popAttrs(pk) }, el('span', { class: 'aic', 'aria-hidden': 'true' }, ic(icn)), el('div', {}, el('h3', { class: 'h4' }, t(h), el('span', { class: 'addon' }, t('addon'))), el('p', { class: 'note' }, t(l)), el('span', { class: 'tapme' }, t('tapme'), ' ›')), el('span', { class: 'ap' }, price === null ? t('ad_price') : inr(price)))));
@@ -1511,7 +1514,7 @@ function renderCalc() {
   const sites = +$('#calcSites').value, lab = Math.round(get('#calcLab', 0, 2000)), rate = get('#calcRate', 0, 10000), munshi = get('#calcMunshi', 0, 500000), hrs = get('#calcHours', 0, 10);
   $('#calcSitesOut').textContent = sites;
   const over = new Date() > launchWindow().le, O = onbNow(), mName = fmtMonth(P.launch.start.slice(0, 7));
-  const pct = siteDisc(sites), ask = pct === null, pm = discP(P.site.monthly, pct || 0), py = discP(P.site.annual, pct || 0);
+  const pct = siteDisc(sites), ask = pct === null, pm = discP(P.site.monthly, pct || 0), py = annualFor(sites);
   const extraN = Math.max(0, lab - P.site.includedLabour), extra = sites * extraN * P.site.extraLabour;
   // monthly plan: launch-month joiners pay the launch price for lockMonths (the lower of launch and discounted price), then the regular price less any multi-site discount
   const lm = over ? 0 : Math.min(12, P.launch.lockMonths), month = sites * pm + extra, launchSub = sites * Math.min(P.launch.monthly, pm) + extra;
