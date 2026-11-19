@@ -51,7 +51,9 @@ Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,4
 
 ## Editing
 
-- Pricing: the `PRICING` object at the top of the script in `index.html` (v2: ₹1,599 per site per month, launch ₹1,299 in January 2027 locked for 6 months, 10-day trial, onboarding ₹2,999, 40 active labour included, ₹10 per extra, annual = 10 months, add-ons price on request).
+- Pricing: the `PRICING` object at the top of the script in `index.html` (v2.1: ₹2,999 per site per month, launch ₹1,999 in January 2027 locked for 6 months, 10 Din trial, onboarding ₹4,999, 40 active labour included, ₹10 per extra, annual = 10 months, add-ons "Ask Price").
+- Query form: `CONTACT` next to it. Set `CONTACT.whatsapp` (international form, no +) to send by WhatsApp; while it is `null` the form sends by email.
+- Fayda estimate: `SAVINGS` next to it (1% attendance errors, 1 munshi hour a day, reference register PS-1 Feb 2026).
 - Icons: an inline SVG sprite at the top of `<body>`; use `ic('name')` in code. Do not use emoji: older Android phones show new emoji as empty boxes, and emoji font fallback slows the page.
 - Demo dates and default dashboard: the `DEMO` object next to it.
 - Strings: the `T` object (every key has Hindi, Hinglish, English, in that order).
