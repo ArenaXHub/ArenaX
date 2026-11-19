@@ -51,9 +51,9 @@ Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,4
 
 ## Editing
 
-- Pricing: the `PRICING` object at the top of the script in `index.html` (v2.1: ₹2,999 per site per month, launch ₹1,999 in January 2027 locked for 6 months, 10 Din trial, onboarding ₹4,999 (free in the launch month: `launch.onboardingFree`), 40 active labour included, ₹10 per extra, annual = 10 months, add-ons "Ask Price").
-- Query form: the single line `CONTACT_WHATSAPP` next to it. Put the ArenaX business WhatsApp number there (international form, no +; KP's rule 5 exception covers this number only) to send by WhatsApp; while it is `null` the form sends by email.
-- Fayda estimate: `SAVINGS` next to it (1% attendance errors, 1 munshi hour a day valued from the munshi's salary, 30 paid day-units a month, reference register PS-1 Feb 2026). The calculator lets the contractor enter his own numbers.
+- Pricing: the `PRICING` object at the top of the script in `index.html` (v2.3: monthly plan ₹3,999 per site per month; launch offer ₹2,499 for the first month only, for contractors who join in January 2027 (`launch.lockMonths = 1`); annual plan ₹25,000 per site per year (`site.annual`); 10 Din trial; onboarding in `onboarding`: monthly plan ₹3,999 if booked by 31 Dec 2026 (`earlyBy`), ₹4,999 after, free on the annual plan (`annualFree`); 40 active labour included, ₹10 per extra; add-ons "Ask Price").
+- Query form: the single line `CONTACT_WHATSAPP` next to it holds the WhatsApp number the form sends to (international form, no +). It is a temporary contact until the ArenaX business number replaces it; KP's rule 5 exceptions (D-69, D-70) cover this line only. Set it to `null` to send by email.
+- Fayda estimate: `SAVINGS` next to it (1% attendance errors, 1 munshi hour a day valued from the munshi's salary, 30 paid day-units a month, reference register PS-1 Feb 2026). `compareWith` picks the cost the fayda is set against: the annual plan ÷ 12 (default) or the monthly plan. The calculator lets the contractor enter his own numbers.
 - Icons: an inline SVG sprite at the top of `<body>`; use `ic('name')` in code. Do not use emoji: older Android phones show new emoji as empty boxes, and emoji font fallback slows the page.
 - Demo dates and default dashboard: the `DEMO` object next to it.
 - Strings: the `T` object (every key has Hindi, Hinglish, English, in that order).

@@ -44,9 +44,13 @@ Geo-lock 200 m · morning time window · group photo · offline-first PWA with s
 ## Pricing (every number lives in the `PRICING` object in `index.html`)
 
 - **Free trial**: 10 Din, 1 site, all features, no card (long enough for one full weekly hisaab).
-- **Site Plan**: ₹2,999 per site per month + GST, includes 40 active labour per site; ₹10 per extra active labour. "Active" = marked present at least once that month. Munshi and accountant logins free. Annual = pay 10 months.
-- **Launch offer**: ₹1,999 per site per month (₹1,000 off, shown against the struck-through ₹2,999) for contractors who join in the launch month (January 2027, `launch.start = 2027-01-01`), locked for their first 6 months. December 2026 is the pilot with the two contractors, who get this offer.
-- **Onboarding (one-time)**: ₹4,999: register import, munshi training, site setup (GPS, time window). Free for contractors who join in the launch month (January 2027), shown as the struck-through ₹4,999 (`launch.onboardingFree`).
+- **Site Plan, monthly**: ₹3,999 per site per month + GST, includes 40 active labour per site; ₹10 per extra active labour. "Active" = marked present at least once that month. Munshi and accountant logins free.
+- **Site Plan, annual**: ₹25,000 per site per year + GST (₹2,083 a month), paid once a year (`site.annual`). Extra labour is still ₹10 per extra active labour, counted each month. Onboarding is free on the annual plan.
+- **Launch offer**: ₹2,499 per site for the first month only (₹1,500 off, shown against the struck-through ₹3,999) for contractors who join in the launch month (January 2027, `launch.start = 2027-01-01`, `launch.lockMonths = 1`). From the second month they pay ₹3,999 a month, or take the annual plan. December 2026 is the pilot with the two contractors, who get this offer.
+- **Onboarding (one-time, per contractor)**: register import, munshi training, site setup (GPS, time window). Final rule (KP, 19 Nov 2026), in `PRICING.onboarding`:
+  - Monthly plan: ₹3,999 if booked by 31 Dec 2026 (`early`, `earlyBy`), shown against the struck-through ₹4,999 with a countdown on the onboarding card; ₹4,999 after (`regular`).
+  - Annual plan: free (`annualFree`), shown as the struck-through monthly onboarding price of that day and FREE, with the line "Saal ka plan lo, setup free. ₹3,999 bachao." Until 31 Dec 2026 the struck price is ₹3,999; after that it is ₹4,999.
+  - The launch banner and the Site Plan card say "setup FREE" next to the annual plan, and the banner shows the monthly plan's onboarding offer.
 - **Add-ons**: QR / NFC worker card; WhatsApp parchi (weekly pay slip / voice note). "Ask Price".
 - **Multi-site / company**: 10+ sites, custom.
 - No competitor names or prices on the public page.
@@ -58,13 +62,13 @@ An estimate, always labelled "andaaza", from two stated assumptions in the `SAVI
 1. If only 1% of attendance is written wrong, the contractor overpays 1% of the month's wages.
 2. The munshi saves 1 hour a day of register work (valued at his monthly pay ÷ 10-hour day).
 
-PS-1 Motidau, Feb 2026: 1% of ₹4,09,814 = ₹4,098, plus 10% of the foreman's ₹25,000 = ₹2,500, so ₹6,598 a month against ₹1,999: 3.3 times the cost. The dashboard shows the same figure for whichever site and month is selected.
+PS-1 Motidau, Feb 2026: 1% of ₹4,09,814 = ₹4,098, plus 10% of the foreman's ₹25,000 = ₹2,500, so ₹6,598 a month against ₹2,083 (the annual plan per month): 3.2 times the cost. `SAVINGS.compareWith` sets the cost the fayda is set against: `'annual'` (annual plan ÷ 12, the default, named under the cost bar) or `'monthly'` (₹3,999, 1.6 times). The dashboard shows the same figure for whichever site and month is selected.
 
-The calculator takes the contractor's own numbers: sites, workers per site, average daily rate, the munshi's monthly salary and the munshi hours saved a day (default 1). Wages = sites × workers × rate × 30 paid day-units a month (overtime included, as in the register); fayda = 1% of those wages + the munshi's saved hours valued from his own salary (salary × hours ÷ 10-hour day). Defaults come from the PS-1 Feb register (26 workers, ₹495 average rate, ₹25,000 munshi): ₹6,361 a month, 3.2 times ₹1,999. Always labelled "andaaza".
+The calculator takes the contractor's own numbers: sites, workers per site, average daily rate, the munshi's monthly salary and the munshi hours saved a day (default 1). Wages = sites × workers × rate × 30 paid day-units a month (overtime included, as in the register); fayda = 1% of those wages + the munshi's saved hours valued from his own salary (salary × hours ÷ 10-hour day). Defaults come from the PS-1 Feb register (26 workers, ₹495 average rate, ₹25,000 munshi): ₹6,361 a month, 1.6 times the monthly plan (₹3,999) and 3.1 times the annual plan per month (₹2,083). Always labelled "andaaza". The cost side sets the two plans side by side for the contractor's sites and workers: plan price, onboarding, first month and first year, before and with GST. The first month on the monthly plan is the launch price for January 2027 joiners plus onboarding. At one site with no extra labour, booked by 31 Dec 2026, the first year costs ₹50,487 on the monthly plan (₹2,499 + 11 × ₹3,999 + ₹3,999 onboarding) and ₹25,000 on the annual plan: ₹25,487 less before GST.
 
 ### Query form and always-visible CTA
 
-A floating "10 Din free trial" button and every trial button open a short form (name, mobile, place, sites, workers, note). It opens WhatsApp with a pre-filled message when `CONTACT_WHATSAPP` is set (the ArenaX business number only; KP approved this one exception to CLAUDE.md rule 5); until then it opens an email to contactarenax@gmail.com with the same message. Nothing is stored by the page.
+A floating "10 Din free trial" button and every trial button open a short form (name, mobile, place, sites, workers, note). It opens WhatsApp with a pre-filled message to the number in the single `CONTACT_WHATSAPP` line. That line holds a temporary contact until the ArenaX business number replaces it (KP's exceptions to CLAUDE.md rule 5, D-69 and D-70, cover this line only). If the line is `null`, the form opens an email to contactarenax@gmail.com with the same message. Nothing is stored by the page.
 
 ## Compliance wording
 
@@ -79,8 +83,8 @@ Cash and register flow audit · register import to SiteBook · Labour Codes setu
 | Phase | Scope | Notes |
 |---|---|---|
 | 0 (now) | Product page + clickable demo from the two registers | this repo, `sitebook/` |
-| 1 | Pilot (Dec 2026) with the PS-1 / Davengere contractor: munshi PWA (offline attendance, kharchi, submit with geo + photo), thekedar dashboard, weekly settlement, rate history | launch offer ₹1,999 |
-| 1.5 | Accountant role, register import tool (this build script generalised), Labour Codes register export, QR card and WhatsApp parchi add-ons | onboarding ₹4,999 |
+| 1 | Pilot (Dec 2026) with the PS-1 / Davengere contractor: munshi PWA (offline attendance, kharchi, submit with geo + photo), thekedar dashboard, weekly settlement, rate history | launch offer ₹2,499 for the first month |
+| 1.5 | Accountant role, register import tool (this build script generalised), Labour Codes register export, QR card and WhatsApp parchi add-ons | onboarding ₹3,999 / ₹4,999 on the monthly plan, free on the annual plan |
 | 2 | Company view (read-only attendance proof for billing), multi-site plans, payment gateway for subscriptions | |
 | 3 | Payouts to labour (UPI), audit trail, analytics across sites | |
 
@@ -91,5 +95,6 @@ Cash and register flow audit · register import to SiteBook · Labour Codes setu
 - The munshi sees days only, plus the kharchi he himself gave. No rates, no wages on the munshi app.
 - Worker names are shortened (first name + initial) in everything public; the real-name demo is built outside the repository and never committed.
 - v2: no internal ArenaX views, costs or business numbers on any public page or in this repository; QR / NFC card and WhatsApp parchi are add-ons.
-- v2.1: pricing ₹2,999 regular, ₹1,999 launch, onboarding ₹4,999, "Ask Price" for add-ons, "10 Din" trial; bachat = company bill − total site expense (wages, which include kharchi + mess, plus extra), as in the register's month total; onboarding without QR cards; fayda estimate shown to contractors; sample popups (WhatsApp parchi, printed slip, QR card, geo-lock, morning window, group photo, offline, register, dashboard); always-visible CTA with a query form.
-- v2.2: launch-month joiners get onboarding free (₹4,999 struck through); the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary.
+- v2.1: pricing ₹2,999 regular, ₹1,999 launch, onboarding ₹4,999, "Ask Price" for add-ons, "10 Din" trial; bachat = company bill − total site expense (wages, which include kharchi + mess, plus extra), as in the register's month total; onboarding without QR cards; fayda estimate shown to contractors; sample popups (WhatsApp parchi, printed slip, QR card, geo-lock, morning window, group photo, offline, register, dashboard); always-visible CTA with a query form. (The v2.1 prices were replaced in v2.3.)
+- v2.2: the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary. Onboarding stays ₹4,999 in the launch offer (free onboarding was tried and withdrawn the same day).
+- v2.3: monthly plan ₹3,999 per site per month; launch offer ₹2,499 for the first month only, for contractors who join in January 2027; annual plan ₹25,000 per site per year (₹2,083 a month); the fayda is set against the annual plan per month. Onboarding, final rule: free on the annual plan; on the monthly plan ₹3,999 if booked by 31 Dec 2026, ₹4,999 after.

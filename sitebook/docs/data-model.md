@@ -17,9 +17,9 @@ Multi-tenant from day one: every row that belongs to a contractor carries `contr
 |---|---|
 | id, contractor_id | |
 | plan | trial, site, launch, enterprise |
-| price_per_site, included_labour, extra_labour_price | copied from the price list at signup so later price changes do not alter old invoices |
-| trial_ends_at, locked_until | launch lock (6 months) |
-| billing_cycle | monthly, annual |
+| price_per_site, included_labour, extra_labour_price, onboarding_fee | copied from the price list at signup so later price changes do not alter old invoices |
+| trial_ends_at, locked_until | launch price period (`launch.lockMonths`: the first month in v2.3) |
+| billing_cycle | monthly, annual (annual: onboarding_fee 0) |
 | status | trial, active, past_due, suspended, cancelled |
 
 ### sites
