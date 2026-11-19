@@ -2,7 +2,7 @@
 
 KhataSite is a Labour Management System for construction labour contractors (thekedars) who run several sites for a principal company, pay labour by the day and settle weekly in cash. A product of ArenaX Digital Solutions.
 
-Pilot material: two real registers (Davengere Site, supervisor Sonu Nigam; Motidau PS-1 Gujarat, supervisor/foreman Arun Sharma; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/khatasite/` is built from them, with worker names shortened.
+Pilot material: two real registers (Davengere Site, supervisor Sonu N.; Motidau PS-1 Gujarat, supervisor/foreman Arun S.; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/khatasite/` is built from them, with worker names shortened.
 
 ArenaX's own business side (admin console, costs) is kept in the private ArenaX workspace, not in this public repository.
 

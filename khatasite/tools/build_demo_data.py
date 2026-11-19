@@ -620,11 +620,11 @@ def mask_name(name: str) -> str:
 
 
 def mask_names(data: dict) -> dict:
-    """Public build: worker names become first name + initial; supervisor and site names stay;
-    free-text remarks and receipt notes (which name people) are dropped. Numbers are untouched."""
+    """Public build: worker and supervisor names become first name + initial (KP, 19 Nov 2026: full names only in the
+    private file); site names stay; free-text remarks and receipt notes (which name people) are dropped. Numbers are untouched."""
     out = json.loads(json.dumps(data))
     for site in out["sites"]:
-        keep = {site["supervisor"]}
+        keep: set[str] = set()
         mapping: dict[str, str] = {}
         used: set[str] = set()
 
@@ -641,17 +641,24 @@ def mask_names(data: dict) -> dict:
                 mapping[name] = cand
             return mapping[name]
 
+        site["supervisor"] = m(site["supervisor"])  # first, so the supervisor keeps the plain short form
         for month in site["months"] + site["billing_only_months"]:
+            if month.get("supervisor"):
+                month["supervisor"] = m(month["supervisor"])
             for w in month.get("workers", []):
                 w["name"] = m(w["name"])
                 w["remarks"] = ""
             for r in month.get("receipts", []):
                 r["note"] = ""
             bill = month.get("billing")
+            if bill and bill.get("supervisor"):
+                bill["supervisor"] = m(bill["supervisor"])
+            if month.get("kind") == "billing" and month.get("supervisor"):
+                month["supervisor"] = m(month["supervisor"])
             for row in (bill["rows"] if bill else month.get("rows", [])):
                 row["name"] = m(row["name"])
         site["rate_history"] = {m(k): v for k, v in site["rate_history"].items()}
-        site["name_policy"] = "worker names shortened to first name + initial"
+        site["name_policy"] = "worker and supervisor names shortened to first name + initial"
     return out
 
 

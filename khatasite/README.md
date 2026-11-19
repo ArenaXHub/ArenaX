@@ -48,8 +48,8 @@ Net payment, as the register computes it: `PAYMENT − (POCKET + MESS) − ADVAN
 
 | Register | Site | Supervisor | Months |
 |---|---|---|---|
-| `Davengere_Site.xlsx` | Davengere Site | Sonu Nigam | Aug, Sep, Oct 2026 (no billing sheets) |
-| `PS-1_ALKESH.xlsx` | Motidau PS-1 Gujarat | Arun Sharma | Jun, Jul, Aug, Nov, Dec 2025; Jan, Feb, Mar, Apr 2026; billing sheets Dec to Apr; EXPENSES sheet |
+| `Davengere_Site.xlsx` | Davengere Site | Sonu N. | Aug, Sep, Oct 2026 (no billing sheets) |
+| `PS-1_ALKESH.xlsx` | Motidau PS-1 Gujarat | Arun S. | Jun, Jul, Aug, Nov, Dec 2025; Jan, Feb, Mar, Apr 2026; billing sheets Dec to Apr; EXPENSES sheet |
 
 Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,400 vs ₹4,09,814 (27 workers); Dec-25 ₹7,05,831 vs ₹4,19,628; Jan-26 ₹7,52,644 vs ₹4,67,273; Mar-26 ₹4,77,662 vs ₹2,95,604. Feb-26 QIPL receipts: 01 ₹30,000, 07 ₹35,000, 15 ₹33,000, 19 ₹4,500, 22 ₹26,000, 26 ₹1,000. The script reproduces all of these; the daily billing series sums exactly to the month's billed total, and daily variable wages plus the foreman's fixed salary sum exactly to the register's PAYMENT total.
 
