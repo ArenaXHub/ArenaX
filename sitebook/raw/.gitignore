@@ -1,0 +1,6 @@
+# Raw registers stay out of git (public repo).
+*.xlsx
+*.xls
+*.csv
+!.gitignore
+!README.md
