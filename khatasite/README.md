@@ -1,18 +1,20 @@
-# SiteBook by ArenaX
+# KhataSite by ArenaX
 
 Labour Management System for construction labour contractors. A product of ArenaX Digital Solutions.
 
-Live path: `https://arenax.in/sitebook/` (this folder is served as-is by GitHub Pages; the root homepage is untouched).
+Live path: `https://arenax.in/khatasite/` (this folder is served as-is by GitHub Pages; the root homepage is untouched).
+
+Renamed from SiteBook on 19 Nov 2026. The old path `https://arenax.in/sitebook/` is a redirect page (`sitebook/index.html` at the repository root) so links already shared keep working. The app is planned at `khatasite.arenax.in` (separate hosting; see the ArenaX decision log).
 
 The page carries `noindex` because the demo is built from two real site registers (hours, rates, advances, dues, company receipts) and is shared by link with the contractors who provided them. Worker names in the public build are shortened to first name + initial; the repository is public and real worker names are never committed. Nothing about ArenaX's own business (admin console, costs) belongs in this folder; that lives in the private ArenaX workspace.
 
 ## Folder
 
 ```
-sitebook/
+khatasite/
   index.html                 the whole site: product page + live demo (inline CSS/JS, data inlined as JSON)
   assets/                    favicon.svg, og.png (fonts are the site's own, ../assets/fonts; the ₹ sign and the हिंदी label use tiny fonts embedded in index.html)
-  data/sitebook-demo.json    everything the build script extracted and derived (full, pretty-printed)
+  data/khatasite-demo.json    everything the build script extracted and derived (full, pretty-printed)
   raw/                       the two Excel registers (ignored by git: this repo is public)
   tools/build_demo_data.py   Excel -> JSON -> inlined into index.html
   docs/product-brief.md      users, roles, pricing, compliance wording, roadmap
@@ -23,14 +25,14 @@ sitebook/
 ## Rebuild the demo data
 
 ```
-py -I sitebook/tools/build_demo_data.py sitebook/raw/Davengere_Site.xlsx sitebook/raw/PS-1_ALKESH.xlsx ^
-   --out sitebook/data/sitebook-demo.json --inline sitebook/index.html --mask ^
-   --private-html C:\Users\Kamal\Projects\ArenaX\private\sitebook-demo-real.html
+py -I khatasite/tools/build_demo_data.py khatasite/raw/Davengere_Site.xlsx khatasite/raw/PS-1_ALKESH.xlsx ^
+   --out khatasite/data/khatasite-demo.json --inline khatasite/index.html --mask ^
+   --private-html C:\Users\Kamal\Projects\ArenaX\private\khatasite-demo-real.html
 ```
 
 `--mask` is the public build: worker names become first name + initial ("Sakindera R."), free-text remarks and receipt notes are dropped, supervisor and site names and every number stay. `--private-html` writes a second, self-contained page with the real names and the fonts embedded, outside the repository, for the two contractors (sent by WhatsApp). Always build the public page with `--mask`; never commit the private file.
 
-Needs Python 3.12 and `openpyxl`. The script prints a month-by-month summary (workers, wages, billed, receipts) so the numbers can be checked against the registers. `--inline` replaces the JSON between `<!--SITEBOOK-DATA-->` markers in `index.html` with a slimmed copy (only the fields the page uses); `--inline-months` (default 4) sets how many months with labour entries per site are inlined, the summary rows stay complete.
+Needs Python 3.12 and `openpyxl`. The script prints a month-by-month summary (workers, wages, billed, receipts) so the numbers can be checked against the registers. `--inline` replaces the JSON between `<!--KHATASITE-DATA-->` markers in `index.html` with a slimmed copy (only the fields the page uses); `--inline-months` (default 4) sets how many months with labour entries per site are inlined, the summary rows stay complete.
 
 The EMP/AADHAR column is never read. No phone numbers exist in the registers. Keep it that way.
 
@@ -62,7 +64,7 @@ Numbers checked against the registers (billed vs labour wages): Feb-26 ₹6,64,4
 
 ```
 py -I -m http.server 8765 --bind 127.0.0.1        # from the repo root
-# then screenshot http://127.0.0.1:8765/sitebook/index.html at 1280 and 390 px wide,
+# then screenshot http://127.0.0.1:8765/khatasite/index.html at 1280 and 390 px wide,
 # check the console is clean and document.documentElement.scrollWidth == clientWidth
 # Lighthouse mobile (performance ≥ 85) against a gzip server, as GitHub Pages serves gzip
 ```

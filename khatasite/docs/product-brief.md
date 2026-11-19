@@ -1,8 +1,8 @@
-# SiteBook · product brief (v0.4, 19 Nov 2026)
+# KhataSite · product brief (v0.5, 19 Nov 2026)
 
-SiteBook is a Labour Management System for construction labour contractors (thekedars) who run several sites for a principal company, pay labour by the day and settle weekly in cash. A product of ArenaX Digital Solutions.
+KhataSite is a Labour Management System for construction labour contractors (thekedars) who run several sites for a principal company, pay labour by the day and settle weekly in cash. A product of ArenaX Digital Solutions.
 
-Pilot material: two real registers (Davengere Site, supervisor Sonu Nigam; Motidau PS-1 Gujarat, supervisor/foreman Arun Sharma; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/sitebook/` is built from them, with worker names shortened.
+Pilot material: two real registers (Davengere Site, supervisor Sonu Nigam; Motidau PS-1 Gujarat, supervisor/foreman Arun Sharma; principal company Quartzite Infrastructure Pvt Ltd). The demo at `arenax.in/khatasite/` is built from them, with worker names shortened.
 
 ArenaX's own business side (admin console, costs) is kept in the private ArenaX workspace, not in this public repository.
 
@@ -16,7 +16,7 @@ ArenaX's own business side (admin console, costs) is kept in the private ArenaX 
 
 ## Users (hard constraints)
 
-| User | Reality | What SiteBook asks of them |
+| User | Reality | What KhataSite asks of them |
 |---|---|---|
 | Labour (mazdoor) | cannot read or write | nothing: no login, no app. QR card or WhatsApp slip (add-ons), printed weekly slip |
 | Supervisor (munshi, foreman) | one per site, barely literate, marks a paper register, gives cash advances | tap pictures: 4 attendance buttons per worker, note images for kharchi, one submit. Sees days and the kharchi he gave, never rates or wages |
@@ -77,13 +77,13 @@ The Contract Labour (Regulation and Abolition) Act was repealed when the four La
 
 ## ArenaX as business consultants
 
-Cash and register flow audit · register import to SiteBook · Labour Codes setup · munshi training (one morning on site).
+Cash and register flow audit · register import to KhataSite · Labour Codes setup · munshi training (one morning on site).
 
 ## Roadmap
 
 | Phase | Scope | Notes |
 |---|---|---|
-| 0 (now) | Product page + clickable demo from the two registers | this repo, `sitebook/` |
+| 0 (now) | Product page + clickable demo from the two registers | this repo, `khatasite/` |
 | 1 | Pilot (Dec 2026) with the PS-1 / Davengere contractor: munshi PWA (offline attendance, kharchi, submit with geo + photo), thekedar dashboard, weekly settlement, rate history | launch offer ₹2,499 for the first 6 months |
 | 1.5 | Accountant role, register import tool (this build script generalised), Labour Codes register export, QR card and WhatsApp parchi add-ons | onboarding ₹3,999 / ₹4,999 on the monthly plan, free on the annual plan |
 | 2 | Company view (read-only attendance proof for billing), multi-site plans, payment gateway for subscriptions | |
@@ -100,3 +100,4 @@ Cash and register flow audit · register import to SiteBook · Labour Codes setu
 - v2.2: the fayda calculator takes the contractor's own numbers and values the munshi's saved time from his salary. Onboarding stays ₹4,999 in the launch offer (free onboarding was tried and withdrawn the same day).
 - v2.3: monthly plan ₹3,999 per site per month; launch offer ₹2,499 for the first month only, for contractors who join in January 2027; annual plan ₹25,000 per site per year (₹2,083 a month); the fayda is set against the annual plan per month. Onboarding, final rule: free on the annual plan; on the monthly plan ₹3,999 if booked by 31 Dec 2026, ₹4,999 after.
 - v2.5: the launch price ₹2,499 is locked for the first 6 months (replaces "first month only"); after 31 Dec 2026 the annual onboarding box strikes ₹4,999; multi-site discount 2–4 sites 10%, 5–9 sites 15%, 10+ sites Ask Price, not stacking with the launch price.
+- v2.6: renamed from SiteBook to KhataSite (KP's name rule of 19 Nov 2026: "Hisaabo" is the name of a live accounting app, "SiteKhata" of an Android app). Website `arenax.in/khatasite/`; the old `arenax.in/sitebook/` redirects there. App address (planned): `khatasite.arenax.in`.

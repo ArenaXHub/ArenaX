@@ -1,4 +1,4 @@
-# SiteBook · data model (v0.1)
+# KhataSite · data model (v0.1)
 
 Multi-tenant from day one: every row that belongs to a contractor carries `contractor_id`. Wage for a day = `hours / 8 × the rate effective on that date` (from `worker_rates`). Money fields are integers in paise or decimals with 2 places; dates are ISO; timestamps are UTC.
 
