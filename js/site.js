@@ -1,4 +1,4 @@
-/* AI Adhyay site script. One file for every page; each block runs only when its elements are on the page.
+/* AdhyX site script. One file for every page; each block runs only when its elements are on the page.
    Components marked "ported" come from the live arenax.in (deploy/index.html before v4). */
 (function(){
   'use strict';
@@ -45,7 +45,7 @@
       scr.innerHTML='<div class="lvqhead"><span>Lesson 4 · Quick check</span><span>1 / 1</span></div>'+
         '<p class="lvqtext">A model trained in one hospital is used in another. Its accuracy will most likely…</p>'+
         '<div style="display:grid;gap:8px">'+OPTS.map(function(o,i){return '<button class="lvqopt" type="button" data-i="'+i+'" aria-pressed="false">'+o+'</button>'}).join('')+'</div>'+
-        '<button class="lvqgo" type="button" disabled>Submit</button><p class="lvcopy">AI Adhyay · sample question</p>';
+        '<button class="lvqgo" type="button" disabled>Submit</button><p class="lvcopy">AdhyX · sample question</p>';
       var pick=-1,go=$('.lvqgo',scr);
       $$('.lvqopt',scr).forEach(function(b){b.addEventListener('click',function(){pick=+b.dataset.i;$$('.lvqopt',scr).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});go.disabled=false;})});
       go.addEventListener('click',function(){
@@ -77,7 +77,7 @@
     window.__edStart=edStart;
   }
 
-  /* ---------- Adhyay Live: slide + three phones in sync (ported) ---------- */
+  /* ---------- AdhyX Live: slide + three phones in sync (ported) ---------- */
   if($('#slide')){
     var MX=function(hot){return '<div class="lvmx'+(hot?' hot':'')+'"><span></span><span class="lvh">Test: yes</span><span class="lvh">Test: no</span>'+
       '<span class="lvh lvrowh">Truth: yes</span><span class="lvc lvtp">True positive<small>caught</small></span><span class="lvc lvfn">False negative<small>missed</small></span>'+
@@ -273,11 +273,11 @@
     var spn=$('.spine.auto');spn.addEventListener('mouseenter',function(){clearInterval(spT)});spn.addEventListener('mouseleave',function(){spT=setInterval(spStep,2600)});}
 
   /* ---------- forms: post to LEADS_URL; mailto fallback when the URL is empty or the post fails ---------- */
-  var CFG=window.ADHYAY_CONFIG||{};
+  var CFG=window.SITE_CONFIG||{};
   var LEADS_URL=(CFG.LEADS_URL||'').trim(), CONTACT=CFG.CONTACT_EMAIL||'contactarenax@gmail.com';
   function mailtoHref(form,fields){
     var lines=Object.keys(fields).filter(function(k){return k!=='form'&&k!=='page'&&fields[k]}).map(function(k){return k.charAt(0).toUpperCase()+k.slice(1).replace(/_/g,' ')+': '+fields[k]});
-    var subj='[AI Adhyay] '+fields.form+' · '+(fields.institution||'');
+    var subj='[AdhyX] '+fields.form+' · '+(fields.institution||'');
     return 'mailto:'+CONTACT+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
   }
   function collect(f){var o={};$$('input,select,textarea',f).forEach(function(el){if(!el.name||el.type==='submit')return;o[el.name]=(el.value||'').trim()});return o;}
